@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/features/login/ui/components/app_input.dart';
+import 'package:t_truck_web/features/login/ui/components/background_logo.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -127,54 +129,6 @@ class LoginPage extends StatelessWidget {
               ],
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class AppInput extends StatelessWidget {
-  final String? label;
-
-  const AppInput({
-    Key? key,
-    this.label,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Visibility(
-          visible: label != null,
-          child: Text(
-            label != null ? label! : '',
-            style: Get.textTheme.headline2,
-          ),
-        ),
-        SizedBox(
-          height: 8,
-        ),
-        TextFormField(),
-      ],
-    );
-  }
-}
-
-class BackgroundLogo extends StatelessWidget {
-  const BackgroundLogo({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: Container(
-        child: SvgPicture.asset(
-          'images/background_logo.svg',
-          semanticsLabel: 'Background Logo',
         ),
       ),
     );
