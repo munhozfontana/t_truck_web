@@ -103,13 +103,16 @@ class LoginPage extends StatelessWidget {
                           Spacer(flex: 19),
                           Flexible(
                             flex: 42,
-                            child: Wrap(
+                            child: Column(
                               children: [
                                 Spacer(),
-                                Text(
-                                  "Precisa de ajuda? Entre em contato\n com o telefone (00) 0 0000-0000",
-                                  style: Get.textTheme.headline5,
-                                  textAlign: TextAlign.center,
+                                Expanded(
+                                  flex: 10,
+                                  child: Text(
+                                    "Precisa de ajuda? Entre em contato\n com o telefone (00) 0 0000-0000",
+                                    style: Get.textTheme.headline5,
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                                 Spacer(),
                               ],
