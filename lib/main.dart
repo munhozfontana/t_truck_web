@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:t_truck_web/core/styles/styles_button.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
 import 'package:t_truck_web/core/styles/styles_inputs.dart';
+import 'package:t_truck_web/features/home/ui/home_page.dart';
 import 'package:t_truck_web/features/login/ui/login_page.dart';
 import 'package:t_truck_web/main_biding.dart';
 
@@ -27,11 +28,15 @@ void main() async {
       ),
     ),
     initialBinding: MainBiding(),
-    initialRoute: '/',
+    initialRoute: '/home',
     getPages: [
       GetPage(
         name: '/',
         page: () => LoginPage(),
+      ),
+      GetPage(
+        name: '/home',
+        page: () => HomePage(),
       ),
     ],
   ));
