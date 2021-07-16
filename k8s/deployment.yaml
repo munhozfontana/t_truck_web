@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: t-truck-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: server_web
+  template:
+    metadata:
+      labels:
+        app: server_web
+    spec:
+      containers:
+        - name: t-truck-web
+          image: lufemunhoz/t_truck_web:v0.1.0
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: '1'
+            requests:
+              memory: 256Mi
+              cpu: '0.2'
