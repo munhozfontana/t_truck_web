@@ -1,0 +1,18 @@
+#Stage 1 - Install dependencies and build the app
+FROM cirrusci/flutter:stable as build-env
+
+RUN apt-get update -qq -y
+RUN apt-get install lcov -y
+
+WORKDIR  /usr/local/app
+
+COPY . .
+# Stage 1 - config
+RUN flutter pub get
+
+# Stage 2 - build web
+RUN flutter build web --release --csp
+
+# Stage 3 - deploy web
+FROM nginx
+COPY --from=build-env /usr/local/app/build/web /usr/share/nginx/html
