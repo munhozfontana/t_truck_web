@@ -112,9 +112,8 @@ class Item extends StatefulWidget {
   _ItemState createState() => _ItemState();
 }
 
-class _ItemState extends State<Item> {
+class _ItemState extends State<Item> with SingleTickerProviderStateMixin {
   Duration durationAnimation = Duration(milliseconds: 300);
-
   Color colorIcon = Colors.black;
   Color colorText = Colors.black;
   List<Color> degradeItem = [
@@ -124,6 +123,33 @@ class _ItemState extends State<Item> {
   double fontSizeText = 16;
   bool onHover = false;
 
+  late AnimationController _controller;
+  late Animation<double> _sizeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+    );
+
+    _sizeAnimation = TweenSequence([
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 16, end: 17),
+        weight: 17,
+      ),
+    ]).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.slowMiddle,
+    ));
+
+    _controller.addListener(() {
+      print(_sizeAnimation.value);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -131,71 +157,94 @@ class _ItemState extends State<Item> {
         return MouseRegion(
           onHover: hover,
           onExit: exit,
-          child: Stack(
-            children: [
-              AnimatedContainer(
-                duration: durationAnimation,
-                curve: Curves.easeInOutExpo,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        stops: [0.1, 1],
-                        colors: degradeItem)),
-                height: widget.height,
-                width: onHover ? constraints.maxWidth : 0,
-              ),
-              Container(
-                height: widget.height,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Icon(
-                        widget.icon,
-                        color: onHover ? Colors.white : StylesColors.gray,
-                      ),
-                    ),
-                    Expanded(
-                        flex: 3,
-                        child: AnimatedDefaultTextStyle(
-                          child: Text(
-                            widget.text,
-                          ),
-                          duration: durationAnimation,
-                          style: StylesTypography.h16.copyWith(
-                            fontSize: fontSizeText,
-                            color: colorIcon,
-                          ),
-                        )),
-                  ],
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: select,
+            child: Stack(
+              children: [
+                AnimatedContainer(
+                  duration: durationAnimation,
+                  curve: Curves.easeInOutExpo,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          stops: [0.1, 1],
+                          colors: degradeItem)),
+                  height: widget.height,
+                  width: onHover ? constraints.maxWidth : 0,
                 ),
-              ),
-            ],
+                Container(
+                  height: widget.height,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Icon(
+                          widget.icon,
+                          color: onHover ? Colors.white : StylesColors.gray,
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: AnimatedBuilder(
+                          animation: _controller,
+                          builder: (context, child) {
+                            return Text(
+                              widget.text,
+                              style: StylesTypography.h16.copyWith(
+                                fontSize: _sizeAnimation.value,
+                                color: colorIcon,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
     );
   }
 
-  void hover(_) => setState(() {
-        colorIcon = Colors.white;
-        colorText = Colors.white;
-        fontSizeText = 17;
-        degradeItem = [
-          StylesColors.blue,
-          StylesColors.blue.withOpacity(.69),
-        ];
-        onHover = true;
-      });
+  void select() {
+    _controller.forward().whenComplete(() => _controller.reverse());
+  }
 
-  void exit(_) => setState(() {
-        colorIcon = StylesColors.gray;
-        colorText = StylesColors.gray;
-        fontSizeText = 16;
-        degradeItem = [
-          StylesColors.white,
-          StylesColors.blue.withOpacity(.69),
-        ];
-        onHover = false;
-      });
+  void hover(_) {
+    onHoverStyle();
+  }
+
+  void exit(_) {
+    offHoverStyle();
+  }
+
+  void onHoverStyle() {
+    setState(() {
+      colorIcon = Colors.white;
+      colorText = Colors.white;
+      // fontSizeText = 17;
+      degradeItem = [
+        StylesColors.blue,
+        StylesColors.blue.withOpacity(.69),
+      ];
+      onHover = true;
+    });
+  }
+
+  void offHoverStyle() {
+    setState(() {
+      colorIcon = StylesColors.gray;
+      colorText = StylesColors.gray;
+      // fontSizeText = 16;
+      degradeItem = [
+        StylesColors.white,
+        StylesColors.blue.withOpacity(.69),
+      ];
+      onHover = false;
+    });
+  }
 }
