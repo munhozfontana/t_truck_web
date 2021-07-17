@@ -37,11 +37,16 @@ class LayoutComponent extends StatelessWidget {
                         color: StylesColors.graySoft,
                         child: Row(
                           children: [
-                            Spacer(),
+                            Spacer(
+                              flex: 124,
+                            ),
                             Expanded(
-                              flex: 9,
+                              flex: 800,
                               child: child,
                             ),
+                            Spacer(
+                              flex: 320,
+                            )
                           ],
                         )),
                   ),
