@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 Duration timeToDisabled = const Duration(seconds: 30);
 
 class AppDialog {
-  static void show({String? titulo, String? menssagem}) {
+  void show({String? menssagem}) {
     Get.showSnackbar(GetBar(
       message: menssagem,
       duration: timeToDisabled,
@@ -12,7 +12,7 @@ class AppDialog {
     ));
   }
 
-  static void error({String? titulo, String? menssagem}) {
+  void error({String? menssagem}) {
     Get.showSnackbar(
       GetBar(
         message: menssagem,

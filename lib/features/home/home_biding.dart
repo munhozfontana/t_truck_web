@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/utils/app_dialog.dart';
 
 import '../../core/adapters/map/i_map_adp.dart';
 import 'data/external/map_box_driver.dart';
@@ -29,9 +30,15 @@ class HomeBiding extends Bindings {
       permanent: true,
     );
 
+    Get.put<AppDialog>(
+      AppDialog(),
+      permanent: true,
+    );
+
     Get.put<HomeController>(
         HomeController(
           mapUseCase: Get.find(),
+          appDialog: Get.find(),
         ),
         permanent: true);
   }
