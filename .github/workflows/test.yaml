@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: Tests
 
 on:
   push:
@@ -17,13 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
-
-      - name: Install dependencies
-        run: dart pub get
-
-      - name: Analyze project source
-        run: dart analyze
-
-      - name: Run tests
-        run: dart test
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.0.5'
+      - run: flutter pub get
+      - run: flutter test
