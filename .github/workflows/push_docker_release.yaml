@@ -1,4 +1,4 @@
-name: Push docker release
+name: Push docker homologacao
 on:
   push:
     branches: [master]
