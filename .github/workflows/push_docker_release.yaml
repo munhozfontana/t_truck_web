@@ -1,4 +1,4 @@
-name: Push docker
+name: Push docker release
 on:
   push:
     branches: [master]
