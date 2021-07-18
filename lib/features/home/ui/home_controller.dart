@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/menu/menu_model.dart';
 
 import '../../../core/adapters/map/map_entity.dart';
+import '../../../core/components/menu/menu_model.dart';
 import '../../../core/params/params.dart';
 import '../../../core/utils/app_dialog.dart';
 import '../domain/use_cases/map_use_case.dart';

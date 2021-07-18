@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/utils/app_dialog.dart';
 
 import '../../core/adapters/map/i_map_adp.dart';
+import '../../core/utils/app_dialog.dart';
 import 'data/external/map_box_driver.dart';
 import 'data/repository_impl/map_repository.dart';
 import 'domain/repositories/i_map_repository.dart';
