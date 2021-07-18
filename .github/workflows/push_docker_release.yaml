@@ -24,11 +24,5 @@ jobs:
       - name: pull last image
         run: docker pull lufemunhoz/t_truck_web:${{ steps.tag_version.outputs.tag }}
 
-      # - name: push image
-      #   run: push pull lufemunhoz/t_truck_web:${{ steps.tag_version.outputs.new_tag }}
-      # id: docker_build
-      # uses: docker/build-push-action@v2
-      # with:
-      #   pull: true
-      #   tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.new_tag }}
-      #   labels: ${{ steps.docker_meta.outputs.labels }}
+      - name: push image
+        run: push pull lufemunhoz/t_truck_web:${{ steps.tag_version.outputs.new_tag }}
