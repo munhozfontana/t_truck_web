@@ -1,4 +1,4 @@
-name: Deploy
+name: Push docker
 on:
   push:
     branches: [master, homologacao]
