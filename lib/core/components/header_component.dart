@@ -17,33 +17,29 @@ class HeaderComponent extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Spacer(),
-                Container(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.dashboard),
-                      SizedBox(width: 15),
-                      const Text('Painel')
-                    ],
-                  ),
+                const Spacer(),
+                Row(
+                  children: [
+                    const Icon(Icons.dashboard),
+                    const SizedBox(width: 15),
+                    const Text('Painel')
+                  ],
                 ),
-                Spacer(
+                const Spacer(
                   flex: 25,
                 ),
-                Container(
-                  child: Row(
-                    children: [
-                      Icon(Icons.person_outline),
-                      SizedBox(width: 15),
-                      const Text('User')
-                    ],
-                  ),
+                Row(
+                  children: [
+                    const Icon(Icons.person_outline),
+                    const SizedBox(width: 15),
+                    const Text('User')
+                  ],
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'style_colors.dart';
 
-class StylesTypography {
+mixin StylesTypography {
   static TextStyle get h48 => TextStyle(
       letterSpacing: 1.1,
       fontWeight: FontWeight.w700,
@@ -34,21 +34,21 @@ class StylesTypography {
       fontSize: 18,
       color: StylesColors.gray);
 
-  static TextStyle get h16 => TextStyle(
+  static TextStyle get h16 => const TextStyle(
         fontWeight: FontWeight.w500,
         fontFamily: 'Poppins',
         fontStyle: FontStyle.normal,
         fontSize: 16,
       );
 
-  static TextStyle get h16W400 => TextStyle(
+  static TextStyle get h16W400 => const TextStyle(
         fontWeight: FontWeight.w400,
         fontFamily: 'Poppins',
         fontStyle: FontStyle.normal,
         fontSize: 16,
       );
 
-  static TextStyle get h14 => TextStyle(
+  static TextStyle get h14 => const TextStyle(
         fontWeight: FontWeight.w400,
         fontFamily: 'Poppins',
         fontStyle: FontStyle.normal,

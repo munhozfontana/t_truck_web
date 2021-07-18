@@ -29,11 +29,11 @@ class _MenuItemComponentState extends State<MenuItemComponent>
     super.initState();
     _hoverAnimCtl = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
     );
     _selectAnimCtl = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 250),
     );
   }
 
@@ -97,9 +97,7 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          stops: [0.1, 1],
+                          stops: const [0.1, 1],
                           colors: animatedColorList(begin: [
                             StylesColors.blue.withOpacity(.69),
                             StylesColors.blue,
@@ -116,46 +114,43 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                         end: constraints.maxWidth,
                       ).value,
                     ),
-                    Container(
-                      height: widget.height,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Icon(widget.icon,
-                                color: animateColor(
-                                        parent: _hoverAnimCtl,
-                                        begin: StylesColors.gray,
-                                        end: Colors.white)
-                                    .value),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Icon(widget.icon,
+                              color: animateColor(
+                                      parent: _hoverAnimCtl,
+                                      begin: StylesColors.gray,
+                                      end: Colors.white)
+                                  .value),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: AnimatedBuilder(
+                            animation: _selectAnimCtl,
+                            builder: (context, child) {
+                              return Container(
+                                margin: EdgeInsets.only(
+                                  left: animateDouble(
+                                    parent: _selectAnimCtl,
+                                    begin: 0,
+                                    end: 10,
+                                  ).value,
+                                ),
+                                child: Text(
+                                  widget.text,
+                                  style: StylesTypography.h16.copyWith(
+                                      color: animateColor(
+                                              parent: _hoverAnimCtl,
+                                              begin: StylesColors.gray,
+                                              end: Colors.white)
+                                          .value),
+                                ),
+                              );
+                            },
                           ),
-                          Expanded(
-                            flex: 3,
-                            child: AnimatedBuilder(
-                              animation: _selectAnimCtl,
-                              builder: (context, child) {
-                                return Container(
-                                  margin: EdgeInsets.only(
-                                    left: animateDouble(
-                                      parent: _selectAnimCtl,
-                                      begin: 0,
-                                      end: 10,
-                                    ).value,
-                                  ),
-                                  child: Text(
-                                    widget.text,
-                                    style: StylesTypography.h16.copyWith(
-                                        color: animateColor(
-                                                parent: _hoverAnimCtl,
-                                                begin: StylesColors.gray,
-                                                end: Colors.white)
-                                            .value),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     )
                   ],
                 );

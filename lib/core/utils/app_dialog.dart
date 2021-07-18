@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-var timeToDisabled = Duration(seconds: 30);
+Duration timeToDisabled = const Duration(seconds: 30);
 
 class AppDialog {
   static void show({String? titulo, String? menssagem}) {

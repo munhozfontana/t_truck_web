@@ -25,11 +25,9 @@ class LayoutComponent extends StatelessWidget {
             flex: 1244,
             child: Column(
               children: [
-                Expanded(
+                const Expanded(
                   flex: 88,
-                  child: Container(
-                    child: HeaderComponent(),
-                  ),
+                  child: HeaderComponent(),
                 ),
                 Expanded(
                   flex: 812,

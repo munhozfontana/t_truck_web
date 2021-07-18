@@ -21,7 +21,7 @@ class AppInput extends StatelessWidget {
             style: Get.textTheme.headline2,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         TextFormField(),

@@ -3,41 +3,45 @@ import 'package:equatable/equatable.dart';
 abstract class Failure extends Equatable {
   final String? detail;
 
-  Failure({this.detail});
+  const Failure({this.detail});
 }
 
 // General failures
 class AppFailure extends Failure {
+  @override
   final String? detail;
 
-  AppFailure({this.detail});
+  const AppFailure({this.detail});
 
   @override
   List<Object?> get props => [detail];
 }
 
 class RequestFailure extends Failure {
+  @override
   final String? detail;
 
-  RequestFailure({this.detail});
+  const RequestFailure({this.detail});
 
   @override
   List<Object?> get props => [detail];
 }
 
 class DriverFailure extends Failure {
+  @override
   final String? detail;
 
-  DriverFailure({this.detail});
+  const DriverFailure({this.detail});
 
   @override
   List<Object?> get props => [detail];
 }
 
 class ValidationFailure extends Failure {
+  @override
   final String? detail;
 
-  ValidationFailure({this.detail});
+  const ValidationFailure({this.detail});
 
   @override
   List<Object?> get props => [detail];

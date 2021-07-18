@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Params extends Equatable {
-  Params();
+  const Params();
 
   @override
   List<Object> get props => [];

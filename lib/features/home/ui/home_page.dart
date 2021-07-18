@@ -36,18 +36,28 @@ class HomePage extends GetWidget<HomeController> {
                 ),
                 const Spacer(flex: 26),
                 Expanded(
-                  flex: 350,
+                  flex: 280,
                   child: controller.mapEntity.value.map,
                 ),
                 const Spacer(flex: 25),
                 const TitleComponent(
                   flex: 36,
-                  title: 'Painel',
+                  title: 'Acesso rápido',
                 ),
                 const Spacer(flex: 44),
-                const Expanded(
+                Expanded(
                   flex: 96,
-                  child: Text('test'),
+                  child: Row(
+                    children: [
+                      quickAccess(),
+                      const Spacer(flex: 33),
+                      quickAccess(),
+                      const Spacer(flex: 33),
+                      quickAccess(),
+                      const Spacer(flex: 33),
+                      quickAccess(),
+                    ],
+                  ),
                 ),
                 const Spacer(flex: 48),
               ],
@@ -61,6 +71,7 @@ class HomePage extends GetWidget<HomeController> {
   Expanded cardInfo({
     String quantity = '000',
     String description = 'Sem informação',
+    IconData icon = Icons.flutter_dash_outlined,
   }) {
     return Expanded(
       flex: 176,
@@ -77,7 +88,7 @@ class HomePage extends GetWidget<HomeController> {
                   flex: 2,
                   child: Row(
                     children: [
-                      const Icon(Icons.access_time_rounded),
+                      Icon(icon),
                       const Spacer(),
                       const Icon(Icons.replay)
                     ],
@@ -100,6 +111,42 @@ class HomePage extends GetWidget<HomeController> {
                     quantity,
                     style: StylesTypography.h18wBold,
                   ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Expanded quickAccess({
+    IconData icon = Icons.flutter_dash_outlined,
+    String label = 'Sem informação',
+  }) {
+    return Expanded(
+      flex: 176,
+      child: Container(
+        decoration: BoxDecoration(
+          color: StylesColors.white,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Expanded(child: Icon(Icons.access_time_rounded)),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      label,
+                      style: StylesTypography.h16,
+                    ),
+                    Icon(icon),
+                  ],
                 ),
               ),
             ],

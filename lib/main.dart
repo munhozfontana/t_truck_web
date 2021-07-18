@@ -10,16 +10,16 @@ import 'features/home/ui/home_page.dart';
 import 'features/login/ui/login_page.dart';
 import 'main_biding.dart';
 
-void main() async {
+Future<void> main() async {
   runApp(GetMaterialApp(
     title: 'GSA',
     theme: ThemeData(
       brightness: Brightness.light,
-      scaffoldBackgroundColor: Color(0xFFFBFBFB),
+      scaffoldBackgroundColor: const Color(0xFFFBFBFB),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: StylesButton.defaultButton,
       ),
-      buttonTheme: ButtonThemeData(height: 56, minWidth: 200),
+      buttonTheme: const ButtonThemeData(height: 56, minWidth: 200),
       inputDecorationTheme: StylesInputs.defaultInput(),
       textTheme: TextTheme(
         headline1: StylesTypography.h24,
@@ -34,11 +34,11 @@ void main() async {
     getPages: [
       GetPage(
         name: '/',
-        page: () => LoginPage(),
+        page: () => const LoginPage(),
       ),
       GetPage(
         name: '/home',
-        page: () => HomePage(),
+        page: () => const HomePage(),
         binding: HomeBiding(),
       ),
     ],

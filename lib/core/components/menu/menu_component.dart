@@ -40,19 +40,17 @@ class _MenuComponentState extends State<MenuComponent> {
     );
   }
 
-  Container linkExit() => Container(
-        child: Center(
-          child: Text(
-            'Sair',
-            style: TextStyle(
-              color: StylesColors.orange,
-            ),
+  Center linkExit() => Center(
+        child: Text(
+          'Sair',
+          style: TextStyle(
+            color: StylesColors.orange,
           ),
         ),
       );
 
   ListView itemsMenu() {
-    double height = maxHeight! * .05398;
+    final height = maxHeight! * .05398;
     return ListView(
       children: [
         MenuItemComponent(

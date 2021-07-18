@@ -16,7 +16,6 @@ class StylesInputs {
           borderRadius: BorderRadius.circular(4.0),
         ),
         disabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.black),
           borderRadius: BorderRadius.circular(4.0),
         ),
         errorBorder: OutlineInputBorder(

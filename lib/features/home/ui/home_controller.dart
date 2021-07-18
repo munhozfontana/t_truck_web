@@ -21,7 +21,7 @@ class HomeController extends GetxController {
   }
 
   void createMap() {
-    mapUseCase(Params()).fold(
+    mapUseCase(const Params()).fold(
       (l) => AppDialog.error(titulo: l.detail),
       (r) {
         mapEntity.value = r;

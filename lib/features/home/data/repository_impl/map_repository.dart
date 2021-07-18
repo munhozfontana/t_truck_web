@@ -21,7 +21,7 @@ class MapRepository implements IMapRepository {
     } on DriverException catch (e) {
       return Left(DriverFailure(detail: e.error));
     } catch (e) {
-      return Left(AppFailure(detail: 'Erro ao acessa o mapa'));
+      return const Left(AppFailure(detail: 'Erro ao acessa o mapa'));
     }
   }
 }
