@@ -1,7 +1,7 @@
 name: Push docker
 on:
   push:
-    branches: [homologacao, master]
+    branches: [homologacao]
 
 jobs:
   build:
