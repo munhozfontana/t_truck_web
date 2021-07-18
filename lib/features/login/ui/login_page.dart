@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/login/ui/components/app_input.dart';
-import 'package:t_truck_web/features/login/ui/components/background_logo.dart';
+
+import 'components/app_input.dart';
+import 'components/background_logo.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

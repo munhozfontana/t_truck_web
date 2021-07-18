@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/styles/styles_button.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/core/styles/styles_inputs.dart';
-import 'package:t_truck_web/features/home/ui/home_page.dart';
-import 'package:t_truck_web/features/login/ui/login_page.dart';
-import 'package:t_truck_web/main_biding.dart';
+
+import 'core/styles/styles_button.dart';
+import 'core/styles/styles_fonts.dart';
+import 'core/styles/styles_inputs.dart';
+import 'features/home/home_biding.dart';
+import 'features/home/ui/home_page.dart';
+import 'features/login/ui/login_page.dart';
+import 'main_biding.dart';
 
 void main() async {
   runApp(GetMaterialApp(
@@ -37,6 +39,7 @@ void main() async {
       GetPage(
         name: '/home',
         page: () => HomePage(),
+        binding: HomeBiding(),
       ),
     ],
   ));

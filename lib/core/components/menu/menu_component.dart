@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:t_truck_web/core/components/menu/menu_item_component.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
+
+import '../../styles/style_colors.dart';
+import 'menu_item_component.dart';
 
 class MenuComponent extends StatefulWidget {
   const MenuComponent({

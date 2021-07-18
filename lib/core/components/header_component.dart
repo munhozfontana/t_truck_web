@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
+
+import '../styles/style_colors.dart';
 
 class HeaderComponent extends StatelessWidget {
   const HeaderComponent({
@@ -12,36 +13,34 @@ class HeaderComponent extends StatelessWidget {
       color: StylesColors.white,
       child: Column(
         children: [
-          Spacer(),
+          const Spacer(),
           Expanded(
-            child: Container(
-              child: Row(
-                children: [
-                  Spacer(),
-                  Container(
-                    child: Row(
-                      children: [
-                        Icon(Icons.dashboard),
-                        SizedBox(width: 15),
-                        Text('Painel')
-                      ],
-                    ),
+            child: Row(
+              children: [
+                Spacer(),
+                Container(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.dashboard),
+                      SizedBox(width: 15),
+                      const Text('Painel')
+                    ],
                   ),
-                  Spacer(
-                    flex: 25,
+                ),
+                Spacer(
+                  flex: 25,
+                ),
+                Container(
+                  child: Row(
+                    children: [
+                      Icon(Icons.person_outline),
+                      SizedBox(width: 15),
+                      const Text('User')
+                    ],
                   ),
-                  Container(
-                    child: Row(
-                      children: [
-                        Icon(Icons.person_outline),
-                        SizedBox(width: 15),
-                        Text('User')
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                ],
-              ),
+                ),
+                Spacer(),
+              ],
             ),
           ),
           Spacer(),

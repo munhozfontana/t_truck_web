@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
+
+import 'style_colors.dart';
 
 class StylesTypography {
   static TextStyle get h48 => TextStyle(

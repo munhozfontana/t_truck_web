@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
+
+import '../../styles/style_colors.dart';
+import '../../styles/styles_fonts.dart';
 
 class MenuItemComponent extends StatefulWidget {
   final double height;
@@ -33,19 +34,6 @@ class _MenuItemComponentState extends State<MenuItemComponent>
     _selectAnimCtl = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 250),
-    );
-  }
-
-  Animation<dynamic> animateGeneric({
-    required dynamic begin,
-    required dynamic end,
-    required parent,
-  }) {
-    return Tween<dynamic>(begin: begin, end: end).animate(
-      CurvedAnimation(
-        parent: parent,
-        curve: Curves.decelerate,
-      ),
     );
   }
 
@@ -122,7 +110,7 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                         ),
                       ),
                       height: widget.height,
-                      width: animateGeneric(
+                      width: animateDouble(
                         parent: _hoverAnimCtl,
                         begin: 0,
                         end: constraints.maxWidth,
@@ -147,7 +135,7 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                               builder: (context, child) {
                                 return Container(
                                   margin: EdgeInsets.only(
-                                    left: animateGeneric(
+                                    left: animateDouble(
                                       parent: _selectAnimCtl,
                                       begin: 0,
                                       end: 10,

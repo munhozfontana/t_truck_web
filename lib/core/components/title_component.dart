@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
+
+import '../styles/styles_fonts.dart';
 
 class TitleComponent extends StatelessWidget {
   final String title;
@@ -10,7 +11,7 @@ class TitleComponent extends StatelessWidget {
     Key? key,
     required this.title,
     this.secondary,
-    this.flex = 3,
+    this.flex = 2,
   }) : super(key: key);
 
   @override
@@ -20,11 +21,9 @@ class TitleComponent extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            child: Text(
-              title,
-              style: StylesTypography.h24,
-            ),
+          Text(
+            title,
+            style: StylesTypography.h24,
           ),
           Container(
             child: secondary ?? Container(),

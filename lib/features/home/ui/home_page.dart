@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/components/body_component.dart';
-import 'package:t_truck_web/core/components/layout_component.dart';
-import 'package:t_truck_web/core/components/title_component.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
+import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
+import '../../../core/components/body_component.dart';
+import '../../../core/components/layout_component.dart';
+import '../../../core/components/title_component.dart';
+import '../../../core/styles/style_colors.dart';
+import '../../../core/styles/styles_fonts.dart';
+import 'home_controller.dart';
+
+class HomePage extends GetWidget<HomeController> {
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -13,7 +16,7 @@ class HomePage extends StatelessWidget {
     return LayoutComponent(
       child: Column(
         children: [
-          TitleComponent(title: 'Painel'),
+          const TitleComponent(title: 'Painel'),
           BodyComponent(
             child: Column(
               children: [
@@ -22,31 +25,31 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     children: [
                       cardInfo(),
-                      Spacer(flex: 33),
+                      const Spacer(flex: 33),
                       cardInfo(),
-                      Spacer(flex: 33),
+                      const Spacer(flex: 33),
                       cardInfo(),
-                      Spacer(flex: 33),
+                      const Spacer(flex: 33),
                       cardInfo(),
                     ],
                   ),
                 ),
-                Spacer(flex: 26),
+                const Spacer(flex: 26),
                 Expanded(
-                  flex: 280,
-                  child: Container(),
+                  flex: 350,
+                  child: controller.mapEntity.value.map,
                 ),
-                Spacer(flex: 25),
-                TitleComponent(
+                const Spacer(flex: 25),
+                const TitleComponent(
                   flex: 36,
                   title: 'Painel',
                 ),
-                Spacer(flex: 44),
-                Expanded(
+                const Spacer(flex: 44),
+                const Expanded(
                   flex: 96,
                   child: Text('test'),
                 ),
-                Spacer(flex: 48),
+                const Spacer(flex: 48),
               ],
             ),
           ),
@@ -72,14 +75,12 @@ class HomePage extends StatelessWidget {
             children: [
               Expanded(
                   flex: 2,
-                  child: Container(
-                    child: Row(
-                      children: [
-                        Icon(Icons.access_time_rounded),
-                        Spacer(),
-                        Icon(Icons.replay)
-                      ],
-                    ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.access_time_rounded),
+                      const Spacer(),
+                      const Icon(Icons.replay)
+                    ],
                   )),
               Expanded(
                 flex: 4,

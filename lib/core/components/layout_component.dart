@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/components/header_component.dart';
-import 'package:t_truck_web/core/components/menu/menu_component.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
+
+import '../styles/style_colors.dart';
+import 'header_component.dart';
+import 'menu/menu_component.dart';
 
 class LayoutComponent extends StatelessWidget {
   final Widget child;
@@ -16,42 +17,41 @@ class LayoutComponent extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          Expanded(
+          const Expanded(
             flex: 196,
             child: MenuComponent(),
           ),
           Expanded(
             flex: 1244,
-            child: Container(
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 88,
-                    child: Container(
-                      child: HeaderComponent(),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 88,
+                  child: Container(
+                    child: HeaderComponent(),
+                  ),
+                ),
+                Expanded(
+                  flex: 812,
+                  child: Container(
+                    color: StylesColors.graySoft,
+                    child: Row(
+                      children: [
+                        const Spacer(
+                          flex: 124,
+                        ),
+                        Expanded(
+                          flex: 800,
+                          child: child,
+                        ),
+                        const Spacer(
+                          flex: 320,
+                        )
+                      ],
                     ),
                   ),
-                  Expanded(
-                    flex: 812,
-                    child: Container(
-                        color: StylesColors.graySoft,
-                        child: Row(
-                          children: [
-                            Spacer(
-                              flex: 124,
-                            ),
-                            Expanded(
-                              flex: 800,
-                              child: child,
-                            ),
-                            Spacer(
-                              flex: 320,
-                            )
-                          ],
-                        )),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
