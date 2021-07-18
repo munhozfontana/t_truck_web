@@ -45,5 +45,5 @@ jobs:
           push: true
           context: .
           file: ./Dockerfile.web
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.part  }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.tag  }}
           labels: ${{ steps.docker_meta.outputs.labels }}
