@@ -1,4 +1,4 @@
-name: Push docker homologacao
+name: Push docker
 on:
   push:
     branches: [master]
@@ -20,7 +20,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
           DRY_RUN: true
-          WITH_V: true
 
       - name: pull last image
         run: docker pull lufemunhoz/t_truck_web:latast
