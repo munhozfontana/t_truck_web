@@ -18,7 +18,7 @@ class HomeBiding extends Bindings {
 
     Get.put<IMapRepository>(
       MapRepository(
-        iMap: Get.find(),
+        iMapAdap: Get.find(),
       ),
       permanent: true,
     );

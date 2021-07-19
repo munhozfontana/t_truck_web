@@ -8,16 +8,16 @@ import '../../domain/repositories/i_map_repository.dart';
 
 @override
 class MapRepository implements IMapRepository {
-  IMapAdp iMap;
+  IMapAdp iMapAdap;
 
   MapRepository({
-    required this.iMap,
+    required this.iMapAdap,
   });
 
   @override
   Either<Failure, MapEntity> init() {
     try {
-      return Right(iMap.init());
+      return Right(iMapAdap.init());
     } on DriverException catch (e) {
       return Left(DriverFailure(detail: e.error));
     } catch (e) {

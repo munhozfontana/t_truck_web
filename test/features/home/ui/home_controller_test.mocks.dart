@@ -55,11 +55,11 @@ class MockAppDialog extends _i1.Mock implements _i8.AppDialog {
   }
 
   @override
-  void show({String? titulo, String? menssagem}) => super.noSuchMethod(
-      Invocation.method(#show, [], {#titulo: titulo, #menssagem: menssagem}),
-      returnValueForMissingStub: null);
+  void show({String? menssagem}) =>
+      super.noSuchMethod(Invocation.method(#show, [], {#menssagem: menssagem}),
+          returnValueForMissingStub: null);
   @override
-  void error({String? titulo, String? menssagem}) => super.noSuchMethod(
-      Invocation.method(#error, [], {#titulo: titulo, #menssagem: menssagem}),
-      returnValueForMissingStub: null);
+  void error({String? menssagem}) =>
+      super.noSuchMethod(Invocation.method(#error, [], {#menssagem: menssagem}),
+          returnValueForMissingStub: null);
 }
