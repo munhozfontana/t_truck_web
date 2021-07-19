@@ -26,7 +26,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DRY_RUN: true
 
-      - name: pull and push image
-      - run: |
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.new_tag }}
+      - name: pull last image
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:latest && docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.new_tag }}
