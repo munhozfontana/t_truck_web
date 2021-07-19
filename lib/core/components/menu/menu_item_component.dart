@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t_truck_web/core/animations/animations_utils.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
 
 import '../../styles/style_colors.dart';
@@ -7,11 +8,13 @@ import '../../styles/styles_fonts.dart';
 class MenuItemComponent extends StatefulWidget {
   final double height;
   final MenuModel menuModel;
+  final void Function(MenuModel) onTap;
 
   const MenuItemComponent({
     Key? key,
     required this.height,
     required this.menuModel,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -22,6 +25,7 @@ class _MenuItemComponentState extends State<MenuItemComponent>
     with TickerProviderStateMixin {
   late AnimationController _hoverAnimCtl;
   late AnimationController _selectAnimCtl;
+  AnimationsUtils animationsUtils = AnimationsUtils();
 
   @override
   void initState() {
@@ -36,46 +40,6 @@ class _MenuItemComponentState extends State<MenuItemComponent>
     );
   }
 
-  Animation<double> animateDouble({
-    required double begin,
-    required double end,
-    required Animation<double> parent,
-  }) {
-    return Tween<double>(begin: begin, end: end).animate(
-      CurvedAnimation(
-        parent: parent,
-        curve: Curves.decelerate,
-      ),
-    );
-  }
-
-  Animation<Color?> animateColor({
-    required Color begin,
-    required Color end,
-    required Animation<double> parent,
-  }) {
-    return ColorTween(begin: begin, end: end).animate(
-      CurvedAnimation(
-        parent: parent,
-        curve: Curves.decelerate,
-      ),
-    );
-  }
-
-  List<Color> animatedColorList({
-    required List<Color> begin,
-    required List<Color> end,
-    required Animation<double> parent,
-  }) {
-    return begin.asMap().entries.map((entry) {
-      return animateColor(
-        begin: entry.value,
-        end: end[entry.key],
-        parent: parent,
-      ).value!;
-    }).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -85,9 +49,12 @@ class _MenuItemComponentState extends State<MenuItemComponent>
           onExit: (event) => _hoverAnimCtl.reverse(),
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
-            onTap: () => _selectAnimCtl
-                .forward()
-                .whenCompleteOrCancel(_selectAnimCtl.reverse),
+            onTap: () {
+              widget.onTap(widget.menuModel);
+              _selectAnimCtl
+                  .forward()
+                  .whenCompleteOrCancel(_selectAnimCtl.reverse);
+            },
             child: AnimatedBuilder(
               animation: _hoverAnimCtl,
               builder: (context, child) {
@@ -97,7 +64,7 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           stops: const [0.1, 1],
-                          colors: animatedColorList(begin: [
+                          colors: animationsUtils.animatedColorList(begin: [
                             StylesColors.blue.withOpacity(.69),
                             StylesColors.blue,
                           ], end: [
@@ -107,19 +74,22 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                         ),
                       ),
                       height: widget.height,
-                      width: animateDouble(
-                        parent: _hoverAnimCtl,
-                        begin: 0,
-                        end: constraints.maxWidth,
-                      ).value,
+                      width: animationsUtils
+                          .animateDouble(
+                            parent: _hoverAnimCtl,
+                            begin: 0,
+                            end: constraints.maxWidth,
+                          )
+                          .value,
                     ),
-                    Container(
+                    SizedBox(
                       height: widget.height,
                       child: Row(
                         children: [
                           Expanded(
                             child: Icon(widget.menuModel.icon,
-                                color: animateColor(
+                                color: animationsUtils
+                                    .animateColor(
                                         parent: _hoverAnimCtl,
                                         begin: StylesColors.gray,
                                         end: Colors.white)
@@ -132,16 +102,19 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                               builder: (context, child) {
                                 return Container(
                                   margin: EdgeInsets.only(
-                                    left: animateDouble(
-                                      parent: _selectAnimCtl,
-                                      begin: 0,
-                                      end: 10,
-                                    ).value,
+                                    left: animationsUtils
+                                        .animateDouble(
+                                          parent: _selectAnimCtl,
+                                          begin: 0,
+                                          end: 10,
+                                        )
+                                        .value,
                                   ),
                                   child: Text(
                                     widget.menuModel.text,
                                     style: StylesTypography.h16.copyWith(
-                                        color: animateColor(
+                                        color: animationsUtils
+                                            .animateColor(
                                                 parent: _hoverAnimCtl,
                                                 begin: StylesColors.gray,
                                                 end: Colors.white)

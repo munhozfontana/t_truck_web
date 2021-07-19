@@ -11,7 +11,7 @@ class HomeController extends GetxController {
   final MapUseCase mapUseCase;
   final AppDialog appDialog;
   Rx<MapEntity> mapEntity = MapEntity(map: Container()).obs;
-  final RxList<MenuModel> _quickAcces = <MenuModel>[].obs;
+  final RxList<MenuModel> quickAcces = <MenuModel>[].obs;
 
   HomeController({
     required this.mapUseCase,
@@ -32,12 +32,14 @@ class HomeController extends GetxController {
   }
 
   void addQuickAcces(MenuModel menuModel) {
-    _quickAcces.insert(0, menuModel);
+    if (quickAcces.isEmpty || !quickAcces.any((item) => item == menuModel)) {
+      quickAcces.insert(0, menuModel);
+    }
 
-    if (_quickAcces.length >= 5) {
-      _quickAcces.removeLast();
+    if (quickAcces.length >= 5) {
+      quickAcces.removeLast();
     }
   }
 
-  RxList<MenuModel> get quickAccess => _quickAcces;
+  RxList<MenuModel> get quickAccess => quickAcces;
 }

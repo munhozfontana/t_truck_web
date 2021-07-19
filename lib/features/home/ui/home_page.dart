@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/features/home/ui/components/quick_access.dart';
 
 import '../../../core/components/body_component.dart';
 import '../../../core/components/layout_component.dart';
@@ -47,16 +48,21 @@ class HomePage extends GetWidget<HomeController> {
                 const Spacer(flex: 44),
                 Expanded(
                   flex: 96,
-                  child: Row(
-                    children: [
-                      quickAccess(),
-                      const Spacer(flex: 33),
-                      quickAccess(),
-                      const Spacer(flex: 33),
-                      quickAccess(),
-                      const Spacer(flex: 33),
-                      quickAccess(),
-                    ],
+                  child: LayoutBuilder(
+                    builder: (_, BoxConstraints constraints) {
+                      return Obx(
+                        () => ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => QuickAccess(
+                            constraints: constraints,
+                          ),
+                          separatorBuilder: (context, index) => SizedBox(
+                            width: constraints.maxWidth * .041066,
+                          ),
+                          itemCount: controller.quickAcces.length,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 const Spacer(flex: 48),
@@ -111,42 +117,6 @@ class HomePage extends GetWidget<HomeController> {
                     quantity,
                     style: StylesTypography.h18wBold,
                   ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Expanded quickAccess({
-    IconData icon = Icons.flutter_dash_outlined,
-    String label = 'Sem informação',
-  }) {
-    return Expanded(
-      flex: 176,
-      child: Container(
-        decoration: BoxDecoration(
-          color: StylesColors.white,
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Expanded(child: Icon(Icons.access_time_rounded)),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      label,
-                      style: StylesTypography.h16,
-                    ),
-                    Icon(icon),
-                  ],
                 ),
               ),
             ],

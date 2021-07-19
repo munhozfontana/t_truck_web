@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/menu/menu_item_component.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
+import 'package:t_truck_web/features/home/ui/home_controller.dart';
 
 import '../../styles/style_colors.dart';
 
@@ -20,27 +22,27 @@ class _MenuComponentState extends State<MenuComponent> {
   List<MenuModel> menusItem = [
     MenuModel(
       text: 'Painel',
-      route: '/a',
+      route: '/painel',
       icon: Icons.add_box_outlined,
     ),
     MenuModel(
       text: 'Motoristas',
-      route: '/a',
+      route: '/motoristas',
       icon: Icons.carpenter_outlined,
     ),
     MenuModel(
       text: 'Devoluções',
-      route: '/a',
+      route: '/devolucoes',
       icon: Icons.backup_outlined,
     ),
     MenuModel(
       text: 'Mensagens',
-      route: '/a',
+      route: '/mensagens',
       icon: Icons.card_travel_outlined,
     ),
     MenuModel(
       text: 'Configurações',
-      route: '/a',
+      route: '/configuracoes',
       icon: Icons.engineering_outlined,
     ),
   ];
@@ -86,6 +88,8 @@ class _MenuComponentState extends State<MenuComponent> {
             (item) => MenuItemComponent(
               height: height,
               menuModel: item,
+              onTap: (menuModel) =>
+                  Get.find<HomeController>().addQuickAcces(menuModel),
             ),
           )
           .toList(),
