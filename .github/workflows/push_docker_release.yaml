@@ -27,4 +27,10 @@ jobs:
           DRY_RUN: true
 
       - name: pull last image
-        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:latest && docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.new_tag }}
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:latest
+
+      - name: tag image
+        run: docker tag $${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.new_tag }} $${{ env.REPOSITORY }}:latest
+
+      - name: push last image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.tag }}
