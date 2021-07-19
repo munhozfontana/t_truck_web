@@ -1,4 +1,4 @@
-name: Push docker homologacao
+name: Push docker
 on:
   push:
     branches: [master]
@@ -21,7 +21,7 @@ jobs:
           DRY_RUN: true
 
       - name: pull last image
-        run: docker pull lufemunhoz/t_truck_web:${{ steps.tag_version.outputs.tag }}
+        run: docker pull lufemunhoz/t_truck_web:latast
 
       - name: push image
         run: push pull lufemunhoz/t_truck_web:${{ steps.tag_version.outputs.new_tag }}
