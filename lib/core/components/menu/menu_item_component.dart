@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:t_truck_web/core/components/menu/menu_model.dart';
 
 import '../../styles/style_colors.dart';
 import '../../styles/styles_fonts.dart';
 
 class MenuItemComponent extends StatefulWidget {
   final double height;
-  final IconData? icon;
-  final String text;
+  final MenuModel menuModel;
 
   const MenuItemComponent({
     Key? key,
     required this.height,
-    this.icon,
-    required this.text,
+    required this.menuModel,
   }) : super(key: key);
 
   @override
@@ -114,43 +113,46 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                         end: constraints.maxWidth,
                       ).value,
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Icon(widget.icon,
-                              color: animateColor(
-                                      parent: _hoverAnimCtl,
-                                      begin: StylesColors.gray,
-                                      end: Colors.white)
-                                  .value),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: AnimatedBuilder(
-                            animation: _selectAnimCtl,
-                            builder: (context, child) {
-                              return Container(
-                                margin: EdgeInsets.only(
-                                  left: animateDouble(
-                                    parent: _selectAnimCtl,
-                                    begin: 0,
-                                    end: 10,
-                                  ).value,
-                                ),
-                                child: Text(
-                                  widget.text,
-                                  style: StylesTypography.h16.copyWith(
-                                      color: animateColor(
-                                              parent: _hoverAnimCtl,
-                                              begin: StylesColors.gray,
-                                              end: Colors.white)
-                                          .value),
-                                ),
-                              );
-                            },
+                    Container(
+                      height: widget.height,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Icon(widget.menuModel.icon,
+                                color: animateColor(
+                                        parent: _hoverAnimCtl,
+                                        begin: StylesColors.gray,
+                                        end: Colors.white)
+                                    .value),
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            flex: 3,
+                            child: AnimatedBuilder(
+                              animation: _selectAnimCtl,
+                              builder: (context, child) {
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                    left: animateDouble(
+                                      parent: _selectAnimCtl,
+                                      begin: 0,
+                                      end: 10,
+                                    ).value,
+                                  ),
+                                  child: Text(
+                                    widget.menuModel.text,
+                                    style: StylesTypography.h16.copyWith(
+                                        color: animateColor(
+                                                parent: _hoverAnimCtl,
+                                                begin: StylesColors.gray,
+                                                end: Colors.white)
+                                            .value),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 );

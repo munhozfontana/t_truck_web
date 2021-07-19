@@ -54,13 +54,13 @@ void main() {
   });
 
   test('should verify quantity after much elemnts', () {
-    controller.addQuickAcces(MenuModel(text: 'a'));
-    controller.addQuickAcces(MenuModel(text: 's'));
-    controller.addQuickAcces(MenuModel(text: 'd'));
-    controller.addQuickAcces(MenuModel(text: 'f'));
-    controller.addQuickAcces(MenuModel(text: 'g'));
-    controller.addQuickAcces(MenuModel(text: 'w'));
-    controller.addQuickAcces(MenuModel(text: 'e'));
+    controller.addQuickAcces(MenuModel(text: 'a', route: '/a'));
+    controller.addQuickAcces(MenuModel(text: 's', route: '/s'));
+    controller.addQuickAcces(MenuModel(text: 'd', route: '/d'));
+    controller.addQuickAcces(MenuModel(text: 'f', route: '/f'));
+    controller.addQuickAcces(MenuModel(text: 'g', route: '/g'));
+    controller.addQuickAcces(MenuModel(text: 'w', route: '/w'));
+    controller.addQuickAcces(MenuModel(text: 'e', route: '/e'));
     expect(controller.quickAccess().length, 4);
     expect(controller.quickAccess().last.text, 'f');
     expect(controller.quickAccess().first.text, 'e');

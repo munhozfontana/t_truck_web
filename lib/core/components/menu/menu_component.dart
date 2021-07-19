@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:t_truck_web/core/components/menu/menu_item_component.dart';
+import 'package:t_truck_web/core/components/menu/menu_model.dart';
 
 import '../../styles/style_colors.dart';
-import 'menu_item_component.dart';
 
 class MenuComponent extends StatefulWidget {
   const MenuComponent({
@@ -15,6 +16,34 @@ class MenuComponent extends StatefulWidget {
 
 class _MenuComponentState extends State<MenuComponent> {
   double? maxHeight;
+
+  List<MenuModel> menusItem = [
+    MenuModel(
+      text: 'Painel',
+      route: '/a',
+      icon: Icons.add_box_outlined,
+    ),
+    MenuModel(
+      text: 'Motoristas',
+      route: '/a',
+      icon: Icons.carpenter_outlined,
+    ),
+    MenuModel(
+      text: 'Devoluções',
+      route: '/a',
+      icon: Icons.backup_outlined,
+    ),
+    MenuModel(
+      text: 'Mensagens',
+      route: '/a',
+      icon: Icons.card_travel_outlined,
+    ),
+    MenuModel(
+      text: 'Configurações',
+      route: '/a',
+      icon: Icons.engineering_outlined,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -52,33 +81,14 @@ class _MenuComponentState extends State<MenuComponent> {
   ListView itemsMenu() {
     final height = maxHeight! * .05398;
     return ListView(
-      children: [
-        MenuItemComponent(
-          height: height,
-          icon: Icons.add_box_outlined,
-          text: 'Painel',
-        ),
-        MenuItemComponent(
-          height: height,
-          icon: Icons.carpenter_outlined,
-          text: 'Motoristas',
-        ),
-        MenuItemComponent(
-          height: height,
-          icon: Icons.backup_outlined,
-          text: 'Devoluções',
-        ),
-        MenuItemComponent(
-          height: height,
-          icon: Icons.card_travel_outlined,
-          text: 'Mensagens',
-        ),
-        MenuItemComponent(
-          height: height,
-          icon: Icons.engineering_outlined,
-          text: 'Configurações',
-        ),
-      ],
+      children: menusItem
+          .map(
+            (item) => MenuItemComponent(
+              height: height,
+              menuModel: item,
+            ),
+          )
+          .toList(),
     );
   }
 
