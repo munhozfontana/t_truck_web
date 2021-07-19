@@ -33,4 +33,4 @@ jobs:
         run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:latest ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.new_tag }}
 
       - name: push last image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.tag }}
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.new_tag }}
