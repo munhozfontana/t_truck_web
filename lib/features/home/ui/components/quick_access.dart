@@ -100,7 +100,7 @@ class _QuickAccessState extends State<QuickAccess>
                                   widget.label!,
                                   style: StylesTypography.h16,
                                 ),
-                                const Icon(Icons.access_time_rounded),
+                                const Icon(Icons.arrow_right_alt_rounded),
                               ],
                             ),
                           ),
