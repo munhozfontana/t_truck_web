@@ -29,11 +29,5 @@ jobs:
       - name: pull last image
         run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:latest
 
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          pull: true
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.new_tag }}
-          labels: ${{ steps.docker_meta.outputs.labels }}
+      - name: push last image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:${{ steps.tag_version.outputs.new_tag }}
