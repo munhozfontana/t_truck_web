@@ -53,13 +53,15 @@ class HomePage extends GetWidget<HomeController> {
                       return Obx(
                         () => ListView.separated(
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => QuickAccess(
-                            constraints: constraints,
-                          ),
                           separatorBuilder: (context, index) => SizedBox(
                             width: constraints.maxWidth * .041066,
                           ),
                           itemCount: controller.quickAcces.length,
+                          itemBuilder: (context, index) => QuickAccess(
+                            constraints: constraints,
+                            icon: controller.quickAcces[index].icon,
+                            label: controller.quickAcces[index].text,
+                          ),
                         ),
                       );
                     },

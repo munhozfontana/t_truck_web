@@ -5,8 +5,8 @@ import 'package:t_truck_web/core/styles/styles_fonts.dart';
 
 class QuickAccess extends StatefulWidget {
   final BoxConstraints constraints;
-  final IconData icon;
-  final String label;
+  final IconData? icon;
+  final String? label;
 
   const QuickAccess({
     Key? key,
@@ -32,7 +32,7 @@ class _QuickAccessState extends State<QuickAccess>
 
     _initAnimCtl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 500),
     );
 
     _initAnimCtl.forward();
@@ -91,17 +91,16 @@ class _QuickAccessState extends State<QuickAccess>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Expanded(
-                              child: Icon(Icons.access_time_rounded)),
+                          Expanded(child: Icon(widget.icon)),
                           Expanded(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  widget.label,
+                                  widget.label!,
                                   style: StylesTypography.h16,
                                 ),
-                                Icon(widget.icon),
+                                const Icon(Icons.access_time_rounded),
                               ],
                             ),
                           ),

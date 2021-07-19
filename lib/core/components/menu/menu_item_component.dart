@@ -32,7 +32,7 @@ class _MenuItemComponentState extends State<MenuItemComponent>
     super.initState();
     _hoverAnimCtl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 200),
     );
     _selectAnimCtl = AnimationController(
       vsync: this,
