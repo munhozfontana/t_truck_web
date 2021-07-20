@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/menu/menu_item_component.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
@@ -23,12 +24,12 @@ class _MenuComponentState extends State<MenuComponent> {
     MenuModel(
       text: 'Painel',
       route: '/painel',
-      icon: Icons.add_box_outlined,
+      icon: Icons.view_in_ar_outlined,
     ),
     MenuModel(
       text: 'Motoristas',
       route: '/motoristas',
-      icon: Icons.carpenter_outlined,
+      icon: FontAwesomeIcons.truck,
     ),
     MenuModel(
       text: 'Devoluções',
@@ -38,12 +39,12 @@ class _MenuComponentState extends State<MenuComponent> {
     MenuModel(
       text: 'Mensagens',
       route: '/mensagens',
-      icon: Icons.card_travel_outlined,
+      icon: Icons.chat_bubble_outline,
     ),
     MenuModel(
       text: 'Configurações',
       route: '/configuracoes',
-      icon: Icons.engineering_outlined,
+      icon: Icons.settings_outlined,
     ),
   ];
 

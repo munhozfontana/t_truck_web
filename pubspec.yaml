@@ -28,14 +28,15 @@ dependencies:
   equatable: ^2.0.3
   flutter_map: ^0.13.1
   flutter_svg: ^0.22.0
+  font_awesome_flutter: ^9.1.0
   get: ^4.1.4
   mockito: ^5.0.11
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  lint: ^1.5.3
   build_runner: ^2.0.6
+  lint: ^1.5.3
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
