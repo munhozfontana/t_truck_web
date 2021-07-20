@@ -40,6 +40,4 @@ class HomeController extends GetxController {
       quickAcces.removeLast();
     }
   }
-
-  RxList<MenuModel> get quickAccess => quickAcces;
 }

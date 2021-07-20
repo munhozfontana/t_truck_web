@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../styles/style_colors.dart';
-import 'header_component.dart';
+import 'header/header_component.dart';
 import 'menu/menu_component.dart';
 
 class LayoutComponent extends StatelessWidget {

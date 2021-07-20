@@ -4,11 +4,13 @@ class MenuModel {
   final IconData? icon;
   final String text;
   final String route;
+  final bool? iconInverted;
 
   MenuModel({
     this.icon,
     required this.text,
     required this.route,
+    this.iconInverted = false,
   });
 
   @override
@@ -18,9 +20,15 @@ class MenuModel {
     return other is MenuModel &&
         other.icon == icon &&
         other.text == text &&
-        other.route == route;
+        other.route == route &&
+        other.iconInverted == iconInverted;
   }
 
   @override
-  int get hashCode => icon.hashCode ^ text.hashCode ^ route.hashCode;
+  int get hashCode {
+    return icon.hashCode ^
+        text.hashCode ^
+        route.hashCode ^
+        iconInverted.hashCode;
+  }
 }

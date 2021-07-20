@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/components/header/header_controller.dart';
 import 'package:t_truck_web/core/components/menu/menu_item_component.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
+import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
 import 'package:t_truck_web/features/home/ui/home_controller.dart';
 
 import '../../styles/style_colors.dart';
@@ -29,13 +30,13 @@ class _MenuComponentState extends State<MenuComponent> {
     MenuModel(
       text: 'Motoristas',
       route: '/motoristas',
-      icon: FontAwesomeIcons.truck,
+      icon: MenuIcons.truck,
     ),
     MenuModel(
-      text: 'Devoluções',
-      route: '/devolucoes',
-      icon: Icons.backup_outlined,
-    ),
+        text: 'Devoluções',
+        route: '/devolucoes',
+        icon: MenuIcons.subdirectory_arrow_right,
+        iconInverted: true),
     MenuModel(
       text: 'Mensagens',
       route: '/mensagens',
@@ -89,8 +90,10 @@ class _MenuComponentState extends State<MenuComponent> {
             (item) => MenuItemComponent(
               height: height,
               menuModel: item,
-              onTap: (menuModel) =>
-                  Get.find<HomeController>().addQuickAcces(menuModel),
+              onTap: (menuModel) => {
+                Get.find<HeaderComponentController>().menuModel = menuModel,
+                Get.find<HomeController>().addQuickAcces(menuModel),
+              },
             ),
           )
           .toList(),

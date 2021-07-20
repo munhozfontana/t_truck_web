@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:t_truck_web/core/animations/animations_utils.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
@@ -87,13 +89,18 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                       child: Row(
                         children: [
                           Expanded(
-                            child: Icon(widget.menuModel.icon,
-                                color: animationsUtils
-                                    .animateColor(
-                                        parent: _hoverAnimCtl,
-                                        begin: StylesColors.gray,
-                                        end: Colors.white)
-                                    .value),
+                            child: Transform.rotate(
+                              angle: widget.menuModel.iconInverted!
+                                  ? 180 * pi / 180
+                                  : 0,
+                              child: Icon(widget.menuModel.icon,
+                                  color: animationsUtils
+                                      .animateColor(
+                                          parent: _hoverAnimCtl,
+                                          begin: StylesColors.gray,
+                                          end: Colors.white)
+                                      .value),
+                            ),
                           ),
                           Expanded(
                             flex: 3,

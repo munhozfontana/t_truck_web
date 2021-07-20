@@ -61,8 +61,8 @@ void main() {
     controller.addQuickAcces(MenuModel(text: 'g', route: '/g'));
     controller.addQuickAcces(MenuModel(text: 'w', route: '/w'));
     controller.addQuickAcces(MenuModel(text: 'e', route: '/e'));
-    expect(controller.quickAccess().length, 4);
-    expect(controller.quickAccess().last.text, 'f');
-    expect(controller.quickAccess().first.text, 'e');
+    expect(controller.quickAcces().length, 4);
+    expect(controller.quickAcces().last.text, 'f');
+    expect(controller.quickAcces().first.text, 'e');
   });
 }
