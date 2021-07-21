@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/home/ui/components/quick_access.dart';
+import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
+import 'package:t_truck_web/features/home/ui/components/card_info_component.dart';
+import 'package:t_truck_web/features/home/ui/components/quick_access_component.dart';
 
 import '../../../core/components/body_component.dart';
 import '../../../core/components/layout_component.dart';
 import '../../../core/components/title_component.dart';
-import '../../../core/styles/style_colors.dart';
-import '../../../core/styles/styles_fonts.dart';
 import 'home_controller.dart';
 
 class HomePage extends GetWidget<HomeController> {
@@ -24,14 +24,27 @@ class HomePage extends GetWidget<HomeController> {
                 Expanded(
                   flex: 177,
                   child: Row(
-                    children: [
-                      cardInfo(),
-                      const Spacer(flex: 33),
-                      cardInfo(),
-                      const Spacer(flex: 33),
-                      cardInfo(),
-                      const Spacer(flex: 33),
-                      cardInfo(),
+                    children: const [
+                      CardInfo(
+                        icon: Icons.done,
+                        colorIcon: Color(0xFF45D36D),
+                      ),
+                      Spacer(flex: 33),
+                      CardInfo(
+                        icon: Icons.info_outline,
+                        colorIcon: Color(0xFFF4CE49),
+                      ),
+                      Spacer(flex: 33),
+                      CardInfo(
+                        icon: Icons.view_in_ar_outlined,
+                        colorIcon: Colors.black,
+                      ),
+                      Spacer(flex: 33),
+                      CardInfo(
+                        icon: MenuIcons.subdirectory_arrow_right,
+                        colorIcon: Color(0xFF2050FA),
+                        inverted: true,
+                      ),
                     ],
                   ),
                 ),
@@ -57,7 +70,7 @@ class HomePage extends GetWidget<HomeController> {
                             width: constraints.maxWidth * .041066,
                           ),
                           itemCount: controller.quickAcces.length,
-                          itemBuilder: (context, index) => QuickAccess(
+                          itemBuilder: (context, index) => QuickAccessComponent(
                             constraints: constraints,
                             icon: controller.quickAcces[index].icon,
                             label: controller.quickAcces[index].text,
@@ -72,58 +85,6 @@ class HomePage extends GetWidget<HomeController> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Expanded cardInfo({
-    String quantity = '000',
-    String description = 'Sem informação',
-    IconData icon = Icons.flutter_dash_outlined,
-  }) {
-    return Expanded(
-      flex: 176,
-      child: Container(
-        decoration: BoxDecoration(
-          color: StylesColors.white,
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Expanded(
-                  flex: 2,
-                  child: Row(
-                    children: [
-                      Icon(icon),
-                      const Spacer(),
-                      const Icon(Icons.replay)
-                    ],
-                  )),
-              Expanded(
-                flex: 4,
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    quantity,
-                    style: StylesTypography.h48,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    quantity,
-                    style: StylesTypography.h18wBold,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

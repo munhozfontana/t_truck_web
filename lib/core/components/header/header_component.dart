@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/header/header_controller.dart';
+import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 
 import '../../styles/style_colors.dart';
 
@@ -11,8 +11,8 @@ class HeaderComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HeaderComponentController controller =
-        Get.put(HeaderComponentController());
+    final controllerMenu = Get.find<MenuComponentController>();
+
     return Container(
       color: StylesColors.white,
       child: Column(
@@ -24,9 +24,9 @@ class HeaderComponent extends StatelessWidget {
                 const Spacer(),
                 Row(
                   children: [
-                    Obx(() => Icon(controller.menuModel.icon)),
+                    Obx(() => Icon(controllerMenu.menuModel.icon)),
                     const SizedBox(width: 15),
-                    Obx(() => Text(controller.menuModel.text))
+                    Obx(() => Text(controllerMenu.menuModel.text))
                   ],
                 ),
                 const Spacer(

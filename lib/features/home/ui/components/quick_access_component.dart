@@ -3,12 +3,12 @@ import 'package:t_truck_web/core/animations/animations_utils.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
 
-class QuickAccess extends StatefulWidget {
+class QuickAccessComponent extends StatefulWidget {
   final BoxConstraints constraints;
   final IconData? icon;
   final String? label;
 
-  const QuickAccess({
+  const QuickAccessComponent({
     Key? key,
     required this.constraints,
     this.icon = Icons.flutter_dash_outlined,
@@ -16,10 +16,10 @@ class QuickAccess extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _QuickAccessState createState() => _QuickAccessState();
+  _QuickAccessComponentState createState() => _QuickAccessComponentState();
 }
 
-class _QuickAccessState extends State<QuickAccess>
+class _QuickAccessComponentState extends State<QuickAccessComponent>
     with TickerProviderStateMixin {
   late AnimationController _initAnimCtl;
   late AnimationController _selectAnimCtl;
@@ -63,9 +63,10 @@ class _QuickAccessState extends State<QuickAccess>
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () => {
-                  _selectAnimCtl
-                      .forward()
-                      .whenCompleteOrCancel(() => _selectAnimCtl.reverse())
+                  _selectAnimCtl.forward().whenCompleteOrCancel(
+                      () => _selectAnimCtl.reverse().whenCompleteOrCancel(() {
+                            print('Tap Back');
+                          }))
                 },
                 child: Opacity(
                   opacity: _utils

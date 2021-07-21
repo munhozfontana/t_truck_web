@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/header/header_controller.dart';
+import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/core/components/menu/menu_item_component.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
 import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
@@ -19,6 +19,7 @@ class MenuComponent extends StatefulWidget {
 }
 
 class _MenuComponentState extends State<MenuComponent> {
+  final MenuComponentController controller = Get.put(MenuComponentController());
   double? maxHeight;
 
   List<MenuModel> menusItem = [
@@ -91,7 +92,7 @@ class _MenuComponentState extends State<MenuComponent> {
               height: height,
               menuModel: item,
               onTap: (menuModel) => {
-                Get.find<HeaderComponentController>().menuModel = menuModel,
+                controller.menuModel = menuModel,
                 Get.find<HomeController>().addQuickAcces(menuModel),
               },
             ),
