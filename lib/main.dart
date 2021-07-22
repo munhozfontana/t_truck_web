@@ -12,6 +12,7 @@ import 'features/login/ui/login_page.dart';
 import 'main_biding.dart';
 
 Future<void> main() async {
+  const durationTransitionsPages = Duration(milliseconds: 1000);
   runApp(GetMaterialApp(
     title: 'GSA',
     theme: ThemeData(
@@ -39,14 +40,13 @@ Future<void> main() async {
       ),
       GetPage(
         name: '/home',
+        transitionDuration: durationTransitionsPages,
         page: () => const HomePage(),
         binding: HomeBiding(),
       ),
       GetPage(
-        curve: Curves.easeInOutExpo,
-        transition: Transition.downToUp,
-        transitionDuration: const Duration(milliseconds: 500),
-        name: '/mapa',
+        transitionDuration: durationTransitionsPages,
+        name: '/home/mapa',
         page: () => const ExpandedMapComponent(),
       ),
     ],
