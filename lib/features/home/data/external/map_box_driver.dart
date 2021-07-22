@@ -6,28 +6,30 @@ import '../../../../core/adapters/map/i_map_adp.dart';
 import '../../../../core/adapters/map/map_entity.dart';
 
 class MapBox implements IMapAdp {
+  final void Function() onTap;
+
+  MapBox({required this.onTap});
+
   @override
   MapEntity init() {
     return MapEntity(
-        map: FlutterMap(
-      options: MapOptions(
-        center: LatLng(51.5, -0.09),
-      ),
-      layers: [
-        TileLayerOptions(
-            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            subdomains: ['a', 'b', 'c']),
-        MarkerLayerOptions(
-          markers: [
-            Marker(
-              width: 80.0,
-              height: 80.0,
-              point: LatLng(51.5, -0.09),
-              builder: (ctx) => const FlutterLogo(),
+      map: GestureDetector(
+        onTap: onTap,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: FlutterMap(
+            options: MapOptions(
+              center: LatLng(51.5, -0.09),
             ),
-          ],
+            layers: [
+              TileLayerOptions(
+                  urlTemplate:
+                      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  subdomains: ['a', 'b', 'c']),
+            ],
+          ),
         ),
-      ],
-    ));
+      ),
+    );
   }
 }

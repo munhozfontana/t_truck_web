@@ -12,7 +12,9 @@ class HomeBiding extends Bindings {
   @override
   void dependencies() {
     Get.put<IMapAdp>(
-      MapBox(),
+      MapBox(onTap: () {
+        Get.back();
+      }),
       permanent: true,
     );
 

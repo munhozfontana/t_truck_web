@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/features/home/ui/components/expanded_map_component.dart';
 
 import 'core/styles/styles_button.dart';
 import 'core/styles/styles_fonts.dart';
@@ -40,6 +41,13 @@ Future<void> main() async {
         name: '/home',
         page: () => const HomePage(),
         binding: HomeBiding(),
+      ),
+      GetPage(
+        curve: Curves.easeInOutExpo,
+        transition: Transition.downToUp,
+        transitionDuration: const Duration(milliseconds: 500),
+        name: '/mapa',
+        page: () => const ExpandedMapComponent(),
       ),
     ],
   ));

@@ -43,6 +43,13 @@ class _MenuItemComponentState extends State<MenuItemComponent>
   }
 
   @override
+  void dispose() {
+    _hoverAnimCtl.dispose();
+    _selectAnimCtl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext _, BoxConstraints constraints) {

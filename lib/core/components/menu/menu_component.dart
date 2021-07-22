@@ -22,6 +22,12 @@ class _MenuComponentState extends State<MenuComponent> {
   final MenuComponentController controller = Get.put(MenuComponentController());
   double? maxHeight;
 
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   List<MenuModel> menusItem = [
     MenuModel(
       text: 'Painel',

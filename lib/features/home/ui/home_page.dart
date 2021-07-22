@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
 import 'package:t_truck_web/features/home/ui/components/card_info_component.dart';
+import 'package:t_truck_web/features/home/ui/components/expanded_map_component.dart';
 import 'package:t_truck_web/features/home/ui/components/quick_access_component.dart';
 
 import '../../../core/components/body_component.dart';
@@ -51,7 +52,9 @@ class HomePage extends GetWidget<HomeController> {
                 const Spacer(flex: 26),
                 Expanded(
                   flex: 280,
-                  child: controller.mapEntity.value.map,
+                  child: ExpandedMapComponent(
+                    onTap: () => Get.toNamed('/mapa'),
+                  ),
                 ),
                 const Spacer(flex: 25),
                 const TitleComponent(
