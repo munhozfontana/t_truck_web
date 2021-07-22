@@ -24,7 +24,7 @@ jobs:
         uses: anothrNick/github-tag-action@1.26.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DRY_RUN: true
+          WITH_V: true
 
       - name: pull image
         run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}:latest
