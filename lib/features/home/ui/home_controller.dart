@@ -3,10 +3,8 @@ import 'package:t_truck_web/core/components/map_component.dart';
 
 import '../../../core/components/menu/menu_model.dart';
 import '../../../core/utils/app_dialog.dart';
-import '../domain/use_cases/map_use_case.dart';
 
 class HomeController extends GetxController {
-  final MapUseCase mapUseCase;
   final AppDialog appDialog;
   final RxList<MenuModel> quickAcces = <MenuModel>[].obs;
   final Rx<LocationMapEntity> currentPositonMap = LocationMapEntity(
@@ -15,7 +13,6 @@ class HomeController extends GetxController {
   ).obs;
 
   HomeController({
-    required this.mapUseCase,
     required this.appDialog,
   });
 
