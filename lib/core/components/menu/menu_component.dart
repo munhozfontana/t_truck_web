@@ -90,7 +90,7 @@ class _MenuComponentState extends State<MenuComponent> {
       );
 
   ListView itemsMenu() {
-    final height = maxHeight! * .053985;
+    final height = maxHeight! * .05398;
     return ListView(
       children: menusItem
           .map(
