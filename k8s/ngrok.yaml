@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngrok
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: ngrok
+          image: wernight/ngrok:latest
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+          ports:
+            - containerPort: 4040
+          envFrom:
+            - secretRef:
+                name: app-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngrok
+spec:
+  selector:
+    app: ngrok
+  ports:
+    - protocol: 'TCP'
+      port: 4040
+      targetPort: 80
+  # externalIPs:
+  #   - '172.17.20.45'
+  type: NodePort
+  # type: LoadBalancer se for na nuvem
