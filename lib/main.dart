@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/home/ui/components/expanded_map_component.dart';
+import 'package:t_truck_web/features/routes/app_routes.dart';
 
 import 'core/styles/styles_button.dart';
 import 'core/styles/styles_fonts.dart';
 import 'core/styles/styles_inputs.dart';
-import 'features/home/home_biding.dart';
-import 'features/home/ui/home_page.dart';
-import 'features/login/ui/login_page.dart';
 import 'main_biding.dart';
 
 Future<void> main() async {
-  const durationTransitionsPages = Duration(milliseconds: 1000);
   runApp(GetMaterialApp(
     title: 'GSA',
     theme: ThemeData(
@@ -32,23 +28,7 @@ Future<void> main() async {
       ),
     ),
     initialBinding: MainBiding(),
-    initialRoute: '/home',
-    getPages: [
-      GetPage(
-        name: '/',
-        page: () => const LoginPage(),
-      ),
-      GetPage(
-        name: '/home',
-        transitionDuration: durationTransitionsPages,
-        page: () => const HomePage(),
-        binding: HomeBiding(),
-      ),
-      GetPage(
-        transitionDuration: durationTransitionsPages,
-        name: '/home/mapa',
-        page: () => const ExpandedMapComponent(),
-      ),
-    ],
+    initialRoute: Routes.truckDrivers.path,
+    getPages: AppPages.pages(),
   ));
 }

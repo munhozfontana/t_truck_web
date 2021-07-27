@@ -12,9 +12,10 @@ class HomeBiding extends Bindings {
     );
 
     Get.put<HomeController>(
-        HomeController(
-          appDialog: Get.find(),
-        ),
-        permanent: true);
+      HomeController(
+        appDialog: Get.find(),
+      ),
+      permanent: true,
+    );
   }
 }

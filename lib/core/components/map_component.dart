@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -34,7 +32,7 @@ class MarkerMapEntity {
   });
 }
 
-class MapComponent extends StatefulWidget {
+class MapComponent extends StatelessWidget {
   final void Function()? onTap;
   final void Function(LocationMapEntity)? onPositionChanged;
   final LocationMapEntity initialPosition;
@@ -49,78 +47,57 @@ class MapComponent extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MapComponentState createState() => _MapComponentState();
-}
-
-class _MapComponentState extends State<MapComponent> {
-  var _ignore = true;
-  @override
-  void initState() {
-    super.initState();
-    Timer(
-        const Duration(milliseconds: 100),
-        () => {
-              super.setState(() {
-                _ignore = false;
-              })
-            });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        return IgnorePointer(
-          ignoring: _ignore,
-          child: Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: FlutterMap(
-                  options: MapOptions(
-                    allowPanning: true,
-                    onPositionChanged: (a, b) {
-                      if (b && widget.onPositionChanged != null) {
-                        widget.onPositionChanged!(LocationMapEntity(
-                            latitude: a.center!.latitude,
-                            longitude: a.center!.longitude));
-                      }
-                    },
-                    center: LatLng(
-                      widget.initialPosition.latitude,
-                      widget.initialPosition.longitude,
-                    ),
+        return Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: FlutterMap(
+                options: MapOptions(
+                  allowPanning: true,
+                  onPositionChanged: (a, b) {
+                    if (b && onPositionChanged != null) {
+                      onPositionChanged!(LocationMapEntity(
+                          latitude: a.center!.latitude,
+                          longitude: a.center!.longitude));
+                    }
+                  },
+                  center: LatLng(
+                    initialPosition.latitude,
+                    initialPosition.longitude,
                   ),
-                  layers: [
-                    TileLayerOptions(
-                      urlTemplate:
-                          "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                      subdomains: ['a', 'b', 'c'],
-                    ),
-                  ],
                 ),
+                layers: [
+                  TileLayerOptions(
+                    urlTemplate:
+                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    subdomains: ['a', 'b', 'c'],
+                  ),
+                ],
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: GestureDetector(
-                  onTap: widget.onTap,
-                  child: Container(
-                    margin: EdgeInsets.all(constraints.maxHeight / 15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
-                    ),
-                    height: 50,
-                    width: 50,
-                    child: const Icon(
-                      Icons.zoom_out_map_rounded,
-                      size: 35,
-                    ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: GestureDetector(
+                onTap: onTap,
+                child: Container(
+                  margin: EdgeInsets.all(constraints.maxHeight / 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                  ),
+                  height: 50,
+                  width: 50,
+                  child: const Icon(
+                    Icons.zoom_out_map_rounded,
+                    size: 35,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

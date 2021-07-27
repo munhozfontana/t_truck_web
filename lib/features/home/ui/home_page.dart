@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/map_component.dart';
+import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
 import 'package:t_truck_web/features/home/ui/components/card_info_component.dart';
 import 'package:t_truck_web/features/home/ui/components/quick_access_component.dart';
@@ -75,19 +76,24 @@ class HomePage extends GetWidget<HomeController> {
                   flex: 96,
                   child: LayoutBuilder(
                     builder: (_, BoxConstraints constraints) {
-                      return Obx(
-                        () => ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          separatorBuilder: (context, index) => SizedBox(
-                            width: constraints.maxWidth * .041066,
-                          ),
-                          itemCount: controller.quickAcces.length,
-                          itemBuilder: (context, index) => QuickAccessComponent(
-                            constraints: constraints,
-                            icon: controller.quickAcces[index].icon,
-                            label: controller.quickAcces[index].text,
-                          ),
-                        ),
+                      return GetX<MenuComponentController>(
+                        init: MenuComponentController(),
+                        initState: (_) {},
+                        builder: (_) {
+                          return ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            separatorBuilder: (context, index) => SizedBox(
+                              width: constraints.maxWidth * .041066,
+                            ),
+                            itemCount: _.quickAcces.length,
+                            itemBuilder: (context, index) =>
+                                QuickAccessComponent(
+                              constraints: constraints,
+                              icon: _.quickAcces[index].icon,
+                              label: _.quickAcces[index].text,
+                            ),
+                          );
+                        },
                       );
                     },
                   ),

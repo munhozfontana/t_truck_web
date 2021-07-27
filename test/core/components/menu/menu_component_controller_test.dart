@@ -1,20 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
+import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
-import 'package:t_truck_web/core/utils/app_dialog.dart';
-import 'package:t_truck_web/features/home/ui/home_controller.dart';
 
-import 'home_controller_test.mocks.dart';
-
-@GenerateMocks([AppDialog])
 void main() {
-  late HomeController controller;
-  AppDialog mockAppDialog;
+  late MenuComponentController controller;
   setUp(() {
-    mockAppDialog = MockAppDialog();
-    controller = HomeController(
-      appDialog: mockAppDialog,
-    );
+    controller = MenuComponentController();
   });
 
   test('should verify quantity after much elemnts', () {
