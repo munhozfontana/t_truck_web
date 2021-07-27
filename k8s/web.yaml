@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web
+  name: web-d
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: web
+      app: web-d
   template:
     metadata:
       labels:
-        app: web
+        app: web-d
     spec:
       containers:
-        - name: web
+        - name: web-d
+          imagePullPolicy: Always
           image: lufemunhoz/t_truck_web:latest
           resources:
             limits:
@@ -26,14 +27,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp
+  name: web-s
 spec:
   selector:
-    app: web
+    app: web-d
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: http
+    - port: 80
+      nodePort: 30000
+  type: NodePort
   # externalIPs:
   #   - '172.17.20.45'
   # type: LoadBalancer se for na nuvem

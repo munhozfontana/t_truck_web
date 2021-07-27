@@ -6,7 +6,6 @@ class LoginBiding extends Bindings {
   void dependencies() {
     Get.put<LoginController>(
       LoginController(),
-      permanent: true,
     );
   }
 }

@@ -22,8 +22,6 @@ extension RoutesExt on Routes {
         return '/truck_drivers';
       case Routes.homeMap:
         return '/home/mapa';
-      case Routes.unknown:
-        return '/unknown';
       default:
         return '/unknown';
     }

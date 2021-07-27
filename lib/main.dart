@@ -31,8 +31,8 @@ Future<void> main() async {
     initialBinding: MainBiding(),
     initialRoute: Routes.home.path,
     getPages: AppPages.pages(),
-    onUnknownRoute: (settings) => MaterialPageRoute(
-      builder: (context) => const LayoutComponent(
+    onUnknownRoute: (settings) => GetPageRoute(
+      page: () => const LayoutComponent(
         child: Text('Não encontrado'),
       ),
     ),

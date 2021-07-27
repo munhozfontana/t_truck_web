@@ -6,16 +6,14 @@ import 'ui/home_controller.dart';
 class HomeBiding extends Bindings {
   @override
   void dependencies() {
-    Get.put<AppDialog>(
-      AppDialog(),
-      permanent: true,
+    Get.lazyPut<AppDialog>(
+      () => AppDialog(),
     );
 
     Get.put<HomeController>(
       HomeController(
         appDialog: Get.find(),
       ),
-      permanent: true,
     );
   }
 }

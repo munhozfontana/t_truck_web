@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ngrok
+  name: ngrok-d
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web
+      app: ngrok-d
   template:
     metadata:
       labels:
-        app: web
+        app: ngrok-d
     spec:
       containers:
         - name: ngrok
@@ -21,6 +21,11 @@ spec:
               cpu: '500m'
           ports:
             - containerPort: 4040
+          env:
+            - name: 'NGROK_LOOK_DOMAIN'
+              value: web-s
+            - name: 'NGROK_PORT'
+              value: '80'
           envFrom:
             - secretRef:
                 name: app-secret
@@ -28,15 +33,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ngrok
+  name: ngrok-s
 spec:
-  selector:
-    app: ngrok
-  ports:
-    - protocol: 'TCP'
-      port: 4040
-      targetPort: 80
-  # externalIPs:
-  #   - '172.17.20.45'
   type: NodePort
+  selector:
+    app: ngrok-d
+  ports:
+    - port: 4040
+      nodePort: 30001
+
   # type: LoadBalancer se for na nuvem
