@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/core/components/menu/menu_item_component.dart';
-import 'package:t_truck_web/features/home/ui/home_controller.dart';
 
 import '../../styles/style_colors.dart';
 
@@ -48,10 +47,7 @@ class MenuComponent extends GetWidget<MenuComponentController> {
             (item) => MenuItemComponent(
               height: height,
               menuModel: item,
-              onTap: (menuModel) => {
-                controller.menuModel = menuModel,
-                Get.find<HomeController>().addQuickAcces(menuModel),
-              },
+              onTap: (menuModel) => controller.onTapMenu(menuModel),
             ),
           )
           .toList(),

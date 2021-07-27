@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/routes/app_routes.dart';
+import 'package:t_truck_web/core/components/layout_component.dart';
+import 'package:t_truck_web/routes/app_routes.dart';
 
 import 'core/styles/styles_button.dart';
 import 'core/styles/styles_fonts.dart';
@@ -28,7 +29,12 @@ Future<void> main() async {
       ),
     ),
     initialBinding: MainBiding(),
-    initialRoute: Routes.truckDrivers.path,
+    initialRoute: Routes.home.path,
     getPages: AppPages.pages(),
+    onUnknownRoute: (settings) => MaterialPageRoute(
+      builder: (context) => const LayoutComponent(
+        child: Text('Não encontrado'),
+      ),
+    ),
   ));
 }
