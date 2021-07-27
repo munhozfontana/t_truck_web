@@ -8,4 +8,4 @@ docker-compose down --build -d
 
 echo "mega_secret_key" | base64
 
-kubectl apply -f k8s/ngrok.yaml -f k8s/web.yaml -f k8s/env/dev.yaml
+kubectl apply -f k8s
