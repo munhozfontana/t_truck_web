@@ -2,7 +2,13 @@ import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
 import 'package:t_truck_web/routes/app_routes.dart';
 
-class MenuComponentController extends GetxController {
+mixin IMenuComponentController {
+  void addQuickAcces(MenuModel menuModel);
+  void onTapMenu(MenuModel newMenuModel);
+}
+
+class MenuComponentController extends GetxController
+    implements IMenuComponentController {
   RxDouble? maxHeight;
 
   final RxList<MenuModel> quickAcces = <MenuModel>[].obs;

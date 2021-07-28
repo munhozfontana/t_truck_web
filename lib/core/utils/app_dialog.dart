@@ -3,6 +3,11 @@ import 'package:get/get.dart';
 
 Duration timeToDisabled = const Duration(seconds: 30);
 
+mixin IAppDialog {
+  void show({String? menssagem});
+  void error({String? menssagem});
+}
+
 class AppDialog {
   void show({String? menssagem}) {
     Get.showSnackbar(GetBar(

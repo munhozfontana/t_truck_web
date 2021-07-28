@@ -19,6 +19,18 @@ class LocationMapEntity {
       longitude: longitude ?? this.longitude,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is LocationMapEntity &&
+        other.latitude == latitude &&
+        other.longitude == longitude;
+  }
+
+  @override
+  int get hashCode => latitude.hashCode ^ longitude.hashCode;
 }
 
 class MarkerMapEntity {
