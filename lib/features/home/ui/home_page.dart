@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/map_component.dart';
 import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
-import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
 import 'package:t_truck_web/features/home/ui/components/card_info_component.dart';
 import 'package:t_truck_web/features/home/ui/components/quick_access_component.dart';
 
@@ -26,26 +25,22 @@ class HomePage extends GetWidget<HomeController> {
                 Expanded(
                   flex: 177,
                   child: Row(
-                    children: const [
+                    children: [
                       CardInfo(
-                        icon: Icons.done,
-                        colorIcon: Color(0xFF45D36D),
+                        dashBoardEntity: controller.dashboads.value.finished!,
                       ),
-                      Spacer(flex: 33),
+                      const Spacer(flex: 33),
                       CardInfo(
-                        icon: Icons.info_outline,
-                        colorIcon: Color(0xFFF4CE49),
+                        dashBoardEntity: controller.dashboads.value.pending!,
                       ),
-                      Spacer(flex: 33),
+                      const Spacer(flex: 33),
                       CardInfo(
-                        icon: Icons.view_in_ar_outlined,
-                        colorIcon: Colors.black,
+                        dashBoardEntity: controller.dashboads.value.opened!,
                       ),
-                      Spacer(flex: 33),
+                      const Spacer(flex: 33),
                       CardInfo(
-                        icon: MenuIcons.subdirectory_arrow_right,
-                        colorIcon: Color(0xFF2050FA),
-                        inverted: true,
+                        dashBoardEntity:
+                            controller.dashboads.value.devolutions!,
                       ),
                     ],
                   ),

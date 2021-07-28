@@ -3,25 +3,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
+import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
 
 class CardInfo extends StatelessWidget {
-  final IconData icon;
-  final String quantity;
-  final String description;
-  final Color colorIcon;
-  final bool inverted;
-
+  final DashBoardEntity dashBoardEntity;
   const CardInfo({
     Key? key,
-    this.icon = Icons.flutter_dash_outlined,
-    this.quantity = '000',
-    this.description = 'Sem informação',
-    this.colorIcon = Colors.red,
-    this.inverted = false,
+    required this.dashBoardEntity,
   }) : super(key: key);
 
   @override
-  Expanded build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Expanded(
       flex: 176,
       child: Container(
@@ -40,18 +32,18 @@ class CardInfo extends StatelessWidget {
                     return Row(
                       children: [
                         Transform.rotate(
-                          angle: inverted ? 180 * pi / 180 : 0,
+                          angle: dashBoardEntity.inverted ? 180 * pi / 180 : 0,
                           child: Container(
                             height: constraints.maxHeight,
                             width: constraints.maxHeight,
                             decoration: BoxDecoration(
-                              color: colorIcon.withOpacity(.2),
+                              color: dashBoardEntity.colorIcon.withOpacity(.2),
                               borderRadius:
                                   BorderRadius.circular(constraints.maxHeight),
                             ),
                             child: Icon(
-                              icon,
-                              color: colorIcon,
+                              dashBoardEntity.icon,
+                              color: dashBoardEntity.colorIcon,
                             ),
                           ),
                         ),
@@ -78,7 +70,7 @@ class CardInfo extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    quantity,
+                    dashBoardEntity.quantity,
                     style: StylesTypography.h48,
                   ),
                 ),
@@ -88,7 +80,7 @@ class CardInfo extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    description,
+                    dashBoardEntity.description,
                     style: StylesTypography.h18wBold,
                   ),
                 ),

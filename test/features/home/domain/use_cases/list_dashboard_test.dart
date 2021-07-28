@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -17,17 +18,30 @@ void main() {
 
   setUp(() {
     iDasboadRepository = MockIDasboadRepository();
-    tValue = [DashBoardEntity()];
+    tValue = [
+      DashBoardEntity(
+        quantity: '231',
+        description: 'Concluído',
+        icon: Icons.done,
+        colorIcon: const Color(0xFF45D36D),
+      ),
+    ];
     listDashboardUseCase = ListDashboardUseCase(
       iDasboadRepository: iDasboadRepository,
     );
   });
 
-  test('shoudl return without errors', () async {
+  test('should return without errors', () async {
     when(iDasboadRepository.get())
         .thenAnswer((realInvocation) => Future.value(Right(tValue)));
     final res = await listDashboardUseCase(const Params());
     expect(res.isRight(), isTrue);
-    expect((res.fold((l) => l, (r) => r) as List).length, 1);
+  });
+
+  test('objects should be equals', () async {
+    when(iDasboadRepository.get())
+        .thenAnswer((realInvocation) => Future.value(Right(tValue)));
+    final res = await listDashboardUseCase(const Params());
+    expect(res.getOrElse(() => []).first, tValue.first);
   });
 }

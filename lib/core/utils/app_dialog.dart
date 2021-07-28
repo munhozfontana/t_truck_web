@@ -3,12 +3,13 @@ import 'package:get/get.dart';
 
 Duration timeToDisabled = const Duration(seconds: 30);
 
-mixin IAppDialog {
+abstract class IAppDialog {
   void show({String? menssagem});
   void error({String? menssagem});
 }
 
-class AppDialog {
+class AppDialog implements IAppDialog {
+  @override
   void show({String? menssagem}) {
     Get.showSnackbar(GetBar(
       message: menssagem,
@@ -17,6 +18,7 @@ class AppDialog {
     ));
   }
 
+  @override
   void error({String? menssagem}) {
     Get.showSnackbar(
       GetBar(

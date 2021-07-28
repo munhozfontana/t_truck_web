@@ -2,11 +2,20 @@
 // in t_truck_web/test/features/home/ui/home_controller_test.dart.
 // Do not manually edit this file.
 
+import 'dart:async' as _i7;
+
+import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:t_truck_web/core/components/menu/menu_component_controller.dart'
-    as _i3;
-import 'package:t_truck_web/core/components/menu/menu_model.dart' as _i4;
-import 'package:t_truck_web/core/utils/app_dialog.dart' as _i2;
+    as _i4;
+import 'package:t_truck_web/core/components/menu/menu_model.dart' as _i5;
+import 'package:t_truck_web/core/error/failures.dart' as _i8;
+import 'package:t_truck_web/core/params/params.dart' as _i10;
+import 'package:t_truck_web/core/utils/app_dialog.dart' as _i3;
+import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart'
+    as _i9;
+import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard.dart'
+    as _i6;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: comment_references
@@ -15,10 +24,15 @@ import 'package:t_truck_web/core/utils/app_dialog.dart' as _i2;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
+class _FakeEither<L, R> extends _i1.Fake implements _i2.Either<L, R> {
+  @override
+  String toString() => super.toString();
+}
+
 /// A class which mocks [IAppDialog].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIAppDialog extends _i1.Mock implements _i2.IAppDialog {
+class MockIAppDialog extends _i1.Mock implements _i3.IAppDialog {
   MockIAppDialog() {
     _i1.throwOnMissingStub(this);
   }
@@ -37,17 +51,36 @@ class MockIAppDialog extends _i1.Mock implements _i2.IAppDialog {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockIMenuComponentController extends _i1.Mock
-    implements _i3.IMenuComponentController {
+    implements _i4.IMenuComponentController {
   MockIMenuComponentController() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  void addQuickAcces(_i4.MenuModel? menuModel) =>
+  void addQuickAcces(_i5.MenuModel? menuModel) =>
       super.noSuchMethod(Invocation.method(#addQuickAcces, [menuModel]),
           returnValueForMissingStub: null);
   @override
-  void onTapMenu(_i4.MenuModel? newMenuModel) =>
+  void onTapMenu(_i5.MenuModel? newMenuModel) =>
       super.noSuchMethod(Invocation.method(#onTapMenu, [newMenuModel]),
           returnValueForMissingStub: null);
+}
+
+/// A class which mocks [IListDashboardUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIListDashboardUseCase extends _i1.Mock
+    implements _i6.IListDashboardUseCase {
+  MockIListDashboardUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<_i2.Either<_i8.Failure, List<_i9.DashBoardEntity>>> call(
+          _i10.Params? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+          returnValue:
+              Future<_i2.Either<_i8.Failure, List<_i9.DashBoardEntity>>>.value(
+                  _FakeEither<_i8.Failure, List<_i9.DashBoardEntity>>())) as _i7
+          .Future<_i2.Either<_i8.Failure, List<_i9.DashBoardEntity>>>);
 }
