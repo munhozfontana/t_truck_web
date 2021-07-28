@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/home/data/external/i_dashboard.dart';
+import 'package:t_truck_web/features/home/data/external/i_dashboard_external.dart';
 import 'package:t_truck_web/features/home/data/repositories_impl/dashboard_repository.dart';
 import 'package:t_truck_web/features/home/domain/repositories/i_dashboard_repository.dart';
-import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard.dart';
+import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard_case.dart';
 
 import 'ui/home_controller.dart';
 
@@ -21,8 +21,8 @@ class HomeBiding extends Bindings {
       ),
     );
 
-    Get.lazyPut<IListDashboardUseCase>(
-      () => ListDashboardUseCase(
+    Get.lazyPut<IListDashboardCase>(
+      () => ListDashboardCase(
         iDasboadRepository: Get.find(),
       ),
     );
@@ -31,7 +31,7 @@ class HomeBiding extends Bindings {
       HomeController(
         appDialog: Get.find(),
         menuComponentController: Get.find(),
-        iListDashboardUseCase: Get.find(),
+        iListDashboardCase: Get.find(),
       ),
     );
   }
