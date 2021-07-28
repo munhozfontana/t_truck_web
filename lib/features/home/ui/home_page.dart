@@ -86,6 +86,9 @@ class HomePage extends GetWidget<HomeController> {
                               constraints: constraints,
                               icon: _.quickAcces[index].icon,
                               label: _.quickAcces[index].text,
+                              onTap: () => Get.offAllNamed(
+                                _.quickAcces[index].path,
+                              ),
                             ),
                           );
                         },
