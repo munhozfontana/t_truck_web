@@ -24,26 +24,28 @@ class HomePage extends GetWidget<HomeController> {
               children: [
                 Expanded(
                   flex: 177,
-                  child: Row(
-                    children: [
-                      CardInfo(
-                        dashBoardEntity: controller.dashboads.value.finished!,
-                      ),
-                      const Spacer(flex: 33),
-                      CardInfo(
-                        dashBoardEntity: controller.dashboads.value.pending!,
-                      ),
-                      const Spacer(flex: 33),
-                      CardInfo(
-                        dashBoardEntity: controller.dashboads.value.opened!,
-                      ),
-                      const Spacer(flex: 33),
-                      CardInfo(
-                        dashBoardEntity:
-                            controller.dashboads.value.devolutions!,
-                      ),
-                    ],
-                  ),
+                  child: Obx(() => Row(
+                        children: [
+                          CardInfo(
+                            dashBoardEntity:
+                                controller.dashboads.value.finished!,
+                          ),
+                          const Spacer(flex: 33),
+                          CardInfo(
+                            dashBoardEntity:
+                                controller.dashboads.value.pending!,
+                          ),
+                          const Spacer(flex: 33),
+                          CardInfo(
+                            dashBoardEntity: controller.dashboads.value.opened!,
+                          ),
+                          const Spacer(flex: 33),
+                          CardInfo(
+                            dashBoardEntity:
+                                controller.dashboads.value.devolutions!,
+                          ),
+                        ],
+                      )),
                 ),
                 const Spacer(flex: 26),
                 Expanded(

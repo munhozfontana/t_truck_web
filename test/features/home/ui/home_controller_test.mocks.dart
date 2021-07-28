@@ -76,11 +76,11 @@ class MockIListDashboardUseCase extends _i1.Mock
   }
 
   @override
-  _i7.Future<_i2.Either<_i8.Failure, List<_i9.DashBoardEntity>>> call(
+  _i7.Future<_i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>> call(
           _i10.Params? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
-          returnValue:
-              Future<_i2.Either<_i8.Failure, List<_i9.DashBoardEntity>>>.value(
-                  _FakeEither<_i8.Failure, List<_i9.DashBoardEntity>>())) as _i7
-          .Future<_i2.Either<_i8.Failure, List<_i9.DashBoardEntity>>>);
+          returnValue: Future<
+                  _i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>>.value(
+              _FakeEither<_i8.Failure, _i9.DashBoardComposedEntity>())) as _i7
+          .Future<_i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>>);
 }

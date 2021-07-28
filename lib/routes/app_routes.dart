@@ -66,32 +66,40 @@ extension RoutesExt on Routes {
   }
 }
 
-const slowTransition = Duration(milliseconds: 800);
+const slow = Duration(milliseconds: 800);
+const fast = Duration(milliseconds: 400);
 
 class AppPages {
   static List<GetPage> pages() {
     return [
       GetPage(
         name: Routes.login.path,
-        transitionDuration: slowTransition,
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
         page: () => const LoginPage(),
         binding: LoginBiding(),
       ),
       GetPage(
         name: Routes.home.path,
-        transitionDuration: slowTransition,
-        page: () => const HomePage(),
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
         binding: HomeBiding(),
+        page: () => const HomePage(),
+        transition: Transition.fadeIn,
       ),
       GetPage(
-        transitionDuration: slowTransition,
         name: Routes.homeMap.path,
+        transitionDuration: slow,
+        curve: Curves.easeInOutCirc,
         page: () => const ExpandedMapComponent(),
+        transition: Transition.fadeIn,
       ),
       GetPage(
-        transitionDuration: slowTransition,
         name: Routes.truckDrivers.path,
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
         page: () => TruckDriversPage(),
+        transition: Transition.fadeIn,
       ),
     ];
   }

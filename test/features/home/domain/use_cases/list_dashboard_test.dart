@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -14,18 +13,11 @@ import 'list_dashboard_test.mocks.dart';
 void main() {
   late ListDashboardUseCase listDashboardUseCase;
   late IDasboadRepository iDasboadRepository;
-  late List<DashBoardEntity> tValue;
+  late DashBoardComposedEntity tValue;
 
   setUp(() {
     iDasboadRepository = MockIDasboadRepository();
-    tValue = [
-      DashBoardEntity(
-        quantity: '231',
-        description: 'Concluído',
-        icon: Icons.done,
-        colorIcon: const Color(0xFF45D36D),
-      ),
-    ];
+    tValue = DashBoardComposedEntity();
     listDashboardUseCase = ListDashboardUseCase(
       iDasboadRepository: iDasboadRepository,
     );
@@ -42,6 +34,6 @@ void main() {
     when(iDasboadRepository.get())
         .thenAnswer((realInvocation) => Future.value(Right(tValue)));
     final res = await listDashboardUseCase(const Params());
-    expect(res.getOrElse(() => []).first, tValue.first);
+    expect(res.fold((l) => l, (r) => r), tValue);
   });
 }

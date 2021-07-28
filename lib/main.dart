@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/layout_component.dart';
 import 'package:t_truck_web/routes/app_routes.dart';
@@ -10,6 +11,8 @@ import 'core/styles/styles_inputs.dart';
 import 'main_biding.dart';
 
 Future<void> main() async {
+  await dotenv.load(fileName: ".env");
+  await SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(GetMaterialApp(
     title: 'GSA',
     theme: ThemeData(
