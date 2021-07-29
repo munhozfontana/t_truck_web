@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class DashBoardEntity {
   final IconData icon;
@@ -37,13 +38,19 @@ class DashBoardEntity {
   }
 }
 
-class DashBoardComposedEntit {
+class DashBoardComposedEntity {
   DashBoardEntity? finished;
   DashBoardEntity? pending;
   DashBoardEntity? opened;
   DashBoardEntity? devolutions;
 
-  DashBoardComposedEntit({
+  static DashBoardEntity defaultData = DashBoardEntity(
+      colorIcon: Colors.red,
+      description: '',
+      icon: Icons.flutter_dash,
+      quantity: '');
+
+  DashBoardComposedEntity({
     this.finished,
     this.pending,
     this.opened,

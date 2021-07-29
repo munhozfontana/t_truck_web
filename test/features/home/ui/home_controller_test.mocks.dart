@@ -14,7 +14,7 @@ import 'package:t_truck_web/core/params/params.dart' as _i10;
 import 'package:t_truck_web/core/utils/app_dialog.dart' as _i3;
 import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart'
     as _i9;
-import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard.dart'
+import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard_case.dart'
     as _i6;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -66,21 +66,21 @@ class MockIMenuComponentController extends _i1.Mock
           returnValueForMissingStub: null);
 }
 
-/// A class which mocks [IListDashboardUseCase].
+/// A class which mocks [IListDashboardCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIListDashboardUseCase extends _i1.Mock
-    implements _i6.IListDashboardUseCase {
-  MockIListDashboardUseCase() {
+class MockIListDashboardCase extends _i1.Mock
+    implements _i6.IListDashboardCase {
+  MockIListDashboardCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Future<_i2.Either<_i8.Failure, List<_i9.DashBoardEntity>>> call(
+  _i7.Future<_i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>> call(
           _i10.Params? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
-          returnValue:
-              Future<_i2.Either<_i8.Failure, List<_i9.DashBoardEntity>>>.value(
-                  _FakeEither<_i8.Failure, List<_i9.DashBoardEntity>>())) as _i7
-          .Future<_i2.Either<_i8.Failure, List<_i9.DashBoardEntity>>>);
+          returnValue: Future<
+                  _i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>>.value(
+              _FakeEither<_i8.Failure, _i9.DashBoardComposedEntity>())) as _i7
+          .Future<_i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>>);
 }

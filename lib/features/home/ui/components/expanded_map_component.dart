@@ -24,8 +24,11 @@ class _ExpandedMapComponentState extends State<ExpandedMapComponent> {
       child: MapComponent(
         onPositionChanged: (position) => lastPostion = position,
         initialPosition: Get.arguments as LocationMapEntity,
-        onTap: () =>
-            Get.offNamedUntil('/home', (route) => true, arguments: lastPostion),
+        onTap: () => Get.offNamedUntil(
+          '/home',
+          (route) => true,
+          arguments: lastPostion,
+        ),
       ),
     );
   }

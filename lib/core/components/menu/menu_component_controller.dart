@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
-import 'package:t_truck_web/routes/app_routes.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 mixin IMenuComponentController {
   void addQuickAcces(MenuModel menuModel);
@@ -16,6 +16,9 @@ class MenuComponentController extends GetxController
   RxList<MenuModel> menusItem = [
     Routes.home.menu,
     Routes.truckDrivers.menu,
+    Routes.devolutions.menu,
+    Routes.messages.menu,
+    Routes.config.menu,
   ].obs;
 
   final Rx<MenuModel> _menuModel = Routes.home.menu.obs;

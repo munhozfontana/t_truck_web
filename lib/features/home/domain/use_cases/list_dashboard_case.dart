@@ -4,19 +4,19 @@ import 'package:t_truck_web/core/params/params.dart';
 import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
 import 'package:t_truck_web/features/home/domain/repositories/i_dashboard_repository.dart';
 
-abstract class IListDashboardUseCase {
-  Future<Either<Failure, List<DashBoardEntity>>> call(Params params);
+abstract class IListDashboardCase {
+  Future<Either<Failure, DashBoardComposedEntity>> call(Params params);
 }
 
-class ListDashboardUseCase implements IListDashboardUseCase {
+class ListDashboardCase implements IListDashboardCase {
   IDasboadRepository iDasboadRepository;
 
-  ListDashboardUseCase({
+  ListDashboardCase({
     required this.iDasboadRepository,
   });
 
   @override
-  Future<Either<Failure, List<DashBoardEntity>>> call(Params params) {
+  Future<Either<Failure, DashBoardComposedEntity>> call(Params params) {
     return iDasboadRepository.get();
   }
 }

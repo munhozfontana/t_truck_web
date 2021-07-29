@@ -10,7 +10,7 @@ class TruckDriversPage extends GetWidget<TruckDriversController> {
     return LayoutComponent(
       child: Center(
         child: Text(
-          'Em Desenvolvimento',
+          'Truck',
           style: StylesTypography.h48,
         ),
       ),

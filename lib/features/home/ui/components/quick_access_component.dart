@@ -7,12 +7,14 @@ class QuickAccessComponent extends StatefulWidget {
   final BoxConstraints constraints;
   final IconData? icon;
   final String? label;
+  final void Function()? onTap;
 
   const QuickAccessComponent({
     Key? key,
     required this.constraints,
     this.icon = Icons.flutter_dash_outlined,
     this.label = 'Sem informação',
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -62,12 +64,7 @@ class _QuickAccessComponentState extends State<QuickAccessComponent>
             return MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-                onTap: () => {
-                  _selectAnimCtl.forward().whenCompleteOrCancel(
-                      () => _selectAnimCtl.reverse().whenCompleteOrCancel(() {
-                            print('Tap Back');
-                          }))
-                },
+                onTap: () => onEventTap(),
                 child: Opacity(
                   opacity: _utils
                       .animateDouble(begin: 0, end: 1, parent: _initAnimCtl)
@@ -116,5 +113,16 @@ class _QuickAccessComponentState extends State<QuickAccessComponent>
         );
       },
     );
+  }
+
+  void onEventTap() {
+    if (widget.onTap != null) {
+      {
+        _selectAnimCtl.forward().whenCompleteOrCancel(() => {
+              widget.onTap!(),
+              _selectAnimCtl.reverse(),
+            });
+      }
+    }
   }
 }
