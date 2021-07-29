@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/home/ui/components/expanded_map_component.dart';
+import 'package:t_truck_web/core/components/layout_component.dart';
+import 'package:t_truck_web/routes/app_routes.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import 'core/styles/styles_button.dart';
 import 'core/styles/styles_fonts.dart';
 import 'core/styles/styles_inputs.dart';
-import 'features/home/home_biding.dart';
-import 'features/home/ui/home_page.dart';
-import 'features/login/ui/login_page.dart';
 import 'main_biding.dart';
 
 Future<void> main() async {
+  await dotenv.load();
+  await SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(GetMaterialApp(
     title: 'GSA',
     theme: ThemeData(
@@ -31,24 +33,12 @@ Future<void> main() async {
       ),
     ),
     initialBinding: MainBiding(),
-    initialRoute: '/home',
-    getPages: [
-      GetPage(
-        name: '/',
-        page: () => const LoginPage(),
+    initialRoute: Routes.login.path,
+    getPages: AppPages.pages(),
+    onUnknownRoute: (settings) => GetPageRoute(
+      page: () => const LayoutComponent(
+        child: Text('Não encontrado'),
       ),
-      GetPage(
-        name: '/home',
-        page: () => const HomePage(),
-        binding: HomeBiding(),
-      ),
-      GetPage(
-        curve: Curves.easeInOutExpo,
-        transition: Transition.downToUp,
-        transitionDuration: const Duration(milliseconds: 500),
-        name: '/mapa',
-        page: () => const ExpandedMapComponent(),
-      ),
-    ],
+    ),
   ));
 }

@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 class MenuModel {
   final IconData? icon;
   final String text;
-  final String route;
+  final String path;
   final bool? iconInverted;
 
   MenuModel({
     this.icon,
     required this.text,
-    required this.route,
+    required this.path,
     this.iconInverted = false,
   });
 
@@ -20,7 +20,7 @@ class MenuModel {
     return other is MenuModel &&
         other.icon == icon &&
         other.text == text &&
-        other.route == route &&
+        other.path == path &&
         other.iconInverted == iconInverted;
   }
 
@@ -28,7 +28,7 @@ class MenuModel {
   int get hashCode {
     return icon.hashCode ^
         text.hashCode ^
-        route.hashCode ^
+        path.hashCode ^
         iconInverted.hashCode;
   }
 }

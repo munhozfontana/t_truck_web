@@ -5,7 +5,7 @@ import 'header/header_component.dart';
 import 'menu/menu_component.dart';
 
 class LayoutComponent extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
 
   const LayoutComponent({
     Key? key,
@@ -17,7 +17,7 @@ class LayoutComponent extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          const Expanded(
+          Expanded(
             flex: 196,
             child: MenuComponent(),
           ),
@@ -38,9 +38,12 @@ class LayoutComponent extends StatelessWidget {
                         const Spacer(
                           flex: 124,
                         ),
-                        Expanded(
-                          flex: 800,
-                          child: child,
+                        Visibility(
+                          visible: child != null,
+                          child: Expanded(
+                            flex: 800,
+                            child: child!,
+                          ),
                         ),
                         const Spacer(
                           flex: 320,

@@ -1,68 +1,64 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:t_truck_web/core/adapters/map/map_entity.dart';
+import 'package:t_truck_web/core/components/map_component.dart';
+import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
-import 'package:t_truck_web/core/error/failures.dart';
 import 'package:t_truck_web/core/params/params.dart';
 import 'package:t_truck_web/core/utils/app_dialog.dart';
-import 'package:t_truck_web/features/home/domain/use_cases/map_use_case.dart';
+import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
+import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard_case.dart';
 import 'package:t_truck_web/features/home/ui/home_controller.dart';
 
 import 'home_controller_test.mocks.dart';
 
-@GenerateMocks([MapUseCase, AppDialog])
+@GenerateMocks([
+  IAppDialog,
+  IMenuComponentController,
+  IListDashboardCase,
+])
 void main() {
-  late HomeController controller;
-  MapUseCase mockMapUseCase;
-  AppDialog mockAppDialog;
+  late HomeController homeController;
+  late IAppDialog mockAppDialog;
+  late IMenuComponentController mockMenuComponentController;
+  late IListDashboardCase mockIListDashboardCase;
+  late MenuModel menuModel;
+  late LocationMapEntity locationMapEntity;
+  late DashBoardComposedEntity dashBoardComposedEntity;
+
   setUp(() {
-    mockMapUseCase = MockMapUseCase();
-    mockAppDialog = MockAppDialog();
-    controller = HomeController(
-      mapUseCase: mockMapUseCase,
-      appDialog: mockAppDialog,
+    menuModel = MenuModel(text: '', path: '');
+    dashBoardComposedEntity = DashBoardComposedEntity();
+    mockAppDialog = MockIAppDialog();
+    mockMenuComponentController = MockIMenuComponentController();
+    mockIListDashboardCase = MockIListDashboardCase();
+    locationMapEntity = LocationMapEntity(
+      latitude: 2,
+      longitude: 5,
     );
+    homeController = HomeController(
+        appDialog: mockAppDialog,
+        menuComponentController: mockMenuComponentController,
+        iListDashboardCase: mockIListDashboardCase);
+  });
+  test('Should call add Quickaccess', () {
+    when(mockMenuComponentController.addQuickAcces(menuModel))
+        .thenAnswer((realInvocation) {
+      return;
+    });
+    homeController.addQuickAcces(menuModel);
+    verify(mockMenuComponentController.addQuickAcces(menuModel)).called(1);
   });
 
-  test('should create map with no erros', () {
-    when(controller.mapUseCase(const Params())).thenAnswer(
-      (realInvocation) => Right(
-        MapEntity(
-          map: Container(),
-        ),
-      ),
-    );
-    controller.createMap();
-    expect(controller.mapEntity.value.map, isA<Container>());
+  test('Should update map values', () {
+    homeController.updateMap(locationMapEntity);
+    expect(homeController.currentPositonMap.value, locationMapEntity);
   });
 
-  test('should return error', () {
-    when(controller.mapUseCase(const Params())).thenAnswer(
-      (realInvocation) => const Left(
-        AppFailure(),
-      ),
-    );
-    controller.createMap();
-    verify(
-      controller.appDialog.error(
-        menssagem: anyNamed('menssagem'),
-      ),
-    ).called(1);
-  });
-
-  test('should verify quantity after much elemnts', () {
-    controller.addQuickAcces(MenuModel(text: 'a', route: '/a'));
-    controller.addQuickAcces(MenuModel(text: 's', route: '/s'));
-    controller.addQuickAcces(MenuModel(text: 'd', route: '/d'));
-    controller.addQuickAcces(MenuModel(text: 'f', route: '/f'));
-    controller.addQuickAcces(MenuModel(text: 'g', route: '/g'));
-    controller.addQuickAcces(MenuModel(text: 'w', route: '/w'));
-    controller.addQuickAcces(MenuModel(text: 'e', route: '/e'));
-    expect(controller.quickAcces().length, 4);
-    expect(controller.quickAcces().last.text, 'f');
-    expect(controller.quickAcces().first.text, 'e');
+  test('Should return panel data', () {
+    when(mockIListDashboardCase(const Params())).thenAnswer(
+        (realInvocation) => Future.value(Right(dashBoardComposedEntity)));
+    homeController.getPanelData();
   });
 }

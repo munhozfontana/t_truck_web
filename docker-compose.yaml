@@ -1,9 +1,21 @@
-version: "3.3"
+version: '3.3'
 
 services:
   web:
-    image: lufemunhoz/t_truck_web:v0.1.0
+    image: lufemunhoz/t_truck_web:latest
     ports:
       - 80:80
     env_file:
       - .env
+  ngrok:
+    image: wernight/ngrok:latest
+    ports:
+      - 4040:4040
+    links:
+      - web
+    depends_on:
+      - web
+    env_file:
+      - .env
+    environment:
+      - NGROK_LOOK_DOMAIN=web

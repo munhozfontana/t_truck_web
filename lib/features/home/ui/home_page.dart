@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
+import 'package:t_truck_web/core/components/map_component.dart';
+import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/features/home/ui/components/card_info_component.dart';
-import 'package:t_truck_web/features/home/ui/components/expanded_map_component.dart';
 import 'package:t_truck_web/features/home/ui/components/quick_access_component.dart';
 
 import '../../../core/components/body_component.dart';
@@ -24,36 +24,43 @@ class HomePage extends GetWidget<HomeController> {
               children: [
                 Expanded(
                   flex: 177,
-                  child: Row(
-                    children: const [
-                      CardInfo(
-                        icon: Icons.done,
-                        colorIcon: Color(0xFF45D36D),
-                      ),
-                      Spacer(flex: 33),
-                      CardInfo(
-                        icon: Icons.info_outline,
-                        colorIcon: Color(0xFFF4CE49),
-                      ),
-                      Spacer(flex: 33),
-                      CardInfo(
-                        icon: Icons.view_in_ar_outlined,
-                        colorIcon: Colors.black,
-                      ),
-                      Spacer(flex: 33),
-                      CardInfo(
-                        icon: MenuIcons.subdirectory_arrow_right,
-                        colorIcon: Color(0xFF2050FA),
-                        inverted: true,
-                      ),
-                    ],
-                  ),
+                  child: Obx(() => Row(
+                        children: [
+                          CardInfo(
+                            dashBoardEntity:
+                                controller.dashboads.value.finished!,
+                          ),
+                          const Spacer(flex: 33),
+                          CardInfo(
+                            dashBoardEntity:
+                                controller.dashboads.value.pending!,
+                          ),
+                          const Spacer(flex: 33),
+                          CardInfo(
+                            dashBoardEntity: controller.dashboads.value.opened!,
+                          ),
+                          const Spacer(flex: 33),
+                          CardInfo(
+                            dashBoardEntity:
+                                controller.dashboads.value.devolutions!,
+                          ),
+                        ],
+                      )),
                 ),
                 const Spacer(flex: 26),
                 Expanded(
                   flex: 280,
-                  child: ExpandedMapComponent(
-                    onTap: () => Get.toNamed('/mapa'),
+                  child: Hero(
+                    tag: 'mapa-tag',
+                    child: MapComponent(
+                      onPositionChanged: (value) => controller.updateMap(value),
+                      initialPosition: Get.arguments != null
+                          ? (Get.arguments as LocationMapEntity)
+                          : controller.currentPositonMap.value,
+                      onTap: () => Get.toNamed('/home/mapa',
+                          arguments: controller.currentPositonMap.value),
+                      key: key,
+                    ),
                   ),
                 ),
                 const Spacer(flex: 25),
@@ -66,19 +73,27 @@ class HomePage extends GetWidget<HomeController> {
                   flex: 96,
                   child: LayoutBuilder(
                     builder: (_, BoxConstraints constraints) {
-                      return Obx(
-                        () => ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          separatorBuilder: (context, index) => SizedBox(
-                            width: constraints.maxWidth * .041066,
-                          ),
-                          itemCount: controller.quickAcces.length,
-                          itemBuilder: (context, index) => QuickAccessComponent(
-                            constraints: constraints,
-                            icon: controller.quickAcces[index].icon,
-                            label: controller.quickAcces[index].text,
-                          ),
-                        ),
+                      return GetX<MenuComponentController>(
+                        init: MenuComponentController(),
+                        initState: (_) {},
+                        builder: (_) {
+                          return ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            separatorBuilder: (context, index) => SizedBox(
+                              width: constraints.maxWidth * .041066,
+                            ),
+                            itemCount: _.quickAcces.length,
+                            itemBuilder: (context, index) =>
+                                QuickAccessComponent(
+                              constraints: constraints,
+                              icon: _.quickAcces[index].icon,
+                              label: _.quickAcces[index].text,
+                              onTap: () => Get.offAllNamed(
+                                _.quickAcces[index].path,
+                              ),
+                            ),
+                          );
+                        },
                       );
                     },
                   ),

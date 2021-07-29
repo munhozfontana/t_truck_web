@@ -1,41 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/home/ui/home_controller.dart';
+import 'package:t_truck_web/core/components/map_component.dart';
 
-class ExpandedMapComponent extends StatelessWidget {
+class ExpandedMapComponent extends StatefulWidget {
   final void Function()? onTap;
 
-  const ExpandedMapComponent({Key? key, this.onTap}) : super(key: key);
+  const ExpandedMapComponent({
+    Key? key,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  _ExpandedMapComponentState createState() => _ExpandedMapComponentState();
+}
+
+class _ExpandedMapComponentState extends State<ExpandedMapComponent> {
+  LocationMapEntity lastPostion = Get.arguments as LocationMapEntity;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return Stack(
-          children: [
-            Get.find<HomeController>().mapEntity.value.map,
-            Align(
-              alignment: Alignment.bottomRight,
-              child: GestureDetector(
-                onTap: onTap ?? Get.back,
-                child: Container(
-                  margin: EdgeInsets.all(constraints.maxHeight / 15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.white,
-                  ),
-                  height: 50,
-                  width: 50,
-                  child: const Icon(
-                    Icons.zoom_out_map_rounded,
-                    size: 35,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+    return Hero(
+      tag: 'mapa-tag',
+      child: MapComponent(
+        onPositionChanged: (position) => lastPostion = position,
+        initialPosition: Get.arguments as LocationMapEntity,
+        onTap: () => Get.offNamedUntil(
+          '/home',
+          (route) => true,
+          arguments: lastPostion,
+        ),
+      ),
     );
   }
 }

@@ -2,16 +2,20 @@
 // in t_truck_web/test/features/home/ui/home_controller_test.dart.
 // Do not manually edit this file.
 
-import 'package:dartz/dartz.dart' as _i3;
+import 'dart:async' as _i7;
+
+import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:t_truck_web/core/adapters/map/map_entity.dart' as _i6;
-import 'package:t_truck_web/core/error/failures.dart' as _i5;
-import 'package:t_truck_web/core/params/params.dart' as _i7;
-import 'package:t_truck_web/core/utils/app_dialog.dart' as _i8;
-import 'package:t_truck_web/features/home/domain/repositories/i_map_repository.dart'
-    as _i2;
-import 'package:t_truck_web/features/home/domain/use_cases/map_use_case.dart'
+import 'package:t_truck_web/core/components/menu/menu_component_controller.dart'
     as _i4;
+import 'package:t_truck_web/core/components/menu/menu_model.dart' as _i5;
+import 'package:t_truck_web/core/error/failures.dart' as _i8;
+import 'package:t_truck_web/core/params/params.dart' as _i10;
+import 'package:t_truck_web/core/utils/app_dialog.dart' as _i3;
+import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart'
+    as _i9;
+import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard_case.dart'
+    as _i6;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: comment_references
@@ -20,37 +24,16 @@ import 'package:t_truck_web/features/home/domain/use_cases/map_use_case.dart'
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeIMapRepository extends _i1.Fake implements _i2.IMapRepository {}
-
-class _FakeEither<L, R> extends _i1.Fake implements _i3.Either<L, R> {
+class _FakeEither<L, R> extends _i1.Fake implements _i2.Either<L, R> {
   @override
   String toString() => super.toString();
 }
 
-/// A class which mocks [MapUseCase].
+/// A class which mocks [IAppDialog].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMapUseCase extends _i1.Mock implements _i4.MapUseCase {
-  MockMapUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i2.IMapRepository get iMapRepository =>
-      (super.noSuchMethod(Invocation.getter(#iMapRepository),
-          returnValue: _FakeIMapRepository()) as _i2.IMapRepository);
-  @override
-  _i3.Either<_i5.Failure, _i6.MapEntity> call(_i7.Params? params) =>
-      (super.noSuchMethod(Invocation.method(#call, [params]),
-              returnValue: _FakeEither<_i5.Failure, _i6.MapEntity>())
-          as _i3.Either<_i5.Failure, _i6.MapEntity>);
-}
-
-/// A class which mocks [AppDialog].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockAppDialog extends _i1.Mock implements _i8.AppDialog {
-  MockAppDialog() {
+class MockIAppDialog extends _i1.Mock implements _i3.IAppDialog {
+  MockIAppDialog() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -62,4 +45,42 @@ class MockAppDialog extends _i1.Mock implements _i8.AppDialog {
   void error({String? menssagem}) =>
       super.noSuchMethod(Invocation.method(#error, [], {#menssagem: menssagem}),
           returnValueForMissingStub: null);
+}
+
+/// A class which mocks [IMenuComponentController].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIMenuComponentController extends _i1.Mock
+    implements _i4.IMenuComponentController {
+  MockIMenuComponentController() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void addQuickAcces(_i5.MenuModel? menuModel) =>
+      super.noSuchMethod(Invocation.method(#addQuickAcces, [menuModel]),
+          returnValueForMissingStub: null);
+  @override
+  void onTapMenu(_i5.MenuModel? newMenuModel) =>
+      super.noSuchMethod(Invocation.method(#onTapMenu, [newMenuModel]),
+          returnValueForMissingStub: null);
+}
+
+/// A class which mocks [IListDashboardCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIListDashboardCase extends _i1.Mock
+    implements _i6.IListDashboardCase {
+  MockIListDashboardCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<_i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>> call(
+          _i10.Params? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+          returnValue: Future<
+                  _i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>>.value(
+              _FakeEither<_i8.Failure, _i9.DashBoardComposedEntity>())) as _i7
+          .Future<_i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>>);
 }
