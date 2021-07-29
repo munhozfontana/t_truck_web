@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secret
+type: Opaque
+data:
+  NGROK_AUTH: MW92YjdvODRMUVY4cm5RSUNidkFNOFBvRW52XzdDaGpXcUJXR2ZGVmU2UDN3RXhnSwo=
+  NGROK_REGION: c2EK

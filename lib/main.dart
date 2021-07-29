@@ -12,7 +12,7 @@ import 'core/styles/styles_inputs.dart';
 import 'main_biding.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName: ".env");
+  await dotenv.load();
   await SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(GetMaterialApp(
     title: 'GSA',

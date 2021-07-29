@@ -1,10 +1,13 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:t_truck_web/core/components/map_component.dart';
 import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/core/components/menu/menu_model.dart';
+import 'package:t_truck_web/core/params/params.dart';
 import 'package:t_truck_web/core/utils/app_dialog.dart';
+import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
 import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard_case.dart';
 import 'package:t_truck_web/features/home/ui/home_controller.dart';
 
@@ -22,9 +25,11 @@ void main() {
   late IListDashboardCase mockIListDashboardCase;
   late MenuModel menuModel;
   late LocationMapEntity locationMapEntity;
+  late DashBoardComposedEntity dashBoardComposedEntity;
 
   setUp(() {
     menuModel = MenuModel(text: '', path: '');
+    dashBoardComposedEntity = DashBoardComposedEntity();
     mockAppDialog = MockIAppDialog();
     mockMenuComponentController = MockIMenuComponentController();
     mockIListDashboardCase = MockIListDashboardCase();
@@ -52,7 +57,8 @@ void main() {
   });
 
   test('Should return panel data', () {
-    // when(mock)
+    when(mockIListDashboardCase(const Params())).thenAnswer(
+        (realInvocation) => Future.value(Right(dashBoardComposedEntity)));
     homeController.getPanelData();
   });
 }
