@@ -13,7 +13,6 @@ import 'main_biding.dart';
 
 Future<void> main() async {
   await dotenv.load();
-  await SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(GetMaterialApp(
     title: 'GSA',
     theme: ThemeData(
