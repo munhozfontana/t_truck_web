@@ -34,7 +34,7 @@ spec:
   ports:
     - port: 80
       nodePort: 30000
-  type: NodePort
-  # externalIPs:
-  #   - '172.17.20.45'
-  # type: LoadBalancer se for na nuvem
+  # type: NodePort
+  externalIPs:
+    - '172.17.240.181'
+  type: LoadBalancer
