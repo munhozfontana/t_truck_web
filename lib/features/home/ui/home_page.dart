@@ -21,64 +21,75 @@ class HomePage extends GetWidget<HomeController> {
         height: MediaQuery.of(context).size.height * 1.2,
         child: Column(
           children: [
-            TitleComponent(
-              title: 'Painel',
-              flex: Responsive.isMobile(context) ? 1 : 2,
+            Visibility(
+              visible: Responsive.isNotMobile(context),
+              child: const TitleComponent(
+                title: 'Painel',
+              ),
             ),
             BodyComponent(
               child: Column(
                 children: [
+                  Visibility(
+                    visible: Responsive.isMobile(context),
+                    child: const Spacer(flex: 26),
+                  ),
                   Expanded(
-                    flex: Responsive.isMobile(context) ? 150 : 177,
-                    child: Obx(() => Responsive.isMobile(context)
-                        ? ListView(
-                            itemExtent: MediaQuery.of(context).size.width * .40,
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                                CardInfo(
-                                  dashBoardEntity:
-                                      controller.dashboads.value.finished!,
-                                ),
-                                CardInfo(
-                                  dashBoardEntity:
-                                      controller.dashboads.value.pending!,
-                                ),
-                                CardInfo(
-                                  dashBoardEntity:
-                                      controller.dashboads.value.opened!,
-                                ),
-                                CardInfo(
-                                  dashBoardEntity:
-                                      controller.dashboads.value.devolutions!,
-                                ),
-                              ])
-                        : Row(
-                            children: [
-                              CardInfo(
-                                dashBoardEntity:
-                                    controller.dashboads.value.finished!,
-                              ),
-                              const Spacer(flex: 33),
-                              CardInfo(
-                                dashBoardEntity:
-                                    controller.dashboads.value.pending!,
-                              ),
-                              const Spacer(flex: 33),
-                              CardInfo(
-                                dashBoardEntity:
-                                    controller.dashboads.value.opened!,
-                              ),
-                              const Spacer(flex: 33),
-                              CardInfo(
-                                dashBoardEntity:
-                                    controller.dashboads.value.devolutions!,
-                              ),
-                            ],
-                          )),
+                    flex: Responsive.isMobile(context) ? 180 : 177,
+                    child: Obx(
+                      () => Visibility(
+                        visible: Responsive.isMobile(context),
+                        replacement: Row(
+                          children: [
+                            CardInfo(
+                              dashBoardEntity:
+                                  controller.dashboads.value.finished!,
+                            ),
+                            const Spacer(flex: 33),
+                            CardInfo(
+                              dashBoardEntity:
+                                  controller.dashboads.value.pending!,
+                            ),
+                            const Spacer(flex: 33),
+                            CardInfo(
+                              dashBoardEntity:
+                                  controller.dashboads.value.opened!,
+                            ),
+                            const Spacer(flex: 33),
+                            CardInfo(
+                              dashBoardEntity:
+                                  controller.dashboads.value.devolutions!,
+                            ),
+                          ],
+                        ),
+                        child: ListView(
+                          itemExtent: MediaQuery.of(context).size.width * .40,
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            CardInfo(
+                              dashBoardEntity:
+                                  controller.dashboads.value.finished!,
+                            ),
+                            CardInfo(
+                              dashBoardEntity:
+                                  controller.dashboads.value.pending!,
+                            ),
+                            CardInfo(
+                              dashBoardEntity:
+                                  controller.dashboads.value.opened!,
+                            ),
+                            CardInfo(
+                              dashBoardEntity:
+                                  controller.dashboads.value.devolutions!,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                   const Spacer(flex: 26),
                   Expanded(
-                    flex: Responsive.isMobile(context) ? 450 : 300,
+                    flex: Responsive.isMobile(context) ? 300 : 300,
                     child: Hero(
                       tag: 'mapa-tag',
                       child: MapComponent(
@@ -94,13 +105,16 @@ class HomePage extends GetWidget<HomeController> {
                     ),
                   ),
                   const Spacer(flex: 25),
-                  const TitleComponent(
-                    flex: 36,
-                    title: 'Acesso rápido',
+                  Visibility(
+                    visible: Responsive.isNotMobile(context),
+                    child: const TitleComponent(
+                      flex: 36,
+                      title: 'Acesso rápido',
+                    ),
                   ),
                   const Spacer(flex: 44),
                   Expanded(
-                    flex: Responsive.isMobile(context) ? 40 : 96,
+                    flex: 96,
                     child: LayoutBuilder(
                       builder: (_, BoxConstraints constraints) {
                         return GetX<MenuComponentController>(

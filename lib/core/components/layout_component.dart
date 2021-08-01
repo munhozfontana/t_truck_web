@@ -120,7 +120,7 @@ class LayoutComponent extends StatelessWidget {
         child: MenuComponent(),
       ),
       appBar: const HeaderComponent(
-        spaceIcon: 6,
+        spaceIcon: 10,
       ).build(context),
       body: Row(
         children: [

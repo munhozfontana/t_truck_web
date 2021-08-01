@@ -17,12 +17,12 @@ class CardInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Responsive.isMobile(context)
         ? Container(
-            margin: EdgeInsets.all(8),
+            margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: StylesColors.white,
               borderRadius: BorderRadius.circular(8.0),
             ),
-            child: contentCard(),
+            child: contentCard(context),
           )
         : Expanded(
             flex: 176,
@@ -31,12 +31,12 @@ class CardInfo extends StatelessWidget {
                 color: StylesColors.white,
                 borderRadius: BorderRadius.circular(8.0),
               ),
-              child: contentCard(),
+              child: contentCard(context),
             ),
           );
   }
 
-  Padding contentCard() {
+  Padding contentCard(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -44,7 +44,7 @@ class CardInfo extends StatelessWidget {
           Expanded(
             flex: 2,
             child: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
+              builder: (BuildContext _, BoxConstraints constraints) {
                 return Row(
                   children: [
                     Transform.rotate(
@@ -57,9 +57,12 @@ class CardInfo extends StatelessWidget {
                           borderRadius:
                               BorderRadius.circular(constraints.maxHeight),
                         ),
-                        child: Icon(
-                          dashBoardEntity.icon,
-                          color: dashBoardEntity.colorIcon,
+                        child: Visibility(
+                          visible: Responsive.isMobile(context),
+                          replacement: iconCard(),
+                          child: FittedBox(
+                            child: iconCard(),
+                          ),
                         ),
                       ),
                     ),
@@ -71,9 +74,12 @@ class CardInfo extends StatelessWidget {
                         borderRadius:
                             BorderRadius.circular(constraints.maxHeight),
                       ),
-                      child: Icon(
-                        Icons.refresh,
-                        color: Colors.black.withOpacity(.2),
+                      child: Visibility(
+                        visible: Responsive.isMobile(context),
+                        replacement: iconReload(),
+                        child: FittedBox(
+                          child: iconReload(),
+                        ),
                       ),
                     )
                   ],
@@ -85,9 +91,12 @@ class CardInfo extends StatelessWidget {
             flex: 4,
             child: Container(
               alignment: Alignment.centerLeft,
-              child: Text(
-                dashBoardEntity.quantity,
-                style: StylesTypography.h48,
+              child: Visibility(
+                visible: Responsive.isMobile(context),
+                replacement: titleCard(),
+                child: FittedBox(
+                  child: titleCard(),
+                ),
               ),
             ),
           ),
@@ -95,14 +104,45 @@ class CardInfo extends StatelessWidget {
             flex: 3,
             child: Container(
               alignment: Alignment.centerLeft,
-              child: Text(
-                dashBoardEntity.description,
-                style: StylesTypography.h18wBold,
+              child: Visibility(
+                visible: Responsive.isMobile(context),
+                replacement: descriptionCard(),
+                child: FittedBox(
+                  child: descriptionCard(),
+                ),
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Text descriptionCard() {
+    return Text(
+      dashBoardEntity.description,
+      style: StylesTypography.h18wBold,
+    );
+  }
+
+  Text titleCard() {
+    return Text(
+      dashBoardEntity.quantity,
+      style: StylesTypography.h48,
+    );
+  }
+
+  Icon iconReload() {
+    return Icon(
+      Icons.refresh,
+      color: Colors.black.withOpacity(.2),
+    );
+  }
+
+  Icon iconCard() {
+    return Icon(
+      dashBoardEntity.icon,
+      color: dashBoardEntity.colorIcon,
     );
   }
 }
