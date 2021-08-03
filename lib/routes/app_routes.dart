@@ -8,8 +8,8 @@ import '../features/home/ui/components/expanded_map_component.dart';
 import '../features/home/ui/home_page.dart';
 import '../features/login/login_biding.dart';
 import '../features/login/ui/login_page.dart';
-import '../features/truck_drivers/truck_drivers_biding.dart';
-import '../features/truck_drivers/truck_drivers_list/ui/truck_drivers_page.dart';
+import '../features/truck_drivers/truck_drivers_list/truck_drivers_list_biding.dart';
+import '../features/truck_drivers/truck_drivers_list/ui/truck_drivers_list_page.dart';
 import 'app_routes_enum.dart';
 
 const slow = Duration(milliseconds: 800);
@@ -44,9 +44,9 @@ class AppPages {
           name: Routes.truckDrivers.path,
           transitionDuration: fast,
           curve: Curves.easeInOutCirc,
-          page: () => TruckDriversPage(),
+          page: () => TruckDriversListPage(),
           transition: Transition.fadeIn,
-          binding: TruckDriversBiding()),
+          binding: TruckDriversListBiding()),
       GetPage(
         name: Routes.developer.path,
         transitionDuration: fast,
