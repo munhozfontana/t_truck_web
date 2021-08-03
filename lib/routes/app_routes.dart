@@ -7,6 +7,7 @@ import 'package:t_truck_web/features/home/ui/components/expanded_map_component.d
 import 'package:t_truck_web/features/home/ui/home_page.dart';
 import 'package:t_truck_web/features/login/login_biding.dart';
 import 'package:t_truck_web/features/login/ui/login_page.dart';
+import 'package:t_truck_web/features/truck_drivers/truck_drivers_biding.dart';
 import 'package:t_truck_web/features/truck_drivers/ui/truck_drivers_page.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
 
@@ -39,12 +40,12 @@ class AppPages {
         transition: Transition.fadeIn,
       ),
       GetPage(
-        name: Routes.truckDrivers.path,
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => TruckDriversPage(),
-        transition: Transition.fadeIn,
-      ),
+          name: Routes.truckDrivers.path,
+          transitionDuration: fast,
+          curve: Curves.easeInOutCirc,
+          page: () => TruckDriversPage(),
+          transition: Transition.fadeIn,
+          binding: TruckDriversBiding()),
       GetPage(
         name: Routes.developer.path,
         transitionDuration: fast,

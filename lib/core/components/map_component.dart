@@ -68,7 +68,6 @@ class MapComponent extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               child: FlutterMap(
                 options: MapOptions(
-                  allowPanning: true,
                   onPositionChanged: (a, b) {
                     if (b && onPositionChanged != null) {
                       onPositionChanged!(LocationMapEntity(

@@ -12,7 +12,14 @@ class BodyComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 13,
-      child: child ?? Container(),
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return SizedBox(
+            width: constraints.maxWidth,
+            child: child ?? Container(),
+          );
+        },
+      ),
     );
   }
 }

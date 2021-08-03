@@ -34,6 +34,12 @@ mixin StylesTypography {
       fontSize: 18,
       color: StylesColors.gray);
 
+  static TextStyle get h16Bold => const TextStyle(
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Poppins',
+        fontStyle: FontStyle.normal,
+        fontSize: 16,
+      );
   static TextStyle get h16 => const TextStyle(
         fontWeight: FontWeight.w500,
         fontFamily: 'Poppins',

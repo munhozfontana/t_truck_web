@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_http_external.dart';
 import 'package:t_truck_web/core/error/api_exception.dart';
 import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
+import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
 
 mixin IDashboardExternal {
@@ -46,7 +47,7 @@ class DashboardExternal implements IDashboardExternal {
           quantity: '11',
           description: 'Pendentes',
           icon: Icons.info_outline,
-          colorIcon: const Color(0xFFF4CE49),
+          colorIcon: StylesColors.wellow,
         ),
       );
     } catch (e) {

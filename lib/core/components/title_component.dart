@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t_truck_web/core/components/responsive.dart';
 
 import '../styles/styles_fonts.dart';
 
@@ -15,20 +16,23 @@ class TitleComponent extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Expanded build(BuildContext context) {
-    return Expanded(
-      flex: flex,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: StylesTypography.h24,
-          ),
-          Container(
-            child: secondary ?? Container(),
-          ),
-        ],
+  Widget build(BuildContext context) {
+    return Visibility(
+      visible: Responsive.isNotMobile(context),
+      child: Expanded(
+        flex: flex,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: StylesTypography.h24,
+            ),
+            Container(
+              child: secondary ?? Container(),
+            ),
+          ],
+        ),
       ),
     );
   }
