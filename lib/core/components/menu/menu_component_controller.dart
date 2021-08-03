@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/menu/menu_model.dart';
-import 'package:t_truck_web/routes/app_routes_enum.dart';
+
+import '../../../routes/app_routes_enum.dart';
+import 'menu_model.dart';
 
 mixin IMenuComponentController {
   void addQuickAcces(MenuModel menuModel);

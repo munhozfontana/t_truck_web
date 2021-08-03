@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
+
+import '../../domain/entities/dash_board_entity.dart';
 
 class DashBoardModel extends DashBoardEntity {
   DashBoardModel({

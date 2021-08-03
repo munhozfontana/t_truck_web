@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/components/responsive.dart';
 
 import '../styles/style_colors.dart';
 import 'header/header_component.dart';
 import 'menu/menu_component.dart';
+import 'responsive.dart';
 
 class LayoutComponent extends StatelessWidget {
   final Widget? child;

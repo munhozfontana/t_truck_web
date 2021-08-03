@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/adapters/drivers/dio_driver.dart';
-import 'package:t_truck_web/core/adapters/protocols/i_http_external.dart';
-import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
-import 'package:t_truck_web/core/utils/app_dialog.dart';
+
+import 'adapters/drivers/dio_driver.dart';
+import 'adapters/protocols/i_http_external.dart';
+import 'components/menu/menu_component_controller.dart';
+import 'utils/app_dialog.dart';
 
 class CoreBiding extends Bindings {
   @override

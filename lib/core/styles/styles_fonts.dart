@@ -60,4 +60,7 @@ mixin StylesTypography {
         fontStyle: FontStyle.normal,
         fontSize: 14,
       );
+  static TextStyle get h14w500 => h14.copyWith(
+        fontWeight: FontWeight.w500,
+      );
 }

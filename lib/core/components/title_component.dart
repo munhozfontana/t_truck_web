@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/components/responsive.dart';
 
 import '../styles/styles_fonts.dart';
+import 'responsive.dart';
 
 class TitleComponent extends StatelessWidget {
   final String title;

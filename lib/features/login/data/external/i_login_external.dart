@@ -1,6 +1,6 @@
-import 'package:t_truck_web/core/adapters/protocols/i_http_external.dart';
-import 'package:t_truck_web/core/error/api_exception.dart';
-import 'package:t_truck_web/features/login/domain/entities/login_entity.dart';
+import '../../../../core/adapters/protocols/i_http_external.dart';
+import '../../../../core/error/api_exception.dart';
+import '../../domain/entities/login_entity.dart';
 
 mixin ILoginExternal {
   Future<LoginEntity> login();

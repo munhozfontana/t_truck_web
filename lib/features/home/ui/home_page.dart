@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/map_component.dart';
-import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
-import 'package:t_truck_web/core/components/responsive.dart';
-import 'package:t_truck_web/features/home/ui/components/card_info_component.dart';
-import 'package:t_truck_web/features/home/ui/components/quick_access_component.dart';
 
 import '../../../core/components/body_component.dart';
 import '../../../core/components/layout_component.dart';
+import '../../../core/components/map_component.dart';
+import '../../../core/components/menu/menu_component_controller.dart';
+import '../../../core/components/responsive.dart';
 import '../../../core/components/title_component.dart';
+import 'components/card_info_component.dart';
+import 'components/quick_access_component.dart';
 import 'home_controller.dart';
 
 class HomePage extends GetWidget<HomeController> {

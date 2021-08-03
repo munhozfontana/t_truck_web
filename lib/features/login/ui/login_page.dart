@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/login/ui/login_controller.dart';
 
 import 'components/app_input.dart';
 import 'components/background_logo.dart';
+import 'login_controller.dart';
 
 class LoginPage extends GetWidget<LoginController> {
   const LoginPage({Key? key}) : super(key: key);

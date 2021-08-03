@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/animations/animations_utils.dart';
-import 'package:t_truck_web/core/components/menu/menu_model.dart';
 
+import '../../animations/animations_utils.dart';
 import '../../styles/style_colors.dart';
 import '../../styles/styles_fonts.dart';
+import 'menu_model.dart';
 
 class MenuItemComponent extends StatefulWidget {
   final double height;

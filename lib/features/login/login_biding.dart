@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/login/ui/login_controller.dart';
+
+import 'ui/login_controller.dart';
 
 class LoginBiding extends Bindings {
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
+
+import '../../../../core/styles/style_colors.dart';
 
 enum DeliveryStatus { done, inProgess, notDone }
 

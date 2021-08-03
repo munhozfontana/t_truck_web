@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
+
+import '../../styles/styles_fonts.dart';
 
 enum TypeCellComponent { normal, outline }
 

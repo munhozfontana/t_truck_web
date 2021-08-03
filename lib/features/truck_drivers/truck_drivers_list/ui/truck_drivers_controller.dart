@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../domain/entities/truck_drivers_entity.dart';
-import '../domain/enum/delivery_status_enum.dart';
+import '../../domain/entities/truck_drivers_entity.dart';
+import '../../domain/enum/delivery_status_enum.dart';
 
 class TruckDriversController extends GetxController {
   RxList<TruckDriversEntity> list = <TruckDriversEntity>[].obs;

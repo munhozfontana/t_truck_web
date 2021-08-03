@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/map_component.dart';
-import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
-import 'package:t_truck_web/core/params/params.dart';
-import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
-import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard_case.dart';
 
+import '../../../core/components/map_component.dart';
+import '../../../core/components/menu/menu_component_controller.dart';
 import '../../../core/components/menu/menu_model.dart';
+import '../../../core/params/params.dart';
 import '../../../core/utils/app_dialog.dart';
+import '../domain/entities/dash_board_entity.dart';
+import '../domain/use_cases/list_dashboard_case.dart';
 
 class HomeController extends GetxController {
   final IAppDialog appDialog;

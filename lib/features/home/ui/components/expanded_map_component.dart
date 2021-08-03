@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/map_component.dart';
+
+import '../../../../core/components/map_component.dart';
 
 class ExpandedMapComponent extends StatefulWidget {
   final void Function()? onTap;

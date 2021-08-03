@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/components/menu/menu_model.dart';
-import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
+
+import '../core/components/menu/menu_model.dart';
+import '../core/icons/menu_icons_icons.dart';
 
 enum Routes {
   login,

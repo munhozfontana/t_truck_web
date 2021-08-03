@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/layout_component.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/home/home_biding.dart';
-import 'package:t_truck_web/features/home/ui/components/expanded_map_component.dart';
-import 'package:t_truck_web/features/home/ui/home_page.dart';
-import 'package:t_truck_web/features/login/login_biding.dart';
-import 'package:t_truck_web/features/login/ui/login_page.dart';
-import 'package:t_truck_web/features/truck_drivers/truck_drivers_biding.dart';
-import 'package:t_truck_web/features/truck_drivers/ui/truck_drivers_page.dart';
-import 'package:t_truck_web/routes/app_routes_enum.dart';
+
+import '../core/components/layout_component.dart';
+import '../core/styles/styles_fonts.dart';
+import '../features/home/home_biding.dart';
+import '../features/home/ui/components/expanded_map_component.dart';
+import '../features/home/ui/home_page.dart';
+import '../features/login/login_biding.dart';
+import '../features/login/ui/login_page.dart';
+import '../features/truck_drivers/truck_drivers_biding.dart';
+import '../features/truck_drivers/truck_drivers_list/ui/truck_drivers_page.dart';
+import 'app_routes_enum.dart';
 
 const slow = Duration(milliseconds: 800);
 const fast = Duration(milliseconds: 400);

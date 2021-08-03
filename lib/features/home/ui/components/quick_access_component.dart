@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/animations/animations_utils.dart';
-import 'package:t_truck_web/core/components/responsive.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
+
+import '../../../../core/animations/animations_utils.dart';
+import '../../../../core/components/responsive.dart';
+import '../../../../core/styles/style_colors.dart';
+import '../../../../core/styles/styles_fonts.dart';
 
 class QuickAccessComponent extends StatefulWidget {
   final BoxConstraints constraints;

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/layout_component.dart';
-import 'package:t_truck_web/routes/app_routes.dart';
-import 'package:t_truck_web/routes/app_routes_enum.dart';
 
+import 'core/components/layout_component.dart';
 import 'core/styles/styles_button.dart';
 import 'core/styles/styles_fonts.dart';
 import 'core/styles/styles_inputs.dart';
 import 'main_biding.dart';
+import 'routes/app_routes.dart';
+import 'routes/app_routes_enum.dart';
 
 Future<void> main() async {
   runApp(GetMaterialApp(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
+
+import '../../styles/style_colors.dart';
 
 class TableComponent extends StatelessWidget {
   final List<String> header;
@@ -14,6 +15,7 @@ class TableComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataTable(
+      showBottomBorder: true,
       columns: header.map((e) => DataColumn(label: Text(e))).toList(),
       rows: data
           .map(

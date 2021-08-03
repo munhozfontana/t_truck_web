@@ -1,4 +1,4 @@
-import 'package:t_truck_web/features/truck_drivers/domain/enum/delivery_status_enum.dart';
+import '../enum/delivery_status_enum.dart';
 
 class TruckDriversEntity {
   String cod;

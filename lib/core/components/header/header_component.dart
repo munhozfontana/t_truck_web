@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
+
+import '../../styles/style_colors.dart';
+import '../../styles/styles_fonts.dart';
+import '../menu/menu_component_controller.dart';
 
 class HeaderComponent extends StatelessWidget {
   final int? spaceIcon;

@@ -1,4 +1,4 @@
-import 'package:t_truck_web/features/login/domain/entities/login_entity.dart';
+import '../../domain/entities/login_entity.dart';
 
 class LoginModel extends LoginEntity {
   LoginModel({

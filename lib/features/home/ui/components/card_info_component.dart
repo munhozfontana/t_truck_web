@@ -1,10 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/components/responsive.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
+
+import '../../../../core/components/responsive.dart';
+import '../../../../core/styles/style_colors.dart';
+import '../../../../core/styles/styles_fonts.dart';
+import '../../domain/entities/dash_board_entity.dart';
 
 class CardInfo extends StatelessWidget {
   final DashBoardEntity dashBoardEntity;

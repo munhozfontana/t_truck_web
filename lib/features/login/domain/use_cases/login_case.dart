@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:t_truck_web/core/error/failures.dart';
-import 'package:t_truck_web/core/params/params.dart';
-import 'package:t_truck_web/features/login/domain/repositories/i_login_repository.dart';
+
+import '../../../../core/error/failures.dart';
+import '../../../../core/params/params.dart';
+import '../repositories/i_login_repository.dart';
 
 abstract class ILoginCase {
   Future<Either<Failure, void>> call(Params params);
