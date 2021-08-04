@@ -49,6 +49,7 @@ class TruckDriversListPage extends GetWidget<TruckDriversListController> {
                             value: (e.deliveryStatus as DeliveryStatus).desc,
                             color: (e.deliveryStatus as DeliveryStatus).color,
                             typeCellComponent: TypeCellComponent.outline,
+                            width: 180,
                           ),
                           SizedBox(
                             height: 30,

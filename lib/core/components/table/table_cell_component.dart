@@ -47,7 +47,7 @@ class TableCellComponent extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         height: 30,
-        width: 80,
+        width: width,
         decoration: boxDecoration,
         child: text,
       ),
