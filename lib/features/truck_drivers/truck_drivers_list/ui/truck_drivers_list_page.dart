@@ -56,7 +56,7 @@ class TruckDriversListPage extends GetWidget<TruckDriversListController> {
                             child: Material(
                               color: Colors.white,
                               child: InkWell(
-                                onTap: () => print('aaaaa'),
+                                onTap: () => controller.toDriverDetail(e),
                                 child: Row(
                                   children: [
                                     Text(

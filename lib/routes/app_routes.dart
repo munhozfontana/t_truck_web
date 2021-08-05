@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/truck_drivers_detail_bindings.dart';
+import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/ui/truck_drivers_detail_page.dart';
 
 import '../core/components/layout_component.dart';
 import '../core/styles/styles_fonts.dart';
@@ -47,6 +49,13 @@ class AppPages {
           page: () => TruckDriversListPage(),
           transition: Transition.fadeIn,
           binding: TruckDriversListBiding()),
+      GetPage(
+          name: '${Routes.truckDrivers.path}/:id',
+          transitionDuration: fast,
+          curve: Curves.easeInOutCirc,
+          page: () => TruckDriversDetailPage(),
+          transition: Transition.fadeIn,
+          binding: TruckDriversDetailBindings()),
       GetPage(
         name: Routes.developer.path,
         transitionDuration: fast,

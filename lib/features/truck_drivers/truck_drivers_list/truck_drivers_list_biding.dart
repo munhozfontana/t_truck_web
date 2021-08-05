@@ -5,8 +5,8 @@ import 'ui/truck_drivers_list_controller.dart';
 class TruckDriversListBiding extends Bindings {
   @override
   void dependencies() {
-    Get.put<TruckDriversListController>(
-      TruckDriversListController(),
+    Get.lazyPut<TruckDriversListController>(
+      () => TruckDriversListController(),
     );
   }
 }

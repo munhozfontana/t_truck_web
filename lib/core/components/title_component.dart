@@ -4,13 +4,15 @@ import '../styles/styles_fonts.dart';
 import 'responsive.dart';
 
 class TitleComponent extends StatelessWidget {
-  final String title;
+  final String? title;
+  final Widget? primary;
   final Widget? secondary;
   final int flex;
 
   const TitleComponent({
     Key? key,
-    required this.title,
+    this.title = '',
+    this.primary,
     this.secondary,
     this.flex = 2,
   }) : super(key: key);
@@ -24,10 +26,11 @@ class TitleComponent extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: StylesTypography.h24,
-            ),
+            primary ??
+                Text(
+                  title!,
+                  style: StylesTypography.h24,
+                ),
             Container(
               child: secondary ?? Container(),
             ),

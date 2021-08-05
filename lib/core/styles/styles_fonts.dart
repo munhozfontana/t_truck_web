@@ -20,6 +20,14 @@ mixin StylesTypography {
       fontSize: 24,
       color: StylesColors.blue);
 
+  static TextStyle get h21 => TextStyle(
+      letterSpacing: 1.1,
+      fontWeight: FontWeight.w700,
+      fontFamily: 'Poppins',
+      fontStyle: FontStyle.normal,
+      fontSize: 21,
+      color: StylesColors.blue);
+
   static TextStyle get h18 => TextStyle(
       fontWeight: FontWeight.w500,
       fontFamily: 'Poppins',
