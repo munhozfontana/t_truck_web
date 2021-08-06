@@ -30,7 +30,7 @@ Future<void> main() async {
       ),
     ),
     initialBinding: MainBiding(),
-    initialRoute: Routes.truckDrivers.path,
+    initialRoute: Routes.devolutions.path + "/2",
     getPages: AppPages.pages(),
     onUnknownRoute: (settings) => GetPageRoute(
       page: () => const LayoutComponent(

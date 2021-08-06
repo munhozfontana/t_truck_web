@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/features/devolution/devolution_detail/devolution_detail_bindings.dart';
+import 'package:t_truck_web/features/devolution/devolution_detail/ui/devolution_detail/devolution_detail_page.dart';
+import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_bindings.dart';
+import 'package:t_truck_web/features/devolution/devolution_list/ui/devolution_list/devolution_list_page.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/truck_drivers_detail_bindings.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/ui/truck_drivers_detail_page.dart';
 
@@ -32,7 +36,7 @@ class AppPages {
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
         binding: HomeBiding(),
-        page: () => const HomePage(),
+        page: () => const LayoutComponent(child: HomePage()),
         transition: Transition.fadeIn,
       ),
       GetPage(
@@ -43,19 +47,37 @@ class AppPages {
         transition: Transition.fadeIn,
       ),
       GetPage(
-          name: Routes.truckDrivers.path,
-          transitionDuration: fast,
-          curve: Curves.easeInOutCirc,
-          page: () => TruckDriversListPage(),
-          transition: Transition.fadeIn,
-          binding: TruckDriversListBiding()),
+        name: Routes.truckDrivers.path,
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
+        page: () => LayoutComponent(child: TruckDriversListPage()),
+        transition: Transition.fadeIn,
+        binding: TruckDriversListBiding(),
+      ),
       GetPage(
-          name: '${Routes.truckDrivers.path}/:id',
-          transitionDuration: fast,
-          curve: Curves.easeInOutCirc,
-          page: () => TruckDriversDetailPage(),
-          transition: Transition.fadeIn,
-          binding: TruckDriversDetailBindings()),
+        name: '${Routes.truckDrivers.path}/:id',
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
+        page: () => LayoutComponent(child: TruckDriversDetailPage()),
+        transition: Transition.rightToLeft,
+        binding: TruckDriversDetailBindings(),
+      ),
+      GetPage(
+        name: Routes.devolutions.path,
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
+        page: () => LayoutComponent(child: DevolutionListPage()),
+        transition: Transition.fadeIn,
+        binding: DevolutionListBindings(),
+      ),
+      GetPage(
+        name: '${Routes.devolutions.path}/:id',
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
+        page: () => LayoutComponent(child: DevolutionDetailPage()),
+        transition: Transition.rightToLeft,
+        binding: DevolutionDetailBindings(),
+      ),
       GetPage(
         name: Routes.developer.path,
         transitionDuration: fast,

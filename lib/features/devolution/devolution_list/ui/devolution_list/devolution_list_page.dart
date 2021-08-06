@@ -1,51 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/components/body_component.dart';
+import 'package:t_truck_web/core/components/table/table_cell_component.dart';
+import 'package:t_truck_web/core/components/table/table_component.dart';
+import 'package:t_truck_web/core/components/title_component.dart';
+import 'package:t_truck_web/core/styles/style_colors.dart';
+import 'package:t_truck_web/core/styles/styles_button.dart';
+import 'package:t_truck_web/core/styles/styles_fonts.dart';
+import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/enum/devolution_status_enum.dart';
 
-import '../../../../core/components/body_component.dart';
-import '../../../../core/components/table/table_cell_component.dart';
-import '../../../../core/components/table/table_component.dart';
-import '../../../../core/components/title_component.dart';
-import '../../../../core/styles/style_colors.dart';
-import '../../../../core/styles/styles_fonts.dart';
-import '../domain/enum/delivery_status_enum.dart';
-import 'truck_drivers_list_controller.dart';
+import './devolution_list_controller.dart';
 
-class TruckDriversListPage extends GetWidget<TruckDriversListController> {
+class DevolutionListPage extends GetView<DevolutionListController> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const TitleComponent(
-          title: 'Motoristas',
+        TitleComponent(
+          primary: Expanded(
+            flex: 3,
+            child: Text(
+              'Devoluções',
+              style: StylesTypography.h24,
+            ),
+          ),
+          secondary: SizedBox(
+            height: 50,
+            width: 250,
+            child: ElevatedButton.icon(
+              onPressed: () {},
+              style: StylesButton.grayButton,
+              icon: Icon(
+                FeatherIcons.plusCircle,
+                color: StylesColors.black,
+              ),
+              label: Text(
+                'Enviar mensagem',
+                style: StylesTypography.h16.copyWith(
+                  color: StylesColors.black,
+                ),
+              ),
+            ),
+          ),
         ),
         BodyComponent(
           child: Obx(
             () => TableComponent(
               header: const [
-                'Cod.',
-                'Motorista',
-                'Entregas',
+                'Nº',
+                'Cliente',
                 'Status',
                 '',
               ],
               data: controller.list
                   .map((e) => [
                         Text(
-                          e.cod,
+                          e.cod.toString(),
                           style: StylesTypography.h16Bold,
                         ),
                         Text(
-                          e.truckDriver,
+                          e.client,
                           style: StylesTypography.h16Bold,
                         ),
                         TableCellComponent(
-                          value: e.quantityDelivers,
-                          color: StylesColors.graySoft,
-                          width: 80,
-                        ),
-                        TableCellComponent(
-                          value: (e.deliveryStatus as DeliveryStatus).desc,
-                          color: (e.deliveryStatus as DeliveryStatus).color,
+                          value: e.devolutionStatus.desc,
+                          color: e.devolutionStatus.color,
                           typeCellComponent: TypeCellComponent.outline,
                           width: 180,
                         ),
@@ -54,7 +74,7 @@ class TruckDriversListPage extends GetWidget<TruckDriversListController> {
                           child: Material(
                             color: Colors.white,
                             child: InkWell(
-                              onTap: () => controller.toDetailPage(e),
+                              onTap: () => controller.toDriverDetail(e),
                               child: Row(
                                 children: [
                                   Text(

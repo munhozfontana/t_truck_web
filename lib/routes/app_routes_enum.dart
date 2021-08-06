@@ -27,7 +27,7 @@ extension RoutesExt on Routes {
       case Routes.homeMap:
         return '/home/mapa';
       case Routes.devolutions:
-        return '/devolutoins';
+        return '/devolutions';
       case Routes.messages:
         return '/messages';
       case Routes.config:
@@ -54,19 +54,19 @@ extension RoutesExt on Routes {
       case Routes.devolutions:
         return MenuModel(
             text: 'Devoluções',
-            path: Routes.developer.path,
+            path: Routes.devolutions.path,
             icon: MenuIcons.subdirectory_arrow_right,
             iconInverted: true);
       case Routes.messages:
         return MenuModel(
           text: 'Mensagens',
-          path: Routes.developer.path,
+          path: Routes.messages.path,
           icon: Icons.chat_bubble_outline,
         );
       case Routes.config:
         return MenuModel(
           text: 'Configurações',
-          path: Routes.developer.path,
+          path: Routes.config.path,
           icon: Icons.settings_outlined,
         );
       default:

@@ -31,9 +31,11 @@ class TitleComponent extends StatelessWidget {
                   title!,
                   style: StylesTypography.h24,
                 ),
-            Container(
+            Visibility(
+              visible: secondary != null,
+              replacement: Container(),
               child: secondary ?? Container(),
-            ),
+            )
           ],
         ),
       ),

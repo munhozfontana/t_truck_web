@@ -25,7 +25,7 @@ class TruckDriversListController extends GetxController {
     );
   }
 
-  void toDriverDetail(TruckDriversEntity e) {
+  void toDetailPage(TruckDriversEntity e) {
     Get.toNamed('${Routes.truckDrivers.path}/${e.cod}');
   }
 }
