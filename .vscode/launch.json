@@ -7,7 +7,7 @@
         {
             "name": "t_truck_web",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
         },
         {
             "name": "t_truck_web (debug mode)",

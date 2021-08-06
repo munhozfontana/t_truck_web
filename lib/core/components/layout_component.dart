@@ -66,6 +66,10 @@ class LayoutComponent extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => print('Chat'),
+        child: Icon(Icons.chat_bubble_outlined),
+      ),
     );
   }
 
@@ -111,6 +115,10 @@ class LayoutComponent extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => print('Chat'),
+        child: Icon(Icons.chat_outlined),
+      ),
     );
   }
 
@@ -155,6 +163,10 @@ class LayoutComponent extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => print('Chat'),
+        child: Icon(Icons.chat_bubble),
       ),
     );
   }

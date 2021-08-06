@@ -14,12 +14,14 @@ class MessageListController extends GetxController {
     final faker = Faker();
     super.onInit();
     list.value = List.generate(
-        50,
-        (index) => MessageEntity(
-            cod: index,
-            subject: faker.lorem.sentence(),
-            status: MessageEntityEnum.values[
-                Random().nextInt(MessageEntityEnum.values.length - 1)]));
+      50,
+      (index) => MessageEntity(
+        cod: index,
+        subject: faker.lorem.sentence(),
+        status: MessageEntityEnum
+            .values[Random().nextInt(MessageEntityEnum.values.length - 1)],
+      ),
+    );
   }
 
   void toDetailPage(MessageEntity e) {
