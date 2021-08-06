@@ -18,7 +18,7 @@ class MenuComponentController extends GetxController
     Routes.home.menu,
     Routes.truckDrivers.menu,
     Routes.devolutions.menu,
-    Routes.messages.menu,
+    Routes.message.menu,
     Routes.config.menu,
   ].obs;
 

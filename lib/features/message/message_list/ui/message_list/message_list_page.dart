@@ -1,29 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/body_component.dart';
 import 'package:t_truck_web/core/components/table/table_cell_component.dart';
 import 'package:t_truck_web/core/components/table/table_component.dart';
 import 'package:t_truck_web/core/components/title_component.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
+import 'package:t_truck_web/core/styles/styles_button.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/enum/devolution_status_enum.dart';
+import 'package:t_truck_web/features/message/message_list/domain/entities/message_entity_enum.dart';
 
-import './devolution_list_controller.dart';
+import './message_list_controller.dart';
 
-class DevolutionListPage extends GetView<DevolutionListController> {
-  @override
+class MessageListPage extends GetView<MessageListController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const TitleComponent(
-          title: 'Devoluções',
+        TitleComponent(
+          primary: Expanded(
+            flex: 3,
+            child: Text(
+              'Devoluções',
+              style: StylesTypography.h24,
+            ),
+          ),
+          secondary: SizedBox(
+            height: 50,
+            width: 250,
+            child: ElevatedButton.icon(
+              onPressed: () {},
+              style: StylesButton.grayButton,
+              icon: Icon(
+                FeatherIcons.plusCircle,
+                color: StylesColors.black,
+              ),
+              label: Text(
+                'Enviar mensagem',
+                style: StylesTypography.h16.copyWith(
+                  color: StylesColors.black,
+                ),
+              ),
+            ),
+          ),
         ),
         BodyComponent(
           child: Obx(
             () => TableComponent(
               header: const [
                 'Nº',
-                'Cliente',
+                'Assunto',
                 'Status',
                 '',
               ],
@@ -34,12 +59,12 @@ class DevolutionListPage extends GetView<DevolutionListController> {
                           style: StylesTypography.h16Bold,
                         ),
                         Text(
-                          e.client,
+                          e.subject,
                           style: StylesTypography.h16Bold,
                         ),
                         TableCellComponent(
-                          value: e.devolutionStatus.desc,
-                          color: e.devolutionStatus.color,
+                          value: e.status.desc,
+                          color: e.status.color,
                           typeCellComponent: TypeCellComponent.outline,
                           width: 180,
                         ),
@@ -48,7 +73,7 @@ class DevolutionListPage extends GetView<DevolutionListController> {
                           child: Material(
                             color: Colors.white,
                             child: InkWell(
-                              onTap: () => controller.toDriverDetail(e),
+                              onTap: () => controller.toDetailPage(e),
                               child: Row(
                                 children: [
                                   Text(

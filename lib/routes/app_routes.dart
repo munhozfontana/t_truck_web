@@ -4,6 +4,10 @@ import 'package:t_truck_web/features/devolution/devolution_detail/devolution_det
 import 'package:t_truck_web/features/devolution/devolution_detail/ui/devolution_detail/devolution_detail_page.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_bindings.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/ui/devolution_list/devolution_list_page.dart';
+import 'package:t_truck_web/features/message/message_detail/message_detail_bindings.dart';
+import 'package:t_truck_web/features/message/message_detail/ui/message_detail/message_detail_page.dart';
+import 'package:t_truck_web/features/message/message_list/message_list_bindings.dart';
+import 'package:t_truck_web/features/message/message_list/ui/message_list/message_list_page.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/truck_drivers_detail_bindings.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/ui/truck_drivers_detail_page.dart';
 
@@ -23,7 +27,7 @@ const fast = Duration(milliseconds: 400);
 
 class AppPages {
   static List<GetPage> pages() {
-    return [
+    final list = [
       GetPage(
         name: Routes.login.path,
         transitionDuration: fast,
@@ -46,22 +50,29 @@ class AppPages {
         page: () => const ExpandedMapComponent(),
         transition: Transition.fadeIn,
       ),
+      ...truckDriversModule(),
+      ...devolutionsModule(),
+      ...messageModule(),
       GetPage(
-        name: Routes.truckDrivers.path,
+        name: Routes.developer.path,
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(child: TruckDriversListPage()),
+        page: () => LayoutComponent(
+          child: Center(
+            child: Text(
+              'Em Desenvolvimento',
+              style: StylesTypography.h48,
+            ),
+          ),
+        ),
         transition: Transition.fadeIn,
-        binding: TruckDriversListBiding(),
       ),
-      GetPage(
-        name: '${Routes.truckDrivers.path}/:id',
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(child: TruckDriversDetailPage()),
-        transition: Transition.rightToLeft,
-        binding: TruckDriversDetailBindings(),
-      ),
+    ];
+    return list;
+  }
+
+  static List<GetPage<dynamic>> devolutionsModule() {
+    return [
       GetPage(
         name: Routes.devolutions.path,
         transitionDuration: fast,
@@ -78,19 +89,47 @@ class AppPages {
         transition: Transition.rightToLeft,
         binding: DevolutionDetailBindings(),
       ),
+    ];
+  }
+
+  static List<GetPage<dynamic>> truckDriversModule() {
+    return [
       GetPage(
-        name: Routes.developer.path,
+        name: Routes.truckDrivers.path,
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(
-          child: Center(
-            child: Text(
-              'Em Desenvolvimento',
-              style: StylesTypography.h48,
-            ),
-          ),
-        ),
+        page: () => LayoutComponent(child: TruckDriversListPage()),
         transition: Transition.fadeIn,
+        binding: TruckDriversListBiding(),
+      ),
+      GetPage(
+        name: '${Routes.truckDrivers.path}/:id',
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
+        page: () => LayoutComponent(child: TruckDriversDetailPage()),
+        transition: Transition.rightToLeft,
+        binding: TruckDriversDetailBindings(),
+      ),
+    ];
+  }
+
+  static List<GetPage<dynamic>> messageModule() {
+    return [
+      GetPage(
+        name: Routes.message.path,
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
+        page: () => LayoutComponent(child: MessageListPage()),
+        transition: Transition.fadeIn,
+        binding: MessageListBindings(),
+      ),
+      GetPage(
+        name: '${Routes.message.path}/:id',
+        transitionDuration: fast,
+        curve: Curves.easeInOutCirc,
+        page: () => LayoutComponent(child: MessageDetailPage()),
+        transition: Transition.rightToLeft,
+        binding: MessageDetailBindings(),
       ),
     ];
   }

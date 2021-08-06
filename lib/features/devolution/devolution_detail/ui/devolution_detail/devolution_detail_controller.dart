@@ -14,6 +14,7 @@ class DevolutionDetailController extends GetxController {
       20,
       (index) => ProductsEntity(
         cod: index,
+        name: faker.food.cuisine(),
         quantity: Random().nextInt(37),
         price: Random().nextInt(500),
         priceMount: Random().nextInt(2000),

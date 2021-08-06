@@ -9,7 +9,7 @@ enum Routes {
   homeMap,
   truckDrivers,
   devolutions,
-  messages,
+  message,
   config,
   developer,
   unknown
@@ -28,8 +28,8 @@ extension RoutesExt on Routes {
         return '/home/mapa';
       case Routes.devolutions:
         return '/devolutions';
-      case Routes.messages:
-        return '/messages';
+      case Routes.message:
+        return '/message';
       case Routes.config:
         return '/config';
       default:
@@ -57,10 +57,10 @@ extension RoutesExt on Routes {
             path: Routes.devolutions.path,
             icon: MenuIcons.subdirectory_arrow_right,
             iconInverted: true);
-      case Routes.messages:
+      case Routes.message:
         return MenuModel(
           text: 'Mensagens',
-          path: Routes.messages.path,
+          path: Routes.message.path,
           icon: Icons.chat_bubble_outline,
         );
       case Routes.config:
