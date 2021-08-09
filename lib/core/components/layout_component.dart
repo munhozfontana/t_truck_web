@@ -15,159 +15,105 @@ class LayoutComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final floatActionButton = buildFloatingActionButton();
+    final body = buildBody(context);
+    final drawer = buildDrawer();
+    final appBar = buildHeaderComponent(context).build(context);
+
     return Responsive(
-      mobile: whenMobile(context),
-      tablet: whenTablet(context),
-      desktop: whenDesktop(),
+      mobile: Scaffold(
+        floatingActionButton: floatActionButton,
+        appBar: appBar,
+        drawer: drawer,
+        body: body,
+      ),
+      tablet: Scaffold(
+        floatingActionButton: floatActionButton,
+        appBar: appBar,
+        drawer: drawer,
+        body: body,
+      ),
+      desktop: Scaffold(
+        floatingActionButton: floatActionButton,
+        body: body,
+      ),
     );
   }
 
-  Widget whenDesktop() {
-    return Scaffold(
-      body: Row(
-        children: [
-          Expanded(
+  HeaderComponent buildHeaderComponent(BuildContext context) {
+    return HeaderComponent(
+      spaceIcon: Responsive.when(
+        context,
+        desktop: 2,
+        mobile: 15,
+        tablet: 3,
+      ),
+    );
+  }
+
+  Drawer buildDrawer() {
+    return Drawer(
+      child: MenuComponent(),
+    );
+  }
+
+  Row buildBody(BuildContext context) {
+    return Row(
+      children: [
+        Visibility(
+          visible: Responsive.isDesktop(context),
+          child: Expanded(
             flex: 196,
             child: MenuComponent(),
           ),
-          Expanded(
-            flex: 1244,
-            child: Column(
-              children: [
-                const Expanded(
+        ),
+        Expanded(
+          flex:
+              Responsive.when(context, mobile: 1244, tablet: 3, desktop: 1244),
+          child: Column(
+            children: [
+              Visibility(
+                visible: Responsive.isDesktop(context),
+                child: const Expanded(
                   flex: 88,
                   child: HeaderComponent(),
                 ),
-                Expanded(
-                  flex: 812,
-                  child: Container(
-                    color: StylesColors.graySoft,
-                    child: Row(
-                      children: [
-                        const Spacer(
-                          flex: 124,
+              ),
+              Expanded(
+                flex: 812,
+                child: Container(
+                  color: StylesColors.graySoft,
+                  child: Row(
+                    children: [
+                      const Spacer(
+                        flex: 50,
+                      ),
+                      Visibility(
+                        visible: child != null,
+                        child: Expanded(
+                          flex: 800,
+                          child: child!,
                         ),
-                        Visibility(
-                          visible: child != null,
-                          child: Expanded(
-                            flex: 800,
-                            child: child!,
-                          ),
-                        ),
-                        const Spacer(
-                          flex: 320,
-                        )
-                      ],
-                    ),
+                      ),
+                      const Spacer(
+                        flex: 50,
+                      )
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => print('Chat'),
-        child: Icon(Icons.chat_bubble_outlined),
-      ),
+        ),
+      ],
     );
   }
 
-  Widget whenTablet(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(
-        child: MenuComponent(),
-      ),
-      appBar: const HeaderComponent(
-        spaceIcon: 3,
-      ).build(context),
-      body: Row(
-        children: [
-          Expanded(
-            flex: 1244,
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 812,
-                  child: Container(
-                    color: StylesColors.graySoft,
-                    child: Row(
-                      children: [
-                        const Spacer(
-                          flex: 50,
-                        ),
-                        Visibility(
-                          visible: child != null,
-                          child: Expanded(
-                            flex: 800,
-                            child: child!,
-                          ),
-                        ),
-                        const Spacer(
-                          flex: 50,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => print('Chat'),
-        child: Icon(Icons.chat_outlined),
-      ),
+  FloatingActionButton buildFloatingActionButton() {
+    final floatActionButton = FloatingActionButton(
+      onPressed: () => print('Chat'),
+      child: Icon(Icons.chat_bubble),
     );
-  }
-
-  Widget whenMobile(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(
-        child: MenuComponent(),
-      ),
-      appBar: const HeaderComponent(
-        spaceIcon: 10,
-      ).build(context),
-      body: Row(
-        children: [
-          Expanded(
-            flex: 1244,
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 812,
-                  child: Container(
-                    color: StylesColors.graySoft,
-                    child: Row(
-                      children: [
-                        const Spacer(
-                          flex: 50,
-                        ),
-                        Visibility(
-                          visible: child != null,
-                          child: Expanded(
-                            flex: 800,
-                            child: child!,
-                          ),
-                        ),
-                        const Spacer(
-                          flex: 50,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => print('Chat'),
-        child: Icon(Icons.chat_bubble),
-      ),
-    );
+    return floatActionButton;
   }
 }
