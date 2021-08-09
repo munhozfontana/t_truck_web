@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 
 enum MessageEntityEnum { solve, notSolve, none }
@@ -27,6 +28,19 @@ extension MessageEntityEnumColor on MessageEntityEnum {
         return StylesColors.wellow;
       default:
         return StylesColors.wellow;
+    }
+  }
+}
+
+extension MessageEntityEnumIcon on MessageEntityEnum {
+  Icon get icon {
+    switch (this) {
+      case MessageEntityEnum.solve:
+        return Icon(Icons.check, color: MessageEntityEnum.solve.color);
+      case MessageEntityEnum.notSolve:
+        return Icon(Icons.error, color: MessageEntityEnum.notSolve.color);
+      default:
+        return Icon(Icons.info, color: MessageEntityEnum.notSolve.color);
     }
   }
 }

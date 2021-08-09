@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:t_truck_web/core/components/responsive.dart';
 
 import '../styles/styles_fonts.dart';
-import 'responsive.dart';
 
 class TitleComponent extends StatelessWidget {
   final String? title;
@@ -19,25 +19,27 @@ class TitleComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: Responsive.isNotMobile(context),
-      child: Expanded(
-        flex: flex,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            primary ??
-                Text(
-                  title!,
-                  style: StylesTypography.h24,
-                ),
-            Visibility(
-              visible: secondary != null,
-              replacement: Container(),
-              child: secondary ?? Container(),
-            )
-          ],
-        ),
+    return Expanded(
+      flex: flex,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          primary ??
+              Text(
+                title!,
+                style: Responsive.whenWidgetDy(
+                  context,
+                  desktop: StylesTypography.h24,
+                  mobile: StylesTypography.h24,
+                  tablet: StylesTypography.h24,
+                ) as TextStyle,
+              ),
+          Visibility(
+            visible: secondary != null,
+            replacement: Container(),
+            child: secondary ?? Container(),
+          )
+        ],
       ),
     );
   }

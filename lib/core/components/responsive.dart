@@ -28,22 +28,59 @@ class Responsive extends StatelessWidget {
 
   static bool isNotDesktop(BuildContext context) => !isDesktop(context);
 
-  static int when(
+  static T when<T>(
     BuildContext context, {
-    int? desktop,
-    int? tablet,
-    int? mobile,
+    T? desktop,
+    T? tablet,
+    T? mobile,
+    required T orOther,
   }) {
     if (isDesktop(context)) {
-      return desktop ?? tablet ?? mobile ?? 0;
+      return desktop ?? orOther;
     }
     if (isTablet(context)) {
-      return tablet ?? mobile ?? desktop ?? 0;
+      return tablet ?? orOther;
     }
     if (isMobile(context)) {
-      return mobile ?? tablet ?? desktop ?? 0;
+      return mobile ?? orOther;
     }
-    return desktop ?? tablet ?? mobile ?? 0;
+    return orOther;
+  }
+
+  static Widget whenWidget(
+    BuildContext context, {
+    Widget? desktop,
+    Widget? tablet,
+    Widget? mobile,
+  }) {
+    if (isDesktop(context)) {
+      return desktop ?? tablet ?? mobile ?? Container();
+    }
+    if (isTablet(context)) {
+      return tablet ?? mobile ?? desktop ?? Container();
+    }
+    if (isMobile(context)) {
+      return mobile ?? tablet ?? desktop ?? Container();
+    }
+    return desktop ?? tablet ?? mobile ?? Container();
+  }
+
+  static dynamic whenWidgetDy(
+    BuildContext context, {
+    dynamic desktop,
+    dynamic tablet,
+    dynamic mobile,
+  }) {
+    if (isDesktop(context)) {
+      return desktop ?? tablet ?? mobile ?? Container();
+    }
+    if (isTablet(context)) {
+      return tablet ?? mobile ?? desktop ?? Container();
+    }
+    if (isMobile(context)) {
+      return mobile ?? tablet ?? desktop ?? Container();
+    }
+    return desktop ?? tablet ?? mobile ?? Container();
   }
 
   static int all(BuildContext context, int? value) {

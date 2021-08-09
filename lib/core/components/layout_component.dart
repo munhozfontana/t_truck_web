@@ -42,11 +42,11 @@ class LayoutComponent extends StatelessWidget {
 
   HeaderComponent buildHeaderComponent(BuildContext context) {
     return HeaderComponent(
-      spaceIcon: Responsive.when(
+      spaceIcon: Responsive.when<int>(
         context,
-        desktop: 2,
         mobile: 15,
         tablet: 3,
+        orOther: 1,
       ),
     );
   }
@@ -68,8 +68,13 @@ class LayoutComponent extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex:
-              Responsive.when(context, mobile: 1244, tablet: 3, desktop: 1244),
+          flex: Responsive.when(
+            context,
+            mobile: 1244,
+            tablet: 3,
+            desktop: 1244,
+            orOther: 1,
+          ),
           child: Column(
             children: [
               Visibility(

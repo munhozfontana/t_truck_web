@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/body_component.dart';
+import 'package:t_truck_web/core/components/responsive.dart';
+import 'package:t_truck_web/core/components/table/table_card_component.dart';
 import 'package:t_truck_web/core/components/table/table_cell_component.dart';
 import 'package:t_truck_web/core/components/table/table_component.dart';
 import 'package:t_truck_web/core/components/title_component.dart';
@@ -13,6 +15,7 @@ import 'package:t_truck_web/features/message/message_list/domain/entities/messag
 import './message_list_controller.dart';
 
 class MessageListPage extends GetView<MessageListController> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -26,7 +29,13 @@ class MessageListPage extends GetView<MessageListController> {
           ),
           secondary: SizedBox(
             height: 50,
-            width: 250,
+            width: Responsive.when<double>(
+              context,
+              desktop: 250,
+              mobile: 120,
+              tablet: 250,
+              orOther: 250,
+            ),
             child: ElevatedButton.icon(
               onPressed: () {},
               style: StylesButton.grayButton,
@@ -35,7 +44,13 @@ class MessageListPage extends GetView<MessageListController> {
                 color: StylesColors.black,
               ),
               label: Text(
-                'Enviar mensagem',
+                Responsive.when<String>(
+                  context,
+                  desktop: 'Enviar mensagem',
+                  mobile: 'Enviar',
+                  tablet: 'Enviar mensagem',
+                  orOther: '',
+                ),
                 style: StylesTypography.h16.copyWith(
                   color: StylesColors.black,
                 ),
@@ -45,61 +60,88 @@ class MessageListPage extends GetView<MessageListController> {
         ),
         BodyComponent(
           child: Obx(
-            () => TableComponent(
-              header: const [
-                'Nº',
-                'Assunto',
-                'Status',
-                '',
-              ],
-              data: controller.list
-                  .map((e) => [
-                        Text(
-                          e.cod.toString(),
-                          style: StylesTypography.h16Bold,
-                        ),
-                        Text(
-                          e.subject,
-                          style: StylesTypography.h16Bold,
-                        ),
-                        TableCellComponent(
-                          value: e.status.desc,
-                          color: e.status.color,
-                          typeCellComponent: TypeCellComponent.outline,
-                          width: 180,
-                        ),
-                        SizedBox(
-                          height: 30,
-                          child: Material(
-                            color: Colors.white,
-                            child: InkWell(
-                              onTap: () => controller.toDetailPage(e),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Visualizar',
-                                    style: StylesTypography.h14w500.copyWith(
-                                      color: StylesColors.black.withOpacity(.4),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.arrow_right_alt_rounded,
-                                    size: 20,
-                                    color: StylesColors.black.withOpacity(
-                                      .4,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ])
-                  .toList(),
+            () => Responsive.whenWidget(
+              context,
+              desktop: table(),
+              tablet: table(),
+              mobile: tableCard(),
             ),
           ),
         )
       ],
+    );
+  }
+
+  Widget tableCard() {
+    return TableCardComponent(
+      onTap: (index) => controller.toDetailPage(
+        controller.list.elementAt(index),
+      ),
+      listTableCardItem: controller.list
+          .map(
+            (element) => TableCardItem(
+              iconTrailing: const Icon(Icons.arrow_right),
+              title: element.subject,
+              leading: element.status.icon,
+              tooltip: element.status.desc,
+            ),
+          )
+          .toList(),
+    );
+  }
+
+  TableComponent table() {
+    return TableComponent(
+      header: const [
+        'Nº',
+        'Assunto',
+        'Status',
+        '',
+      ],
+      data: controller.list
+          .map((e) => [
+                Text(
+                  e.cod.toString(),
+                  style: StylesTypography.h16Bold,
+                ),
+                Text(
+                  e.subject,
+                  style: StylesTypography.h16Bold,
+                ),
+                TableCellComponent(
+                  value: e.status.desc,
+                  color: e.status.color,
+                  typeCellComponent: TypeCellComponent.outline,
+                  width: 180,
+                ),
+                SizedBox(
+                  height: 30,
+                  child: Material(
+                    color: Colors.white,
+                    child: InkWell(
+                      onTap: () => controller.toDetailPage(e),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Visualizar',
+                            style: StylesTypography.h14w500.copyWith(
+                              color: StylesColors.black.withOpacity(.4),
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_right_alt_rounded,
+                            size: 20,
+                            color: StylesColors.black.withOpacity(
+                              .4,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ])
+          .toList(),
     );
   }
 }
