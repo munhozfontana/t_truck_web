@@ -13,7 +13,13 @@ class HomeController extends GetxController {
   final IMenuComponentController menuComponentController;
   final IListDashboardCase iListDashboardCase;
 
-  final Rx<DashBoardComposedEntity> dashboads = DashBoardComposedEntity().obs;
+  final Rx<DashBoardComposedEntity> dashboads = DashBoardComposedEntity(
+    devolutions: DashBoardEntity(),
+    finished: DashBoardEntity(),
+    opened: DashBoardEntity(),
+    pending: DashBoardEntity(),
+  ).obs;
+
   final Rx<LocationMapEntity> currentPositonMap = LocationMapEntity(
     latitude: -15.7801,
     longitude: -47.9292,

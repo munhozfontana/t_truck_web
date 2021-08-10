@@ -35,20 +35,20 @@ class HomePage extends GetWidget<HomeController> {
                     replacement: Row(
                       children: [
                         CardInfo(
-                          dashBoardEntity: controller.dashboads.value.finished!,
+                          dashBoardEntity: controller.dashboads.value.finished,
                         ),
                         const Spacer(flex: 33),
                         CardInfo(
-                          dashBoardEntity: controller.dashboads.value.pending!,
+                          dashBoardEntity: controller.dashboads.value.pending,
                         ),
                         const Spacer(flex: 33),
                         CardInfo(
-                          dashBoardEntity: controller.dashboads.value.opened!,
+                          dashBoardEntity: controller.dashboads.value.opened,
                         ),
                         const Spacer(flex: 33),
                         CardInfo(
                           dashBoardEntity:
-                              controller.dashboads.value.devolutions!,
+                              controller.dashboads.value.devolutions,
                         ),
                       ],
                     ),
@@ -57,17 +57,17 @@ class HomePage extends GetWidget<HomeController> {
                       scrollDirection: Axis.horizontal,
                       children: [
                         CardInfo(
-                          dashBoardEntity: controller.dashboads.value.finished!,
+                          dashBoardEntity: controller.dashboads.value.finished,
                         ),
                         CardInfo(
-                          dashBoardEntity: controller.dashboads.value.pending!,
+                          dashBoardEntity: controller.dashboads.value.pending,
                         ),
                         CardInfo(
-                          dashBoardEntity: controller.dashboads.value.opened!,
+                          dashBoardEntity: controller.dashboads.value.opened,
                         ),
                         CardInfo(
                           dashBoardEntity:
-                              controller.dashboads.value.devolutions!,
+                              controller.dashboads.value.devolutions,
                         ),
                       ],
                     ),

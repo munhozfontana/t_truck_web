@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/components/responsive.dart';
 
 import 'components/app_input.dart';
 import 'components/background_logo.dart';
@@ -24,6 +25,11 @@ class LoginPage extends GetWidget<LoginController> {
                   flex: 2,
                 ),
                 Flexible(
+                  flex: Responsive.when(
+                    context,
+                    mobile: 10,
+                    orOther: 1,
+                  ),
                   fit: FlexFit.tight,
                   child: Form(
                     key: _formKey,
@@ -59,7 +65,11 @@ class LoginPage extends GetWidget<LoginController> {
                         const AppInput(label: "Senha"),
                         const Spacer(flex: 16),
                         Flexible(
-                          flex: 24,
+                          flex: Responsive.when(
+                            context,
+                            mobile: 52,
+                            orOther: 24,
+                          ),
                           child: Row(
                             children: [
                               const Flexible(

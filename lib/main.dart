@@ -30,7 +30,7 @@ Future<void> main() async {
       ),
     ),
     initialBinding: MainBiding(),
-    initialRoute: "${Routes.message.path}/1",
+    initialRoute: "${Routes.login.path}",
     getPages: AppPages.pages(),
     onUnknownRoute: (settings) => GetPageRoute(
       page: () => const LayoutComponent(

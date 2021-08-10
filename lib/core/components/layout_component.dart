@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:t_truck_web/core/store_controller.dart';
 
 import '../styles/style_colors.dart';
 import 'header/header_component.dart';
@@ -57,7 +60,9 @@ class LayoutComponent extends StatelessWidget {
     );
   }
 
-  Row buildBody(BuildContext context) {
+  Widget buildBody(BuildContext context) {
+    final storeController = Get.find<StoreController>();
+
     return Row(
       children: [
         Visibility(
@@ -97,7 +102,17 @@ class LayoutComponent extends StatelessWidget {
                         visible: child != null,
                         child: Expanded(
                           flex: 800,
-                          child: child!,
+                          child: Obx(() {
+                            return Visibility(
+                              visible:
+                                  !Get.find<StoreController>().loading.value,
+                              replacement: Shimmer.fromColors(
+                                  baseColor: Colors.grey[300]!,
+                                  highlightColor: Colors.grey[100]!,
+                                  child: child!),
+                              child: child!,
+                            );
+                          }),
                         ),
                       ),
                       Spacer(

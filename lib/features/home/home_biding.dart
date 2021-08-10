@@ -27,8 +27,8 @@ class HomeBiding extends Bindings {
       ),
     );
 
-    Get.put<HomeController>(
-      HomeController(
+    Get.lazyPut<HomeController>(
+      () => HomeController(
         appDialog: Get.find(),
         menuComponentController: Get.find(),
         iListDashboardCase: Get.find(),

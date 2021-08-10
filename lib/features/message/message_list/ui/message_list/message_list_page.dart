@@ -17,16 +17,17 @@ import './message_list_controller.dart';
 class MessageListPage extends GetView<MessageListController> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(
-              top: Responsive.when<double>(
-            context,
-            mobile: 8,
-            orOther: 0,
-          )),
-          child: TitleComponent(
+    return Padding(
+      padding: EdgeInsets.only(
+        top: Responsive.when<double>(
+          context,
+          mobile: 8,
+          orOther: 0,
+        ),
+      ),
+      child: Column(
+        children: [
+          TitleComponent(
             flex: Responsive.when(
               context,
               mobile: 1,
@@ -73,18 +74,18 @@ class MessageListPage extends GetView<MessageListController> {
               ),
             ),
           ),
-        ),
-        BodyComponent(
-          child: Obx(
-            () => Responsive.whenWidget(
-              context,
-              desktop: table(),
-              tablet: table(),
-              mobile: tableCard(),
+          BodyComponent(
+            child: Obx(
+              () => Responsive.whenWidget(
+                context,
+                desktop: table(),
+                tablet: table(),
+                mobile: tableCard(),
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 

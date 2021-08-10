@@ -29,7 +29,11 @@ void main() {
 
   setUp(() {
     menuModel = MenuModel(text: '', path: '');
-    dashBoardComposedEntity = DashBoardComposedEntity();
+    dashBoardComposedEntity = DashBoardComposedEntity(
+        devolutions: DashBoardEntity(),
+        finished: DashBoardEntity(),
+        opened: DashBoardEntity(),
+        pending: DashBoardEntity());
     mockAppDialog = MockIAppDialog();
     mockMenuComponentController = MockIMenuComponentController();
     mockIListDashboardCase = MockIListDashboardCase();

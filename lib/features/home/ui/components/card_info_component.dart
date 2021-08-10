@@ -8,7 +8,7 @@ import '../../../../core/styles/styles_fonts.dart';
 import '../../domain/entities/dash_board_entity.dart';
 
 class CardInfo extends StatelessWidget {
-  final DashBoardEntity dashBoardEntity;
+  final DashBoardEntity? dashBoardEntity;
   const CardInfo({
     Key? key,
     required this.dashBoardEntity,
@@ -49,12 +49,12 @@ class CardInfo extends StatelessWidget {
                 return Row(
                   children: [
                     Transform.rotate(
-                      angle: dashBoardEntity.inverted ? 180 * pi / 180 : 0,
+                      angle: dashBoardEntity!.inverted ? 180 * pi / 180 : 0,
                       child: Container(
                         height: constraints.maxHeight,
                         width: constraints.maxHeight,
                         decoration: BoxDecoration(
-                          color: dashBoardEntity.colorIcon.withOpacity(.2),
+                          color: dashBoardEntity!.colorIcon.withOpacity(.2),
                           borderRadius:
                               BorderRadius.circular(constraints.maxHeight),
                         ),
@@ -121,14 +121,14 @@ class CardInfo extends StatelessWidget {
 
   Text descriptionCard() {
     return Text(
-      dashBoardEntity.description,
+      dashBoardEntity!.description,
       style: StylesTypography.h18wBold,
     );
   }
 
   Text titleCard() {
     return Text(
-      dashBoardEntity.quantity,
+      dashBoardEntity!.quantity,
       style: StylesTypography.h48,
     );
   }
@@ -142,8 +142,8 @@ class CardInfo extends StatelessWidget {
 
   Icon iconCard() {
     return Icon(
-      dashBoardEntity.icon,
-      color: dashBoardEntity.colorIcon,
+      dashBoardEntity!.icon,
+      color: dashBoardEntity!.colorIcon,
     );
   }
 }

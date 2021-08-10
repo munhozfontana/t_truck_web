@@ -9,10 +9,10 @@ class DashBoardEntity {
   final bool inverted;
 
   DashBoardEntity({
-    required this.icon,
-    required this.quantity,
-    required this.description,
-    required this.colorIcon,
+    this.icon = Icons.refresh,
+    this.quantity = '',
+    this.description = '',
+    this.colorIcon = Colors.transparent,
     this.inverted = false,
   });
 
@@ -39,10 +39,10 @@ class DashBoardEntity {
 }
 
 class DashBoardComposedEntity {
-  DashBoardEntity? finished;
-  DashBoardEntity? pending;
-  DashBoardEntity? opened;
-  DashBoardEntity? devolutions;
+  DashBoardEntity finished;
+  DashBoardEntity pending;
+  DashBoardEntity opened;
+  DashBoardEntity devolutions;
 
   static DashBoardEntity defaultData = DashBoardEntity(
       colorIcon: Colors.red,
@@ -51,9 +51,9 @@ class DashBoardComposedEntity {
       quantity: '');
 
   DashBoardComposedEntity({
-    this.finished,
-    this.pending,
-    this.opened,
-    this.devolutions,
+    required this.finished,
+    required this.pending,
+    required this.opened,
+    required this.devolutions,
   });
 }
