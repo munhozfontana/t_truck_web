@@ -16,4 +16,15 @@ mixin StylesButton {
           ),
         ),
       );
+
+  static ButtonStyle get grayButtonCirc14 => ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          StylesColors.grayWhitePlus,
+        ),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(3.0),
+          ),
+        ),
+      );
 }

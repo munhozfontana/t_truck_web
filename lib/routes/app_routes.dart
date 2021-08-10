@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/features/config/ui/config/config_bindings.dart';
+import 'package:t_truck_web/features/config/ui/config/config_page.dart';
 import 'package:t_truck_web/features/devolution/devolution_detail/devolution_detail_bindings.dart';
 import 'package:t_truck_web/features/devolution/devolution_detail/ui/devolution_detail/devolution_detail_page.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_bindings.dart';
@@ -50,6 +52,14 @@ class AppPages {
         page: () => const ExpandedMapComponent(),
         transition: Transition.fadeIn,
       ),
+      GetPage(
+        name: Routes.config.path,
+        transitionDuration: slow,
+        curve: Curves.easeInOutCirc,
+        page: () => LayoutComponent(child: ConfigPage()),
+        transition: Transition.fadeIn,
+        binding: ConfigBindings(),
+      ),
       ...truckDriversModule(),
       ...devolutionsModule(),
       ...messageModule(),
@@ -60,7 +70,7 @@ class AppPages {
         page: () => LayoutComponent(
           child: Center(
             child: Text(
-              'Em Desenvolvimento',
+              '404',
               style: StylesTypography.h48,
             ),
           ),
