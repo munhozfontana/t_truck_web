@@ -31,7 +31,8 @@ extension RoutesExt on Routes {
       case Routes.message:
         return '/message';
       case Routes.config:
-        return '/config';
+        // return '/config';
+        return Routes.developer.path;
       default:
         return '/unknown';
     }
