@@ -19,40 +19,56 @@ class MessageListPage extends GetView<MessageListController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TitleComponent(
-          primary: Expanded(
-            flex: 3,
-            child: Text(
-              'Devoluções',
-              style: StylesTypography.h24,
-            ),
-          ),
-          secondary: SizedBox(
-            height: 50,
-            width: Responsive.when<double>(
+        Padding(
+          padding: EdgeInsets.only(
+              top: Responsive.when<double>(
+            context,
+            mobile: 8,
+            orOther: 0,
+          )),
+          child: TitleComponent(
+            flex: Responsive.when(
               context,
-              desktop: 250,
-              mobile: 120,
-              tablet: 250,
-              orOther: 250,
+              mobile: 1,
+              orOther: 2,
             ),
-            child: ElevatedButton.icon(
-              onPressed: () {},
-              style: StylesButton.grayButton,
-              icon: Icon(
-                FeatherIcons.plusCircle,
-                color: StylesColors.black,
-              ),
-              label: Text(
-                Responsive.when<String>(
-                  context,
-                  desktop: 'Enviar mensagem',
-                  mobile: 'Enviar',
-                  tablet: 'Enviar mensagem',
-                  orOther: '',
+            primary: Visibility(
+              visible: Responsive.isNotMobile(context),
+              child: Expanded(
+                flex: 3,
+                child: Text(
+                  'Devoluções',
+                  style: StylesTypography.h24,
                 ),
-                style: StylesTypography.h16.copyWith(
+              ),
+            ),
+            secondary: SizedBox(
+              height: 50,
+              width: Responsive.when<double>(
+                context,
+                desktop: 250,
+                mobile: 120,
+                tablet: 250,
+                orOther: 250,
+              ),
+              child: ElevatedButton.icon(
+                onPressed: () {},
+                style: StylesButton.grayButton,
+                icon: Icon(
+                  FeatherIcons.plusCircle,
                   color: StylesColors.black,
+                ),
+                label: Text(
+                  Responsive.when<String>(
+                    context,
+                    desktop: 'Enviar mensagem',
+                    mobile: 'Enviar',
+                    tablet: 'Enviar mensagem',
+                    orOther: '',
+                  ),
+                  style: StylesTypography.h16.copyWith(
+                    color: StylesColors.black,
+                  ),
                 ),
               ),
             ),
@@ -121,6 +137,7 @@ class MessageListPage extends GetView<MessageListController> {
                     child: InkWell(
                       onTap: () => controller.toDetailPage(e),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
                             'Visualizar',

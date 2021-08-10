@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 
 enum DevolutionStatus { done, notDone, none }
@@ -27,6 +28,19 @@ extension DevolutionStatusColor on DevolutionStatus {
         return StylesColors.wellow;
       default:
         return StylesColors.wellow;
+    }
+  }
+}
+
+extension DevolutionStatusIcon on DevolutionStatus {
+  Icon get icon {
+    switch (this) {
+      case DevolutionStatus.done:
+        return Icon(Icons.check, color: DevolutionStatus.done.color);
+      case DevolutionStatus.notDone:
+        return Icon(Icons.error, color: DevolutionStatus.notDone.color);
+      default:
+        return Icon(Icons.info, color: DevolutionStatus.notDone.color);
     }
   }
 }

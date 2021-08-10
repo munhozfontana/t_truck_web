@@ -30,24 +30,32 @@ class TableCardComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, constrains) {
-        return ListView.builder(
-          itemCount: listTableCardItem.length,
-          itemBuilder: (context, index) {
-            final item = listTableCardItem[index];
-            return Tooltip(
-              margin: EdgeInsets.only(right: constrains.maxWidth * .9),
-              message: item.tooltip,
-              child: Card(
-                child: ListTile(
-                  onTap: () => onTap != null ? onTap!(index) : null,
-                  leading: item.leading,
-                  title: Text(item.title),
-                  subtitle: Text(item.subtitle ?? ""),
-                  trailing: item.iconTrailing,
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: ListView.separated(
+            itemCount: listTableCardItem.length,
+            itemBuilder: (context, index) {
+              final item = listTableCardItem[index];
+              return Tooltip(
+                margin: EdgeInsets.only(right: constrains.maxWidth * .9),
+                message: item.tooltip,
+                child: Card(
+                  child: ListTile(
+                    onTap: () => onTap != null ? onTap!(index) : null,
+                    leading: item.leading,
+                    title: Text(item.title),
+                    subtitle: Text(item.subtitle ?? ""),
+                    trailing: item.iconTrailing,
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 8,
+              );
+            },
+          ),
         );
       },
     );

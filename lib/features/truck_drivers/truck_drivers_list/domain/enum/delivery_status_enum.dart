@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 
 enum DeliveryStatus { done, inProgess, notDone, none }
@@ -31,6 +32,21 @@ extension DeliveryStatusColor on DeliveryStatus {
         return StylesColors.orange;
       default:
         return StylesColors.wellow;
+    }
+  }
+}
+
+extension DeliveryStatusIcon on DeliveryStatus {
+  Icon get icon {
+    switch (this) {
+      case DeliveryStatus.done:
+        return Icon(Icons.check, color: DeliveryStatus.done.color);
+      case DeliveryStatus.notDone:
+        return Icon(Icons.error, color: DeliveryStatus.notDone.color);
+      case DeliveryStatus.inProgess:
+        return Icon(Icons.error, color: DeliveryStatus.inProgess.color);
+      default:
+        return Icon(Icons.info, color: DeliveryStatus.notDone.color);
     }
   }
 }

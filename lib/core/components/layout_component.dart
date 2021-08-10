@@ -100,8 +100,12 @@ class LayoutComponent extends StatelessWidget {
                           child: child!,
                         ),
                       ),
-                      const Spacer(
-                        flex: 50,
+                      Spacer(
+                        flex: Responsive.when(
+                          context,
+                          desktop: 150,
+                          orOther: 50,
+                        ),
                       )
                     ],
                   ),

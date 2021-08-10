@@ -4,12 +4,12 @@ class TruckDriversEntity {
   String cod;
   String truckDriver;
   String quantityDelivers;
-  DeliveryStatus deliveryStatus;
+  DeliveryStatus status;
 
   TruckDriversEntity({
     required this.cod,
     required this.truckDriver,
     required this.quantityDelivers,
-    required this.deliveryStatus,
+    required this.status,
   });
 }

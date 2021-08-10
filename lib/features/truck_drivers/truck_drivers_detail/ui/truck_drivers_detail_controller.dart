@@ -11,7 +11,7 @@ import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/ui/truck_d
 class TruckDriversDetailController extends GetxController {
   Rx<TruckDriversEntity> truckDriversEntity = TruckDriversEntity(
           cod: '',
-          deliveryStatus: DeliveryStatus.done,
+          status: DeliveryStatus.done,
           quantityDelivers: '',
           truckDriver: '')
       .obs;

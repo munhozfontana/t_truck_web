@@ -19,7 +19,7 @@ class TruckDriversListController extends GetxController {
         cod: '$index',
         truckDriver: faker.person.name(),
         quantityDelivers: Random().nextInt(100).toString(),
-        deliveryStatus: DeliveryStatus
+        status: DeliveryStatus
             .values[Random().nextInt(DeliveryStatus.values.length - 1)],
       ),
     );

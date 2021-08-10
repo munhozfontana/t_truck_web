@@ -18,11 +18,11 @@ class DevolutionListController extends GetxController {
         (index) => DevolutionsEntity(
             cod: index,
             client: faker.company.name(),
-            devolutionStatus: DevolutionStatus
+            status: DevolutionStatus
                 .values[Random().nextInt(DevolutionStatus.values.length - 1)]));
   }
 
-  void toDriverDetail(DevolutionsEntity e) {
+  void toDetailPage(DevolutionsEntity e) {
     Get.toNamed('${Routes.devolutions.path}/${e.cod}');
   }
 }

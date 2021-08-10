@@ -3,11 +3,11 @@ import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/
 class DevolutionsEntity {
   final int cod;
   final String client;
-  final DevolutionStatus devolutionStatus;
+  final DevolutionStatus status;
 
   DevolutionsEntity({
     required this.cod,
     this.client = 'Sem informação',
-    this.devolutionStatus = DevolutionStatus.none,
+    this.status = DevolutionStatus.none,
   });
 }
