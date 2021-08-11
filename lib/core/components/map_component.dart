@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -5,20 +7,39 @@ import 'package:latlong2/latlong.dart';
 class LocationMapEntity {
   double latitude;
   double longitude;
+  String pathBack;
+
   LocationMapEntity({
     required this.latitude,
     required this.longitude,
+    this.pathBack = '/',
   });
 
   LocationMapEntity copyWith({
     double? latitude,
     double? longitude,
+    String? pathBack,
   }) {
     return LocationMapEntity(
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
+      pathBack: pathBack ?? this.pathBack,
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'latitude': latitude,
+      'longitude': longitude,
+      'pathBack': pathBack,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
+
+  @override
+  String toString() =>
+      'LocationMapEntity(latitude: $latitude, longitude: $longitude, pathBack: $pathBack)';
 
   @override
   bool operator ==(Object other) {
@@ -26,11 +47,13 @@ class LocationMapEntity {
 
     return other is LocationMapEntity &&
         other.latitude == latitude &&
-        other.longitude == longitude;
+        other.longitude == longitude &&
+        other.pathBack == pathBack;
   }
 
   @override
-  int get hashCode => latitude.hashCode ^ longitude.hashCode;
+  int get hashCode =>
+      latitude.hashCode ^ longitude.hashCode ^ pathBack.hashCode;
 }
 
 class MarkerMapEntity {
@@ -72,7 +95,8 @@ class MapComponent extends StatelessWidget {
                     if (b && onPositionChanged != null) {
                       onPositionChanged!(LocationMapEntity(
                           latitude: a.center!.latitude,
-                          longitude: a.center!.longitude));
+                          longitude: a.center!.longitude,
+                          pathBack: ''));
                     }
                   },
                   center: LatLng(

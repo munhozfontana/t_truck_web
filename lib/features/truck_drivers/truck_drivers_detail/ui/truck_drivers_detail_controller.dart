@@ -7,6 +7,7 @@ import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/domain/e
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/truck_drivers_entity.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/enum/delivery_status_enum.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/ui/truck_drivers_list_controller.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 class TruckDriversDetailController extends GetxController {
   Rx<TruckDriversEntity> truckDriversEntity = TruckDriversEntity(
@@ -16,10 +17,9 @@ class TruckDriversDetailController extends GetxController {
           truckDriver: '')
       .obs;
 
-  final Rx<LocationMapEntity> currentPositonMap = LocationMapEntity(
-    latitude: -15.7801,
-    longitude: -47.9292,
-  ).obs;
+  final Rx<LocationMapEntity> currentPositonMap =
+      LocationMapEntity(latitude: -15.7801, longitude: -47.9292, pathBack: "")
+          .obs;
 
   RxList<ClienteEntity> list = <ClienteEntity>[].obs;
 
@@ -39,6 +39,9 @@ class TruckDriversDetailController extends GetxController {
         .list
         .firstWhere((element) => element.cod == Get.parameters['id']);
 
+    currentPositonMap.value = currentPositonMap.value.copyWith(
+        pathBack:
+            "${Routes.truckDrivers.path}/${truckDriversEntity.value.cod}");
     super.onInit();
   }
 

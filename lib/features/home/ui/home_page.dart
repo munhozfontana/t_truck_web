@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import '../../../core/components/body_component.dart';
 import '../../../core/components/map_component.dart';
@@ -84,7 +85,7 @@ class HomePage extends GetWidget<HomeController> {
                     initialPosition: Get.arguments != null
                         ? (Get.arguments as LocationMapEntity)
                         : controller.currentPositonMap.value,
-                    onTap: () => Get.toNamed('/home/mapa',
+                    onTap: () => Get.toNamed(Routes.homeMap.path,
                         arguments: controller.currentPositonMap.value),
                     key: key,
                   ),

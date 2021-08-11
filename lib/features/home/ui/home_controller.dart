@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import '../../../core/components/map_component.dart';
 import '../../../core/components/menu/menu_component_controller.dart';
@@ -23,6 +24,7 @@ class HomeController extends GetxController {
   final Rx<LocationMapEntity> currentPositonMap = LocationMapEntity(
     latitude: -15.7801,
     longitude: -47.9292,
+    pathBack: Routes.home.path,
   ).obs;
 
   HomeController({
