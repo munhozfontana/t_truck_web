@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:t_truck_web/core/components/header/header_component_sliver.dart';
 import 'package:t_truck_web/core/store_controller.dart';
 
 import '../styles/style_colors.dart';
@@ -21,25 +22,45 @@ class LayoutComponent extends StatelessWidget {
     final floatActionButton = buildFloatingActionButton();
     final body = buildBody(context);
     final drawer = buildDrawer();
-    final appBar = buildHeaderComponent(context).build(context);
 
-    return Responsive(
-      mobile: Scaffold(
-        floatingActionButton: floatActionButton,
-        appBar: appBar,
-        drawer: drawer,
-        body: body,
-      ),
-      tablet: Scaffold(
-        floatingActionButton: floatActionButton,
-        appBar: appBar,
-        drawer: drawer,
-        body: body,
-      ),
-      desktop: Scaffold(
-        floatingActionButton: floatActionButton,
-        body: body,
-      ),
+    return Row(
+      children: [
+        Visibility(
+          visible: Responsive.isDesktop(context),
+          child: Expanded(
+            child: Material(
+              child: MenuComponent(),
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 6,
+          child: Responsive.when(
+            context,
+            mobile: Scaffold(
+              floatingActionButton: floatActionButton,
+              drawer: drawer,
+              body: NestedScrollView(
+                headerSliverBuilder: (context, innerBoxIsScrolled) {
+                  return [
+                    HeaderComponentSliver(
+                      spaceIcon:
+                          Responsive.when(context, mobile: 8, orOther: 1),
+                    ),
+                  ];
+                },
+                body: body,
+              ),
+            ),
+            orOther: Scaffold(
+              floatingActionButton: floatActionButton,
+              appBar: buildHeaderComponent(context).build(context),
+              drawer: drawer,
+              body: body,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -65,13 +86,6 @@ class LayoutComponent extends StatelessWidget {
 
     return Row(
       children: [
-        Visibility(
-          visible: Responsive.isDesktop(context),
-          child: Expanded(
-            flex: 196,
-            child: MenuComponent(),
-          ),
-        ),
         Expanded(
           flex: Responsive.when(
             context,
@@ -82,13 +96,6 @@ class LayoutComponent extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Visibility(
-                visible: Responsive.isDesktop(context),
-                child: const Expanded(
-                  flex: 88,
-                  child: HeaderComponent(),
-                ),
-              ),
               Expanded(
                 flex: 812,
                 child: Container(

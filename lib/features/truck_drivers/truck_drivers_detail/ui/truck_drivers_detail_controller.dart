@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:faker/faker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/map_component.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/domain/entities/cliente_entity.dart';
@@ -23,9 +24,12 @@ class TruckDriversDetailController extends GetxController {
 
   RxList<ClienteEntity> list = <ClienteEntity>[].obs;
 
+  late ScrollController scrollController;
+
   @override
   void onInit() {
     final faker = Faker();
+    scrollController = ScrollController();
     list.value = List.generate(
         20,
         (index) => ClienteEntity(
@@ -43,6 +47,12 @@ class TruckDriversDetailController extends GetxController {
         pathBack:
             "${Routes.truckDrivers.path}/${truckDriversEntity.value.cod}");
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   updateMap(LocationMapEntity value) {}
