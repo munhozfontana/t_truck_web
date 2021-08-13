@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/route_manager.dart';
+import 'package:t_truck_web/core/adapters/protocols/i_logged_user.dart';
 
 import '../../../features/login/login_biding.dart';
 import '../../../features/login/ui/login_page.dart';
@@ -9,11 +10,11 @@ import '../protocols/i_http_external.dart';
 
 class DioDriver implements IHttp {
   final Dio dio;
-  // final ILoggedUser iLoggedUser;
+  final ILoggedUser iLoggedUser;
 
   DioDriver({
     required this.dio,
-    // required this.iLoggedUser,
+    required this.iLoggedUser,
   });
 
   @override
@@ -56,7 +57,7 @@ class DioDriver implements IHttp {
     String token;
 
     try {
-      // token = await iLoggedUser.token;
+      token = await iLoggedUser.token;
     } catch (e) {
       token = '';
     }
@@ -75,6 +76,9 @@ class DioDriver implements IHttp {
       await Get.offAll(const LoginPage(), binding: LoginBiding());
     }
   }
+
+  static Map<String, dynamic> bodyExtract(HttpResponse res) =>
+      jsonDecode(res.body!) as Map<String, dynamic>;
 
   HttpResponse mackObj(Response response) {
     return HttpResponse(

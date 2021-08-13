@@ -60,9 +60,15 @@ class LoginPage extends GetWidget<LoginController> {
                           ),
                         ),
                         const Spacer(flex: 20),
-                        const AppInput(label: "E-mail"),
+                        AppInput(
+                          label: "E-mail",
+                          controller: controller.loginField.value,
+                        ),
                         const Spacer(flex: 16),
-                        const AppInput(label: "Senha"),
+                        AppInput(
+                          label: "Senha",
+                          controller: controller.passwordField.value,
+                        ),
                         const Spacer(flex: 16),
                         Flexible(
                           flex: Responsive.when(

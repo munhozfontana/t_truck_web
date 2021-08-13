@@ -1,7 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/params/params.dart';
+import 'package:t_truck_web/features/login/data/models/dasboard_model.dart';
+import 'package:t_truck_web/features/login/domain/use_cases/login_case.dart';
 
 class LoginController extends GetxController {
+  final LoginCase loginCase;
+
+  final loginField = TextEditingController().obs;
+  final passwordField = TextEditingController().obs;
+
+  LoginController({required this.loginCase});
+
   void login() {
-    Get.toNamed('/home');
+    loginCase(
+      Params(
+        loginParam: LoginModel(
+          login: loginField.value.text,
+          password: passwordField.value.text,
+        ),
+      ),
+    );
   }
 }

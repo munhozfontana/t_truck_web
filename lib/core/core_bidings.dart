@@ -19,6 +19,7 @@ class CoreBiding extends Bindings {
     );
     Get.put<IHttp>(
       DioDriver(
+        iLoggedUser: Get.find(),
         dio: Dio(BaseOptions(
             connectTimeout: 15 * 1000, // 60 seconds
             receiveTimeout: 15 * 1000 // 60 seconds
