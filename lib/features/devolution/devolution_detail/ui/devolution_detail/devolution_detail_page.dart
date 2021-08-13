@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/components/responsive.dart';
+import 'package:t_truck_web/core/components/table/table_card_component.dart';
 import 'package:t_truck_web/core/components/table/table_component.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
@@ -42,36 +44,60 @@ class DevolutionDetailPage extends GetView<DevolutionDetailController> {
         ),
         Expanded(
           flex: 6,
-          child: TableComponent(
-            data: [
-              ...controller.list
-                  .map((item) => [
-                        Text(
-                          item.cod.toString(),
-                          style: StylesTypography.h16Bold,
-                        ),
-                        Text(
-                          item.name,
-                          style: StylesTypography.h16Bold,
-                        ),
-                        Text(
-                          item.quantity.toString(),
-                          style: StylesTypography.h16Bold,
-                        ),
-                        Text(
-                          'R\$ ${item.price}',
-                          style: StylesTypography.h16Bold,
-                        ),
-                        Text(
-                          'R\$ ${item.priceMount}',
-                          style: StylesTypography.h16Bold,
-                        ),
-                      ])
-                  .toList()
-            ],
+          child: Responsive.when(
+            context,
+            mobile: tableCard(),
+            orOther: table(),
           ),
         )
       ],
+    );
+  }
+
+  TableComponent table() {
+    return TableComponent(
+      data: [
+        ...controller.list
+            .map((item) => [
+                  Text(
+                    item.cod.toString(),
+                    style: StylesTypography.h16Bold,
+                  ),
+                  Text(
+                    item.name,
+                    style: StylesTypography.h16Bold,
+                  ),
+                  Text(
+                    item.quantity.toString(),
+                    style: StylesTypography.h16Bold,
+                  ),
+                  Text(
+                    'R\$ ${item.price}',
+                    style: StylesTypography.h16Bold,
+                  ),
+                  Text(
+                    'R\$ ${item.priceMount}',
+                    style: StylesTypography.h16Bold,
+                  ),
+                ])
+            .toList()
+      ],
+    );
+  }
+
+  Widget tableCard() {
+    return TableCardComponent(
+      onTap: (index) => print(controller.list.elementAt(index).price),
+      listTableCardItem: controller.list
+          .map(
+            (element) => TableCardItem(
+              iconTrailing: const Icon(Icons.arrow_right),
+              title: "valor ${element.quantity.toString()}",
+              leading: Text(element.name),
+              tooltip: element.name.toString(),
+            ),
+          )
+          .toList(),
     );
   }
 }
