@@ -23,21 +23,29 @@ class DevolutionDetailPage extends GetView<DevolutionDetailController> {
               Text(
                 'Cliente: Super Adega Atacadista',
                 textAlign: TextAlign.justify,
-                style: StylesTypography.h18,
+                style: Responsive.when(context,
+                    mobile: StylesTypography.h16,
+                    orOther: StylesTypography.h18),
               ),
               Text(
                 'Motivo nº 17',
-                style: StylesTypography.h24,
+                style: Responsive.when(context,
+                    mobile: StylesTypography.h21,
+                    orOther: StylesTypography.h24),
               ),
               Text(
                 'Devolução Completa,\nitens não corresponde com a NF.',
-                style: StylesTypography.h16W400,
+                style: Responsive.when(context,
+                    mobile: StylesTypography.h14w500,
+                    orOther: StylesTypography.h16W400),
               ),
               Text(
                 'Data da devolução: 18/05/2021 - 10:45',
-                style: StylesTypography.h16W400.copyWith(
-                  color: StylesColors.black.withOpacity(.5),
-                ),
+                style: Responsive.when(context,
+                    mobile: StylesTypography.h14w500,
+                    orOther: StylesTypography.h16W400.copyWith(
+                      color: StylesColors.black.withOpacity(.5),
+                    )),
               ),
             ],
           ),
