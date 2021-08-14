@@ -12,14 +12,16 @@ class LoginController extends GetxController {
 
   LoginController({required this.loginCase});
 
-  void login() {
-    loginCase(
-      Params(
-        loginParam: LoginModel(
-          login: loginField.value.text,
-          password: passwordField.value.text,
-        ),
-      ),
+  void login() async {
+    final loginModel = LoginModel(
+      login: loginField.value.text,
+      password: passwordField.value.text,
+    );
+    (await loginCase(Params(loginParam: loginModel))).fold(
+      (l) => null,
+      (r) {
+        Get.toNamed('/home');
+      },
     );
   }
 }

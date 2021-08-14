@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/interceptors/load_interceptor.dart';
 
 import 'adapters/drivers/dio_driver.dart';
 import 'adapters/protocols/i_http_external.dart';
@@ -9,23 +10,25 @@ import 'utils/app_dialog.dart';
 class CoreBiding extends Bindings {
   @override
   void dependencies() {
-    Get.put<IAppDialog>(
-      AppDialog(),
-      permanent: true,
+    Get.lazyPut<IAppDialog>(
+      () => AppDialog(),
     );
-    Get.put<IMenuComponentController>(
-      MenuComponentController(),
-      permanent: true,
+    Get.lazyPut<IMenuComponentController>(
+      () => MenuComponentController(),
     );
-    Get.put<IHttp>(
-      DioDriver(
+    Get.lazyPut<IHttp>(
+      () => DioDriver(
+        interceptors: [
+          LoadInterceptor(storeController: Get.find()).loadInterceptor(),
+        ],
         iLoggedUser: Get.find(),
         dio: Dio(BaseOptions(
-            connectTimeout: 15 * 1000, // 60 seconds
-            receiveTimeout: 15 * 1000 // 60 seconds
-            )),
+          connectTimeout:
+              const Duration(seconds: 5).inMilliseconds, // 60 seconds
+          receiveTimeout:
+              const Duration(seconds: 5).inMilliseconds, // 60 seconds
+        )),
       ),
-      permanent: true,
     );
   }
 }

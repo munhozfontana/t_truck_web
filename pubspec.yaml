@@ -22,6 +22,7 @@ environment:
 
 dependencies:
   carousel_slider: ^4.0.0
+  connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
   dartz: 0.10.0-nullsafety.2
   dio: ^4.0.0

@@ -11,11 +11,17 @@ import '../protocols/i_http_external.dart';
 class DioDriver implements IHttp {
   final Dio dio;
   final ILoggedUser iLoggedUser;
+  final Iterable<Interceptor>? interceptors;
 
   DioDriver({
     required this.dio,
     required this.iLoggedUser,
-  });
+    this.interceptors,
+  }) {
+    if (interceptors != null) {
+      dio.interceptors.addAll(interceptors!);
+    }
+  }
 
   @override
   Future<HttpResponse> deleteHttp(

@@ -11,32 +11,27 @@ import 'package:t_truck_web/features/login/domain/use_cases/token_use_case.dart'
 class TokenBiding extends Bindings {
   @override
   void dependencies() {
-    Get.put<ILocalStoreExternal>(
-      SharedPreferencesDriver(),
-      permanent: true,
+    Get.lazyPut<ILocalStoreExternal>(
+      () => SharedPreferencesDriver(),
     );
 
-    Get.put<IJwt>(
-      JwtDecoderDriver(),
-      permanent: true,
+    Get.lazyPut<IJwt>(
+      () => JwtDecoderDriver(),
     );
 
-    Get.put<ILoggedUser>(
-      LoggedUser(
+    Get.lazyPut<ILoggedUser>(
+      () => LoggedUser(
         iJwt: Get.find(),
         iLocalStoreExternal: Get.find(),
       ),
-      permanent: true,
     );
 
-    Get.put<ITokenRepository>(
-      TokenRepository(jwtDriver: Get.find()),
-      permanent: true,
+    Get.lazyPut<ITokenRepository>(
+      () => TokenRepository(jwtDriver: Get.find()),
     );
 
-    Get.put<TokenUseCase>(
-      TokenUseCase(tokenRepository: Get.find()),
-      permanent: true,
+    Get.lazyPut<TokenUseCase>(
+      () => TokenUseCase(tokenRepository: Get.find()),
     );
   }
 }

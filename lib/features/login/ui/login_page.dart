@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/responsive.dart';
+import 'package:t_truck_web/core/store_controller.dart';
 
 import 'components/app_input.dart';
 import 'components/background_logo.dart';
@@ -101,14 +102,21 @@ class LoginPage extends GetWidget<LoginController> {
                             width: double.infinity,
                             height: 56,
                           ),
-                          child: ElevatedButton(
-                            onPressed: () => controller.login(),
-                            child: Text(
-                              "Entrar",
-                              style: Get.textTheme.headline2!
-                                  .copyWith(color: Colors.white),
-                            ),
-                          ),
+                          child: Obx(() {
+                            return ElevatedButton(
+                              onPressed: () => controller.login(),
+                              child: Get.find<StoreController>().loading.value
+                                  ? const CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    )
+                                  : Text(
+                                      "Entrar",
+                                      style: Get.textTheme.headline2!
+                                          .copyWith(color: Colors.white),
+                                    ),
+                            );
+                          }),
                         ),
                         const Spacer(flex: 19),
                         Text(
