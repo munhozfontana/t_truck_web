@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:faker/faker.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_bindings.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolutions_entity.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/enum/devolution_status_enum.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
@@ -23,6 +24,7 @@ class DevolutionListController extends GetxController {
   }
 
   void toDetailPage(DevolutionsEntity e) {
+    DevolutionListBindings().dependencies();
     Get.toNamed('${Routes.devolutions.path}/${e.cod}');
   }
 }

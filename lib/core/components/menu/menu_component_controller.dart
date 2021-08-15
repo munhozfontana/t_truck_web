@@ -43,6 +43,6 @@ class MenuComponentController extends GetxController
   void onTapMenu(MenuModel newMenuModel) {
     menuModel = newMenuModel;
     addQuickAcces(newMenuModel);
-    Get.offAllNamed(newMenuModel.path);
+    Get.offNamed(newMenuModel.path);
   }
 }

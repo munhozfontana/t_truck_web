@@ -5,8 +5,9 @@ import 'menu_component_controller.dart';
 class MenuBiding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<MenuComponentController>(
-      () => MenuComponentController(),
+    Get.put<MenuComponentController>(
+      MenuComponentController(),
+      permanent: true,
     );
   }
 }

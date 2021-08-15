@@ -55,7 +55,6 @@ class LayoutComponent extends StatelessWidget {
             orOther: Scaffold(
               floatingActionButton: floatActionButton,
               appBar: buildHeaderComponent(context).build(context),
-              drawer: drawer,
               body: body,
             ),
           ),
@@ -82,8 +81,6 @@ class LayoutComponent extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    final storeController = Get.find<StoreController>();
-
     return Row(
       children: [
         Expanded(
