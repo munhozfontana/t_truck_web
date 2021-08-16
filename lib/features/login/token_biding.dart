@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/adapters/drivers/jwt_decoder_driver.dart';
+import 'package:t_truck_web/core/adapters/drivers/logged_user.dart';
 import 'package:t_truck_web/core/adapters/drivers/shared_preferences_driver.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_jwt_external.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_local_store_external.dart';

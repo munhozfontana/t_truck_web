@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/interceptors/load_interceptor.dart';
+import 'package:t_truck_web/core/interceptors/app_interceptor.dart';
 
 import 'adapters/drivers/dio_driver.dart';
 import 'adapters/protocols/i_http_external.dart';
@@ -18,10 +18,8 @@ class CoreBiding extends Bindings {
     );
     Get.lazyPut<IHttp>(
       () => DioDriver(
-        interceptors: [
-          LoadInterceptor(storeController: Get.find()).loadInterceptor(),
-        ],
-        iLoggedUser: Get.find(),
+        interceptors:
+            AppInterceptor(storeController: Get.find()).allInterceptor(),
         dio: Dio(BaseOptions(
           connectTimeout:
               const Duration(seconds: 5).inMilliseconds, // 60 seconds

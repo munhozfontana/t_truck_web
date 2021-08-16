@@ -27,7 +27,10 @@ class LoginBiding extends Bindings {
     );
 
     Get.put<LoginController>(
-      LoginController(loginCase: Get.find()),
+      LoginController(
+        loginCase: Get.find(),
+        iLoggedUser: Get.find(),
+      ),
     );
   }
 }
