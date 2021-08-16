@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import '../../styles/style_colors.dart';
 import '../../styles/styles_fonts.dart';
@@ -31,12 +32,12 @@ class HeaderComponent extends StatelessWidget {
         Row(
           children: [
             Obx(() => Icon(
-                  controllerMenu.menuModel.icon,
+                  controllerMenu.menuModel.menu.icon,
                   color: StylesColors.black,
                 )),
             const SizedBox(width: 15),
             Obx(() => Text(
-                  controllerMenu.menuModel.text,
+                  controllerMenu.menuModel.menu.text,
                   style: StylesTypography.h18.copyWith(color: Colors.black),
                 ))
           ],

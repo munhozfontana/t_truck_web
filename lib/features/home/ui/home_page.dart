@@ -116,8 +116,8 @@ class HomePage extends GetWidget<HomeController> {
                           itemCount: _.quickAcces.length,
                           itemBuilder: (context, index) => QuickAccessComponent(
                             constraints: constraints,
-                            icon: _.quickAcces[index].icon,
-                            label: _.quickAcces[index].text,
+                            icon: _.quickAcces[index].menu.icon,
+                            label: _.quickAcces[index].menu.text,
                             onTap: () => Get.offAllNamed(
                               _.quickAcces[index].path,
                             ),

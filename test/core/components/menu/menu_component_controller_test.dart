@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
-import 'package:t_truck_web/core/components/menu/menu_model.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 void main() {
   late MenuComponentController controller;
@@ -9,15 +9,15 @@ void main() {
   });
 
   test('should verify quantity after much elemnts', () {
-    controller.addQuickAcces(MenuModel(text: 'a', path: '/a'));
-    controller.addQuickAcces(MenuModel(text: 's', path: '/s'));
-    controller.addQuickAcces(MenuModel(text: 'd', path: '/d'));
-    controller.addQuickAcces(MenuModel(text: 'f', path: '/f'));
-    controller.addQuickAcces(MenuModel(text: 'g', path: '/g'));
-    controller.addQuickAcces(MenuModel(text: 'w', path: '/w'));
-    controller.addQuickAcces(MenuModel(text: 'e', path: '/e'));
+    controller.addQuickAcces(Routes.config);
+    controller.addQuickAcces(Routes.message);
+    controller.addQuickAcces(Routes.home);
+    controller.addQuickAcces(Routes.homeMap);
+    controller.addQuickAcces(Routes.message);
+    controller.addQuickAcces(Routes.unknown);
+    controller.addQuickAcces(Routes.config);
     expect(controller.quickAcces().length, 4);
-    expect(controller.quickAcces().last.text, 'f');
-    expect(controller.quickAcces().first.text, 'e');
+    expect(controller.quickAcces().last, Routes.home);
+    expect(controller.quickAcces().first, Routes.config);
   });
 }

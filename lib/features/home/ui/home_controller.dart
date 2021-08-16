@@ -3,7 +3,6 @@ import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import '../../../core/components/map_component.dart';
 import '../../../core/components/menu/menu_component_controller.dart';
-import '../../../core/components/menu/menu_model.dart';
 import '../../../core/params/params.dart';
 import '../../../core/utils/app_dialog.dart';
 import '../domain/entities/dash_board_entity.dart';
@@ -39,7 +38,7 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
-  void addQuickAcces(MenuModel menuModel) {
+  void addQuickAcces(Routes menuModel) {
     menuComponentController.addQuickAcces(menuModel);
   }
 

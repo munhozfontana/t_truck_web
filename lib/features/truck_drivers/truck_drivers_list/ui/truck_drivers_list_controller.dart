@@ -11,6 +11,7 @@ class TruckDriversListController extends GetxController {
 
   @override
   void onInit() {
+    print('LOADING');
     final faker = Faker();
     super.onInit();
     list.value = List.generate(

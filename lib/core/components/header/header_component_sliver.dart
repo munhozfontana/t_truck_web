@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/core/components/responsive.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import '../../styles/style_colors.dart';
 import '../../styles/styles_fonts.dart';
@@ -37,14 +38,14 @@ class HeaderComponentSliver extends StatelessWidget {
         Row(
           children: [
             Obx(() => Icon(
-                  controllerMenu.menuModel.icon,
+                  controllerMenu.menuModel.menu.icon,
                   color: StylesColors.black,
                 )),
             const SizedBox(width: 15),
             Visibility(
               visible: Responsive.isNotMobile(context),
               child: Obx(() => Text(
-                    controllerMenu.menuModel.text,
+                    controllerMenu.menuModel.menu.text,
                     style: StylesTypography.h18.copyWith(color: Colors.black),
                   )),
             )

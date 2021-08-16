@@ -8,7 +8,6 @@ import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:t_truck_web/core/components/menu/menu_component_controller.dart'
     as _i4;
-import 'package:t_truck_web/core/components/menu/menu_model.dart' as _i5;
 import 'package:t_truck_web/core/error/failures.dart' as _i8;
 import 'package:t_truck_web/core/params/params.dart' as _i10;
 import 'package:t_truck_web/core/utils/app_dialog.dart' as _i3;
@@ -16,6 +15,7 @@ import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart
     as _i9;
 import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard_case.dart'
     as _i6;
+import 'package:t_truck_web/routes/app_routes_enum.dart' as _i5;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: comment_references
@@ -57,11 +57,11 @@ class MockIMenuComponentController extends _i1.Mock
   }
 
   @override
-  void addQuickAcces(_i5.MenuModel? menuModel) =>
+  void addQuickAcces(_i5.Routes? menuModel) =>
       super.noSuchMethod(Invocation.method(#addQuickAcces, [menuModel]),
           returnValueForMissingStub: null);
   @override
-  void onTapMenu(_i5.MenuModel? newMenuModel) =>
+  void onTapMenu(_i5.Routes? newMenuModel) =>
       super.noSuchMethod(Invocation.method(#onTapMenu, [newMenuModel]),
           returnValueForMissingStub: null);
 }

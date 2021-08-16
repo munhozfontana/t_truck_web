@@ -1,36 +1,35 @@
 import 'package:get/get.dart';
 
 import '../../../routes/app_routes_enum.dart';
-import 'menu_model.dart';
 
 mixin IMenuComponentController {
-  void addQuickAcces(MenuModel menuModel);
-  void onTapMenu(MenuModel newMenuModel);
+  void addQuickAcces(Routes menuModel);
+  void onTapMenu(Routes newMenuModel);
 }
 
 class MenuComponentController extends GetxController
     implements IMenuComponentController {
   RxDouble? maxHeight;
 
-  final RxList<MenuModel> quickAcces = <MenuModel>[].obs;
+  final RxList<Routes> quickAcces = <Routes>[].obs;
 
-  RxList<MenuModel> menusItem = [
-    Routes.home.menu,
-    Routes.truckDrivers.menu,
-    Routes.devolutions.menu,
-    Routes.message.menu,
-    Routes.config.menu,
+  RxList<Routes> menusItem = [
+    Routes.home,
+    Routes.truckDrivers,
+    Routes.devolutions,
+    Routes.message,
+    Routes.config,
   ].obs;
 
-  final Rx<MenuModel> _menuModel = Routes.home.menu.obs;
+  final Rx<Routes> _menuModel = Routes.home.obs;
 
-  set menuModel(MenuModel newMenuModel) {
+  set menuModel(Routes newMenuModel) {
     _menuModel.value = newMenuModel;
   }
 
-  MenuModel get menuModel => _menuModel.value;
+  Routes get menuModel => _menuModel.value;
 
-  void addQuickAcces(MenuModel menuModel) {
+  void addQuickAcces(Routes menuModel) {
     if (quickAcces.isEmpty || !quickAcces.any((item) => item == menuModel)) {
       quickAcces.insert(0, menuModel);
     }
@@ -40,9 +39,9 @@ class MenuComponentController extends GetxController
     }
   }
 
-  void onTapMenu(MenuModel newMenuModel) {
+  void onTapMenu(Routes newMenuModel) {
     menuModel = newMenuModel;
     addQuickAcces(newMenuModel);
-    Get.offNamed(newMenuModel.path);
+    Get.offAllNamed(newMenuModel.path);
   }
 }
