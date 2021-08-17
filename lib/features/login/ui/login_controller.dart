@@ -17,7 +17,15 @@ class LoginController extends GetxController {
     required this.iLoggedUser,
   });
 
-  void login() async {
+  @override
+  void onInit() async {
+    super.onInit();
+    if (!(await iLoggedUser.loginExpired())) {
+      Get.offNamed('/home');
+    }
+  }
+
+  Future<void> login() async {
     final loginModel = LoginModel(
       login: loginField.value.text,
       password: passwordField.value.text,

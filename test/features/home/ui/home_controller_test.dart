@@ -22,7 +22,7 @@ void main() {
   late HomeController homeController;
   late IAppDialog mockAppDialog;
   late IMenuComponentController mockMenuComponentController;
-  late IListDashboardCase mockIListDashboardCase;
+  late MockIListDashboardCase mockIListDashboardCase;
   late Routes menuModel;
   late LocationMapEntity locationMapEntity;
   late DashBoardComposedEntity dashBoardComposedEntity;

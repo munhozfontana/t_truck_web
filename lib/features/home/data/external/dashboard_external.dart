@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:t_truck_web/core/adapters/drivers/dio_driver.dart';
-
-import '../../../../core/adapters/protocols/i_http_external.dart';
-import '../../../../core/error/api_exception.dart';
-import '../../../../core/icons/menu_icons_icons.dart';
-import '../../../../core/styles/style_colors.dart';
-import '../../domain/entities/dash_board_entity.dart';
-
-mixin IDashboardExternal {
-  Future<DashBoardComposedEntity> get();
-}
+import 'package:t_truck_web/core/adapters/protocols/i_http_external.dart';
+import 'package:t_truck_web/core/error/api_exception.dart';
+import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
+import 'package:t_truck_web/core/styles/style_colors.dart';
+import 'package:t_truck_web/features/home/data/external/protocols/i_dashboard_external.dart';
+import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
 
 class DashboardExternal implements IDashboardExternal {
   IHttp iHttp;

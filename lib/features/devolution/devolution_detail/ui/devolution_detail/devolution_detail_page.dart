@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/components/layout_component.dart';
 import 'package:t_truck_web/core/components/responsive.dart';
 import 'package:t_truck_web/core/components/table/table_card_component.dart';
 import 'package:t_truck_web/core/components/table/table_component.dart';
@@ -11,54 +12,56 @@ import './devolution_detail_controller.dart';
 class DevolutionDetailPage extends GetView<DevolutionDetailController> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          flex: 2,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                'Cliente: Super Adega Atacadista',
-                textAlign: TextAlign.justify,
-                style: Responsive.when(context,
-                    mobile: StylesTypography.h16,
-                    orOther: StylesTypography.h18),
-              ),
-              Text(
-                'Motivo nº 17',
-                style: Responsive.when(context,
-                    mobile: StylesTypography.h21,
-                    orOther: StylesTypography.h24),
-              ),
-              Text(
-                'Devolução Completa,\nitens não corresponde com a NF.',
-                style: Responsive.when(context,
-                    mobile: StylesTypography.h14w500,
-                    orOther: StylesTypography.h16W400),
-              ),
-              Text(
-                'Data da devolução: 18/05/2021 - 10:45',
-                style: Responsive.when(context,
-                    mobile: StylesTypography.h14w500,
-                    orOther: StylesTypography.h16W400.copyWith(
-                      color: StylesColors.black.withOpacity(.5),
-                    )),
-              ),
-            ],
+    return LayoutComponent(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Cliente: Super Adega Atacadista',
+                  textAlign: TextAlign.justify,
+                  style: Responsive.when(context,
+                      mobile: StylesTypography.h16,
+                      orOther: StylesTypography.h18),
+                ),
+                Text(
+                  'Motivo nº 17',
+                  style: Responsive.when(context,
+                      mobile: StylesTypography.h21,
+                      orOther: StylesTypography.h24),
+                ),
+                Text(
+                  'Devolução Completa,\nitens não corresponde com a NF.',
+                  style: Responsive.when(context,
+                      mobile: StylesTypography.h14w500,
+                      orOther: StylesTypography.h16W400),
+                ),
+                Text(
+                  'Data da devolução: 18/05/2021 - 10:45',
+                  style: Responsive.when(context,
+                      mobile: StylesTypography.h14w500,
+                      orOther: StylesTypography.h16W400.copyWith(
+                        color: StylesColors.black.withOpacity(.5),
+                      )),
+                ),
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          flex: 6,
-          child: Responsive.when(
-            context,
-            mobile: tableCard(),
-            orOther: table(),
-          ),
-        )
-      ],
+          Expanded(
+            flex: 6,
+            child: Responsive.when(
+              context,
+              mobile: tableCard(),
+              orOther: table(),
+            ),
+          )
+        ],
+      ),
     );
   }
 

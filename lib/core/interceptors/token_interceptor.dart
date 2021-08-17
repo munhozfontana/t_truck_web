@@ -30,11 +30,6 @@ class TokenInterceptor implements IProtocolInterceptor {
 
       storeController.onLoad();
       return handler.next(options);
-    }, onResponse: (response, handler) {
-      storeController.offLoad();
-      return handler.next(response); // continue
-    }, onError: (DioError e, handler) {
-      storeController.offLoad();
     });
   }
 }

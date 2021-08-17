@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/body_component.dart';
+import 'package:t_truck_web/core/components/layout_component.dart';
 import 'package:t_truck_web/core/components/responsive.dart';
 import 'package:t_truck_web/core/components/table/table_card_component.dart';
 import 'package:t_truck_web/core/components/table/table_cell_component.dart';
@@ -15,24 +16,26 @@ import './devolution_list_controller.dart';
 class DevolutionListPage extends GetView<DevolutionListController> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Visibility(
-          visible: Responsive.isNotMobile(context),
-          child: const TitleComponent(
-            title: 'Devoluções',
-          ),
-        ),
-        BodyComponent(
-          child: Obx(
-            () => Responsive.when(
-              context,
-              mobile: tableCard(),
-              orOther: table(),
+    return LayoutComponent(
+      child: Column(
+        children: [
+          Visibility(
+            visible: Responsive.isNotMobile(context),
+            child: const TitleComponent(
+              title: 'Devoluções',
             ),
           ),
-        )
-      ],
+          BodyComponent(
+            child: Obx(
+              () => Responsive.when(
+                context,
+                mobile: tableCard(),
+                orOther: table(),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 

@@ -29,6 +29,7 @@ class MenuComponentController extends GetxController
 
   Routes get menuModel => _menuModel.value;
 
+  @override
   void addQuickAcces(Routes menuModel) {
     if (quickAcces.isEmpty || !quickAcces.any((item) => item == menuModel)) {
       quickAcces.insert(0, menuModel);
@@ -39,9 +40,14 @@ class MenuComponentController extends GetxController
     }
   }
 
+  @override
   void onTapMenu(Routes newMenuModel) {
     menuModel = newMenuModel;
     addQuickAcces(newMenuModel);
-    Get.offAllNamed(newMenuModel.path);
+    if (!Get.currentRoute.contains(newMenuModel.path)) {
+      Get.offAllNamed(newMenuModel.path);
+    } else if (Get.currentRoute.contains(RegExp(r'[0-9]'))) {
+      Get.back();
+    }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/components/layout_component.dart';
 import 'package:t_truck_web/core/components/responsive.dart';
 import 'package:t_truck_web/core/components/table/table_cell_component.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
@@ -12,25 +13,27 @@ import './message_detail_controller.dart';
 class MessageDetailPage extends GetView<MessageDetailController> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-          top: Responsive.when(
-        context,
-        mobile: 8,
-        orOther: 32,
-      )),
-      child: Flex(
-        direction: Responsive.when(
+    return LayoutComponent(
+      child: Padding(
+        padding: EdgeInsets.only(
+            top: Responsive.when(
           context,
-          desktop: Axis.horizontal,
-          tablet: Axis.horizontal,
-          mobile: Axis.vertical,
-          orOther: Axis.horizontal,
+          mobile: 8,
+          orOther: 32,
+        )),
+        child: Flex(
+          direction: Responsive.when(
+            context,
+            desktop: Axis.horizontal,
+            tablet: Axis.horizontal,
+            mobile: Axis.vertical,
+            orOther: Axis.horizontal,
+          ),
+          children: [
+            info(context),
+            scroll(context),
+          ],
         ),
-        children: [
-          info(context),
-          scroll(context),
-        ],
       ),
     );
   }

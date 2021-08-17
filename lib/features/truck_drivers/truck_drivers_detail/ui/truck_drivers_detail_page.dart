@@ -3,6 +3,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/body_component.dart';
 import 'package:t_truck_web/core/components/collapsing_List.dart';
+import 'package:t_truck_web/core/components/layout_component.dart';
 import 'package:t_truck_web/core/components/map_component.dart';
 import 'package:t_truck_web/core/components/responsive.dart';
 import 'package:t_truck_web/core/components/table/table_card_component.dart';
@@ -19,10 +20,12 @@ import './truck_drivers_detail_controller.dart';
 class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
   @override
   Widget build(BuildContext context) {
-    return Responsive.when(
-      context,
-      mobile: onScroll(context),
-      orOther: notScroll(context),
+    return LayoutComponent(
+      child: Responsive.when(
+        context,
+        mobile: onScroll(context),
+        orOther: notScroll(context),
+      ),
     );
   }
 

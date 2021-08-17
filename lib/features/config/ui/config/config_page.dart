@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/body_component.dart';
+import 'package:t_truck_web/core/components/layout_component.dart';
 import 'package:t_truck_web/core/components/responsive.dart';
 import 'package:t_truck_web/core/components/title_component.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
@@ -16,43 +17,45 @@ class ConfigPage extends GetView<ConfigController> {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
 
-    return Column(
-      children: [
-        Visibility(
-          visible: Responsive.isNotMobile(context),
-          child: const TitleComponent(
-            title: 'Configurações',
+    return LayoutComponent(
+      child: Column(
+        children: [
+          Visibility(
+            visible: Responsive.isNotMobile(context),
+            child: const TitleComponent(
+              title: 'Configurações',
+            ),
           ),
-        ),
-        BodyComponent(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 5,
-                child: Flex(
-                  direction: Responsive.when(
-                    context,
-                    mobile: Axis.vertical,
-                    orOther: Axis.horizontal,
+          BodyComponent(
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Flex(
+                    direction: Responsive.when(
+                      context,
+                      mobile: Axis.vertical,
+                      orOther: Axis.horizontal,
+                    ),
+                    children: [
+                      pageDescribe(context),
+                      const Spacer(),
+                      formPage(_formKey, context),
+                    ],
                   ),
-                  children: [
-                    pageDescribe(context),
-                    const Spacer(),
-                    formPage(_formKey, context),
-                  ],
                 ),
-              ),
-              Spacer(
-                flex: Responsive.when(
-                  context,
-                  mobile: 1,
-                  orOther: 2,
-                ),
-              )
-            ],
-          ),
-        )
-      ],
+                Spacer(
+                  flex: Responsive.when(
+                    context,
+                    mobile: 1,
+                    orOther: 2,
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 

@@ -13,7 +13,6 @@ import 'package:t_truck_web/features/message/message_list/ui/message_list/messag
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/truck_drivers_detail_bindings.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/ui/truck_drivers_detail_page.dart';
 
-import '../core/components/layout_component.dart';
 import '../core/styles/styles_fonts.dart';
 import '../features/home/home_biding.dart';
 import '../features/home/ui/components/expanded_map_component.dart';
@@ -41,7 +40,7 @@ class AppPages {
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
         binding: HomeBiding(),
-        page: () => const LayoutComponent(child: HomePage()),
+        page: () => const HomePage(),
         transition: Transition.fadeIn,
       ),
       GetPage(
@@ -55,7 +54,7 @@ class AppPages {
         name: Routes.config.path,
         transitionDuration: slow,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(child: ConfigPage()),
+        page: () => ConfigPage(),
         transition: Transition.fadeIn,
         binding: ConfigBindings(),
       ),
@@ -66,12 +65,10 @@ class AppPages {
         name: Routes.developer.path,
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(
-          child: Center(
-            child: Text(
-              '404',
-              style: StylesTypography.h48,
-            ),
+        page: () => Center(
+          child: Text(
+            '404',
+            style: StylesTypography.h48,
           ),
         ),
         transition: Transition.fadeIn,
@@ -86,7 +83,7 @@ class AppPages {
         name: Routes.devolutions.path,
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(child: DevolutionListPage()),
+        page: () => DevolutionListPage(),
         transition: Transition.fadeIn,
         binding: DevolutionListBindings(),
       ),
@@ -94,7 +91,7 @@ class AppPages {
         name: '${Routes.devolutions.path}/:id',
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(child: DevolutionDetailPage()),
+        page: () => DevolutionDetailPage(),
         transition: Transition.rightToLeft,
         binding: DevolutionDetailBindings(),
       ),
@@ -107,7 +104,7 @@ class AppPages {
         name: Routes.truckDrivers.path,
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(child: TruckDriversListPage()),
+        page: () => TruckDriversListPage(),
         transition: Transition.fadeIn,
         binding: TruckDriversListBiding(),
       ),
@@ -115,7 +112,7 @@ class AppPages {
         name: '${Routes.truckDrivers.path}/:id',
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(child: TruckDriversDetailPage()),
+        page: () => TruckDriversDetailPage(),
         transition: Transition.rightToLeft,
         binding: TruckDriversDetailBindings(),
       ),
@@ -128,7 +125,7 @@ class AppPages {
         name: Routes.message.path,
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(child: MessageListPage()),
+        page: () => MessageListPage(),
         transition: Transition.fadeIn,
         binding: MessageListBindings(),
       ),
@@ -136,7 +133,7 @@ class AppPages {
         name: '${Routes.message.path}/:id',
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        page: () => LayoutComponent(child: MessageDetailPage()),
+        page: () => MessageDetailPage(),
         transition: Transition.rightToLeft,
         binding: MessageDetailBindings(),
       ),
