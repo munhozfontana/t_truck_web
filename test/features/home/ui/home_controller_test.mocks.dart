@@ -13,8 +13,12 @@ import 'package:t_truck_web/core/params/params.dart' as _i10;
 import 'package:t_truck_web/core/utils/app_dialog.dart' as _i3;
 import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart'
     as _i9;
-import 'package:t_truck_web/features/home/domain/use_cases/list_dashboard_case.dart'
+import 'package:t_truck_web/features/home/domain/entities/location_entity.dart'
+    as _i12;
+import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_dashboard_case.dart'
     as _i6;
+import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_location_case.dart'
+    as _i11;
 import 'package:t_truck_web/routes/app_routes_enum.dart' as _i5;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -83,4 +87,22 @@ class MockIListDashboardCase extends _i1.Mock
                   _i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>>.value(
               _FakeEither<_i8.Failure, _i9.DashBoardComposedEntity>())) as _i7
           .Future<_i2.Either<_i8.Failure, _i9.DashBoardComposedEntity>>);
+}
+
+/// A class which mocks [IListLocationCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIListLocationCase extends _i1.Mock implements _i11.IListLocationCase {
+  MockIListLocationCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<_i2.Either<_i8.Failure, List<_i12.LocationEntity>>> call(
+          _i10.Params? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+          returnValue:
+              Future<_i2.Either<_i8.Failure, List<_i12.LocationEntity>>>.value(
+                  _FakeEither<_i8.Failure, List<_i12.LocationEntity>>())) as _i7
+          .Future<_i2.Either<_i8.Failure, List<_i12.LocationEntity>>>);
 }
