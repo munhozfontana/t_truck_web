@@ -47,7 +47,7 @@ class DashboardExternal implements IDashboardExternal {
           colorIcon: Colors.black,
         ),
         pending: DashBoardEntity(
-          quantity: '?',
+          quantity: resExtract[0]['PENDENTES'].toString(),
           description: 'Pendentes',
           icon: Icons.info_outline,
           colorIcon: StylesColors.wellow,

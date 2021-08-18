@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/animations/animations_utils.dart';
 import 'package:t_truck_web/core/components/layout_component.dart';
+import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
+import 'package:t_truck_web/features/map/map_page.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import '../../../core/components/body_component.dart';
-import '../../../core/components/map_component.dart';
 import '../../../core/components/menu/menu_component_controller.dart';
 import '../../../core/components/responsive.dart';
 import '../../../core/components/title_component.dart';
@@ -84,14 +86,10 @@ class HomePage extends GetWidget<HomeController> {
                   flex: Responsive.isMobile(context) ? 300 : 300,
                   child: Hero(
                     tag: 'mapa-tag',
-                    child: MapComponent(
-                      onPositionChanged: (value) => controller.updateMap(value),
-                      initialPosition: Get.arguments != null
-                          ? (Get.arguments as LocationMapEntity)
-                          : controller.currentPositonMap.value,
+                    child: MapPage(
                       onTap: () => Get.toNamed(Routes.homeMap.path,
                           arguments: controller.currentPositonMap.value),
-                      key: key,
+                      // key: key,
                     ),
                   ),
                 ),
@@ -139,6 +137,62 @@ class HomePage extends GetWidget<HomeController> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class PositionMap extends StatefulWidget {
+  final String message;
+
+  const PositionMap({Key? key, this.message = "Sem descrição"})
+      : super(key: key);
+
+  @override
+  _PositionMapState createState() => _PositionMapState();
+}
+
+class _PositionMapState extends State<PositionMap>
+    with TickerProviderStateMixin {
+  double size = 15;
+
+  late AnimationController _sonarController;
+  AnimationsUtils animationsUtils = AnimationsUtils();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _sonarController =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    _sonarController.repeat();
+  }
+
+  @override
+  void dispose() {
+    _sonarController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Tooltip(
+          verticalOffset: -40,
+          message: widget.message,
+          child: Container(
+            height: size,
+            width: size,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(size),
+            ),
+            child: const Icon(
+              MenuIcons.truck,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

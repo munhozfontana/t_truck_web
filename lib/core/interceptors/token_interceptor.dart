@@ -28,7 +28,6 @@ class TokenInterceptor implements IProtocolInterceptor {
         }
       }
 
-      storeController.onLoad();
       return handler.next(options);
     });
   }

@@ -17,8 +17,8 @@ class LocationExternal implements ILocationExternal {
   Future<List<LocationEntity>> get() async {
     try {
       var res = await iHttp.getHttp(
-        'http://truck.stoatacadista.com.br:2302/api/location',
-      );
+          'http://truck.stoatacadista.com.br:2302/api/location',
+          headers: {'not_load': 'true'});
 
       return DioDriver.listExtract(res)
           .map((e) => LocationModel.fromMap(e as Map<String, dynamic>))

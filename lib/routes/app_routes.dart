@@ -6,6 +6,7 @@ import 'package:t_truck_web/features/devolution/devolution_detail/devolution_det
 import 'package:t_truck_web/features/devolution/devolution_detail/ui/devolution_detail/devolution_detail_page.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_bindings.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/ui/devolution_list/devolution_list_page.dart';
+import 'package:t_truck_web/features/map/map_page.dart';
 import 'package:t_truck_web/features/message/message_detail/message_detail_bindings.dart';
 import 'package:t_truck_web/features/message/message_detail/ui/message_detail/message_detail_page.dart';
 import 'package:t_truck_web/features/message/message_list/message_list_bindings.dart';
@@ -15,7 +16,6 @@ import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/ui/truck
 
 import '../core/styles/styles_fonts.dart';
 import '../features/home/home_biding.dart';
-import '../features/home/ui/components/expanded_map_component.dart';
 import '../features/home/ui/home_page.dart';
 import '../features/login/login_biding.dart';
 import '../features/login/ui/login_page.dart';
@@ -47,7 +47,12 @@ class AppPages {
         name: Routes.homeMap.path,
         transitionDuration: slow,
         curve: Curves.easeInOutCirc,
-        page: () => const ExpandedMapComponent(),
+        page: () => Hero(
+          tag: 'mapa-tag',
+          child: MapPage(
+            onTap: () => Get.back(),
+          ),
+        ),
         transition: Transition.fadeIn,
       ),
       GetPage(

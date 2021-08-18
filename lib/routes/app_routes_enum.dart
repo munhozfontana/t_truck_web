@@ -5,10 +5,10 @@ import 'package:t_truck_web/features/config/ui/config/config_page.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_bindings.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/ui/devolution_list/devolution_list_page.dart';
 import 'package:t_truck_web/features/home/home_biding.dart';
-import 'package:t_truck_web/features/home/ui/components/expanded_map_component.dart';
 import 'package:t_truck_web/features/home/ui/home_page.dart';
 import 'package:t_truck_web/features/login/login_biding.dart';
 import 'package:t_truck_web/features/login/ui/login_page.dart';
+import 'package:t_truck_web/features/map/map_page.dart';
 import 'package:t_truck_web/features/message/message_list/message_list_bindings.dart';
 import 'package:t_truck_web/features/message/message_list/ui/message_list/message_list_page.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/truck_drivers_list_biding.dart';
@@ -101,7 +101,7 @@ extension RoutesExt on Routes {
       case Routes.truckDrivers:
         return TruckDriversListPage();
       case Routes.homeMap:
-        return const ExpandedMapComponent();
+        return const MapPage();
       case Routes.devolutions:
         return DevolutionListPage();
       case Routes.message:

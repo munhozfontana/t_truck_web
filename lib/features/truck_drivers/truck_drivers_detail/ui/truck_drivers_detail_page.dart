@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/body_component.dart';
 import 'package:t_truck_web/core/components/collapsing_List.dart';
 import 'package:t_truck_web/core/components/layout_component.dart';
-import 'package:t_truck_web/core/components/map_component.dart';
 import 'package:t_truck_web/core/components/responsive.dart';
 import 'package:t_truck_web/core/components/table/table_card_component.dart';
 import 'package:t_truck_web/core/components/table/table_cell_component.dart';
@@ -12,6 +11,7 @@ import 'package:t_truck_web/core/components/table/table_component.dart';
 import 'package:t_truck_web/core/components/title_component.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
+import 'package:t_truck_web/features/map/map_page.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/enum/delivery_status_enum.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
 
@@ -68,16 +68,18 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
           const Spacer(),
           Expanded(
             flex: 20,
-            child: Hero(
-              tag: 'mapa-tag',
-              child: MapComponent(
-                onPositionChanged: (value) => controller.updateMap(value),
-                initialPosition: Get.arguments != null
-                    ? (Get.arguments as LocationMapEntity)
-                    : controller.currentPositonMap.value,
-                onTap: () => Get.toNamed(Routes.homeMap.path,
-                    arguments: controller.currentPositonMap.value),
-                key: key,
+            child: HeroMode(
+              enabled: false,
+              child: Hero(
+                tag: 'mapa-tag',
+                child: MapPage(
+                  // onPositionChanged: (value) => controller.updateMap(value),
+                  // initialPosition: Get.arguments != null
+                  //     ? (Get.arguments as LocationMapEntity)
+                  //     : controller.currentPositonMap.value,
+                  onTap: () => Get.toNamed(Routes.homeMap.path,
+                      arguments: controller.currentPositonMap.value),
+                ),
               ),
             ),
           ),

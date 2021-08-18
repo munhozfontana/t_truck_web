@@ -1,10 +1,13 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/home/domain/entities/location_entity.dart';
 import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_dashboard_case.dart';
 import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_location_case.dart';
+import 'package:t_truck_web/features/home/ui/home_page.dart';
+import 'package:t_truck_web/features/map/entites/map_entites.dart';
+import 'package:t_truck_web/features/map/map_controller.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
 
-import '../../../core/components/map_component.dart';
 import '../../../core/components/menu/menu_component_controller.dart';
 import '../../../core/params/params.dart';
 import '../../../core/utils/app_dialog.dart';
@@ -29,8 +32,6 @@ class HomeController extends GetxController {
     pathBack: Routes.home.path,
   ).obs;
 
-  final RxList<LocationEntity> locationEntity = <LocationEntity>[].obs;
-
   HomeController({
     required this.appDialog,
     required this.menuComponentController,
@@ -54,26 +55,52 @@ class HomeController extends GetxController {
   }
 
   Future<void> getPanelData() async {
-    final combineRes = await Future.wait([
-      iListDashboardCase(const Params()),
-      iListLocationCase(const Params()),
-    ]);
-
-    print(combineRes);
-
-    combineRes.first.fold(
+    (await iListDashboardCase(const Params())).fold(
       (l) => null,
       (r) => {
-        dashboads.value = r as DashBoardComposedEntity,
+        dashboads.value = r,
         dashboads.refresh(),
       },
     );
-    combineRes.last.fold(
+    await updadeListLocation();
+
+    Timer.periodic(const Duration(seconds: 5), (Timer t) async {
+      await updadeListLocation();
+    });
+  }
+
+  Future<void> updadeListLocation() async {
+    (await iListLocationCase(const Params())).fold(
       (l) => null,
       (r) => {
-        locationEntity.value = r as List<LocationEntity>,
-        locationEntity.refresh(),
+        Get.find<MapPageController>().markers.value = r
+            .map(
+              (element) => MarkerMapEntity(
+                child: PositionMap(
+                  message: "Motorista ${element.truck.cod}",
+                ),
+                name: element.truck.cod.toString(),
+                locationMapEntity: LocationMapEntity(
+                    latitude: element.latitude.toDouble(),
+                    longitude: element.longitudade.toDouble()),
+              ),
+            )
+            .toList()
+
+        // markers: controller.locationEntity
+        //     ,
+        // onPositionChanged: (value) =>
+        //     controller.updateMap(value),
+        // initialPosition: Get.arguments != null
+        //     ? (Get.arguments as LocationMapEntity)
+        //     : controller.currentPositonMap.value,
       },
     );
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    print('closeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
   }
 }

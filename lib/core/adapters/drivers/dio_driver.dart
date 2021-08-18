@@ -26,9 +26,7 @@ class DioDriver implements IHttp {
     String? url, {
     Map<String, String>? headers,
   }) async {
-    return mackObj(await dio.delete(
-      url!,
-    ));
+    return mackObj(await dio.delete(url!, options: Options(headers: headers)));
   }
 
   @override
@@ -36,9 +34,7 @@ class DioDriver implements IHttp {
     String? url, {
     Map<String, String>? headers,
   }) async {
-    return mackObj(await dio.get(
-      url!,
-    ));
+    return mackObj(await dio.get(url!, options: Options(headers: headers)));
   }
 
   @override
@@ -47,10 +43,8 @@ class DioDriver implements IHttp {
     Map<String, String>? headers,
     body,
   }) async {
-    return mackObj(await dio.post(
-      url!,
-      data: body,
-    ));
+    return mackObj(
+        await dio.post(url!, data: body, options: Options(headers: headers)));
   }
 
   @override
@@ -59,9 +53,7 @@ class DioDriver implements IHttp {
     Map<String, String>? headers,
     body,
   }) async {
-    return mackObj(await dio.put(
-      url!,
-    ));
+    return mackObj(await dio.put(url!, options: Options(headers: headers)));
   }
 
   Future<void> logautWhenUnautorized(DioError e) async {

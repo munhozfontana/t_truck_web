@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/map_component.dart';
+import 'package:t_truck_web/features/map/entites/map_entites.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/domain/entities/cliente_entity.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/truck_drivers_entity.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/enum/delivery_status_enum.dart';

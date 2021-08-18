@@ -14,8 +14,10 @@ class LoadInterceptor implements IProtocolInterceptor {
   @override
   InterceptorsWrapper call() {
     return InterceptorsWrapper(onRequest: (options, handler) {
-      count++;
-      storeController.onLoad();
+      if (!options.headers.containsKey('not_load')) {
+        count++;
+        storeController.onLoad();
+      }
       return handler.next(options);
     }, onResponse: (response, handler) {
       count--;
