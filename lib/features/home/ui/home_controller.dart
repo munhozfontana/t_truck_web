@@ -48,8 +48,8 @@ class HomeController extends GetxController {
   void onInit() {
     getPanelData();
     super.onInit();
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      print('OI');
+    timer = Timer.periodic(Duration(seconds: 10), (timer) {
+      iListLocationCase(const Params()).then(updadeListLocation);
     }).obs;
   }
 
@@ -137,7 +137,6 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    print('closeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
     timer!.value.cancel();
   }
 }
