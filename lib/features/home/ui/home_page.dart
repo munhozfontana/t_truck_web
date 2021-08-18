@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/animations/animations_utils.dart';
 import 'package:t_truck_web/core/components/layout_component.dart';
-import 'package:t_truck_web/core/icons/menu_icons_icons.dart';
 import 'package:t_truck_web/features/map/map_page.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
 
@@ -153,7 +153,7 @@ class PositionMap extends StatefulWidget {
 
 class _PositionMapState extends State<PositionMap>
     with TickerProviderStateMixin {
-  double size = 15;
+  double size = 50;
 
   late AnimationController _sonarController;
   AnimationsUtils animationsUtils = AnimationsUtils();
@@ -187,8 +187,8 @@ class _PositionMapState extends State<PositionMap>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(size),
             ),
-            child: const Icon(
-              MenuIcons.truck,
+            child: SvgPicture.asset(
+              "images/truck_gsa.svg",
             ),
           ),
         ),
