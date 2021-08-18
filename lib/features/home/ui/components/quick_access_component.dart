@@ -49,9 +49,9 @@ class _QuickAccessComponentState extends State<QuickAccessComponent>
 
   @override
   void dispose() {
-    super.dispose();
     _selectAnimCtl.dispose();
     _initAnimCtl.dispose();
+    super.dispose();
   }
 
   @override
