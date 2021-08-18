@@ -90,48 +90,9 @@ class HomeController extends GetxController {
               ),
             )
             .toList()
-
-        // markers: controller.locationEntity
-        //     ,
-        // onPositionChanged: (value) =>
-        //     controller.updateMap(value),
-        // initialPosition: Get.arguments != null
-        //     ? (Get.arguments as LocationMapEntity)
-        //     : controller.currentPositonMap.value,
       },
     );
   }
-
-  // Future<void> updadeListLocation() async {
-  //   (await iListLocationCase(const Params()))
-
-  //   .fold(
-  //     (l) => null,
-  //     (r) => {
-  //       Get.find<MapPageController>().markers.value = r
-  //           .map(
-  //             (element) => MarkerMapEntity(
-  //               child: PositionMap(
-  //                 message: "Motorista ${element.truck.cod}",
-  //               ),
-  //               name: element.truck.cod.toString(),
-  //               locationMapEntity: LocationMapEntity(
-  //                   latitude: element.latitude.toDouble(),
-  //                   longitude: element.longitudade.toDouble()),
-  //             ),
-  //           )
-  //           .toList()
-
-  //       // markers: controller.locationEntity
-  //       //     ,
-  //       // onPositionChanged: (value) =>
-  //       //     controller.updateMap(value),
-  //       // initialPosition: Get.arguments != null
-  //       //     ? (Get.arguments as LocationMapEntity)
-  //       //     : controller.currentPositonMap.value,
-  //     },
-  //   );
-  // }
 
   @override
   void onClose() {

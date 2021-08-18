@@ -10,7 +10,7 @@ import '../../../../core/components/table/table_component.dart';
 import '../../../../core/components/title_component.dart';
 import '../../../../core/styles/style_colors.dart';
 import '../../../../core/styles/styles_fonts.dart';
-import '../domain/enum/delivery_status_enum.dart';
+import '../domain/entities/enum/delivery_status_enum.dart';
 import 'truck_drivers_list_controller.dart';
 
 class TruckDriversListPage extends GetWidget<TruckDriversListController> {

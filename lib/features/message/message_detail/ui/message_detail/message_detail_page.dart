@@ -6,7 +6,7 @@ import 'package:t_truck_web/core/components/table/table_cell_component.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_dropdown.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/enum/delivery_status_enum.dart';
+import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/enum/delivery_status_enum.dart';
 
 import './message_detail_controller.dart';
 

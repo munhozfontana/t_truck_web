@@ -1,4 +1,4 @@
-import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/enum/delivery_status_enum.dart';
+import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/enum/delivery_status_enum.dart';
 
 class ClienteEntity {
   final int numOrder;
