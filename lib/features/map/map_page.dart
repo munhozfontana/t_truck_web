@@ -24,6 +24,9 @@ class MapPage extends GetView<MapPageController> {
                 borderRadius: BorderRadius.circular(16),
                 child: Obx(() {
                   return FluterMapAdapter(
+                    center: controller.lastPostion?.value ?? LatLng(-15, -45),
+                    zoom: controller.lastZoom?.value,
+                    onPositionChanged: controller.onPositionChanged,
                     markers: controller.markers
                         .map((e) => Marker(
                               point: LatLng(
@@ -75,12 +78,18 @@ class FluterMapAdapterController {
 class FluterMapAdapter extends StatefulWidget {
   final List<Marker> markers;
   final FluterMapAdapterController fluterMapAdapterController;
+  final LatLng? center;
+  final double? zoom;
+  final void Function(MapPosition position, bool hasGesture)? onPositionChanged;
 
-  const FluterMapAdapter(
-      {Key? key,
-      this.markers = const [],
-      required this.fluterMapAdapterController})
-      : super(key: key);
+  const FluterMapAdapter({
+    Key? key,
+    this.markers = const [],
+    required this.fluterMapAdapterController,
+    this.center,
+    this.onPositionChanged,
+    this.zoom,
+  }) : super(key: key);
 
   @override
   _FluterMapAdapterState createState() =>
@@ -98,6 +107,11 @@ class _FluterMapAdapterState extends State<FluterMapAdapter> {
 
   final MapController mapController = MapController();
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
   LatLng center() {
     return mapController.center;
   }
@@ -108,26 +122,23 @@ class _FluterMapAdapterState extends State<FluterMapAdapter> {
 
   @override
   Widget build(BuildContext context) {
+    final mapOptions = MapOptions(
+        onPositionChanged: widget.onPositionChanged,
+        center: widget.center,
+        zoom: widget.zoom ?? 13);
     return FlutterMap(
       mapController: mapController,
-      options: MapOptions(
-        // onPositionChanged: (a, b) {
-        //   if (b && widget.onPositionChanged != null) {
-        //     widget.onPositionChanged!(LocationMapEntity(
-        //         latitude: a.center!.latitude,
-        //         longitude: a.center!.longitude,
-        //         pathBack: ''));
-        //   }
-        // },
-        center: LatLng(
-          -15,
-          -48,
-        ),
-      ),
+      options: mapOptions,
       layers: [
         TileLayerOptions(
           urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          // urlTemplate:
+          //     "https://api.mapbox.com/styles/v1/munhoz/ckshlqtkq4orw17nrb4nnul3k/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibXVuaG96IiwiYSI6ImNrcXM2eHNwNzFzM2Iyc280Z3puY3FqZzIifQ.kJCBjW88vrMb_HRxKsF3gg",
           subdomains: ['a', 'b', 'c'],
+          // additionalOptions: {
+          //   'accessToken':
+          //       'pk.eyJ1IjoibXVuaG96IiwiYSI6ImNrcXM2eHNwNzFzM2Iyc280Z3puY3FqZzIifQ.kJCBjW88vrMb_HRxKsF3gg'
+          // },
         ),
         MarkerLayerOptions(markers: widget.markers),
       ],

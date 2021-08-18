@@ -18,9 +18,10 @@ class TruckDriversDetailController extends GetxController {
           truckDriver: '')
       .obs;
 
-  final Rx<LocationMapEntity> currentPositonMap =
-      LocationMapEntity(latitude: -15.7801, longitude: -47.9292, pathBack: "")
-          .obs;
+  final Rx<LocationMapEntity> currentPositonMap = LocationMapEntity(
+    latitude: -15.7801,
+    longitude: -47.9292,
+  ).obs;
 
   RxList<ClienteEntity> list = <ClienteEntity>[].obs;
 

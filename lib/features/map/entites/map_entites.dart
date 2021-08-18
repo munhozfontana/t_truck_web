@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 class LocationMapEntity {
   double latitude;
   double longitude;
-  String pathBack;
 
   LocationMapEntity({
     required this.latitude,
     required this.longitude,
-    this.pathBack = '/',
   });
 
   LocationMapEntity copyWith({
@@ -21,7 +19,6 @@ class LocationMapEntity {
     return LocationMapEntity(
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
-      pathBack: pathBack ?? this.pathBack,
     );
   }
 
@@ -29,7 +26,6 @@ class LocationMapEntity {
     return {
       'latitude': latitude,
       'longitude': longitude,
-      'pathBack': pathBack,
     };
   }
 
@@ -37,21 +33,7 @@ class LocationMapEntity {
 
   @override
   String toString() =>
-      'LocationMapEntity(latitude: $latitude, longitude: $longitude, pathBack: $pathBack)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is LocationMapEntity &&
-        other.latitude == latitude &&
-        other.longitude == longitude &&
-        other.pathBack == pathBack;
-  }
-
-  @override
-  int get hashCode =>
-      latitude.hashCode ^ longitude.hashCode ^ pathBack.hashCode;
+      'LocationMapEntity(latitude: $latitude, longitude: $longitude)';
 }
 
 class MarkerMapEntity {
