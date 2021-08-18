@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:t_truck_web/core/components/map_component.dart';
 import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/core/params/params.dart';
 import 'package:t_truck_web/core/utils/app_dialog.dart';
@@ -10,6 +9,7 @@ import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart
 import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_dashboard_case.dart';
 import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_location_case.dart';
 import 'package:t_truck_web/features/home/ui/home_controller.dart';
+import 'package:t_truck_web/features/map/entites/map_entites.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import 'home_controller_test.mocks.dart';

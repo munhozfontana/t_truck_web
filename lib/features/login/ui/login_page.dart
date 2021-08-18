@@ -13,7 +13,8 @@ class LoginPage extends GetWidget<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

@@ -10,11 +10,10 @@ import 'utils/app_dialog.dart';
 class CoreBiding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<IAppDialog>(
-      () => AppDialog(),
-    );
-    Get.lazyPut<IMenuComponentController>(
-      () => MenuComponentController(),
+    Get.put<IAppDialog>(AppDialog(), permanent: true);
+    Get.put<IMenuComponentController>(
+      MenuComponentController(),
+      permanent: true,
     );
     Get.lazyPut<IHttp>(
       () => DioDriver(

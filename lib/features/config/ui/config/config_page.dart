@@ -15,7 +15,7 @@ import './config_controller.dart';
 class ConfigPage extends GetView<ConfigController> {
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
     return LayoutComponent(
       child: Column(
