@@ -45,8 +45,8 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    getPanelData();
     super.onInit();
+    getPanelData();
     timer = Timer.periodic(Duration(seconds: 10), (timer) {
       iListLocationCase(const Params()).then(updadeListLocation);
     }).obs;

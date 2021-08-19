@@ -4,10 +4,12 @@ class DevolutionEntity {
   final int cod;
   final String client;
   final DevolutionStatus status;
+  final DateTime data;
 
   DevolutionEntity({
     required this.cod,
     this.client = 'Sem informação',
     this.status = DevolutionStatus.none,
+    required this.data,
   });
 }
