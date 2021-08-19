@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:t_truck_web/core/components/responsive.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import '../../animations/animations_utils.dart';
@@ -109,33 +110,40 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                                       .value),
                             ),
                           ),
-                          Expanded(
-                            flex: 3,
-                            child: AnimatedBuilder(
-                              animation: _selectAnimCtl,
-                              builder: (context, child) {
-                                return Container(
-                                  margin: EdgeInsets.only(
-                                    left: animationsUtils
-                                        .animateDouble(
-                                          parent: _selectAnimCtl,
-                                          begin: 0,
-                                          end: 10,
-                                        )
-                                        .value,
-                                  ),
-                                  child: Text(
-                                    widget.menuModel.menu.text,
-                                    style: StylesTypography.h16.copyWith(
-                                        color: animationsUtils
-                                            .animateColor(
-                                                parent: _hoverAnimCtl,
-                                                begin: StylesColors.gray,
-                                                end: Colors.white)
-                                            .value),
-                                  ),
-                                );
-                              },
+                          Visibility(
+                            visible: Responsive.when(
+                              context,
+                              tablet: false,
+                              orOther: true,
+                            ),
+                            child: Expanded(
+                              flex: 3,
+                              child: AnimatedBuilder(
+                                animation: _selectAnimCtl,
+                                builder: (context, child) {
+                                  return Container(
+                                    margin: EdgeInsets.only(
+                                      left: animationsUtils
+                                          .animateDouble(
+                                            parent: _selectAnimCtl,
+                                            begin: 0,
+                                            end: 10,
+                                          )
+                                          .value,
+                                    ),
+                                    child: Text(
+                                      widget.menuModel.menu.text,
+                                      style: StylesTypography.h16.copyWith(
+                                          color: animationsUtils
+                                              .animateColor(
+                                                  parent: _hoverAnimCtl,
+                                                  begin: StylesColors.gray,
+                                                  end: Colors.white)
+                                              .value),
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ],

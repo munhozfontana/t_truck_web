@@ -26,7 +26,7 @@ class LayoutComponent extends StatelessWidget {
     return Row(
       children: [
         Visibility(
-          visible: Responsive.isDesktop(context),
+          visible: Responsive.when(context, mobile: false, orOther: true),
           child: Expanded(
             child: Material(
               child: MenuComponent(),
@@ -34,7 +34,7 @@ class LayoutComponent extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 6,
+          flex: Responsive.when(context, tablet: 12, orOther: 6),
           child: Responsive.when(
             context,
             mobile: Scaffold(
@@ -44,8 +44,11 @@ class LayoutComponent extends StatelessWidget {
                 headerSliverBuilder: (context, innerBoxIsScrolled) {
                   return [
                     HeaderComponentSliver(
-                      spaceIcon:
-                          Responsive.when(context, mobile: 8, orOther: 1),
+                      spaceIcon: Responsive.when(
+                        context,
+                        mobile: 8,
+                        orOther: 1,
+                      ),
                     ),
                   ];
                 },

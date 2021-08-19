@@ -8,18 +8,21 @@ class DevolutionModel extends DevolutionEntity {
     required int cod,
     required String client,
     required DevolutionStatus status,
+    required DateTime data,
   }) : super(
           cod: cod,
           client: client,
           status: status,
+          data: data,
         );
 
   factory DevolutionModel.fromMap(Map<String, dynamic> map) {
+    final parse = DateTime.parse(map['DATA'] as String);
     return DevolutionModel(
-      cod: map['CODPROD'] as int,
-      client: map['CLIENTE'] as String,
-      status: DevolutionStatusUtils.descByCod(map['SITUACAO'] as String),
-    );
+        cod: map['CODPROD'] as int,
+        client: map['CLIENTE'] as String,
+        status: DevolutionStatusUtils.descByCod(map['SITUACAO'] as String),
+        data: parse);
   }
 
   factory DevolutionModel.fromJson(String source) =>

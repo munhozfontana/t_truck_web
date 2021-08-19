@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/components/menu/menu_biding.dart';
 import 'package:t_truck_web/features/home/data/external/dashboard_external.dart';
 import 'package:t_truck_web/features/home/data/external/location_external.dart';
 import 'package:t_truck_web/features/home/data/external/protocols/i_location_external.dart';
@@ -7,6 +8,7 @@ import 'package:t_truck_web/features/home/domain/repositories/i_location_reposit
 import 'package:t_truck_web/features/home/domain/use_cases/list_location_case.dart';
 import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_dashboard_case.dart';
 import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_location_case.dart';
+import 'package:t_truck_web/features/map/map_bindings.dart';
 
 import 'data/external/protocols/i_dashboard_external.dart';
 import 'data/repositories_impl/dashboard_repository.dart';
@@ -19,6 +21,9 @@ class HomeBiding extends Bindings {
   void dependencies() {
     dashboard();
     location();
+    MenuBiding().dependencies();
+    MapPageBindings().dependencies();
+
     Get.lazyPut<HomeController>(
       () => HomeController(
         appDialog: Get.find(),
