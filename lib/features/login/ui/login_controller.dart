@@ -9,6 +9,8 @@ class LoginController extends GetxController {
   final LoginCase loginCase;
   final ILoggedUser iLoggedUser;
 
+  Rx<GlobalKey<FormState>> formKey = GlobalKey<FormState>().obs;
+
   final loginField = TextEditingController().obs;
   final passwordField = TextEditingController().obs;
 
@@ -20,22 +22,28 @@ class LoginController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    await redirectWhenLoginNotExpired();
+  }
+
+  Future<void> redirectWhenLoginNotExpired() async {
     if (!(await iLoggedUser.loginExpired())) {
       Get.offNamed('/home');
     }
   }
 
   Future<void> login() async {
-    final loginModel = LoginModel(
-      login: loginField.value.text,
-      password: passwordField.value.text,
-    );
-    (await loginCase(Params(loginParam: loginModel))).fold(
-      (l) => null,
-      (r) {
-        iLoggedUser.saveToken(r.token);
-        Get.offNamed('/home');
-      },
-    );
+    if (formKey.value.currentState!.validate()) {
+      final loginModel = LoginModel(
+        login: loginField.value.text,
+        password: passwordField.value.text,
+      );
+      (await loginCase(Params(loginParam: loginModel))).fold(
+        (l) => null,
+        (r) {
+          iLoggedUser.saveToken(r.token);
+          Get.offNamed('/home');
+        },
+      );
+    }
   }
 }

@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 
 class AppInput extends StatelessWidget {
   final String? label;
-  final TextEditingController? controller;
+  final TextFormField textFormField;
 
   const AppInput({
     Key? key,
     this.label,
-    this.controller,
+    required this.textFormField,
   }) : super(key: key);
 
   @override
@@ -26,9 +26,7 @@ class AppInput extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        TextFormField(
-          controller: controller,
-        ),
+        textFormField,
       ],
     );
   }

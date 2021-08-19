@@ -5,6 +5,7 @@ services:
     image: lufemunhoz/t_truck_web:latest
     ports:
       - 80:80
+      - 4003:80
     env_file:
       - .env
   ngrok:

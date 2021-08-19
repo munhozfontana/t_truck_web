@@ -15,8 +15,6 @@ import './config_controller.dart';
 class ConfigPage extends GetView<ConfigController> {
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
     return LayoutComponent(
       child: Column(
         children: [
@@ -40,7 +38,10 @@ class ConfigPage extends GetView<ConfigController> {
                     children: [
                       pageDescribe(context),
                       const Spacer(),
-                      formPage(_formKey, context),
+                      formPage(
+                        controller.formKey.value,
+                        context,
+                      ),
                     ],
                   ),
                 ),
@@ -94,17 +95,36 @@ class ConfigPage extends GetView<ConfigController> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Row(
-                            children: const [
-                              Expanded(child: AppInput(label: 'Nome')),
-                              SizedBox(
+                            children: [
+                              Expanded(
+                                  child: AppInput(
+                                label: 'Nome',
+                                textFormField: TextFormField(
+                                  controller: controller.nameField.value,
+                                ),
+                              )),
+                              const SizedBox(
                                 width: 16,
                               ),
-                              Expanded(child: AppInput(label: 'Sobrenome')),
+                              Expanded(
+                                child: AppInput(
+                                  label: 'Sobrenome',
+                                  textFormField: TextFormField(
+                                    controller: controller.lastNameField.value,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           Row(
-                            children: const [
-                              Expanded(child: AppInput(label: 'Sobrenome')),
+                            children: [
+                              Expanded(
+                                  child: AppInput(
+                                label: 'E-mail',
+                                textFormField: TextFormField(
+                                  controller: controller.emailField.value,
+                                ),
+                              )),
                             ],
                           ),
                         ],
@@ -146,7 +166,7 @@ class ConfigPage extends GetView<ConfigController> {
                           ),
                           Expanded(
                             child: ElevatedButton.icon(
-                              onPressed: () {},
+                              onPressed: controller.saveConfig,
                               style: StylesButton.grayButtonCirc14.copyWith(
                                 backgroundColor: MaterialStateProperty.all(
                                   StylesColors.grayAlmostWhite,

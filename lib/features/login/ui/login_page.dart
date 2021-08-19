@@ -13,8 +13,6 @@ class LoginPage extends GetWidget<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -34,7 +32,7 @@ class LoginPage extends GetWidget<LoginController> {
                   ),
                   fit: FlexFit.tight,
                   child: Form(
-                    key: _formKey,
+                    key: controller.formKey.value,
                     child: Column(
                       children: [
                         const Spacer(
@@ -64,12 +62,21 @@ class LoginPage extends GetWidget<LoginController> {
                         const Spacer(flex: 20),
                         AppInput(
                           label: "E-mail",
-                          controller: controller.loginField.value,
+                          textFormField: TextFormField(
+                            controller: controller.loginField.value,
+                          ),
                         ),
                         const Spacer(flex: 16),
                         AppInput(
                           label: "Senha",
-                          controller: controller.passwordField.value,
+                          textFormField: TextFormField(
+                            controller: controller.passwordField.value,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "O campo não pode estar vazio";
+                              }
+                            },
+                          ),
                         ),
                         const Spacer(flex: 16),
                         Flexible(

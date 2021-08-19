@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:faker/faker.dart';
-import 'package:t_truck_web/core/adapters/drivers/dio_driver.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_http_external.dart';
 import 'package:t_truck_web/core/error/api_exception.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/delivery_status_enum.dart';
@@ -19,11 +18,11 @@ class TruckDriversExternal implements ITruckDriversExternal {
   @override
   Future<List<TruckDriversEntity>> get() async {
     try {
-      var res = await iHttp.postHttp(
-        'http://truck.stoatacadista.com.br:2302/api/ocorrencia',
-      );
+      // var res = await iHttp.postHttp(
+      //   'http://truck.stoatacadista.com.br:2302/api/ocorrencia',
+      // );
 
-      var resExtract = DioDriver.listExtract(res);
+      // var resExtract = DioDriver.listExtract(res);
 
       final faker = Faker();
       return List.generate(
