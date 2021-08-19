@@ -19,7 +19,6 @@ class LoginExternal implements ILoginExternal {
   @override
   Future<TokenEntity> login(LoginModel login) async {
     try {
-      print(login.toJson());
       final res = await iHttp.postHttp(
         'http://truck.stoatacadista.com.br:2302/api/login',
         body: login.toJson(),

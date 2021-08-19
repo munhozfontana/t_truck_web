@@ -4,6 +4,14 @@ import 'package:t_truck_web/core/styles/style_colors.dart';
 
 enum DevolutionStatus { done, notDone, none }
 
+class DevolutionStatusUtils {
+  static DevolutionStatus descByCod(String cod) {
+    return DevolutionStatus.values.firstWhere(
+      (element) => element.sto.contains(cod),
+    );
+  }
+}
+
 extension DevolutionStatusDesc on DevolutionStatus {
   String get desc {
     switch (this) {
@@ -15,6 +23,19 @@ extension DevolutionStatusDesc on DevolutionStatus {
         return 'Sem Status';
       default:
         return 'Sem Status';
+    }
+  }
+
+  String get sto {
+    switch (this) {
+      case DevolutionStatus.done:
+        return 'DEVT';
+      case DevolutionStatus.notDone:
+        return 'DEVP';
+      case DevolutionStatus.none:
+        return '';
+      default:
+        return '';
     }
   }
 }
