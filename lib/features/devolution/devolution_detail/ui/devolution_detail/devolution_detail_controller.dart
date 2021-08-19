@@ -28,9 +28,8 @@ class DevolutionDetailController extends GetxController {
         .obs;
 
     (await devolutionDetailCase(Params(id: devolution.value.cod))).fold(
-      (l) => print('deu erro'),
+      (l) => null,
       (r) => {
-        print('ta com dado'),
         list.value = r,
       },
     );
