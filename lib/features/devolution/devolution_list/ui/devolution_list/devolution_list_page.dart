@@ -9,7 +9,7 @@ import 'package:t_truck_web/core/components/table/table_component.dart';
 import 'package:t_truck_web/core/components/title_component.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/enum/devolution_status_enum.dart';
+import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolution_status_enum.dart';
 
 import './devolution_list_controller.dart';
 

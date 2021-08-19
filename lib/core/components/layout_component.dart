@@ -140,7 +140,7 @@ class LayoutComponent extends StatelessWidget {
   FloatingActionButton buildFloatingActionButton() {
     final floatActionButton = FloatingActionButton(
       onPressed: () => print('Chat'),
-      child: Icon(Icons.chat_bubble),
+      child: const Icon(Icons.chat_bubble),
     );
     return floatActionButton;
   }
