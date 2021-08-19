@@ -92,13 +92,7 @@ class CardInfo extends StatelessWidget {
             flex: 4,
             child: Container(
               alignment: Alignment.centerLeft,
-              child: Visibility(
-                visible: Responsive.isMobile(context),
-                replacement: titleCard(),
-                child: FittedBox(
-                  child: titleCard(),
-                ),
-              ),
+              child: titleCard(context),
             ),
           ),
           Expanded(
@@ -126,10 +120,14 @@ class CardInfo extends StatelessWidget {
     );
   }
 
-  Text titleCard() {
+  Text titleCard(BuildContext context) {
     return Text(
       dashBoardEntity!.quantity,
-      style: StylesTypography.h48,
+      style: Responsive.when(
+        context,
+        mobile: StylesTypography.h21,
+        orOther: StylesTypography.h48,
+      ),
     );
   }
 
