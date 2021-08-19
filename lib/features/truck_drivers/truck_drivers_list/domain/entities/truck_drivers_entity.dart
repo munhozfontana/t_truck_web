@@ -1,4 +1,4 @@
-import 'enum/delivery_status_enum.dart';
+import 'delivery_status_enum.dart';
 
 class TruckDriversEntity {
   String cod;

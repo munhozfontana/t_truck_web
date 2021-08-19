@@ -4,7 +4,7 @@ import 'package:faker/faker.dart';
 import 'package:t_truck_web/core/adapters/drivers/dio_driver.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_http_external.dart';
 import 'package:t_truck_web/core/error/api_exception.dart';
-import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/enum/delivery_status_enum.dart';
+import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/delivery_status_enum.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/truck_drivers_entity.dart';
 
 import 'protocols/i_truck_drivers_external.dart';

@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/features/map/entites/map_entites.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/domain/entities/cliente_entity.dart';
-import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/enum/delivery_status_enum.dart';
+import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/delivery_status_enum.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/truck_drivers_entity.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/ui/truck_drivers_list_controller.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
