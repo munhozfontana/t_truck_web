@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
-import 'package:t_truck_web/core/components/menu/menu_item_component.dart';
 
 import '../../styles/style_colors.dart';
+import 'menu_component_controller.dart';
+import 'menu_item_component.dart';
 
 class MenuComponent extends GetWidget<MenuComponentController> {
   @override

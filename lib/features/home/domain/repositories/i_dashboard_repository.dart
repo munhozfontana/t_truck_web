@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:t_truck_web/core/error/failures.dart';
-import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
+
+import '../../../../core/error/failures.dart';
+import '../entities/dash_board_entity.dart';
 
 mixin IDasboadRepository {
   Future<Either<Failure, DashBoardComposedEntity>> get();

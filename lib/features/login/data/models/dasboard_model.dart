@@ -1,4 +1,6 @@
-import 'package:t_truck_web/features/login/domain/entities/login_entity.dart';
+import 'dart:convert';
+
+import '../../domain/entities/login_entity.dart';
 
 class LoginModel extends LoginEntity {
   LoginModel({
@@ -8,4 +10,13 @@ class LoginModel extends LoginEntity {
           login: login,
           password: password,
         );
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() {
+    return {
+      'login': login,
+      'password': password,
+    };
+  }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/animations/animations_utils.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
+
+import '../../../../core/animations/animations_utils.dart';
+import '../../../../core/components/responsive.dart';
+import '../../../../core/styles/style_colors.dart';
+import '../../../../core/styles/styles_fonts.dart';
 
 class QuickAccessComponent extends StatefulWidget {
   final BoxConstraints constraints;
@@ -47,9 +49,9 @@ class _QuickAccessComponentState extends State<QuickAccessComponent>
 
   @override
   void dispose() {
-    super.dispose();
     _selectAnimCtl.dispose();
     _initAnimCtl.dispose();
+    super.dispose();
   }
 
   @override
@@ -60,7 +62,8 @@ class _QuickAccessComponentState extends State<QuickAccessComponent>
         return AnimatedBuilder(
           animation: _initAnimCtl,
           builder: (_, __) {
-            final widthItem = widget.constraints.maxWidth * .2192;
+            final widthItem = widget.constraints.maxWidth *
+                (Responsive.isNotMobile(context) ? .2192 : .333);
             return MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
@@ -84,25 +87,34 @@ class _QuickAccessComponentState extends State<QuickAccessComponent>
                       color: StylesColors.white,
                       borderRadius: BorderRadius.circular(8.0),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(child: Icon(widget.icon)),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  widget.label!,
-                                  style: StylesTypography.h16,
-                                ),
-                                const Icon(Icons.arrow_right_alt_rounded),
-                              ],
+                    child: Visibility(
+                      visible: Responsive.isNotMobile(context),
+                      replacement: Icon(widget.icon),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Icon(widget.icon),
                             ),
-                          ),
-                        ],
+                            Visibility(
+                              child: Expanded(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      widget.label!,
+                                      style: StylesTypography.h16,
+                                    ),
+                                    const Icon(Icons.arrow_right_alt_rounded),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

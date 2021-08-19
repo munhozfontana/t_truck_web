@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:t_truck_web/core/error/api_exception.dart';
-import 'package:t_truck_web/core/error/failures.dart';
-import 'package:t_truck_web/features/home/data/external/i_dashboard_external.dart';
-import 'package:t_truck_web/features/home/domain/entities/dash_board_entity.dart';
-import 'package:t_truck_web/features/home/domain/repositories/i_dashboard_repository.dart';
+
+import '../../../../core/error/api_exception.dart';
+import '../../../../core/error/failures.dart';
+import '../../domain/entities/dash_board_entity.dart';
+import '../../domain/repositories/i_dashboard_repository.dart';
+import '../external/protocols/i_dashboard_external.dart';
 
 class DasboadRepository implements IDasboadRepository {
   final IDashboardExternal iDashboardExternal;

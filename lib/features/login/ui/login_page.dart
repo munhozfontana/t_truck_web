@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/login/ui/login_controller.dart';
+import 'package:t_truck_web/core/components/responsive.dart';
+import 'package:t_truck_web/core/store_controller.dart';
 
 import 'components/app_input.dart';
 import 'components/background_logo.dart';
+import 'login_controller.dart';
 
 class LoginPage extends GetWidget<LoginController> {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -24,9 +25,14 @@ class LoginPage extends GetWidget<LoginController> {
                   flex: 2,
                 ),
                 Flexible(
+                  flex: Responsive.when(
+                    context,
+                    mobile: 10,
+                    orOther: 1,
+                  ),
                   fit: FlexFit.tight,
                   child: Form(
-                    key: _formKey,
+                    key: controller.formKey.value,
                     child: Column(
                       children: [
                         const Spacer(
@@ -54,12 +60,31 @@ class LoginPage extends GetWidget<LoginController> {
                           ),
                         ),
                         const Spacer(flex: 20),
-                        const AppInput(label: "E-mail"),
+                        AppInput(
+                          label: "E-mail",
+                          textFormField: TextFormField(
+                            controller: controller.loginField.value,
+                          ),
+                        ),
                         const Spacer(flex: 16),
-                        const AppInput(label: "Senha"),
+                        AppInput(
+                          label: "Senha",
+                          textFormField: TextFormField(
+                            controller: controller.passwordField.value,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "O campo não pode estar vazio";
+                              }
+                            },
+                          ),
+                        ),
                         const Spacer(flex: 16),
                         Flexible(
-                          flex: 24,
+                          flex: Responsive.when(
+                            context,
+                            mobile: 52,
+                            orOther: 24,
+                          ),
                           child: Row(
                             children: [
                               const Flexible(
@@ -85,14 +110,21 @@ class LoginPage extends GetWidget<LoginController> {
                             width: double.infinity,
                             height: 56,
                           ),
-                          child: ElevatedButton(
-                            onPressed: () => controller.login(),
-                            child: Text(
-                              "Entrar",
-                              style: Get.textTheme.headline2!
-                                  .copyWith(color: Colors.white),
-                            ),
-                          ),
+                          child: Obx(() {
+                            return ElevatedButton(
+                              onPressed: () => controller.login(),
+                              child: Get.find<StoreController>().loading.value
+                                  ? const CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    )
+                                  : Text(
+                                      "Entrar",
+                                      style: Get.textTheme.headline2!
+                                          .copyWith(color: Colors.white),
+                                    ),
+                            );
+                          }),
                         ),
                         const Spacer(flex: 19),
                         Text(

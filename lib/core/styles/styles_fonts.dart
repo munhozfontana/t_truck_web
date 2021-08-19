@@ -20,6 +20,14 @@ mixin StylesTypography {
       fontSize: 24,
       color: StylesColors.blue);
 
+  static TextStyle get h21 => TextStyle(
+      letterSpacing: 1.1,
+      fontWeight: FontWeight.w700,
+      fontFamily: 'Poppins',
+      fontStyle: FontStyle.normal,
+      fontSize: 21,
+      color: StylesColors.blue);
+
   static TextStyle get h18 => TextStyle(
       fontWeight: FontWeight.w500,
       fontFamily: 'Poppins',
@@ -34,6 +42,12 @@ mixin StylesTypography {
       fontSize: 18,
       color: StylesColors.gray);
 
+  static TextStyle get h16Bold => const TextStyle(
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Poppins',
+        fontStyle: FontStyle.normal,
+        fontSize: 16,
+      );
   static TextStyle get h16 => const TextStyle(
         fontWeight: FontWeight.w500,
         fontFamily: 'Poppins',
@@ -53,5 +67,8 @@ mixin StylesTypography {
         fontFamily: 'Poppins',
         fontStyle: FontStyle.normal,
         fontSize: 14,
+      );
+  static TextStyle get h14w500 => h14.copyWith(
+        fontWeight: FontWeight.w500,
       );
 }

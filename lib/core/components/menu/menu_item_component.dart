@@ -1,16 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/animations/animations_utils.dart';
-import 'package:t_truck_web/core/components/menu/menu_model.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
+import '../../animations/animations_utils.dart';
 import '../../styles/style_colors.dart';
 import '../../styles/styles_fonts.dart';
 
 class MenuItemComponent extends StatefulWidget {
   final double height;
-  final MenuModel menuModel;
-  final void Function(MenuModel) onTap;
+  final Routes menuModel;
+  final void Function(Routes) onTap;
 
   const MenuItemComponent({
     Key? key,
@@ -97,10 +97,10 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                         children: [
                           Expanded(
                             child: Transform.rotate(
-                              angle: widget.menuModel.iconInverted!
+                              angle: widget.menuModel.menu.iconInverted!
                                   ? 180 * pi / 180
                                   : 0,
-                              child: Icon(widget.menuModel.icon,
+                              child: Icon(widget.menuModel.menu.icon,
                                   color: animationsUtils
                                       .animateColor(
                                           parent: _hoverAnimCtl,
@@ -125,7 +125,7 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                                         .value,
                                   ),
                                   child: Text(
-                                    widget.menuModel.text,
+                                    widget.menuModel.menu.text,
                                     style: StylesTypography.h16.copyWith(
                                         color: animationsUtils
                                             .animateColor(
