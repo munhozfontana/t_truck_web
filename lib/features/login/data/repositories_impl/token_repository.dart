@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 import 'package:t_truck_web/features/login/domain/repositories/i_token_repository.dart';
 
 import '../../../../core/adapters/protocols/i_jwt_external.dart';
@@ -15,8 +16,10 @@ class TokenRepository implements ITokenRepository {
     try {
       return Right(jwtDriver.isExpired(token));
     } on DriverException catch (e) {
+      Logger().w(e);
       return Left(RequestFailure(detail: e.error));
     } catch (e) {
+      Logger().w(e);
       return const Left(
         AppFailure(detail: 'Falha ao obter expiração do token'),
       );
@@ -28,8 +31,10 @@ class TokenRepository implements ITokenRepository {
     try {
       return Right(jwtDriver.jwtDecode(token));
     } on DriverException catch (e) {
+      Logger().w(e);
       return Left(RequestFailure(detail: e.error));
     } catch (e) {
+      Logger().w(e);
       return const Left(
         AppFailure(detail: 'Falha ao decodificar o token'),
       );

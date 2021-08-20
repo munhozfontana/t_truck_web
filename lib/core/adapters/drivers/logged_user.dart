@@ -1,7 +1,9 @@
+import 'package:get/get.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_jwt_external.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_local_store_external.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_logged_user.dart';
 import 'package:t_truck_web/core/error/driver_exception.dart';
+import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 class LoggedUser implements ILoggedUser {
   final IJwt iJwt;
@@ -44,6 +46,7 @@ class LoggedUser implements ILoggedUser {
   void logout() {
     try {
       iLocalStoreExternal.remove('token');
+      Get.offAllNamed(Routes.login.path);
     } catch (e) {
       throw DriverException(error: 'Error ao remover o token');
     }

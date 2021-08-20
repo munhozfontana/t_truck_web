@@ -20,7 +20,7 @@ class DevolutionExternal implements IDevolutionExternal {
   Future<List<DevolutionEntity>> get() async {
     try {
       final res = await iHttp.getHttp(
-        'http://truck.stoatacadista.com.br:2302/api/ocorrencia',
+        'http://truck.stoatacadista.com.br:2302/api/devolucoes',
       );
 
       return DioDriver.listExtract(res)

@@ -18,7 +18,7 @@ import '../domain/entities/dash_board_entity.dart';
 
 class HomeController extends GetxController {
   final IAppDialog appDialog;
-  final IMenuComponentController menuComponentController;
+  final MenuComponentController menuComponentController;
   final IListDashboardCase iListDashboardCase;
   final IListLocationCase iListLocationCase;
 

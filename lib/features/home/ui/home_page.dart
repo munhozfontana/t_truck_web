@@ -107,7 +107,6 @@ class HomePage extends GetWidget<HomeController> {
                   child: LayoutBuilder(
                     builder: (_, BoxConstraints constraints) {
                       return GetX<MenuComponentController>(
-                        init: MenuComponentController(),
                         initState: (_) {},
                         builder: (_) {
                           return ListView.separated(

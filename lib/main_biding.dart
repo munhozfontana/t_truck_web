@@ -9,13 +9,13 @@ class MainBiding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => StoreController());
-    TokenBiding().dependencies();
-    CoreBiding().dependencies();
-    LoginBiding().dependencies();
     Get.lazyPut(
       () => AppInterceptor(
         storeController: Get.find(),
       ),
     );
+    CoreBiding().dependencies();
+    TokenBiding().dependencies();
+    LoginBiding().dependencies();
   }
 }

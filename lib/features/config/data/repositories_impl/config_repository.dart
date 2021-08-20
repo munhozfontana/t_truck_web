@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 import 'package:t_truck_web/features/config/domain/entities/config_entity.dart';
 import 'package:t_truck_web/features/config/domain/repositories/i_config_repository.dart';
 
@@ -18,8 +19,10 @@ class ConfigRepository implements IConfigRepository {
     try {
       return Right(await iConfigExternal.save(obj));
     } on ApiException catch (e) {
+      Logger().w(e);
       return Left(RequestFailure(detail: e.error));
     } catch (e) {
+      Logger().w(e);
       return const Left(AppFailure(detail: 'Erro ao receber informações'));
     }
   }

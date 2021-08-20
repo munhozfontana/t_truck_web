@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 import 'package:t_truck_web/core/error/api_exception.dart';
 import 'package:t_truck_web/core/error/failures.dart';
 import 'package:t_truck_web/features/message/message_list/data/external/protocols/i_message_external.dart';
@@ -17,8 +18,10 @@ class MessageRepository implements IMessageRepository {
     try {
       return Right(await iMessageExternal.get());
     } on ApiException catch (e) {
+      Logger().w(e);
       return Left(RequestFailure(detail: e.error));
     } catch (e) {
+      Logger().w(e);
       return const Left(AppFailure(detail: 'Erro ao receber informações'));
     }
   }
