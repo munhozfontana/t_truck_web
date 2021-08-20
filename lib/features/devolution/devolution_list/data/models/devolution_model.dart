@@ -19,7 +19,7 @@ class DevolutionModel extends DevolutionEntity {
   factory DevolutionModel.fromMap(Map<String, dynamic> map) {
     final parse = DateTime.parse(map['DATA'] as String);
     return DevolutionModel(
-        cod: map['CODPROD'] as int,
+        cod: map['NUMTRANSVENDA'] as int,
         client: map['CLIENTE'] as String,
         status: DevolutionStatusUtils.descByCod(map['SITUACAO'] as String),
         data: parse);

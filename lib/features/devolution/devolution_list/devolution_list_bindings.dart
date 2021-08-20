@@ -28,8 +28,8 @@ class DevolutionListBindings implements Bindings {
       ),
     );
 
-    Get.put<DevolutionListController>(
-      DevolutionListController(
+    Get.lazyPut<DevolutionListController>(
+      () => DevolutionListController(
         listDevolutionCase: Get.find(),
       ),
     );

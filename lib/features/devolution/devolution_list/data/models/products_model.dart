@@ -19,11 +19,11 @@ class ProductsModel extends ProductsEntity {
 
   factory ProductsModel.fromMap(Map<String, dynamic> map) {
     return ProductsModel(
-      cod: map['COD'] as int,
-      name: map['NAME'] as String,
-      price: map['PRICE'] as int,
-      priceMount: map['PRICEMOUNT'] as int,
-      quantity: map['QUANTITY'] as int,
+      cod: map['CODPROD'] as int,
+      name: map['DESCRICAO'] as String,
+      price: 0 as int,
+      priceMount: 0 as int,
+      quantity: map['QT'] as int,
     );
   }
 

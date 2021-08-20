@@ -13,7 +13,6 @@ import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
 import 'package:t_truck_web/features/map/map_page.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/delivery_status_enum.dart';
-import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import './truck_drivers_detail_controller.dart';
 
@@ -77,8 +76,7 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
                   // initialPosition: Get.arguments != null
                   //     ? (Get.arguments as LocationMapEntity)
                   //     : controller.currentPositonMap.value,
-                  onTap: () => Get.toNamed(Routes.homeMap.path,
-                      arguments: controller.currentPositonMap.value),
+                  onTap: () => Get.back(),
                 ),
               ),
             ),
