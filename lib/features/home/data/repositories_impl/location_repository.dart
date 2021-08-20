@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 import 'package:t_truck_web/core/error/api_exception.dart';
 import 'package:t_truck_web/core/error/failures.dart';
 import 'package:t_truck_web/features/home/data/external/protocols/i_location_external.dart';
@@ -18,8 +19,10 @@ class LocationRepository implements ILocationRepository {
     try {
       return Right(await iLocationExternal.get());
     } on ApiException catch (e) {
+      Logger().w(e);
       return Left(RequestFailure(detail: e.error));
     } catch (e) {
+      Logger().w(e);
       return const Left(AppFailure(detail: 'Erro ao receber informações'));
     }
   }

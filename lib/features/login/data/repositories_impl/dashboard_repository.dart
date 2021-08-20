@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 import 'package:t_truck_web/features/login/data/models/dasboard_model.dart';
 import 'package:t_truck_web/features/login/domain/entities/token_entity.dart';
 
@@ -19,8 +20,10 @@ class LoginRepository implements ILoginRepository {
     try {
       return Right(await iLoginExternal.login(login));
     } on ApiException catch (e) {
+      Logger().w(e);
       return Left(RequestFailure(detail: e.error));
     } catch (e) {
+      Logger().w(e);
       return const Left(AppFailure(detail: 'Erro ao receber informações'));
     }
   }
