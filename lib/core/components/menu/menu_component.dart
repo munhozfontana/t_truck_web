@@ -23,7 +23,12 @@ class MenuComponent extends GetWidget<MenuComponentController> {
           ),
           Expanded(
             flex: 48,
-            child: linkExit(),
+            child: Container(
+              child: InkWell(
+                onTap: () => print('oi'),
+                child: linkExit(),
+              ),
+            ),
           ),
         ],
       ),

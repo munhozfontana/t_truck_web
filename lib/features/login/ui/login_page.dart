@@ -64,12 +64,18 @@ class LoginPage extends GetWidget<LoginController> {
                           label: "E-mail",
                           textFormField: TextFormField(
                             controller: controller.loginField.value,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "O campo não pode estar vazio";
+                              }
+                            },
                           ),
                         ),
                         const Spacer(flex: 16),
                         AppInput(
                           label: "Senha",
                           textFormField: TextFormField(
+                            obscureText: true,
                             controller: controller.passwordField.value,
                             validator: (value) {
                               if (value == null || value.isEmpty) {

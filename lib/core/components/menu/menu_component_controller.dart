@@ -1,17 +1,13 @@
 import 'package:get/get.dart';
+import 'package:t_truck_web/core/adapters/protocols/i_logged_user.dart';
 
 import '../../../routes/app_routes_enum.dart';
 
-mixin IMenuComponentController {
-  void addQuickAcces(Routes menuModel);
-  void onTapMenu(Routes newMenuModel);
-}
-
-class MenuComponentController extends GetxController
-    implements IMenuComponentController {
+class MenuComponentController extends GetxController {
   RxDouble? maxHeight;
 
   final RxList<Routes> quickAcces = <Routes>[].obs;
+  final ILoggedUser iLoggedUser;
 
   RxList<Routes> menusItem = [
     Routes.home,
@@ -22,6 +18,10 @@ class MenuComponentController extends GetxController
   ].obs;
 
   final Rx<Routes> _menuModel = Routes.home.obs;
+
+  MenuComponentController({
+    required this.iLoggedUser,
+  });
 
   set menuModel(Routes newMenuModel) {
     _menuModel.value = newMenuModel;
@@ -49,5 +49,9 @@ class MenuComponentController extends GetxController
     } else if (Get.currentRoute.contains(RegExp(r'[0-9]'))) {
       Get.back();
     }
+  }
+
+  void logout() {
+    iLoggedUser.logout();
   }
 }
