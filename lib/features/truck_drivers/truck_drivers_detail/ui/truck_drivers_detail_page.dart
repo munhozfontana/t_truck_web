@@ -71,13 +71,7 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
               enabled: false,
               child: Hero(
                 tag: 'mapa-tag',
-                child: MapPage(
-                  // onPositionChanged: (value) => controller.updateMap(value),
-                  // initialPosition: Get.arguments != null
-                  //     ? (Get.arguments as LocationMapEntity)
-                  //     : controller.currentPositonMap.value,
-                  onTap: () => Get.back(),
-                ),
+                child: MapPage(onTap: () => Get.back()),
               ),
             ),
           ),
