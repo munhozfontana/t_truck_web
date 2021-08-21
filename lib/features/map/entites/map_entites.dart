@@ -45,4 +45,8 @@ class MarkerMapEntity {
     required this.name,
     required this.child,
   });
+
+  @override
+  String toString() =>
+      'MarkerMapEntity(locationMapEntity: $locationMapEntity, name: $name, child: $child)';
 }

@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:t_truck_web/core/params/params.dart';
 import 'package:t_truck_web/features/map/map_controller.dart';
 import 'package:t_truck_web/features/truck_drivers/truck_drivers_detail/domain/entities/order_entity.dart';
@@ -19,11 +22,11 @@ class TruckDriversDetailController extends GetxController {
   RxList<OrderEntity> list = <OrderEntity>[].obs;
   RxString codMot = "".obs;
 
+  final mapPageController = Get.find<MapPageController>();
+
   TruckDriversDetailController({
     required this.iListTruckDetailsOrdersCase,
   });
-
-  Rx<MapPageController> mapPageController = Get.find<MapPageController>().obs;
 
   @override
   void onInit() {
@@ -33,7 +36,22 @@ class TruckDriversDetailController extends GetxController {
     }
     codMot.value = Get.parameters['id']!;
 
-    print(mapPageController.value.markers);
+    Timer(Duration(seconds: 3), () {
+      mapPageController.markers
+          .removeWhere((element) => element.name != codMot.value);
+      if (mapPageController.markers.isNotEmpty) {
+        var marker = mapPageController.markers.first;
+        mapPageController.controlChildMap.value.move(
+          LatLng(
+            marker.locationMapEntity.latitude,
+            marker.locationMapEntity.longitude,
+          ),
+          17,
+        );
+      }
+    });
+    // print(mapPageController.markers
+    //     .firstWhere((element) => element.name.contains(codMot.value)));
 
     getInitData();
   }
