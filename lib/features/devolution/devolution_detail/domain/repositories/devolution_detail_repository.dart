@@ -8,16 +8,16 @@ import 'package:t_truck_web/features/devolution/devolution_detail/domain/entitie
 import './i_devolution_detail_repository.dart';
 
 class DevolutionDetailRepository implements IDevolutionDetailRepository {
-  final IDevolutionDetailExternal iDevolutionExternal;
+  final IDevolutionDetailExternal iDevolutionDetailExternal;
 
   DevolutionDetailRepository({
-    required this.iDevolutionExternal,
+    required this.iDevolutionDetailExternal,
   });
 
   @override
   Future<Either<Failure, List<ProductsEntity>>> getById(int cod) async {
     try {
-      return Right(await iDevolutionExternal.getById(cod));
+      return Right(await iDevolutionDetailExternal.getById(cod));
     } on ApiException catch (e) {
       Logger().w(e);
       return Left(RequestFailure(detail: e.error));
