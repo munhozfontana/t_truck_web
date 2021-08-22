@@ -25,7 +25,6 @@ class TruckDriversDetailController extends GetxController {
       .obs;
 
   RxList<OrderEntity> list = <OrderEntity>[].obs;
-  RxString codMot = "".obs;
 
   final mapPageController = Get.find<MapPageController>();
 
@@ -43,7 +42,8 @@ class TruckDriversDetailController extends GetxController {
   }
 
   Future<void> getInitData() async {
-    (await iListTruckDetailsOrdersCase(Params(id: int.parse(codMot.value))))
+    (await iListTruckDetailsOrdersCase(
+            Params(id: int.parse(truckDriversEntity.value.cod))))
         .fold(
       (l) => null,
       (r) => {
@@ -61,19 +61,19 @@ class TruckDriversDetailController extends GetxController {
   }
 
   void captureCodFromUri() {
-    codMot.value = Get.parameters['id']!;
+    truckDriversEntity.value.cod = Get.parameters['id']!;
   }
 
   void removeTruckAt() {
     var isTruckAtMap = mapPageController.markers
         .where(
-          (element) => element.name == codMot.value,
+          (element) => element.name == truckDriversEntity.value.cod,
         )
         .isNotEmpty;
 
     if (isTruckAtMap) {
       mapPageController.markers.removeWhere(
-        (element) => element.name != codMot.value,
+        (element) => element.name != truckDriversEntity.value.cod,
       );
       if (mapPageController.markers.isNotEmpty) {
         final marker = mapPageController.markers.first;
@@ -88,7 +88,7 @@ class TruckDriversDetailController extends GetxController {
     } else {
       AppDialog().warning(
           menssagem:
-              'O motorista do código ${codMot.value} não iniciou as entregas!');
+              'O motorista do código ${truckDriversEntity.value.cod} não iniciou as entregas!');
     }
   }
 

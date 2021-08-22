@@ -133,19 +133,21 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
     );
   }
 
-  TitleComponent titleComponent(BuildContext context) {
-    return TitleComponent(
-      primary: TitleDetailComponent(
-        title: controller.truckDriversEntity.value.truckDriver,
-        subTitle: 'Código: ${controller.truckDriversEntity.value.cod}',
-      ),
-      secondary: TitleRankComponent(
-        totalQuantityDelivery: Responsive.when(context,
-            mobile: 'Entregas: 123', orOther: 'Total de entregas: 123'),
-        likes: 'Avaliações: 382',
-        stars: 4,
-      ),
-    );
+  Widget titleComponent(BuildContext context) {
+    return Obx(() {
+      return TitleComponent(
+        primary: TitleDetailComponent(
+          title: controller.truckDriversEntity.value.truckDriver,
+          subTitle: 'Código: ${controller.truckDriversEntity.value.cod}',
+        ),
+        secondary: TitleRankComponent(
+          totalQuantityDelivery: Responsive.when(context,
+              mobile: 'Entregas: 123', orOther: 'Total de entregas: 123'),
+          likes: 'Avaliações: 382',
+          stars: 4,
+        ),
+      );
+    });
   }
 
   TableComponent table() {
