@@ -73,8 +73,10 @@ class HomeController extends GetxController {
     updadeListLocation(await iListLocationCase(const Params()));
   }
 
-  void updadeListLocation(Either<Failure, List<LocationEntity>> either) {
-    either.fold(
+  void updadeListLocation(
+    Either<Failure, List<LocationEntity>> updadeListLocation,
+  ) {
+    updadeListLocation.fold(
       (l) => null,
       (r) => {
         Get.find<MapPageController>().markers.value = r

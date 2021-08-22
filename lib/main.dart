@@ -12,6 +12,7 @@ import 'routes/app_routes_enum.dart';
 
 Future<void> main() async {
   runApp(GetMaterialApp(
+    enableLog: false,
     title: 'GSA',
     theme: ThemeData(
       brightness: Brightness.light,

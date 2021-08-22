@@ -25,7 +25,10 @@ class MapPage extends GetView<MapPageController> {
                 child: Obx(() {
                   return FluterMapAdapter(
                     center: controller.lastPostion?.value ??
-                        LatLng(-15.784245857882606, -48.14222219029218),
+                        LatLng(
+                          controller.initialPosition.value.latitude,
+                          controller.initialPosition.value.longitude,
+                        ),
                     zoom: controller.lastZoom?.value,
                     onPositionChanged: controller.onPositionChanged,
                     markers: controller.markers

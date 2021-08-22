@@ -9,15 +9,12 @@ class MapPageController extends GetxController {
   Rx<FluterMapAdapterController> controlChildMap =
       FluterMapAdapterController().obs;
 
-  Rx<LocationMapEntity> locationMapEntity = LocationMapEntity(
-    latitude: -15,
-    longitude: -45,
+  final Rx<LocationMapEntity> initialPosition = LocationMapEntity(
+    latitude: -15.784245857882606,
+    longitude: -48.14222219029218,
   ).obs;
 
-  final Rx<LocationMapEntity> initialPosition = LocationMapEntity(
-    latitude: -15,
-    longitude: -45,
-  ).obs;
+  final RxDouble initialZoom = 13.0.obs;
 
   final RxList<MarkerMapEntity> markers = <MarkerMapEntity>[].obs;
 
@@ -48,5 +45,13 @@ class MapPageController extends GetxController {
     if (a.zoom != null) {
       lastZoom = a.zoom!.obs;
     }
+  }
+
+  void resetPostionMap() {
+    lastPostion?.value = LatLng(
+      initialPosition.value.latitude,
+      initialPosition.value.longitude,
+    );
+    lastZoom?.value = initialZoom.value;
   }
 }
