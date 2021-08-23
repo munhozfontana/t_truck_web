@@ -11,7 +11,7 @@ import 'package:t_truck_web/core/components/title_component.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_button.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/message/message_list/domain/entities/message_entity_enum.dart';
+import 'package:t_truck_web/features/message/message_list/domain/entities/support_entity_enum.dart';
 
 import './message_list_controller.dart';
 
@@ -102,8 +102,8 @@ class MessageListPage extends GetView<MessageListController> {
             (element) => TableCardItem(
               iconTrailing: const Icon(Icons.arrow_right),
               title: element.subject,
-              leading: element.status.icon,
-              tooltip: element.status.desc,
+              leading: (element.status as SupportEntityEnum).icon,
+              tooltip: (element.status as SupportEntityEnum).desc,
             ),
           )
           .toList(),

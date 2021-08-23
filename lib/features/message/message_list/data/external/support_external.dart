@@ -3,15 +3,15 @@ import 'dart:math';
 import 'package:faker/faker.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_http_external.dart';
 import 'package:t_truck_web/core/error/api_exception.dart';
-import 'package:t_truck_web/features/message/message_list/domain/entities/message_entity.dart';
-import 'package:t_truck_web/features/message/message_list/domain/entities/message_entity_enum.dart';
+import 'package:t_truck_web/features/message/message_list/domain/entities/support_entity.dart';
+import 'package:t_truck_web/features/message/message_list/domain/entities/support_entity_enum.dart';
 
-import 'protocols/i_message_external.dart';
+import 'protocols/i_support_external.dart';
 
-class MessageExternal implements IMessageExternal {
+class SupportExternal implements ISupportExternal {
   IHttp iHttp;
 
-  MessageExternal({
+  SupportExternal({
     required this.iHttp,
   });
 
@@ -30,8 +30,8 @@ class MessageExternal implements IMessageExternal {
         (index) => SupportEntity(
           cod: index,
           subject: faker.lorem.sentence(),
-          status: MessageEntityEnum
-              .values[Random().nextInt(MessageEntityEnum.values.length - 1)],
+          status: SupportEntityEnum
+              .values[Random().nextInt(SupportEntityEnum.values.length - 1)],
           messageEntity: [],
           openAt: DateTime.now(),
         ),
