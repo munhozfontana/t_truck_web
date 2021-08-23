@@ -14,7 +14,7 @@ class MessageRepository implements IMessageRepository {
   });
 
   @override
-  Future<Either<Failure, List<MessageEntity>>> get() async {
+  Future<Either<Failure, List<SupportEntity>>> get() async {
     try {
       return Right(await iMessageExternal.get());
     } on ApiException catch (e) {

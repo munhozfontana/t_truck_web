@@ -1,11 +1,9 @@
-class MessageChatEntity {
-  final String personSender;
-  final String messageContent;
-  final DateTime createAt;
+import 'dart:async';
 
-  MessageChatEntity({
-    required this.personSender,
-    required this.messageContent,
-    required this.createAt,
-  });
+class MessageEntity {
+  int? id;
+  int? codFrom;
+  int? codTo;
+  String? content;
+  Timer? sendAt;
 }

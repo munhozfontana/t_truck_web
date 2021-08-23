@@ -14,7 +14,7 @@ class ListMessageCase implements IListMessageCase {
   });
 
   @override
-  Future<Either<Failure, List<MessageEntity>>> call(Params params) {
+  Future<Either<Failure, List<SupportEntity>>> call(Params params) {
     return iMessageRepository.get();
   }
 }

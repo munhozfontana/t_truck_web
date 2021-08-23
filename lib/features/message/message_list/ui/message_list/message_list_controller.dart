@@ -5,7 +5,7 @@ import 'package:t_truck_web/features/message/message_list/domain/usecases/list_m
 import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 class MessageListController extends GetxController {
-  RxList<MessageEntity> list = <MessageEntity>[].obs;
+  RxList<SupportEntity> list = <SupportEntity>[].obs;
 
   final ListMessageCase listMessageCase;
 
@@ -28,7 +28,7 @@ class MessageListController extends GetxController {
     );
   }
 
-  void toDetailPage(MessageEntity e) {
+  void toDetailPage(SupportEntity e) {
     Get.toNamed('${Routes.message.path}/${e.cod}');
   }
 }

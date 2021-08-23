@@ -40,7 +40,7 @@ class MessageListPage extends GetView<MessageListController> {
                 child: Expanded(
                   flex: 3,
                   child: Text(
-                    'Devoluções',
+                    'Mensagens',
                     style: StylesTypography.h24,
                   ),
                 ),

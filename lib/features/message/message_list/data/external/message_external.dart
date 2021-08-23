@@ -16,7 +16,7 @@ class MessageExternal implements IMessageExternal {
   });
 
   @override
-  Future<List<MessageEntity>> get() async {
+  Future<List<SupportEntity>> get() async {
     try {
       // var res = await iHttp.postHttp(
       //   'http://truck.stoatacadista.com.br:2302/api/ocorrencia',
@@ -27,11 +27,13 @@ class MessageExternal implements IMessageExternal {
       final faker = Faker();
       return List.generate(
         50,
-        (index) => MessageEntity(
+        (index) => SupportEntity(
           cod: index,
           subject: faker.lorem.sentence(),
           status: MessageEntityEnum
               .values[Random().nextInt(MessageEntityEnum.values.length - 1)],
+          messageEntity: [],
+          openAt: DateTime.now(),
         ),
       );
     } catch (e) {

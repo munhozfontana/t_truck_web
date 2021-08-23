@@ -24,8 +24,6 @@ class MessageDetailPage extends GetView<MessageDetailController> {
         child: Flex(
           direction: Responsive.when(
             context,
-            desktop: Axis.horizontal,
-            tablet: Axis.horizontal,
             mobile: Axis.vertical,
             orOther: Axis.horizontal,
           ),
