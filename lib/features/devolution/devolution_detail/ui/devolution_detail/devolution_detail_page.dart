@@ -40,7 +40,7 @@ class DevolutionDetailPage extends GetView<DevolutionDetailController> {
                       orOther: StylesTypography.h24),
                 ),
                 Text(
-                  '$status,\nitens não corresponde com a NF.',
+                  status,
                   style: Responsive.when(context,
                       mobile: StylesTypography.h14w500,
                       orOther: StylesTypography.h16W400),

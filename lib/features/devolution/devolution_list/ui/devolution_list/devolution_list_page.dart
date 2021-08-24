@@ -9,7 +9,7 @@ import 'package:t_truck_web/core/components/table/table_component.dart';
 import 'package:t_truck_web/core/components/title_component.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolution_status_enum.dart';
+import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolution_progress_status_enum.dart';
 
 import './devolution_list_controller.dart';
 
@@ -49,8 +49,12 @@ class DevolutionListPage extends GetView<DevolutionListController> {
             (element) => TableCardItem(
               iconTrailing: const Icon(Icons.arrow_right),
               title: element.client,
-              leading: element.status.icon,
-              tooltip: element.status.desc,
+              leading:
+                  (element.devolutionProgressStatus as DevolutionProgressStatus)
+                      .icon,
+              tooltip:
+                  (element.devolutionProgressStatus as DevolutionProgressStatus)
+                      .desc,
             ),
           )
           .toList(),
@@ -76,8 +80,12 @@ class DevolutionListPage extends GetView<DevolutionListController> {
                   style: StylesTypography.h16Bold,
                 ),
                 TableCellComponent(
-                  value: e.status.desc,
-                  color: e.status.color,
+                  value:
+                      (e.devolutionProgressStatus as DevolutionProgressStatus)
+                          .desc,
+                  color:
+                      (e.devolutionProgressStatus as DevolutionProgressStatus)
+                          .color,
                   typeCellComponent: TypeCellComponent.outline,
                   width: 180,
                 ),

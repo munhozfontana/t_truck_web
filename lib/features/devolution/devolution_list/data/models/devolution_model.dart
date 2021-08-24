@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolution_entity.dart';
+import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolution_progress_status_enum.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolution_status_enum.dart';
 
 class DevolutionModel extends DevolutionEntity {
@@ -9,11 +10,13 @@ class DevolutionModel extends DevolutionEntity {
     required String client,
     required DevolutionStatus status,
     required DateTime data,
+    required DevolutionProgressStatus devolutionProgressStatus,
   }) : super(
           cod: cod,
           client: client,
           status: status,
           data: data,
+          devolutionProgressStatus: devolutionProgressStatus,
         );
 
   factory DevolutionModel.fromMap(Map<String, dynamic> map) {
@@ -21,7 +24,11 @@ class DevolutionModel extends DevolutionEntity {
     return DevolutionModel(
         cod: map['NUMTRANSVENDA'] as int,
         client: map['CLIENTE'] as String,
-        status: DevolutionStatusUtils.descByCod(map['SITUACAO'] as String),
+        status: DevolutionStatusUtils.descByCod(
+          map['SITUACAO'] as String,
+        ),
+        devolutionProgressStatus: DevolutionProgressStatusUtils.descByCod(
+            map['OCORRENCIA'] as String),
         data: parse);
   }
 

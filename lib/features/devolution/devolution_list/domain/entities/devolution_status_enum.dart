@@ -16,9 +16,9 @@ extension DevolutionStatusDesc on DevolutionStatus {
   String get desc {
     switch (this) {
       case DevolutionStatus.done:
-        return 'Devolução Completa';
+        return 'Devolução Total da NF';
       case DevolutionStatus.notDone:
-        return 'Devolução Imcompleta';
+        return 'Devolução Parcial da NF';
       case DevolutionStatus.none:
         return 'Sem Status';
       default:
