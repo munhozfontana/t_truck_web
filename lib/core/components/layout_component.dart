@@ -149,11 +149,20 @@ class LayoutComponent extends StatelessWidget {
     );
   }
 
-  FloatingActionButton buildFloatingActionButton() {
-    final floatActionButton = FloatingActionButton(
-      onPressed: () => print('Chat'),
-      child: const Icon(Icons.chat_bubble),
-    );
-    return floatActionButton;
+  Widget buildFloatingActionButton() {
+    final storeController = Get.find<StoreController>();
+
+    return Obx(() {
+      return Visibility(
+        visible:
+            storeController.loading.isFalse && storeController.chat.isFalse,
+        child: FloatingActionButton(
+          onPressed: () {
+            return storeController.openChat();
+          },
+          child: const Icon(Icons.chat_bubble),
+        ),
+      );
+    });
   }
 }

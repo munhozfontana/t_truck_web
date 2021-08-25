@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/animations/animations_utils.dart';
 
 class ChatTalkComponent extends StatefulWidget {
   final EdgeInsetsGeometry padding;
   final Decoration decoration;
   final double height;
   final double width;
+  final bool? visible;
 
   const ChatTalkComponent({
     Key? key,
@@ -13,45 +13,55 @@ class ChatTalkComponent extends StatefulWidget {
     required this.decoration,
     required this.height,
     required this.width,
+    this.visible = false,
   }) : super(key: key);
 
   @override
   _ChatTalkComponentState createState() => _ChatTalkComponentState();
 }
 
-class _ChatTalkComponentState extends State<ChatTalkComponent>
-    with SingleTickerProviderStateMixin {
-  late AnimationController hoverAnimCtl;
-
-  AnimationsUtils animationsUtils = AnimationsUtils();
+class _ChatTalkComponentState extends State<ChatTalkComponent> {
+  double? animatedHeight = 0;
 
   @override
   void initState() {
-    hoverAnimCtl = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    );
-    hoverAnimCtl.forward().whenComplete(() => hoverAnimCtl.reverse());
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(ChatTalkComponent oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.visible == true) {
+      openTab();
+    } else {
+      closeTab();
+    }
+  }
+
+  void closeTab() {
+    setState(() {
+      animatedHeight = 0;
+    });
+  }
+
+  void openTab() {
+    setState(() {
+      animatedHeight = widget.height * 1.1;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: hoverAnimCtl,
-      builder: (context, child) {
-        return Container(
-          width: widget.width,
-          height: animationsUtils
-              .animateDouble(
-                parent: hoverAnimCtl,
-                begin: 0,
-                end: widget.height,
-              )
-              .value,
-          padding: widget.padding,
-          decoration: widget.decoration,
-        );
-      },
+    return InkWell(
+      onTap: () => closeTab(),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 400),
+        curve: Curves.decelerate,
+        width: widget.width,
+        height: animatedHeight,
+        padding: widget.padding,
+        decoration: widget.decoration,
+      ),
     );
   }
 }

@@ -7,7 +7,8 @@ class ChatListComponent extends StatelessWidget {
   final double height;
   final double width;
 
-  final void Function(int)? onTap;
+  final void Function(int)? onSelect;
+  final void Function()? onClose;
 
   const ChatListComponent({
     Key? key,
@@ -15,7 +16,8 @@ class ChatListComponent extends StatelessWidget {
     required this.decoration,
     required this.height,
     required this.width,
-    this.onTap,
+    this.onClose,
+    this.onSelect,
   }) : super(key: key);
 
   @override
@@ -27,9 +29,18 @@ class ChatListComponent extends StatelessWidget {
       decoration: decoration,
       child: Column(
         children: [
-          Text(
-            'Mensagens',
-            style: StylesTypography.h18wBold,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Mensagens',
+                style: StylesTypography.h18wBold,
+              ),
+              GestureDetector(
+                onTap: onClose,
+                child: Icon(Icons.close),
+              ),
+            ],
           ),
           SizedBox(
             height: 20,
@@ -45,7 +56,9 @@ class ChatListComponent extends StatelessWidget {
                         margin: EdgeInsets.all(10),
                         child: Material(
                           child: InkWell(
-                            onTap: () => onTap ?? onTap!(index),
+                            onTap: () => {
+                              if (onSelect != null) {onSelect!(index)}
+                            },
                             child: ListTile(
                               leading: CircleAvatar(
                                 child: Text(index.toString()),
