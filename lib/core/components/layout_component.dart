@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:t_truck_web/core/components/chat/chat_component.dart';
 import 'package:t_truck_web/core/components/header/header_component_sliver.dart';
 import 'package:t_truck_web/core/store_controller.dart';
 
@@ -58,7 +59,15 @@ class LayoutComponent extends StatelessWidget {
             orOther: Scaffold(
               floatingActionButton: floatActionButton,
               appBar: buildHeaderComponent(context).build(context),
-              body: body,
+              body: Stack(
+                children: [
+                  body,
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: ChatComponent(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

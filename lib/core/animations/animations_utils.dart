@@ -6,11 +6,12 @@ class AnimationsUtils {
     required double begin,
     required double end,
     required Animation<double> parent,
+    Curve? curve,
   }) {
     return Tween<double>(begin: begin, end: end).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Curves.decelerate,
+        curve: curve ?? Curves.decelerate,
       ),
     );
   }
