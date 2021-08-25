@@ -1,29 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/chat/chat_list_component.dart';
-import 'package:t_truck_web/core/components/chat/chat_talk_component.dart';
-import 'package:t_truck_web/core/store_controller.dart';
+import 'package:t_truck_web/core/components/chat/chat_controller.dart';
+import 'package:t_truck_web/core/styles/style_colors.dart';
+import 'package:t_truck_web/core/styles/styles_fonts.dart';
 
-class ChatComponent extends StatefulWidget {
-  const ChatComponent({Key? key}) : super(key: key);
-
-  @override
-  _ChatComponentState createState() => _ChatComponentState();
-}
-
-class _ChatComponentState extends State<ChatComponent> {
-  bool visibleChatTalkComponent = false;
-
-  var maxHeightAnimated = 330 * 1.4;
-  final maxHeight = 330 * 1.4;
-  final minHeight = 330 * 1.2;
-  final storeController = Get.find<StoreController>();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class ChatComponent extends GetWidget<ChatController> {
   @override
   Widget build(BuildContext context) {
     const edgeInsets = EdgeInsets.only(
@@ -44,34 +25,124 @@ class _ChatComponentState extends State<ChatComponent> {
         duration: Duration(milliseconds: 400),
         curve: Curves.decelerate,
         width: 300,
-        height: storeController.chat.value ? maxHeightAnimated : 0,
+        height: controller.chat.value ? controller.maxHeight.value : 0,
         child: Stack(
           alignment: Alignment.bottomRight,
           children: [
-            ChatListComponent(
+            chat(
               onSelect: (index) {
-                setState(() {
-                  visibleChatTalkComponent = true;
-                });
+                controller.openTab();
               },
               onClose: () {
-                storeController.closeChat();
+                controller.closeTab();
+                controller.closeChat();
               },
               padding: edgeInsets,
               decoration: boxDecoration,
               width: 300,
-              height: minHeight,
+              height: controller.minHeight.value,
             ),
-            ChatTalkComponent(
-              visible: visibleChatTalkComponent,
-              padding: edgeInsets,
-              decoration: boxDecoration,
-              width: 300,
-              height: maxHeight,
+            InkWell(
+              onTap: () => controller.closeTab(),
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 400),
+                curve: Curves.decelerate,
+                width: 300,
+                height: controller.visibleChatTalkComponent.value
+                    ? controller.maxHeight.value * 1.2
+                    : 0,
+                padding: edgeInsets,
+                decoration: boxDecoration,
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: StylesColors.grayWhite.withOpacity(.3),
+                            width: 2),
+                      ),
+                      child: ListTile(
+                        leading: const CircleAvatar(
+                          backgroundColor: Colors.purple,
+                          child: Text('1'),
+                        ),
+                        title: Text('2'),
+                        subtitle: Text('3'),
+                      ),
+                    )
+                  ],
+                ),
+              ),
             )
           ],
         ),
       );
     });
+  }
+
+  Widget chat({
+    double? width,
+    double? height,
+    EdgeInsetsGeometry? padding,
+    Decoration? decoration,
+    final void Function(int)? onSelect,
+    final void Function()? onClose,
+  }) {
+    return Container(
+      width: width,
+      height: height,
+      padding: padding,
+      decoration: decoration,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Mensagens',
+                style: StylesTypography.h18wBold,
+              ),
+              GestureDetector(
+                onTap: onClose,
+                child: Icon(Icons.close),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          TextFormField(),
+          SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: ListView.separated(
+                itemBuilder: (context, index) => Card(
+                      elevation: 6,
+                      margin: EdgeInsets.all(10),
+                      child: Material(
+                        child: InkWell(
+                          onTap: () => {
+                            if (onSelect != null) {onSelect(index)}
+                          },
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              child: Text(index.toString()),
+                              backgroundColor: Colors.purple,
+                            ),
+                            title: Text(index.toString()),
+                            subtitle: Text(index.toString()),
+                          ),
+                        ),
+                      ),
+                    ),
+                separatorBuilder: (context, index) => SizedBox(
+                      height: 2,
+                    ),
+                itemCount: 18),
+          )
+        ],
+      ),
+    );
   }
 }
