@@ -8,8 +8,12 @@ import 'package:t_truck_web/core/styles/styles_fonts.dart';
 class ChatComponent extends GetWidget<ChatController> {
   @override
   Widget build(BuildContext context) {
-    const edgeInsets =
-        EdgeInsets.only(top: 14, left: 16, right: 16, bottom: 14);
+    const edgeInsets = EdgeInsets.only(
+      top: 14,
+      left: 16,
+      right: 16,
+      bottom: 14,
+    );
     const boxDecoration = BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.only(
@@ -28,9 +32,7 @@ class ChatComponent extends GetWidget<ChatController> {
           alignment: Alignment.bottomRight,
           children: [
             chat(
-              onSelect: (index) {
-                controller.openTab();
-              },
+              onSelect: controller.onSelect,
               onClose: () {
                 controller.closeTab();
                 controller.closeChat();
@@ -55,7 +57,7 @@ class ChatComponent extends GetWidget<ChatController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     header(),
-                    Divider(),
+                    const Divider(),
                     Expanded(
                       child: ListView.separated(
                           itemBuilder: (context, index) => Row(
@@ -84,12 +86,12 @@ class ChatComponent extends GetWidget<ChatController> {
                               ),
                           itemCount: 8),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: 90),
-                      child: TextField(
+                      constraints: const BoxConstraints(maxHeight: 90),
+                      child: const TextField(
                         maxLines: null,
                         decoration: InputDecoration(
                             suffixIcon: Icon(Icons.send),
@@ -119,12 +121,12 @@ class ChatComponent extends GetWidget<ChatController> {
               ),
             ),
             child: ListTile(
-              leading: const CircleAvatar(
+              leading: CircleAvatar(
                 backgroundColor: Colors.purple,
-                child: Text('1'),
+                child: controller.selectChat.value.avatar,
               ),
-              title: Text('2'),
-              subtitle: Text('3'),
+              title: Text(controller.selectChat.value.title),
+              subtitle: Text(controller.selectChat.value.subtitle),
             ),
           ),
         ),
@@ -170,29 +172,34 @@ class ChatComponent extends GetWidget<ChatController> {
           ),
           Expanded(
             child: ListView.separated(
-                itemBuilder: (context, index) => Card(
-                      elevation: 6,
-                      margin: EdgeInsets.all(10),
-                      child: Material(
-                        child: InkWell(
-                          onTap: () => {
-                            if (onSelect != null) {onSelect(index)}
-                          },
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              child: Text(index.toString()),
-                              backgroundColor: Colors.purple,
-                            ),
-                            title: Text(index.toString()),
-                            subtitle: Text(index.toString()),
-                          ),
-                        ),
+              itemBuilder: (context, index) => Card(
+                elevation: 6,
+                margin: const EdgeInsets.all(10),
+                child: Material(
+                  child: InkWell(
+                    onTap: () => {
+                      if (onSelect != null) {onSelect(index)}
+                    },
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.purple,
+                        child: controller.listChatMessage[index].avatar,
+                      ),
+                      title: Text(
+                        controller.listChatMessage[index].title,
+                      ),
+                      subtitle: Text(
+                        controller.listChatMessage[index].subtitle,
                       ),
                     ),
-                separatorBuilder: (context, index) => SizedBox(
-                      height: 2,
-                    ),
-                itemCount: 18),
+                  ),
+                ),
+              ),
+              separatorBuilder: (context, index) => const SizedBox(
+                height: 2,
+              ),
+              itemCount: controller.listChatMessage.length,
+            ),
           )
         ],
       ),
