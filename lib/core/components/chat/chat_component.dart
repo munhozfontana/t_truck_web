@@ -1,3 +1,4 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/chat/chat_controller.dart';
@@ -7,11 +8,8 @@ import 'package:t_truck_web/core/styles/styles_fonts.dart';
 class ChatComponent extends GetWidget<ChatController> {
   @override
   Widget build(BuildContext context) {
-    const edgeInsets = EdgeInsets.only(
-      top: 14,
-      left: 16,
-      right: 16,
-    );
+    const edgeInsets =
+        EdgeInsets.only(top: 14, left: 16, right: 16, bottom: 14);
     const boxDecoration = BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.only(
@@ -54,20 +52,48 @@ class ChatComponent extends GetWidget<ChatController> {
                 padding: edgeInsets,
                 decoration: boxDecoration,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: StylesColors.grayWhite.withOpacity(.3),
-                            width: 2),
-                      ),
-                      child: ListTile(
-                        leading: const CircleAvatar(
-                          backgroundColor: Colors.purple,
-                          child: Text('1'),
-                        ),
-                        title: Text('2'),
-                        subtitle: Text('3'),
+                    header(),
+                    Divider(),
+                    Expanded(
+                      child: ListView.separated(
+                          itemBuilder: (context, index) => Row(
+                                textDirection: TextDirection.rtl,
+                                children: [
+                                  Expanded(
+                                    flex: 3,
+                                    child: Container(
+                                      padding: EdgeInsets.all(14),
+                                      decoration: BoxDecoration(
+                                        color: StylesColors.gray,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Text(
+                                        Faker().lorem.sentence(),
+                                        style: StylesTypography.h14
+                                            .copyWith(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  const Spacer()
+                                ],
+                              ),
+                          separatorBuilder: (context, index) => SizedBox(
+                                height: 24,
+                              ),
+                          itemCount: 8),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxHeight: 90),
+                      child: TextField(
+                        maxLines: null,
+                        decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.send),
+                            hintText: 'Digitar mensagem'),
                       ),
                     )
                   ],
@@ -78,6 +104,33 @@ class ChatComponent extends GetWidget<ChatController> {
         ),
       );
     });
+  }
+
+  Row header() {
+    return Row(
+      children: [
+        Expanded(
+          flex: 4,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: StylesColors.grayWhite.withOpacity(.3),
+                width: 2,
+              ),
+            ),
+            child: ListTile(
+              leading: const CircleAvatar(
+                backgroundColor: Colors.purple,
+                child: Text('1'),
+              ),
+              title: Text('2'),
+              subtitle: Text('3'),
+            ),
+          ),
+        ),
+        Expanded(child: Icon(Icons.arrow_back))
+      ],
+    );
   }
 
   Widget chat({

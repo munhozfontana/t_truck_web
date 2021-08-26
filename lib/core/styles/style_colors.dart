@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 mixin StylesColors {
   static Color get blue => const Color(0xFF080E31);
-  static Color get gray => const Color(0xFF4F5262);
+  static Color get gray => const Color.fromRGBO(79, 82, 98, 1);
   static Color get grayEasy => const Color.fromRGBO(163, 163, 163, 1);
   static Color get grayWhite => const Color.fromRGBO(196, 196, 196, 1);
   static Color get grayWhitePlus => const Color.fromRGBO(244, 243, 243, 1);
