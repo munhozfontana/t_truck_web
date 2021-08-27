@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/chat/chat_controller.dart';
+import 'package:t_truck_web/features/chat/ui/chat_controller.dart';
 
 class ChatUserComponent extends GetWidget<ChatController> {
   final double? width;

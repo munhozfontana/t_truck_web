@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/features/chat/chat_controller.dart';
-import 'package:t_truck_web/features/chat/chat_talk_component.dart';
-import 'package:t_truck_web/features/chat/chat_user_component.dart';
+import 'package:t_truck_web/features/chat/ui/chat_controller.dart';
+import 'package:t_truck_web/features/chat/ui/chat_talk_component.dart';
+import 'package:t_truck_web/features/chat/ui/chat_user_component.dart';
 
 class ChatComponent extends GetWidget<ChatController> {
   @override

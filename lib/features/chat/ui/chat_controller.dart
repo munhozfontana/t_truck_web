@@ -90,9 +90,7 @@ class ChatController extends GetxController {
             codSender: Random().nextInt(2) == 1 ? 355911 : 355912)));
     openTab();
 
-    Timer(Duration(milliseconds: 200), () {
-      rowDown();
-    });
+    Timer(Duration(milliseconds: 200), rowDown);
   }
 
   bool isUserTalk(int index) {

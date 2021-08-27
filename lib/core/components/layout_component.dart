@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:t_truck_web/core/components/header/header_component_sliver.dart';
 import 'package:t_truck_web/core/store_controller.dart';
-import 'package:t_truck_web/features/chat/chat_component.dart';
-import 'package:t_truck_web/features/chat/chat_controller.dart';
+import 'package:t_truck_web/features/chat/ui/chat_component.dart';
+import 'package:t_truck_web/features/chat/ui/chat_controller.dart';
 
 import '../styles/style_colors.dart';
 import 'header/header_component.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/chat/chat_controller.dart';
+import 'package:t_truck_web/features/chat/ui/chat_controller.dart';
 
 class ChatTalkComponent extends GetWidget<ChatController> {
   const ChatTalkComponent({Key? key}) : super(key: key);
@@ -33,21 +33,35 @@ class ChatTalkComponent extends GetWidget<ChatController> {
     });
   }
 
-  ConstrainedBox sendMessage() {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 90),
-      child: TextField(
-        textInputAction: TextInputAction.go,
-        controller: controller.textSendMessage,
-        maxLines: null,
-        decoration: InputDecoration(
-          suffixIcon: IconButton(
-            onPressed: controller.onSendMessage,
-            icon: Icon(Icons.send),
+  Row header() {
+    return Row(
+      children: [
+        Expanded(
+          flex: 4,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: StylesColors.grayWhite.withOpacity(.3),
+                width: 2,
+              ),
+            ),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: StylesColors.grayWhitePlus,
+                child: controller.selectChat.value.avatar,
+              ),
+              title: Text(controller.selectChat.value.title),
+              subtitle: Text(controller.selectChat.value.subtitle),
+            ),
           ),
-          hintText: 'Digitar mensagem',
         ),
-      ),
+        Expanded(
+          child: GestureDetector(
+            onTap: controller.closeTab,
+            child: const Icon(Icons.arrow_back),
+          ),
+        )
+      ],
     );
   }
 
@@ -89,35 +103,21 @@ class ChatTalkComponent extends GetWidget<ChatController> {
     );
   }
 
-  Row header() {
-    return Row(
-      children: [
-        Expanded(
-          flex: 4,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: StylesColors.grayWhite.withOpacity(.3),
-                width: 2,
-              ),
-            ),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: StylesColors.grayWhitePlus,
-                child: controller.selectChat.value.avatar,
-              ),
-              title: Text(controller.selectChat.value.title),
-              subtitle: Text(controller.selectChat.value.subtitle),
-            ),
+  ConstrainedBox sendMessage() {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: 90),
+      child: TextField(
+        textInputAction: TextInputAction.go,
+        controller: controller.textSendMessage,
+        maxLines: null,
+        decoration: InputDecoration(
+          suffixIcon: IconButton(
+            onPressed: controller.onSendMessage,
+            icon: Icon(Icons.send),
           ),
+          hintText: 'Digitar mensagem',
         ),
-        Expanded(
-          child: GestureDetector(
-            onTap: controller.closeTab,
-            child: const Icon(Icons.arrow_back),
-          ),
-        )
-      ],
+      ),
     );
   }
 }

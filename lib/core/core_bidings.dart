@@ -7,7 +7,7 @@ import 'package:t_truck_web/core/adapters/protocols/i_jwt_external.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_local_store_external.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_logged_user.dart';
 import 'package:t_truck_web/core/interceptors/app_interceptor.dart';
-import 'package:t_truck_web/features/chat/chat_controller.dart';
+import 'package:t_truck_web/features/chat/ui/chat_controller.dart';
 
 import 'adapters/drivers/dio_driver.dart';
 import 'adapters/protocols/i_http_external.dart';
