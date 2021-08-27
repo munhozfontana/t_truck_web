@@ -6,8 +6,8 @@ import 'package:t_truck_web/core/adapters/drivers/shared_preferences_driver.dart
 import 'package:t_truck_web/core/adapters/protocols/i_jwt_external.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_local_store_external.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_logged_user.dart';
-import 'package:t_truck_web/core/components/chat/chat_controller.dart';
 import 'package:t_truck_web/core/interceptors/app_interceptor.dart';
+import 'package:t_truck_web/features/chat/chat_controller.dart';
 
 import 'adapters/drivers/dio_driver.dart';
 import 'adapters/protocols/i_http_external.dart';
@@ -47,6 +47,7 @@ class CoreBiding extends Bindings {
           iLocalStoreExternal: Get.find(),
         ),
         permanent: true);
+
     Get.put(ChatController(), permanent: true);
   }
 }
