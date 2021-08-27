@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:t_truck_web/features/chat/models/chat_message.dart';
+import 'package:t_truck_web/features/chat/domain/entities/chat_message_entity.dart';
 
 class ChatPerson {
   int id;

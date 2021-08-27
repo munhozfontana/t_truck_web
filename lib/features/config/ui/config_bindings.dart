@@ -3,8 +3,8 @@ import 'package:t_truck_web/features/config/data/external/config_external.dart';
 import 'package:t_truck_web/features/config/data/external/protocols/i_config_external.dart';
 import 'package:t_truck_web/features/config/data/repositories_impl/config_repository.dart';
 import 'package:t_truck_web/features/config/domain/repositories/i_config_repository.dart';
-import 'package:t_truck_web/features/config/domain/usecases/protocols/i_save_config_case.dart';
-import 'package:t_truck_web/features/config/domain/usecases/save_config_case.dart';
+import 'package:t_truck_web/features/config/domain/use_cases/protocols/i_save_config_case.dart';
+import 'package:t_truck_web/features/config/domain/use_cases/save_config_case.dart';
 import 'package:t_truck_web/features/config/ui/config/config_controller.dart';
 
 class ConfigBindings implements Bindings {

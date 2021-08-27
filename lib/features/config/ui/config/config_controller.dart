@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:t_truck_web/core/params/params.dart';
 import 'package:t_truck_web/core/utils/app_dialog.dart';
 import 'package:t_truck_web/features/config/domain/entities/config_entity.dart';
-import 'package:t_truck_web/features/config/domain/usecases/protocols/i_save_config_case.dart';
+import 'package:t_truck_web/features/config/domain/use_cases/protocols/i_save_config_case.dart';
 
 class ConfigController extends GetxController {
   ISaveConfigCase iSaveConfigCase;

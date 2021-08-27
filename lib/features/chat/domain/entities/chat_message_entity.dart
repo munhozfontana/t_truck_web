@@ -1,19 +1,21 @@
 import 'dart:convert';
 
 class ChatMessage {
-  DateTime createAt = DateTime.now();
+  final DateTime createAt;
   final int codSender;
   final String content;
 
   ChatMessage({
     required this.content,
     required this.codSender,
+    required this.createAt,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'codSender': codSender,
       'content': content,
+      'createAt': createAt.millisecondsSinceEpoch,
     };
   }
 
@@ -21,6 +23,7 @@ class ChatMessage {
     return ChatMessage(
       codSender: map['codSender'] as int,
       content: map['content'] as String,
+      createAt: DateTime.fromMillisecondsSinceEpoch(map['createAt'] as int),
     );
   }
 

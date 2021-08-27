@@ -1,21 +1,21 @@
 import 'dart:async';
-import 'dart:math';
 
-import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:t_truck_web/core/adapters/protocols/i_logged_user.dart';
-import 'package:t_truck_web/core/utils/string_utils.dart';
-import 'package:t_truck_web/features/chat/models/chat_message.dart';
-import 'package:t_truck_web/features/chat/models/chat_person.dart';
+import 'package:t_truck_web/core/params/params.dart';
+import 'package:t_truck_web/features/chat/domain/entities/chat_message_entity.dart';
+import 'package:t_truck_web/features/chat/domain/entities/chat_person_entity.dart';
+import 'package:t_truck_web/features/chat/domain/use_cases/protocols/i_list_chat_people_case.dart';
+import 'package:t_truck_web/features/chat/domain/use_cases/protocols/i_receive_chat_message_case.dart';
+import 'package:t_truck_web/features/chat/domain/use_cases/protocols/i_send_chat_message_case.dart';
 
 class ChatController extends GetxController {
-  final socket = IO.io('http://127.0.0.1:3001', <String, dynamic>{
-    'transports': ['websocket'],
-  });
+  ISendChatMessageCase iSendChatMessageCase;
+  IReceiveChatMessageCase iReceiveChatMessageCase;
+  IListChatPeopleCase iListChatPeopleCase;
 
   // Variables
   RxList<ChatPerson> listChatMessage = <ChatPerson>[].obs;
@@ -23,6 +23,12 @@ class ChatController extends GetxController {
 
   RxBool visibleChatTalkComponent = false.obs;
   RxBool chat = false.obs;
+
+  ChatController({
+    required this.iSendChatMessageCase,
+    required this.iReceiveChatMessageCase,
+    required this.iListChatPeopleCase,
+  });
 
   TextEditingController textSendMessage = TextEditingController();
 
@@ -37,57 +43,49 @@ class ChatController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    socket.onConnect((_) {
-      print('connect');
-    });
 
     onReceiveMessage();
+    getInitialData();
+  }
 
-    // socket.on('event', (data) => print(data));
-    // socket.onDisconnect((_) => print('disconnect'));
-    // socket.on('fromServer', (_) => print(_));
-
-    listChatMessage.value = List.generate(
-        20,
-        (index) => ChatPerson(
-              avatar: Text(
-                StringUtils.fisrtAndLastLatter(
-                  Faker().person.name(),
-                ),
-              ),
-              id: index,
-              title: Faker().person.firstName(),
-              subtitle: Faker().internet.ipv4Address(),
-              messages: [],
-            ));
+  getInitialData() async {
+    (await iListChatPeopleCase(Params())).fold(
+      (l) => null,
+      (r) => {listChatMessage.value = r},
+    );
   }
 
 // --------------------------
-  void onSendMessage() async {
-    socket.emit(
-        'message',
-        ChatMessage(
-                content: textSendMessage.text,
-                codSender: int.parse(await Get.find<ILoggedUser>().login))
-            .toJson());
+  Future<void> onSendMessage() async {
+    iSendChatMessageCase(
+      Params(
+        chatMessageEntity: ChatMessage(
+          content: textSendMessage.text,
+          codSender: int.parse(await Get.find<ILoggedUser>().login),
+          createAt: DateTime.now(),
+        ),
+      ),
+    );
   }
 
   void onReceiveMessage() {
-    socket.on('message', (data) {
-      selectChat.value.messages.add(ChatMessage.fromJson(data as String));
-      selectChat.refresh();
-      Timer(Duration(milliseconds: 100), rowDown);
-    });
+    iReceiveChatMessageCase(const Params()).fold(
+      (l) => null,
+      (r) => {
+        r.listen((data) {
+          selectChat.value.messages.add(data);
+          selectChat.refresh();
+          Timer(const Duration(milliseconds: 100), rowDown);
+        })
+      },
+    );
   }
 // --------------------------
 
   void onSelect(int index) {
     selectChat.value = listChatMessage[index];
-    selectChat.value.messages.addAll(List.generate(
-        9,
-        (index) => ChatMessage(
-            content: Faker().lorem.sentence(),
-            codSender: Random().nextInt(2) == 1 ? 355911 : 355912)));
+
+    selectChat.value.messages;
     openTab();
 
     Timer(Duration(milliseconds: 200), rowDown);
