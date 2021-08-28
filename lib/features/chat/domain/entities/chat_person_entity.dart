@@ -7,6 +7,7 @@ class ChatPerson {
   String name;
   String codPerson;
   List<ChatMessage> messages;
+  int count;
 
   ChatPerson({
     required this.id,
@@ -14,6 +15,7 @@ class ChatPerson {
     required this.name,
     required this.codPerson,
     required this.messages,
+    required this.count,
   });
 
   ChatPerson copyWith({
@@ -22,6 +24,7 @@ class ChatPerson {
     String? name,
     String? codPerson,
     List<ChatMessage>? messages,
+    int? count,
   }) {
     return ChatPerson(
       id: id ?? this.id,
@@ -29,6 +32,7 @@ class ChatPerson {
       name: name ?? this.name,
       codPerson: codPerson ?? this.codPerson,
       messages: messages ?? this.messages,
+      count: count ?? this.count,
     );
   }
 }

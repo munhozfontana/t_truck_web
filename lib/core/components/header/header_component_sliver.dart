@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/components/menu/menu_component_controller.dart';
 import 'package:t_truck_web/core/components/responsive.dart';
+import 'package:t_truck_web/core/store_controller.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
 
 import '../../styles/style_colors.dart';
@@ -61,9 +62,11 @@ class HeaderComponentSliver extends StatelessWidget {
               color: StylesColors.black,
             ),
             const SizedBox(width: 15),
-            Text(
-              'User',
-              style: StylesTypography.h18.copyWith(color: Colors.black),
+            Obx(
+              () => Text(
+                Get.find<StoreController>().nameUser.value,
+                style: StylesTypography.h18.copyWith(color: Colors.black),
+              ),
             )
           ],
         ),

@@ -37,6 +37,7 @@ class ChatController extends GetxController {
   TextEditingController textSendMessage = TextEditingController();
 
   Rx<ChatPerson> selectChat = ChatPerson(
+    count: 0,
     id: 0,
     avatar: Text(""),
     name: "",
@@ -47,12 +48,7 @@ class ChatController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
-    chat.listen((value) {
-      if (value) {
-        getInitialData();
-      }
-    });
+    getInitialData();
   }
 
   Future<void> getInitialData() async {
@@ -110,13 +106,18 @@ class ChatController extends GetxController {
             return e;
           }).toList();
           listChatMessage.refresh();
-          selectChat.refresh();
           update();
+          // if (selectChat.value.codPerson == data.codFrom.toString() &&
+          //     selectChat.value.codPerson != loginMaybeEmpty.value) {
+          //   selectChat.value.messages.add(data);
+          // }
+          selectChat.refresh();
           rowDown();
         })
       },
     );
   }
+
 // --------------------------
 
   void onSelect(int index) {
