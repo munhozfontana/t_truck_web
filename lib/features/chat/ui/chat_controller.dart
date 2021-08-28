@@ -20,11 +20,12 @@ class ChatController extends GetxController {
   ILoggedUser iLoggedUser;
 
   // Variables
-  RxList<ChatPerson> listChatMessage = <ChatPerson>[].obs;
   Rx<ScrollController> listViewConMessages = ScrollController().obs;
+  RxList<ChatPerson> listChatMessage = <ChatPerson>[].obs;
   RxBool visibleChatTalkComponent = false.obs;
   RxBool chat = false.obs;
   RxInt login = 0.obs;
+  RxString loginMaybeEmpty = ''.obs;
 
   ChatController({
     required this.iSendChatMessageCase,
@@ -55,11 +56,11 @@ class ChatController extends GetxController {
   }
 
   Future<void> getInitialData() async {
-    final loginMaybeEmpty = await iLoggedUser.login;
-    onReceiveMessage(loginMaybeEmpty);
+    loginMaybeEmpty.value = await iLoggedUser.login;
+    onReceiveMessage();
     if (loginMaybeEmpty.isNotEmpty) {
-      login.value = int.parse(loginMaybeEmpty);
-      (await iListChatPeopleCase(Params(idUser: loginMaybeEmpty))).fold(
+      login.value = int.parse(loginMaybeEmpty.value);
+      (await iListChatPeopleCase(Params(idUser: loginMaybeEmpty.value))).fold(
         (l) => null,
         (r) => {
           listChatMessage.value = r,
@@ -71,25 +72,46 @@ class ChatController extends GetxController {
 
 // --------------------------
   Future<void> onSendMessage() async {
+    final chatMessage = ChatMessage(
+      content: textSendMessage.text,
+      codFrom: login.value,
+      codTo: int.parse(selectChat.value.codPerson),
+      createAt: DateTime.now(),
+    );
+
+    listChatMessage.value = listChatMessage.map((e) {
+      if (e.codPerson == chatMessage.codTo.toString()) {
+        e.messages.add(chatMessage);
+      }
+      return e;
+    }).toList();
+
+    listChatMessage.refresh();
+    selectChat.refresh();
+    update();
+    rowDown();
+
     iSendChatMessageCase(
       Params(
-        chatMessageEntity: ChatMessage(
-          content: textSendMessage.text,
-          codFrom: login.value,
-          codTo: int.parse(selectChat.value.codPerson),
-          createAt: DateTime.now(),
-        ),
+        chatMessageEntity: chatMessage,
       ),
     );
   }
 
-  void onReceiveMessage(String loginMaybeEmpty) {
-    iReceiveChatMessageCase(Params(idUser: loginMaybeEmpty)).fold(
+  void onReceiveMessage() {
+    iReceiveChatMessageCase(Params(idUser: loginMaybeEmpty.value)).fold(
       (l) => null,
       (r) => {
         r.listen((data) {
-          selectChat.value.messages.add(data);
+          listChatMessage.value = listChatMessage.map((e) {
+            if (e.codPerson == data.codFrom.toString()) {
+              e.messages.add(data);
+            }
+            return e;
+          }).toList();
+          listChatMessage.refresh();
           selectChat.refresh();
+          update();
           rowDown();
         })
       },
@@ -99,7 +121,6 @@ class ChatController extends GetxController {
 
   void onSelect(int index) {
     selectChat.value = listChatMessage[index];
-    // selectChat.value.messages;
     openTab();
     rowDown();
   }
@@ -113,7 +134,7 @@ class ChatController extends GetxController {
         Duration(milliseconds: 200),
         () => listViewConMessages.value.position.animateTo(
               listViewConMessages.value.position.maxScrollExtent,
-              duration: Duration(seconds: 1),
+              duration: const Duration(seconds: 1),
               curve: Curves.easeOutSine,
             ));
   }

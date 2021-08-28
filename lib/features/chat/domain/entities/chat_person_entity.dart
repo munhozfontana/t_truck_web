@@ -15,4 +15,20 @@ class ChatPerson {
     required this.codPerson,
     required this.messages,
   });
+
+  ChatPerson copyWith({
+    int? id,
+    Widget? avatar,
+    String? name,
+    String? codPerson,
+    List<ChatMessage>? messages,
+  }) {
+    return ChatPerson(
+      id: id ?? this.id,
+      avatar: avatar ?? this.avatar,
+      name: name ?? this.name,
+      codPerson: codPerson ?? this.codPerson,
+      messages: messages ?? this.messages,
+    );
+  }
 }
