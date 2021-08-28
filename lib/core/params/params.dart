@@ -10,6 +10,7 @@ class Params extends Equatable {
   final TokenEntity? tokenParam;
   final ConfigEntity? configEntity;
   final ChatMessage? chatMessageEntity;
+  final String? idUser;
 
   const Params({
     this.id,
@@ -17,6 +18,7 @@ class Params extends Equatable {
     this.tokenParam,
     this.configEntity,
     this.chatMessageEntity,
+    this.idUser,
   });
 
   @override

@@ -28,9 +28,9 @@ class ChatMessageRepository implements IChatMessageRepository {
   }
 
   @override
-  Either<Failure, Stream<ChatMessage>> onReceiveMessage() {
+  Either<Failure, Stream<ChatMessage>> onReceiveMessage(String idUser) {
     try {
-      return Right(iChatMessageExternal.onReceiveMessage());
+      return Right(iChatMessageExternal.onReceiveMessage(idUser));
     } on ApiException catch (e) {
       Logger().w(e);
       return Left(RequestFailure(detail: e.error));

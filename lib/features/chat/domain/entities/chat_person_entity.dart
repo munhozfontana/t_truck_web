@@ -4,15 +4,15 @@ import 'package:t_truck_web/features/chat/domain/entities/chat_message_entity.da
 class ChatPerson {
   int id;
   Widget avatar;
-  String title;
-  String subtitle;
+  String name;
+  String codPerson;
   List<ChatMessage> messages;
 
   ChatPerson({
     required this.id,
     required this.avatar,
-    required this.title,
-    required this.subtitle,
+    required this.name,
+    required this.codPerson,
     required this.messages,
   });
 }

@@ -4,5 +4,5 @@ import 'package:t_truck_web/features/chat/domain/entities/chat_message_entity.da
 
 abstract class IChatMessageRepository {
   Either<Failure, void> sendMessage(ChatMessage chatMessage);
-  Either<Failure, Stream<ChatMessage>> onReceiveMessage();
+  Either<Failure, Stream<ChatMessage>> onReceiveMessage(String idUser);
 }

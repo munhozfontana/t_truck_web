@@ -23,10 +23,10 @@ class ChatMessageExternal implements IChatMessageExternal {
   }
 
   @override
-  Stream<ChatMessage> onReceiveMessage() {
+  Stream<ChatMessage> onReceiveMessage(String idUser) {
     try {
       socket.on(
-        'message',
+        'message-$idUser',
         (data) => {
           streamData.add(
             ChatMessage.fromJson(data as String),

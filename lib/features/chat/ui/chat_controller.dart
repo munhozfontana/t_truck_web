@@ -13,21 +13,24 @@ import 'package:t_truck_web/features/chat/domain/use_cases/protocols/i_receive_c
 import 'package:t_truck_web/features/chat/domain/use_cases/protocols/i_send_chat_message_case.dart';
 
 class ChatController extends GetxController {
+  // injects
   ISendChatMessageCase iSendChatMessageCase;
   IReceiveChatMessageCase iReceiveChatMessageCase;
   IListChatPeopleCase iListChatPeopleCase;
+  ILoggedUser iLoggedUser;
 
   // Variables
   RxList<ChatPerson> listChatMessage = <ChatPerson>[].obs;
   Rx<ScrollController> listViewConMessages = ScrollController().obs;
-
   RxBool visibleChatTalkComponent = false.obs;
   RxBool chat = false.obs;
+  RxInt login = 0.obs;
 
   ChatController({
     required this.iSendChatMessageCase,
     required this.iReceiveChatMessageCase,
     required this.iListChatPeopleCase,
+    required this.iLoggedUser,
   });
 
   TextEditingController textSendMessage = TextEditingController();
@@ -35,8 +38,8 @@ class ChatController extends GetxController {
   Rx<ChatPerson> selectChat = ChatPerson(
     id: 0,
     avatar: Text(""),
-    title: "",
-    subtitle: "",
+    name: "",
+    codPerson: "",
     messages: [],
   ).obs;
 
@@ -44,15 +47,26 @@ class ChatController extends GetxController {
   void onInit() {
     super.onInit();
 
-    onReceiveMessage();
-    getInitialData();
+    chat.listen((value) {
+      if (value) {
+        getInitialData();
+      }
+    });
   }
 
-  getInitialData() async {
-    (await iListChatPeopleCase(Params())).fold(
-      (l) => null,
-      (r) => {listChatMessage.value = r},
-    );
+  Future<void> getInitialData() async {
+    final loginMaybeEmpty = await iLoggedUser.login;
+    onReceiveMessage(loginMaybeEmpty);
+    if (loginMaybeEmpty.isNotEmpty) {
+      login.value = int.parse(loginMaybeEmpty);
+      (await iListChatPeopleCase(Params(idUser: loginMaybeEmpty))).fold(
+        (l) => null,
+        (r) => {
+          listChatMessage.value = r,
+          listChatMessage.refresh(),
+        },
+      );
+    }
   }
 
 // --------------------------
@@ -61,21 +75,22 @@ class ChatController extends GetxController {
       Params(
         chatMessageEntity: ChatMessage(
           content: textSendMessage.text,
-          codSender: int.parse(await Get.find<ILoggedUser>().login),
+          codFrom: login.value,
+          codTo: int.parse(selectChat.value.codPerson),
           createAt: DateTime.now(),
         ),
       ),
     );
   }
 
-  void onReceiveMessage() {
-    iReceiveChatMessageCase(const Params()).fold(
+  void onReceiveMessage(String loginMaybeEmpty) {
+    iReceiveChatMessageCase(Params(idUser: loginMaybeEmpty)).fold(
       (l) => null,
       (r) => {
         r.listen((data) {
           selectChat.value.messages.add(data);
           selectChat.refresh();
-          Timer(const Duration(milliseconds: 100), rowDown);
+          rowDown();
         })
       },
     );
@@ -84,23 +99,23 @@ class ChatController extends GetxController {
 
   void onSelect(int index) {
     selectChat.value = listChatMessage[index];
-
-    selectChat.value.messages;
+    // selectChat.value.messages;
     openTab();
-
-    Timer(Duration(milliseconds: 200), rowDown);
+    rowDown();
   }
 
   bool isUserTalk(int index) {
-    return selectChat.value.messages[index].codSender == 355911;
+    return selectChat.value.messages[index].codFrom == login.value;
   }
 
   void rowDown() {
-    listViewConMessages.value.position.animateTo(
-      listViewConMessages.value.position.maxScrollExtent,
-      duration: Duration(seconds: 1),
-      curve: Curves.easeOutSine,
-    );
+    Timer(
+        Duration(milliseconds: 200),
+        () => listViewConMessages.value.position.animateTo(
+              listViewConMessages.value.position.maxScrollExtent,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeOutSine,
+            ));
   }
 
   void closeTab() => visibleChatTalkComponent.value = false;

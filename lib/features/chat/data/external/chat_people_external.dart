@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_http_external.dart';
@@ -32,8 +34,8 @@ class ChatPeopleExternal implements IChatPeopleExternal {
                   ),
                 ),
                 id: index,
-                title: Faker().person.firstName(),
-                subtitle: Faker().internet.ipv4Address(),
+                name: Faker().person.firstName(),
+                codPerson: Random().nextInt(999999).toString(),
                 messages: [],
               )));
     } catch (e) {

@@ -2,5 +2,5 @@ import 'package:t_truck_web/features/chat/domain/entities/chat_message_entity.da
 
 abstract class IChatMessageExternal {
   void sendMessage(ChatMessage chatMessage);
-  Stream<ChatMessage> onReceiveMessage();
+  Stream<ChatMessage> onReceiveMessage(String idUser);
 }

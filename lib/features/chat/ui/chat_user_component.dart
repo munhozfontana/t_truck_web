@@ -47,35 +47,37 @@ class ChatUserComponent extends GetWidget<ChatController> {
             height: 20,
           ),
           Expanded(
-            child: ListView.separated(
-              itemBuilder: (context, index) => Card(
-                elevation: 6,
-                margin: const EdgeInsets.all(10),
-                child: Material(
-                  child: InkWell(
-                    onTap: () => {
-                      if (onSelect != null) {onSelect!(index)}
-                    },
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: StylesColors.grayWhitePlus,
-                        child: controller.listChatMessage[index].avatar,
-                      ),
-                      title: Text(
-                        controller.listChatMessage[index].title,
-                      ),
-                      subtitle: Text(
-                        controller.listChatMessage[index].subtitle,
+            child: Obx(() {
+              return ListView.separated(
+                itemBuilder: (context, index) => Card(
+                  elevation: 6,
+                  margin: const EdgeInsets.all(10),
+                  child: Material(
+                    child: InkWell(
+                      onTap: () => {
+                        if (onSelect != null) {onSelect!(index)}
+                      },
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: StylesColors.grayWhitePlus,
+                          child: controller.listChatMessage[index].avatar,
+                        ),
+                        title: Text(
+                          controller.listChatMessage[index].name,
+                        ),
+                        subtitle: Text(
+                          controller.listChatMessage[index].codPerson,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              separatorBuilder: (context, index) => const SizedBox(
-                height: 2,
-              ),
-              itemCount: controller.listChatMessage.length,
-            ),
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 2,
+                ),
+                itemCount: controller.listChatMessage.length,
+              );
+            }),
           )
         ],
       ),

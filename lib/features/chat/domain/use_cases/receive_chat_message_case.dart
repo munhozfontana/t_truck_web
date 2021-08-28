@@ -15,6 +15,6 @@ class ReceiveChatMessageCase implements IReceiveChatMessageCase {
 
   @override
   Either<Failure, Stream<ChatMessage>> call(Params params) {
-    return iChatMessageRepository.onReceiveMessage();
+    return iChatMessageRepository.onReceiveMessage(params.idUser!);
   }
 }
