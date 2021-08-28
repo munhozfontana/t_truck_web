@@ -27,8 +27,20 @@ class ChatMessage {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => base64Encode(utf8.encode(json.encode(toMap())));
 
-  factory ChatMessage.fromJson(String source) =>
-      ChatMessage.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ChatMessage.fromJson(String source) => ChatMessage.fromMap(
+      json.decode(utf8.decode(base64Decode(source))) as Map<String, dynamic>);
+
+  ChatMessage copyWith({
+    DateTime? createAt,
+    int? codSender,
+    String? content,
+  }) {
+    return ChatMessage(
+      createAt: createAt ?? this.createAt,
+      codSender: codSender ?? this.codSender,
+      content: content ?? this.content,
+    );
+  }
 }

@@ -16,9 +16,6 @@ class ChatMessageExternal implements IChatMessageExternal {
   @override
   void sendMessage(ChatMessage chatMessage) {
     try {
-      socket.io.options['extraHeaders'] = {
-        'Content-Type': 'application/json; charset=utf-8'
-      };
       socket.emit('message', chatMessage.toJson());
     } catch (e) {
       throw ApiException(error: 'Serviço indiponível');
