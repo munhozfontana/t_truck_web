@@ -40,8 +40,7 @@ class LoginController extends GetxController {
       (await loginCase(Params(loginParam: loginModel))).fold(
         (l) => null,
         (r) {
-          iLoggedUser.saveToken(r.token);
-          Get.offNamed('/home');
+          iLoggedUser.saveToken(r.token).then((value) => Get.offNamed('/home'));
         },
       );
     }

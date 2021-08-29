@@ -37,7 +37,7 @@ class ChatController extends GetxController {
   TextEditingController textSendMessage = TextEditingController();
 
   Rx<ChatPerson> selectChat = ChatPerson(
-    count: 0,
+    notifications: 0,
     id: 0,
     avatar: Text(""),
     name: "",
@@ -102,15 +102,14 @@ class ChatController extends GetxController {
           listChatMessage.value = listChatMessage.map((e) {
             if (e.codPerson == data.codFrom.toString()) {
               e.messages.add(data);
+              if (selectChat.value.codPerson != data.codFrom.toString()) {
+                e.notifications = e.notifications + 1;
+              }
             }
             return e;
           }).toList();
           listChatMessage.refresh();
           update();
-          // if (selectChat.value.codPerson == data.codFrom.toString() &&
-          //     selectChat.value.codPerson != loginMaybeEmpty.value) {
-          //   selectChat.value.messages.add(data);
-          // }
           selectChat.refresh();
           rowDown();
         })
@@ -121,7 +120,10 @@ class ChatController extends GetxController {
 // --------------------------
 
   void onSelect(int index) {
+    listChatMessage[index] = listChatMessage[index].copyWith(notifications: 0);
     selectChat.value = listChatMessage[index];
+    listChatMessage.refresh();
+    update();
     openTab();
     rowDown();
   }
@@ -140,7 +142,18 @@ class ChatController extends GetxController {
             ));
   }
 
-  void closeTab() => visibleChatTalkComponent.value = false;
+  void closeTab() {
+    visibleChatTalkComponent.value = false;
+    selectChat = ChatPerson(
+      notifications: 0,
+      id: 0,
+      avatar: Text(""),
+      name: "",
+      codPerson: "",
+      messages: [],
+    ).obs;
+  }
+
   void openTab() => visibleChatTalkComponent.value = true;
   void openChat() => chat.value = true;
   void closeChat() => chat.value = false;

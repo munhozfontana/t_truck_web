@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:t_truck_web/features/chat/domain/entities/chat_message_entity.dart';
 
 class ChatPerson {
-  int id;
-  Widget avatar;
-  String name;
-  String codPerson;
-  List<ChatMessage> messages;
-  int count;
+  final int id;
+  final Widget avatar;
+  final String name;
+  final String codPerson;
+  final List<ChatMessage> messages;
+  int notifications;
 
   ChatPerson({
     required this.id,
@@ -15,7 +15,7 @@ class ChatPerson {
     required this.name,
     required this.codPerson,
     required this.messages,
-    required this.count,
+    this.notifications = 0,
   });
 
   ChatPerson copyWith({
@@ -24,7 +24,7 @@ class ChatPerson {
     String? name,
     String? codPerson,
     List<ChatMessage>? messages,
-    int? count,
+    int? notifications,
   }) {
     return ChatPerson(
       id: id ?? this.id,
@@ -32,7 +32,7 @@ class ChatPerson {
       name: name ?? this.name,
       codPerson: codPerson ?? this.codPerson,
       messages: messages ?? this.messages,
-      count: count ?? this.count,
+      notifications: notifications ?? this.notifications,
     );
   }
 }

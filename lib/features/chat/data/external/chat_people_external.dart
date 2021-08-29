@@ -25,7 +25,6 @@ class ChatPeopleExternal implements IChatPeopleExternal {
 
       return [
         ChatPerson(
-          count: 1,
           avatar: Text(
             StringUtils.fisrtAndLastLatter(
               Faker().person.name(),
@@ -37,7 +36,6 @@ class ChatPeopleExternal implements IChatPeopleExternal {
           messages: [],
         ),
         ChatPerson(
-          count: 5,
           avatar: Text(
             StringUtils.fisrtAndLastLatter(
               Faker().person.name(),

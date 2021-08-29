@@ -68,6 +68,18 @@ class ChatUserComponent extends GetWidget<ChatController> {
                         subtitle: Text(
                           controller.listChatMessage[index].codPerson,
                         ),
+                        trailing: Visibility(
+                          visible:
+                              controller.listChatMessage[index].notifications !=
+                                  0,
+                          child: CircleAvatar(
+                            backgroundColor: StylesColors.green,
+                            child: Text(
+                              "${controller.listChatMessage[index].notifications}",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
