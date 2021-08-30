@@ -7,7 +7,7 @@ import 'package:t_truck_web/features/chat/domain/entities/chat_message_entity.da
 import 'protocols/i_chat_message_external.dart';
 
 class ChatMessageExternal implements IChatMessageExternal {
-  final socket = io('chat:3001', <String, dynamic>{
+  final socket = io('chat', <String, dynamic>{
     'transports': ['websocket'],
   });
 
