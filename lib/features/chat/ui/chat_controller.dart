@@ -24,6 +24,7 @@ class ChatController extends GetxController {
   RxList<ChatPerson> listChatMessage = <ChatPerson>[].obs;
   RxBool visibleChatTalkComponent = false.obs;
   RxBool chat = false.obs;
+  RxBool anyNotification = false.obs;
   RxInt login = 0.obs;
   RxString loginMaybeEmpty = ''.obs;
 
@@ -92,6 +93,8 @@ class ChatController extends GetxController {
         chatMessageEntity: chatMessage,
       ),
     );
+
+    textSendMessage.clear();
   }
 
   void onReceiveMessage() {
@@ -111,6 +114,13 @@ class ChatController extends GetxController {
           listChatMessage.refresh();
           update();
           selectChat.refresh();
+          if (listChatMessage
+              .where((item) => item.notifications > 0)
+              .isNotEmpty) {
+            anyNotification.value = true;
+          } else {
+            anyNotification.value = false;
+          }
           rowDown();
         })
       },

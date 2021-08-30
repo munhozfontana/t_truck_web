@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
+import 'package:t_truck_web/core/utils/string_utils.dart';
 import 'package:t_truck_web/features/chat/domain/entities/chat_message_entity.dart';
 
 class ChatPerson {
@@ -17,6 +20,23 @@ class ChatPerson {
     required this.messages,
     this.notifications = 0,
   });
+
+  factory ChatPerson.fromMap(Map<String, dynamic> map) {
+    return ChatPerson(
+      id: 0,
+      avatar: Text(
+        StringUtils.fisrtAndLastLatter(
+          map['NOME'] as String,
+        ),
+      ),
+      name: map['NOME'] as String,
+      codPerson: (map['MATRICULA'] as int).toString(),
+      messages: [],
+    );
+  }
+
+  factory ChatPerson.fromJson(String source) =>
+      ChatPerson.fromMap(json.decode(source) as Map<String, dynamic>);
 
   ChatPerson copyWith({
     int? id,

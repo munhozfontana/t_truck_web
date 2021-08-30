@@ -1,8 +1,7 @@
-import 'package:faker/faker.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
 import 'package:t_truck_web/core/adapters/protocols/i_http_external.dart';
 import 'package:t_truck_web/core/error/api_exception.dart';
-import 'package:t_truck_web/core/utils/string_utils.dart';
 import 'package:t_truck_web/features/chat/domain/entities/chat_person_entity.dart';
 
 import 'protocols/i_chat_people_external.dart';
@@ -17,36 +16,17 @@ class ChatPeopleExternal implements IChatPeopleExternal {
   @override
   Future<List<ChatPerson>> listByToken(int perfil) async {
     try {
-      // final res = await iHttp.postHttp(
-      //     'http://truck.stoatacadista.com.br:2302/api/product',
-      //     body: {
-      //       'NUMTRANSVENDA': ['$cod']
-      //     });
+      final res = await iHttp.postHttp(
+        'http://truck.stoatacadista.com.br:2302/api/listaMotorista',
+      );
 
-      return [
-        ChatPerson(
-          avatar: Text(
-            StringUtils.fisrtAndLastLatter(
-              Faker().person.name(),
-            ),
-          ),
-          id: 0,
-          name: Faker().person.firstName(),
-          codPerson: 1.toString(),
-          messages: [],
-        ),
-        ChatPerson(
-          avatar: Text(
-            StringUtils.fisrtAndLastLatter(
-              Faker().person.name(),
-            ),
-          ),
-          id: 0,
-          name: Faker().person.firstName(),
-          codPerson: 355911.toString(),
-          messages: [],
-        ),
-      ];
+      List list = json.decode(res.body!) as List;
+      var listProductsModel = list.map(
+        (e) {
+          return ChatPerson.fromMap(e as Map<String, dynamic>);
+        },
+      ).toList();
+      return listProductsModel;
     } catch (e) {
       throw ApiException(error: 'Serviço indiponível');
     }

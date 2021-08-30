@@ -151,17 +151,22 @@ class LayoutComponent extends StatelessWidget {
   }
 
   Widget buildFloatingActionButton() {
-    final storeController = Get.find<ChatController>();
+    final chatController = Get.find<ChatController>();
 
     return Obx(() {
       return Visibility(
         visible: Get.find<StoreController>().loading.isFalse &&
-            storeController.chat.isFalse,
+            chatController.chat.isFalse,
         child: FloatingActionButton(
           onPressed: () {
-            return storeController.openChat();
+            return chatController.openChat();
           },
-          child: const Icon(Icons.chat_bubble),
+          child: Icon(
+            Icons.chat_bubble,
+            color: chatController.anyNotification.isTrue
+                ? Colors.red
+                : Colors.blueAccent,
+          ),
         ),
       );
     });
