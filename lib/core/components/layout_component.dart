@@ -165,7 +165,7 @@ class LayoutComponent extends StatelessWidget {
             Icons.chat_bubble,
             color: chatController.anyNotification.isTrue
                 ? Colors.red
-                : Colors.blueAccent,
+                : Colors.white,
           ),
         ),
       );
