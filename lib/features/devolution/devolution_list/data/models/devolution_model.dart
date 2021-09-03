@@ -5,12 +5,15 @@ import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/
 import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolution_status_enum.dart';
 
 class DevolutionModel extends DevolutionEntity {
+  final String codClie;
+
   DevolutionModel({
     required int cod,
     required String client,
     required DevolutionStatus status,
     required DateTime data,
     required DevolutionProgressStatus devolutionProgressStatus,
+    required this.codClie,
   }) : super(
           cod: cod,
           client: client,
@@ -24,6 +27,7 @@ class DevolutionModel extends DevolutionEntity {
     return DevolutionModel(
         cod: map['NUMTRANSVENDA'] as int,
         client: map['CLIENTE'] as String,
+        codClie: (map['CODCLI'] as int).toString(),
         status: DevolutionStatusUtils.descByCod(
           map['SITUACAO'] as String,
         ),

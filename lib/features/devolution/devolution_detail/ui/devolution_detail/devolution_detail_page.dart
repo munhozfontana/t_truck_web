@@ -89,11 +89,11 @@ class DevolutionDetailPage extends GetView<DevolutionDetailController> {
                     style: StylesTypography.h16Bold,
                   ),
                   Text(
-                    'R\$ ${item.price}',
+                    'R\$ ${item.price.toStringAsFixed(2)}',
                     style: StylesTypography.h16Bold,
                   ),
                   Text(
-                    'R\$ ${item.priceMount}',
+                    'R\$ ${item.priceMount.toStringAsFixed(2)}',
                     style: StylesTypography.h16Bold,
                   ),
                 ])

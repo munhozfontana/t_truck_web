@@ -65,6 +65,7 @@ class DevolutionListPage extends GetView<DevolutionListController> {
     return TableComponent(
       header: const [
         'Nº',
+        'Cod Cli',
         'Cliente',
         'Status',
         '',
@@ -73,6 +74,10 @@ class DevolutionListPage extends GetView<DevolutionListController> {
           .map((e) => [
                 Text(
                   e.cod.toString(),
+                  style: StylesTypography.h16Bold,
+                ),
+                Text(
+                  e.codClie,
                   style: StylesTypography.h16Bold,
                 ),
                 Text(

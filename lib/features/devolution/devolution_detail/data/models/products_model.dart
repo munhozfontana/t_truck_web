@@ -21,8 +21,8 @@ class ProductsModel extends ProductsEntity {
     return ProductsModel(
       cod: map['CODPROD'] as int,
       name: map['DESCRICAO'] as String,
-      price: 0 as int,
-      priceMount: 0 as int,
+      price: map['VL_UNIDADE'] as num,
+      priceMount: map['VLTOTAL'] as num,
       quantity: map['QT'] as int,
     );
   }

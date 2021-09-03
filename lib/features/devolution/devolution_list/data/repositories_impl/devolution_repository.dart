@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 import 'package:t_truck_web/core/error/api_exception.dart';
 import 'package:t_truck_web/core/error/failures.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/data/external/protocols/i_devolution_external.dart';
-import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolution_entity.dart';
+import 'package:t_truck_web/features/devolution/devolution_list/data/models/devolution_model.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/domain/repositories/i_devolution_repository.dart';
 
 class DevolutionRepository implements IDevolutionRepository {
@@ -14,7 +14,7 @@ class DevolutionRepository implements IDevolutionRepository {
   });
 
   @override
-  Future<Either<Failure, List<DevolutionEntity>>> get() async {
+  Future<Either<Failure, List<DevolutionModel>>> get() async {
     try {
       return Right(await iDevolutionExternal.get());
     } on ApiException catch (e) {

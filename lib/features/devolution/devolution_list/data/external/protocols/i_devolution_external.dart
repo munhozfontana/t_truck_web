@@ -1,5 +1,5 @@
-import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/devolution_entity.dart';
+import 'package:t_truck_web/features/devolution/devolution_list/data/models/devolution_model.dart';
 
 abstract class IDevolutionExternal {
-  Future<List<DevolutionEntity>> get();
+  Future<List<DevolutionModel>> get();
 }
