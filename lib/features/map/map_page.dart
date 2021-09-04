@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:t_truck_web/core/styles/styles_fonts.dart';
 
 import 'map_controller.dart';
 
@@ -60,6 +61,26 @@ class MapPage extends GetView<MapPageController> {
                     child: const Icon(
                       Icons.zoom_out_map_rounded,
                       size: 35,
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  margin: EdgeInsets.all(constraints.maxHeight / 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white,
+                  ),
+                  height: 50,
+                  width: 50,
+                  child: Obx(
+                    () => Center(
+                      child: Text(
+                        controller.markers.length.toString(),
+                        style: StylesTypography.h18wBold,
+                      ),
                     ),
                   ),
                 ),

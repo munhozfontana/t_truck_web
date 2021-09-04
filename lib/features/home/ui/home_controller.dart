@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:t_truck_web/core/error/failures.dart';
 import 'package:t_truck_web/features/home/domain/entities/location_entity.dart';
 import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_dashboard_case.dart';
@@ -83,7 +84,8 @@ class HomeController extends GetxController {
             .map(
               (element) => MarkerMapEntity(
                 child: PositionMap(
-                  message: "Motorista ${element.truck.cod}",
+                  message:
+                      "${element.truck.cod} - ${DateFormat('dd/MM/yyyy HH:MM:ss').format(element.truck.createAt)}",
                 ),
                 name: element.truck.cod.toString(),
                 locationMapEntity: LocationMapEntity(
