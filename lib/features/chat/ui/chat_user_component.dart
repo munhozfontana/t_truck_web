@@ -42,7 +42,17 @@ class ChatUserComponent extends GetWidget<ChatController> {
           const SizedBox(
             height: 20,
           ),
-          TextFormField(),
+          TextFormField(
+            controller: controller.trucksField,
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.only(
+                top: 20,
+              ), // add padding to adjust text
+              isDense: true,
+              hintText: 'Buscar mensagem, motorista...',
+              prefixIcon: Icon(Icons.search),
+            ),
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -60,22 +70,23 @@ class ChatUserComponent extends GetWidget<ChatController> {
                       child: ListTile(
                         leading: CircleAvatar(
                           backgroundColor: StylesColors.grayWhitePlus,
-                          child: controller.listChatMessage[index].avatar,
+                          child:
+                              controller.listChatMessageFiltred[index].avatar,
                         ),
                         title: Text(
-                          controller.listChatMessage[index].name,
+                          controller.listChatMessageFiltred[index].name,
                         ),
                         subtitle: Text(
-                          controller.listChatMessage[index].codPerson,
+                          controller.listChatMessageFiltred[index].codPerson,
                         ),
                         trailing: Visibility(
-                          visible:
-                              controller.listChatMessage[index].notifications !=
-                                  0,
+                          visible: controller.listChatMessageFiltred[index]
+                                  .notifications !=
+                              0,
                           child: CircleAvatar(
                             backgroundColor: StylesColors.green,
                             child: Text(
-                              "${controller.listChatMessage[index].notifications}",
+                              "${controller.listChatMessageFiltred[index].notifications}",
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -87,7 +98,7 @@ class ChatUserComponent extends GetWidget<ChatController> {
                 separatorBuilder: (context, index) => const SizedBox(
                   height: 2,
                 ),
-                itemCount: controller.listChatMessage.length,
+                itemCount: controller.listChatMessageFiltred.length,
               );
             }),
           )

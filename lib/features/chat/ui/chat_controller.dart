@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,8 @@ class ChatController extends GetxController {
 
   // Variables
   Rx<ScrollController> listViewConMessages = ScrollController().obs;
-  RxList<ChatPerson> listChatMessage = <ChatPerson>[].obs;
+  late List<ChatPerson> listChatMessage = <ChatPerson>[];
+  RxList<ChatPerson> listChatMessageFiltred = <ChatPerson>[].obs;
   RxBool visibleChatTalkComponent = false.obs;
   RxBool chat = false.obs;
   RxBool anyNotification = false.obs;
@@ -36,11 +38,11 @@ class ChatController extends GetxController {
   });
 
   TextEditingController textSendMessage = TextEditingController();
+  TextEditingController trucksField = TextEditingController();
 
   Rx<ChatPerson> selectChat = ChatPerson(
-    notifications: 0,
     id: 0,
-    avatar: Text(""),
+    avatar: const Text(""),
     name: "",
     codPerson: "",
     messages: [],
@@ -50,13 +52,27 @@ class ChatController extends GetxController {
   void onInit() {
     super.onInit();
     getInitialData();
-    listChatMessage.listen((listChatMessageListen) {
+    listChatMessageFiltred.listen((listChatMessageListen) {
       if (listChatMessageListen
           .where((item) => item.notifications > 0)
           .isNotEmpty) {
         anyNotification.value = true;
       } else {
         anyNotification.value = false;
+      }
+    });
+    trucksField.addListener(() {
+      final trucksFieldClean = trucksField.value.text.trim();
+      if (trucksFieldClean.isNotEmpty) {
+        listChatMessageFiltred.value = listChatMessage.where((item) {
+          return item.name.isCaseInsensitiveContainsAny(trucksFieldClean) ||
+              item.codPerson.isCaseInsensitiveContainsAny(trucksFieldClean);
+        }).toList();
+        log(listChatMessageFiltred.length.toString());
+        listChatMessageFiltred.refresh();
+      } else {
+        listChatMessageFiltred.value = listChatMessage;
+        listChatMessageFiltred.refresh();
       }
     });
   }
@@ -69,8 +85,9 @@ class ChatController extends GetxController {
       (await iListChatPeopleCase(Params(idUser: loginMaybeEmpty.value))).fold(
         (l) => null,
         (r) => {
-          listChatMessage.value = r,
-          listChatMessage.refresh(),
+          listChatMessage = r,
+          listChatMessageFiltred.value = r,
+          listChatMessageFiltred.refresh(),
         },
       );
     }
@@ -85,14 +102,14 @@ class ChatController extends GetxController {
       createAt: DateTime.now(),
     );
 
-    listChatMessage.value = listChatMessage.map((e) {
+    listChatMessageFiltred.value = listChatMessage.map((e) {
       if (e.codPerson == chatMessage.codTo.toString()) {
         e.messages.add(chatMessage);
       }
       return e;
     }).toList();
 
-    listChatMessage.refresh();
+    listChatMessageFiltred.refresh();
     selectChat.refresh();
     update();
     rowDown();
@@ -111,7 +128,7 @@ class ChatController extends GetxController {
       (l) => null,
       (r) => {
         r.listen((data) {
-          listChatMessage.value = listChatMessage.map((e) {
+          listChatMessageFiltred.value = listChatMessage.map((e) {
             if (e.codPerson == data.codFrom.toString()) {
               e.messages.add(data);
               if (selectChat.value.codPerson != data.codFrom.toString()) {
@@ -120,7 +137,7 @@ class ChatController extends GetxController {
             }
             return e;
           }).toList();
-          listChatMessage.refresh();
+          listChatMessageFiltred.refresh();
           update();
           selectChat.refresh();
           rowDown();
@@ -134,7 +151,7 @@ class ChatController extends GetxController {
   void onSelect(int index) {
     listChatMessage[index] = listChatMessage[index].copyWith(notifications: 0);
     selectChat.value = listChatMessage[index];
-    listChatMessage.refresh();
+    listChatMessageFiltred.refresh();
     update();
     openTab();
     rowDown();

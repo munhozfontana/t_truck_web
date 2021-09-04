@@ -20,9 +20,9 @@ class LoginController extends GetxController {
   });
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
-    await redirectWhenLoginNotExpired();
+    redirectWhenLoginNotExpired();
   }
 
   Future<void> redirectWhenLoginNotExpired() async {
