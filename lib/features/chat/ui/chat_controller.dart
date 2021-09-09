@@ -150,7 +150,7 @@ class ChatController extends GetxController {
 
   void onSelect(int index) {
     listChatMessage[index] = listChatMessage[index].copyWith(notifications: 0);
-    selectChat.value = listChatMessage[index];
+    selectChat.value = listChatMessageFiltred[index];
     listChatMessageFiltred.refresh();
     update();
     openTab();
