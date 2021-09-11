@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_logged_user.dart';
 import 'package:t_truck_web/core/params/params.dart';
+import 'package:t_truck_web/features/home/ui/home_controller.dart';
 import 'package:t_truck_web/features/login/data/models/dasboard_model.dart';
 import 'package:t_truck_web/features/login/domain/use_cases/login_case.dart';
 
@@ -39,8 +41,14 @@ class LoginController extends GetxController {
       );
       (await loginCase(Params(loginParam: loginModel))).fold(
         (l) => null,
-        (r) {
-          iLoggedUser.saveToken(r.token).then((value) => Get.offNamed('/home'));
+        (r) async {
+          iLoggedUser.saveToken(r.token);
+          try {
+            Get.find<HomeController>().getPanelData();
+          } catch (e) {
+            Logger().i('With no bigind');
+          }
+          Get.offNamed('/home');
         },
       );
     }
