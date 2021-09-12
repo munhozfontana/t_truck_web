@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:t_truck_web/core/error/failures.dart';
@@ -84,6 +86,7 @@ class HomeController extends GetxController {
             .map(
               (element) => MarkerMapEntity(
                 child: PositionMap(
+                  color: selectColorByIdle(element),
                   message:
                       "${element.truck.cod} - ${DateFormat('dd/MM/yyyy HH:MM:ss').format(element.truck.createAt)}",
                 ),
@@ -102,5 +105,21 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
     timer!.value.cancel();
+  }
+
+  Color? selectColorByIdle(LocationEntity locationEntity) {
+    final truckTime = locationEntity.truck.createAt;
+    final localDateInBrasil =
+        DateTime.now().toUtc().subtract(const Duration(hours: 3));
+
+    if (localDateInBrasil.difference(truckTime).inHours >= 3) {
+      return Colors.red;
+    }
+
+    if (localDateInBrasil.difference(truckTime).inHours >= 2) {
+      return Colors.yellow;
+    }
+
+    return null;
   }
 }

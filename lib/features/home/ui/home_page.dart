@@ -142,8 +142,9 @@ class HomePage extends GetWidget<HomeController> {
 
 class PositionMap extends StatefulWidget {
   final String message;
+  final Color? color;
 
-  const PositionMap({Key? key, this.message = "Sem descrição"})
+  const PositionMap({Key? key, this.message = "Sem descrição", this.color})
       : super(key: key);
 
   @override
@@ -186,8 +187,16 @@ class _PositionMapState extends State<PositionMap>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(size),
             ),
-            child: SvgPicture.asset(
-              "images/truck_gsa.svg",
+            child: Visibility(
+              visible: widget.color != null,
+              replacement: SvgPicture.asset(
+                "images/truck_gsa.svg",
+              ),
+              child: SvgPicture.asset(
+                "images/truck_gsa.svg",
+                color: widget.color,
+                colorBlendMode: BlendMode.modulate,
+              ),
             ),
           ),
         ),
