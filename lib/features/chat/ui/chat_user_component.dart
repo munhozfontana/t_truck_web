@@ -10,7 +10,7 @@ class ChatUserComponent extends GetWidget<ChatController> {
   final void Function(int)? onSelect;
   final void Function()? onClose;
 
-  ChatUserComponent({
+  const ChatUserComponent({
     this.width,
     this.height,
     this.onSelect,

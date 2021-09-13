@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,7 @@ class ChatController extends GetxController {
 
   // Variables
   Rx<ScrollController> listViewConMessages = ScrollController().obs;
-  late List<ChatPerson> listChatMessage = <ChatPerson>[];
+  RxList<ChatPerson> listChatMessage = <ChatPerson>[].obs;
   RxList<ChatPerson> listChatMessageFiltred = <ChatPerson>[].obs;
   RxBool visibleChatTalkComponent = false.obs;
   RxBool chat = false.obs;
@@ -68,12 +67,10 @@ class ChatController extends GetxController {
           return item.name.isCaseInsensitiveContainsAny(trucksFieldClean) ||
               item.codPerson.isCaseInsensitiveContainsAny(trucksFieldClean);
         }).toList();
-        log(listChatMessageFiltred.length.toString());
-        listChatMessageFiltred.refresh();
       } else {
         listChatMessageFiltred.value = listChatMessage;
-        listChatMessageFiltred.refresh();
       }
+      listChatMessageFiltred.refresh();
     });
   }
 
@@ -85,7 +82,7 @@ class ChatController extends GetxController {
       (await iListChatPeopleCase(Params(idUser: loginMaybeEmpty.value))).fold(
         (l) => null,
         (r) => {
-          listChatMessage = r,
+          listChatMessage.value = r,
           listChatMessageFiltred.value = r,
           listChatMessageFiltred.refresh(),
         },
@@ -137,6 +134,8 @@ class ChatController extends GetxController {
             }
             return e;
           }).toList();
+          orderByNotification();
+          listChatMessage.refresh();
           listChatMessageFiltred.refresh();
           update();
           selectChat.refresh();
@@ -146,11 +145,29 @@ class ChatController extends GetxController {
     );
   }
 
+  void orderByNotification() {
+    listChatMessage.sort((a, b) => b.notifications.compareTo(a.notifications));
+    listChatMessageFiltred
+        .sort((a, b) => b.notifications.compareTo(a.notifications));
+  }
+
 // --------------------------
 
   void onSelect(int index) {
-    listChatMessage[index] = listChatMessage[index].copyWith(notifications: 0);
+    listChatMessage.value = listChatMessage.map((element) {
+      if (element.codPerson == listChatMessageFiltred[index].codPerson) {
+        return element.copyWith(notifications: 0);
+      }
+      return element;
+    }).toList();
+
+    listChatMessageFiltred[index] = listChatMessageFiltred[index].copyWith(
+      notifications: 0,
+    );
+
     selectChat.value = listChatMessageFiltred[index];
+
+    listChatMessage.refresh();
     listChatMessageFiltred.refresh();
     update();
     openTab();
@@ -174,7 +191,6 @@ class ChatController extends GetxController {
   void closeTab() {
     visibleChatTalkComponent.value = false;
     selectChat = ChatPerson(
-      notifications: 0,
       id: 0,
       avatar: Text(""),
       name: "",
