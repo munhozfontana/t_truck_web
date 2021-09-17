@@ -5,11 +5,13 @@ import 'package:t_truck_web/core/styles/styles_fonts.dart';
 class TableComponent extends StatelessWidget {
   final List<String> header;
   final List<List<Widget>> data;
+  final List<int>? space;
 
   const TableComponent({
     Key? key,
     this.header = const [],
     required this.data,
+    this.space,
   }) : super(key: key);
 
   @override
@@ -42,12 +44,14 @@ class TableComponent extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: data[index]
+                      .asMap()
+                      .entries
                       .map(
                         (child) => Expanded(
-                          flex: index == 0 ? 20 : 1,
+                          flex: buildSpaceColumn(child),
                           child: Stack(
                             alignment: Alignment.centerLeft,
-                            children: [child],
+                            children: [child.value],
                           ),
                         ),
                       )
@@ -71,9 +75,12 @@ class TableComponent extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: header
+            .asMap()
+            .entries
             .map((e) => Expanded(
+                  flex: buildSpaceColumn(e),
                   child: Text(
-                    e,
+                    e.value,
                     style: StylesTypography.h16.copyWith(
                       color: Colors.black.withOpacity(.5),
                     ),
@@ -82,5 +89,13 @@ class TableComponent extends StatelessWidget {
             .toList(),
       ),
     );
+  }
+
+  int buildSpaceColumn(MapEntry<int, dynamic> e) {
+    if (space != null && space!.length > e.key) {
+      return space![e.key];
+    }
+
+    return 1;
   }
 }

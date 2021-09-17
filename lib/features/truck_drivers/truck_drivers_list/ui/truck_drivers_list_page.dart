@@ -48,6 +48,13 @@ class TruckDriversListPage extends GetWidget<TruckDriversListController> {
         'Status',
         '',
       ],
+      space: const [
+        1,
+        4,
+        1,
+        1,
+        1,
+      ],
       data: controller.list
           .map((e) => [
                 Text(
