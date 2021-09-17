@@ -118,6 +118,12 @@ class MessageListPage extends GetView<MessageListController> {
         'Status',
         '',
       ],
+      space: const [
+        1,
+        6,
+        2,
+        1,
+      ],
       data: controller.list
           .map((e) => [
                 Text(

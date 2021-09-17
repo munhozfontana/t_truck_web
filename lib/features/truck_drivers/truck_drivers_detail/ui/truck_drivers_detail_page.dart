@@ -159,6 +159,13 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
         'Status',
         '',
       ],
+      space: const [
+        1,
+        4,
+        1,
+        2,
+        1,
+      ],
       data: controller.list
           .map((e) => [
                 Text(
