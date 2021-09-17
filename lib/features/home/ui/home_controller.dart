@@ -81,7 +81,7 @@ class HomeController extends GetxController {
   ) {
     updadeListLocation.fold(
       (l) => null,
-      (r) => {
+      (r) {
         Get.find<MapPageController>().markers.value = r
             .map(
               (element) => MarkerMapEntity(
@@ -96,7 +96,17 @@ class HomeController extends GetxController {
                     longitude: element.longitudade.toDouble()),
               ),
             )
-            .toList()
+            .toList();
+
+        Get.find<MapPageController>().markers.add(MarkerMapEntity(
+              child: const PositionMap(
+                message: "Sede STO",
+                path: "images/pin-gsa.svg",
+              ),
+              name: "STO",
+              locationMapEntity: LocationMapEntity(
+                  latitude: -15.788646369027393, longitude: -48.16089233510168),
+            ));
       },
     );
   }
