@@ -28,11 +28,12 @@ class DevolutionModel extends DevolutionEntity {
         cod: map['NUMTRANSVENDA'] as int,
         client: map['CLIENTE'] as String,
         codClie: (map['CODCLI'] as int).toString(),
-        status: DevolutionStatusUtils.descByCod(
+        status: devolutionDescByCod(
           map['SITUACAO'] as String,
         ),
-        devolutionProgressStatus: DevolutionProgressStatusUtils.descByCod(
-            map['OCORRENCIA'] as String),
+        devolutionProgressStatus: devolutionProgressDescByCod(
+          map['OCORRENCIA'] as String,
+        ),
         data: parse);
   }
 

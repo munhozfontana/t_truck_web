@@ -6,12 +6,14 @@ class TableComponent extends StatelessWidget {
   final List<String> header;
   final List<List<Widget>> data;
   final List<int>? space;
+  final ScrollController? scrollController;
 
   const TableComponent({
     Key? key,
     this.header = const [],
     required this.data,
     this.space,
+    this.scrollController,
   }) : super(key: key);
 
   @override
@@ -27,12 +29,34 @@ class TableComponent extends StatelessWidget {
     );
   }
 
+  Expanded headerTable() {
+    return Expanded(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: header
+            .asMap()
+            .entries
+            .map((e) => Expanded(
+                  flex: buildSpaceColumn(e),
+                  child: Text(
+                    e.value,
+                    style: StylesTypography.h16.copyWith(
+                      color: Colors.black.withOpacity(.5),
+                    ),
+                  ),
+                ))
+            .toList(),
+      ),
+    );
+  }
+
   Expanded bodyTable() {
     return Expanded(
       flex: 10,
       child: LayoutBuilder(
         builder: (_, constrains) {
           return ListView.separated(
+            controller: scrollController ?? ScrollController(),
             itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
@@ -66,27 +90,6 @@ class TableComponent extends StatelessWidget {
             },
           );
         },
-      ),
-    );
-  }
-
-  Expanded headerTable() {
-    return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: header
-            .asMap()
-            .entries
-            .map((e) => Expanded(
-                  flex: buildSpaceColumn(e),
-                  child: Text(
-                    e.value,
-                    style: StylesTypography.h16.copyWith(
-                      color: Colors.black.withOpacity(.5),
-                    ),
-                  ),
-                ))
-            .toList(),
       ),
     );
   }

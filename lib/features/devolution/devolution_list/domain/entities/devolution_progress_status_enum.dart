@@ -2,14 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:t_truck_web/core/styles/style_colors.dart';
 
-enum DevolutionProgressStatus { done, notDone, none, inProgress }
+enum DevolutionProgressStatus { done, notDone, inProgress, processing }
 
-class DevolutionProgressStatusUtils {
-  static DevolutionProgressStatus descByCod(String cod) {
-    return DevolutionProgressStatus.values.firstWhere(
-      (element) => element.sto.contains(cod),
-    );
-  }
+DevolutionProgressStatus devolutionProgressDescByCod(String cod) {
+  final result = DevolutionProgressStatus.values.firstWhere(
+    (element) {
+      return cod.contains(element.sto);
+    },
+  );
+  return result;
 }
 
 extension DevolutionProgressStatusDesc on DevolutionProgressStatus {
@@ -21,8 +22,8 @@ extension DevolutionProgressStatusDesc on DevolutionProgressStatus {
         return 'Pendente';
       case DevolutionProgressStatus.inProgress:
         return 'Em Progresso';
-      case DevolutionProgressStatus.none:
-        return 'Sem Status';
+      case DevolutionProgressStatus.processing:
+        return 'Em processamento';
       default:
         return 'Sem Status';
     }
@@ -36,8 +37,8 @@ extension DevolutionProgressStatusDesc on DevolutionProgressStatus {
         return 'PENDENTE';
       case DevolutionProgressStatus.inProgress:
         return 'PROGRESSO';
-      case DevolutionProgressStatus.none:
-        return '';
+      case DevolutionProgressStatus.processing:
+        return 'PROCESSAMENTO';
       default:
         return '';
     }
@@ -55,8 +56,10 @@ extension DevolutionProgressStatusColor on DevolutionProgressStatus {
         return StylesColors.wellow;
       case DevolutionProgressStatus.inProgress:
         return StylesColors.blue;
+      case DevolutionProgressStatus.processing:
+        return Colors.teal;
       default:
-        return StylesColors.wellow;
+        return Colors.black;
     }
   }
 }
@@ -65,16 +68,30 @@ extension DevolutionProgressStatusIcon on DevolutionProgressStatus {
   Icon get icon {
     switch (this) {
       case DevolutionProgressStatus.done:
-        return Icon(Icons.check, color: DevolutionProgressStatus.done.color);
+        return Icon(
+          Icons.check,
+          color: DevolutionProgressStatus.done.color,
+        );
       case DevolutionProgressStatus.notDone:
-        return Icon(Icons.error, color: DevolutionProgressStatus.notDone.color);
+        return Icon(
+          Icons.error,
+          color: DevolutionProgressStatus.notDone.color,
+        );
       case DevolutionProgressStatus.inProgress:
-        return Icon(Icons.sync,
-            color: DevolutionProgressStatus.inProgress.color);
+        return Icon(
+          Icons.sync,
+          color: DevolutionProgressStatus.inProgress.color,
+        );
+      case DevolutionProgressStatus.processing:
+        return Icon(
+          Icons.engineering_outlined,
+          color: DevolutionProgressStatus.inProgress.color,
+        );
       default:
-        return Icon(Icons.info, color: DevolutionProgressStatus.notDone.color);
+        return Icon(
+          Icons.info,
+          color: DevolutionProgressStatus.notDone.color,
+        );
     }
   }
 }
-
-// Pendente Progresso Concluido

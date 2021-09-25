@@ -19,6 +19,6 @@ class TruckDriversModel extends TruckDriversEntity {
         cod: (map['CODMOTORISTA'] as int).toString(),
         truckDriver: (map['NOME'] as String).toString(),
         quantityDelivers: (map['ENTREGAS'] as int).toString(),
-        status: DeliveryStatus.none);
+        status: deliveryDescByCod(map['STATUS'] as String));
   }
 }

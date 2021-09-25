@@ -4,12 +4,10 @@ import 'package:t_truck_web/core/styles/style_colors.dart';
 
 enum DevolutionStatus { done, notDone, none }
 
-class DevolutionStatusUtils {
-  static DevolutionStatus descByCod(String cod) {
-    return DevolutionStatus.values.firstWhere(
-      (element) => element.sto.contains(cod),
-    );
-  }
+DevolutionStatus devolutionDescByCod(String cod) {
+  return DevolutionStatus.values.firstWhere(
+    (element) => cod.contains(element.sto),
+  );
 }
 
 extension DevolutionStatusDesc on DevolutionStatus {

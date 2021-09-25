@@ -59,6 +59,7 @@ class ChatUserComponent extends GetWidget<ChatController> {
           Expanded(
             child: Obx(() {
               return ListView.separated(
+                controller: ScrollController(),
                 itemBuilder: (context, index) => Card(
                   elevation: 6,
                   margin: const EdgeInsets.all(10),

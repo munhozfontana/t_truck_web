@@ -20,6 +20,7 @@ class HomePage extends GetWidget<HomeController> {
   @override
   Widget build(BuildContext context) {
     return LayoutComponent(
+      fullScreen: false,
       child: Column(
         children: [
           const TitleComponent(

@@ -13,10 +13,12 @@ import 'responsive.dart';
 
 class LayoutComponent extends StatelessWidget {
   final Widget? child;
+  final bool fullScreen;
 
   const LayoutComponent({
     Key? key,
     required this.child,
+    this.fullScreen = true,
   }) : super(key: key);
 
   @override
@@ -143,6 +145,12 @@ class LayoutComponent extends StatelessWidget {
                   ),
                 ),
               ),
+              Visibility(
+                visible: !fullScreen,
+                child: const Spacer(
+                  flex: 50,
+                ),
+              )
             ],
           ),
         ),
