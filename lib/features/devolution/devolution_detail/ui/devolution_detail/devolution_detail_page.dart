@@ -73,6 +73,13 @@ class DevolutionDetailPage extends GetView<DevolutionDetailController> {
 
   TableComponent table() {
     return TableComponent(
+      space: const [
+        1,
+        4,
+        1,
+        1,
+        1,
+      ],
       data: [
         ...controller.list
             .map((item) => [

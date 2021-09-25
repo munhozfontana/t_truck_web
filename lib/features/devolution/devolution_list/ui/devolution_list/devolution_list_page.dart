@@ -70,6 +70,13 @@ class DevolutionListPage extends GetView<DevolutionListController> {
         'Status',
         '',
       ],
+      space: const [
+        1,
+        1,
+        4,
+        1,
+        1,
+      ],
       data: controller.list
           .map((e) => [
                 Text(
