@@ -6,8 +6,8 @@ import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_
 import 'package:t_truck_web/features/devolution/devolution_list/ui/devolution_list/devolution_list_page.dart';
 import 'package:t_truck_web/features/home/home_biding.dart';
 import 'package:t_truck_web/features/home/ui/home_page.dart';
-import 'package:t_truck_web/features/image_quality/image_quality_bindings.dart';
-import 'package:t_truck_web/features/image_quality/ui/image_quality_page.dart';
+import 'package:t_truck_web/features/image_quality/image_quality_list/image_quality_list_bindings.dart';
+import 'package:t_truck_web/features/image_quality/image_quality_list/ui/image_quality_list_page.dart';
 import 'package:t_truck_web/features/login/login_biding.dart';
 import 'package:t_truck_web/features/login/ui/login_page.dart';
 import 'package:t_truck_web/features/map/map_page.dart';
@@ -120,7 +120,7 @@ extension RoutesExt on Routes {
       case Routes.config:
         return ConfigPage();
       case Routes.imageQuality:
-        return const ImageQualityPage();
+        return const ImageQualityListPage();
       default:
         return const HomePage();
     }
@@ -141,7 +141,7 @@ extension RoutesExt on Routes {
       case Routes.config:
         return ConfigBindings();
       case Routes.imageQuality:
-        return ImageQualityBindings();
+        return ImageQualityListBindings();
       case Routes.homeMap:
         break;
       case Routes.developer:

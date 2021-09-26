@@ -6,8 +6,10 @@ import 'package:t_truck_web/features/devolution/devolution_detail/devolution_det
 import 'package:t_truck_web/features/devolution/devolution_detail/ui/devolution_detail/devolution_detail_page.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_bindings.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/ui/devolution_list/devolution_list_page.dart';
-import 'package:t_truck_web/features/image_quality/image_quality_bindings.dart';
-import 'package:t_truck_web/features/image_quality/ui/image_quality_page.dart';
+import 'package:t_truck_web/features/image_quality/image_quality_detail/image_quality_detail_bindings.dart';
+import 'package:t_truck_web/features/image_quality/image_quality_detail/ui/image_quality_detail_page.dart';
+import 'package:t_truck_web/features/image_quality/image_quality_list/image_quality_list_bindings.dart';
+import 'package:t_truck_web/features/image_quality/image_quality_list/ui/image_quality_list_page.dart';
 import 'package:t_truck_web/features/map/map_page.dart';
 import 'package:t_truck_web/features/message/message_detail/message_detail_bindings.dart';
 import 'package:t_truck_web/features/message/message_detail/ui/message_detail/message_detail_page.dart';
@@ -67,14 +69,7 @@ List<GetPage> pages() {
     ..._truckDriversModule(),
     ..._devolutionsModule(),
     ..._messageModule(),
-    GetPage(
-      name: Routes.imageQuality.path,
-      transitionDuration: fast,
-      curve: Curves.easeInOutCirc,
-      page: () => const ImageQualityPage(),
-      transition: Transition.fadeIn,
-      binding: ImageQualityBindings(),
-    ),
+    ..._imageQualityModule(),
     GetPage(
       name: Routes.developer.path,
       transitionDuration: fast,
@@ -150,6 +145,27 @@ List<GetPage<dynamic>> _messageModule() {
       page: () => MessageDetailPage(),
       transition: Transition.rightToLeft,
       binding: MessageDetailBindings(),
+    ),
+  ];
+}
+
+List<GetPage<dynamic>> _imageQualityModule() {
+  return [
+    GetPage(
+      name: Routes.imageQuality.path,
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => const ImageQualityListPage(),
+      transition: Transition.fadeIn,
+      binding: ImageQualityListBindings(),
+    ),
+    GetPage(
+      name: '${Routes.imageQuality.path}/:id',
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => const ImageQualityDetailPage(),
+      transition: Transition.rightToLeft,
+      binding: ImageQualityDetailBindings(),
     ),
   ];
 }
