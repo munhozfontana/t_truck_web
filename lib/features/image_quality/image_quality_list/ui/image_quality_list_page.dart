@@ -69,7 +69,7 @@ class ImageQualityListPage extends GetView<ImageQualityListController> {
       ],
       space: const [
         2,
-        6,
+        3,
         1,
         1,
         1,

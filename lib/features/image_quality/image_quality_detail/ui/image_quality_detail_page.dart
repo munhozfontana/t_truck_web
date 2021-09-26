@@ -63,11 +63,13 @@ class ImageQualityDetailPage extends GetView<ImageQualityDetailController> {
         'Nº TrasnVenda',
         'Cod Cli',
         'Nº Canhoto',
+        'Percentual',
         '',
       ],
       space: const [
         3,
         1,
+        2,
         1,
         1,
       ],
@@ -83,6 +85,10 @@ class ImageQualityDetailPage extends GetView<ImageQualityDetailController> {
                 ),
                 Text(
                   e.numCanhoto.toString(),
+                  style: StylesTypography.h16Bold,
+                ),
+                Text(
+                  e.percentage.toString(),
                   style: StylesTypography.h16Bold,
                 ),
                 SizedBox(
