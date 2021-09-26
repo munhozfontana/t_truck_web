@@ -65,7 +65,7 @@ class TruckDriversDetailController extends GetxController {
   }
 
   void removeTruckAt() {
-    var isTruckAtMap = mapPageController.markers
+    final isTruckAtMap = mapPageController.markers
         .where(
           (element) => element.name == truckDriversEntity.value.cod,
         )
@@ -99,7 +99,7 @@ class TruckDriversDetailController extends GetxController {
   }
 
   Future<void> reloadTrucks() async {
-    (await iListLocationCase(Params())).fold(
+    (await iListLocationCase(const Params())).fold(
       (l) => null,
       (r) => {
         Get.find<MapPageController>().markers.value = r

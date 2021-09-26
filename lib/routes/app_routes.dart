@@ -6,6 +6,8 @@ import 'package:t_truck_web/features/devolution/devolution_detail/devolution_det
 import 'package:t_truck_web/features/devolution/devolution_detail/ui/devolution_detail/devolution_detail_page.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_bindings.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/ui/devolution_list/devolution_list_page.dart';
+import 'package:t_truck_web/features/image_quality/image_quality_bindings.dart';
+import 'package:t_truck_web/features/image_quality/ui/image_quality_page.dart';
 import 'package:t_truck_web/features/map/map_page.dart';
 import 'package:t_truck_web/features/message/message_detail/message_detail_bindings.dart';
 import 'package:t_truck_web/features/message/message_detail/ui/message_detail/message_detail_page.dart';
@@ -26,130 +28,128 @@ import 'app_routes_enum.dart';
 const slow = Duration(milliseconds: 800);
 const fast = Duration(milliseconds: 400);
 
-class AppPages {
-  static List<GetPage> pages() {
-    final list = [
-      GetPage(
-          name: Routes.login.path,
-          transitionDuration: fast,
-          curve: Curves.easeInOutCirc,
-          page: () => const LoginPage(),
-          binding: LoginBiding()),
-      GetPage(
-        name: Routes.home.path,
+List<GetPage> pages() {
+  final list = [
+    GetPage(
+        name: Routes.login.path,
         transitionDuration: fast,
         curve: Curves.easeInOutCirc,
-        binding: HomeBiding(),
-        page: () => const HomePage(),
-        transition: Transition.fadeIn,
-      ),
-      GetPage(
-        name: Routes.homeMap.path,
-        transitionDuration: slow,
-        curve: Curves.easeInOutCirc,
-        page: () => Hero(
-          tag: 'mapa-tag',
-          child: MapPage(
-            onTap: () => Get.back(),
-          ),
+        page: () => const LoginPage(),
+        binding: LoginBiding()),
+    GetPage(
+      name: Routes.home.path,
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      binding: HomeBiding(),
+      page: () => const HomePage(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: Routes.homeMap.path,
+      transitionDuration: slow,
+      curve: Curves.easeInOutCirc,
+      page: () => Hero(
+        tag: 'mapa-tag',
+        child: MapPage(
+          onTap: () => Get.back(),
         ),
-        transition: Transition.fadeIn,
       ),
-      GetPage(
-        name: Routes.config.path,
-        transitionDuration: slow,
-        curve: Curves.easeInOutCirc,
-        page: () => ConfigPage(),
-        transition: Transition.fadeIn,
-        binding: ConfigBindings(),
-      ),
-      ...truckDriversModule(),
-      ...devolutionsModule(),
-      ...messageModule(),
-      GetPage(
-        name: Routes.developer.path,
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => Center(
-          child: Text(
-            '404',
-            style: StylesTypography.h48,
-          ),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: Routes.config.path,
+      transitionDuration: slow,
+      curve: Curves.easeInOutCirc,
+      page: () => ConfigPage(),
+      transition: Transition.fadeIn,
+      binding: ConfigBindings(),
+    ),
+    ..._truckDriversModule(),
+    ..._devolutionsModule(),
+    ..._messageModule(),
+    GetPage(
+      name: Routes.imageQuality.path,
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => const ImageQualityPage(),
+      transition: Transition.fadeIn,
+      binding: ImageQualityBindings(),
+    ),
+    GetPage(
+      name: Routes.developer.path,
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => Center(
+        child: Text(
+          '404',
+          style: StylesTypography.h48,
         ),
-        transition: Transition.fadeIn,
       ),
-    ];
-    return list;
-  }
+      transition: Transition.fadeIn,
+    ),
+  ];
+  return list;
+}
 
-  static List<GetPage<dynamic>> devolutionsModule() {
-    return [
-      GetPage(
-        name: Routes.devolutions.path,
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => DevolutionListPage(),
-        transition: Transition.fadeIn,
-        binding: DevolutionListBindings(),
-      ),
-      GetPage(
-        name: '${Routes.devolutions.path}/:id',
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => DevolutionDetailPage(),
-        transition: Transition.rightToLeft,
-        binding: DevolutionDetailBindings(),
-      ),
-    ];
-  }
+List<GetPage<dynamic>> _devolutionsModule() {
+  return [
+    GetPage(
+      name: Routes.devolutions.path,
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => DevolutionListPage(),
+      transition: Transition.fadeIn,
+      binding: DevolutionListBindings(),
+    ),
+    GetPage(
+      name: '${Routes.devolutions.path}/:id',
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => DevolutionDetailPage(),
+      transition: Transition.rightToLeft,
+      binding: DevolutionDetailBindings(),
+    ),
+  ];
+}
 
-  static List<GetPage<dynamic>> truckDriversModule() {
-    return [
-      GetPage(
-        name: Routes.truckDrivers.path,
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => TruckDriversListPage(),
-        transition: Transition.fadeIn,
-        binding: TruckDriversListBiding(),
-      ),
-      GetPage(
-        name: '${Routes.truckDrivers.path}/:id',
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => TruckDriversDetailPage(),
-        transition: Transition.rightToLeft,
-        binding: TruckDriversDetailBindings(),
-      ),
-    ];
-  }
+List<GetPage<dynamic>> _truckDriversModule() {
+  return [
+    GetPage(
+      name: Routes.truckDrivers.path,
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => TruckDriversListPage(),
+      transition: Transition.fadeIn,
+      binding: TruckDriversListBiding(),
+    ),
+    GetPage(
+      name: '${Routes.truckDrivers.path}/:id',
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => TruckDriversDetailPage(),
+      transition: Transition.rightToLeft,
+      binding: TruckDriversDetailBindings(),
+    ),
+  ];
+}
 
-  static List<GetPage<dynamic>> messageModule() {
-    return [
-      GetPage(
-        name: Routes.message.path,
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => MessageListPage(),
-        transition: Transition.fadeIn,
-        binding: MessageListBindings(),
-      ),
-      GetPage(
-        name: '${Routes.message.path}/:id',
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => MessageDetailPage(),
-        transition: Transition.rightToLeft,
-        binding: MessageDetailBindings(),
-      ),
-    ];
-  }
-
-  static bool isExpandedMap() {
-    return Routes.homeMap.path == Get.currentRoute;
-  }
-
-  static bool isHomeMap() {
-    return Routes.login.path == Get.currentRoute;
-  }
+List<GetPage<dynamic>> _messageModule() {
+  return [
+    GetPage(
+      name: Routes.message.path,
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => MessageListPage(),
+      transition: Transition.fadeIn,
+      binding: MessageListBindings(),
+    ),
+    GetPage(
+      name: '${Routes.message.path}/:id',
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => MessageDetailPage(),
+      transition: Transition.rightToLeft,
+      binding: MessageDetailBindings(),
+    ),
+  ];
 }

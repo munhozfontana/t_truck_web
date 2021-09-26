@@ -14,6 +14,7 @@ class MenuComponentController extends GetxController {
     Routes.truckDrivers,
     Routes.devolutions,
     Routes.message,
+    Routes.imageQuality,
     Routes.config,
   ].obs;
 

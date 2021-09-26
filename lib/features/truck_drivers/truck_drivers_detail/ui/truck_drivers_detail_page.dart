@@ -191,7 +191,6 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
                   child: Material(
                     color: Colors.white,
                     child: InkWell(
-                      onTap: () => print('Pra algum lugar que não sei'),
                       child: Row(
                         children: [
                           Text(
@@ -219,7 +218,7 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
 
   Widget tableCard() {
     return TableCardComponent(
-      onTap: (index) => print(controller.list.elementAt(index).clientName),
+      onTap: print,
       listTableCardItem: controller.list
           .map(
             (element) => TableCardItem(

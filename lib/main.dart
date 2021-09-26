@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:t_truck_web/routes/app_routes.dart';
 
 import 'core/components/layout_component.dart';
 import 'core/styles/styles_button.dart';
 import 'core/styles/styles_fonts.dart';
 import 'core/styles/styles_inputs.dart';
 import 'main_biding.dart';
-import 'routes/app_routes.dart';
 import 'routes/app_routes_enum.dart';
 
 Future<void> main() async {
@@ -32,7 +32,7 @@ Future<void> main() async {
     ),
     initialBinding: MainBiding(),
     initialRoute: Routes.login.path,
-    getPages: AppPages.pages(),
+    getPages: pages(),
     onUnknownRoute: (settings) => GetPageRoute(
       page: () => const LayoutComponent(
         child: Text('Não encontrado'),

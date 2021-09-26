@@ -6,6 +6,8 @@ import 'package:t_truck_web/features/devolution/devolution_list/devolution_list_
 import 'package:t_truck_web/features/devolution/devolution_list/ui/devolution_list/devolution_list_page.dart';
 import 'package:t_truck_web/features/home/home_biding.dart';
 import 'package:t_truck_web/features/home/ui/home_page.dart';
+import 'package:t_truck_web/features/image_quality/image_quality_bindings.dart';
+import 'package:t_truck_web/features/image_quality/ui/image_quality_page.dart';
 import 'package:t_truck_web/features/login/login_biding.dart';
 import 'package:t_truck_web/features/login/ui/login_page.dart';
 import 'package:t_truck_web/features/map/map_page.dart';
@@ -26,6 +28,7 @@ enum Routes {
   message,
   config,
   developer,
+  imageQuality,
   unknown
 }
 
@@ -46,6 +49,8 @@ extension RoutesExt on Routes {
         return '/message';
       case Routes.config:
         return '/config';
+      case Routes.imageQuality:
+        return '/qualityImage';
       default:
         return '/unknown';
     }
@@ -83,6 +88,12 @@ extension RoutesExt on Routes {
           path: Routes.config.path,
           icon: Icons.settings_outlined,
         );
+      case Routes.imageQuality:
+        return MenuModel(
+          text: 'Qualidade de Imagem',
+          path: Routes.imageQuality.path,
+          icon: Icons.image_search_rounded,
+        );
       default:
         return MenuModel(
           text: 'Painel',
@@ -108,7 +119,10 @@ extension RoutesExt on Routes {
         return MessageListPage();
       case Routes.config:
         return ConfigPage();
+      case Routes.imageQuality:
+        return const ImageQualityPage();
       default:
+        return const HomePage();
     }
   }
 
@@ -126,14 +140,13 @@ extension RoutesExt on Routes {
         return MessageListBindings();
       case Routes.config:
         return ConfigBindings();
+      case Routes.imageQuality:
+        return ImageQualityBindings();
       case Routes.homeMap:
-        // TODO: Handle this case.
         break;
       case Routes.developer:
-        // TODO: Handle this case.
         break;
       case Routes.unknown:
-        // TODO: Handle this case.
         break;
     }
   }
