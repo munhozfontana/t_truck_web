@@ -25,4 +25,19 @@ class ImageQualityDetailRepository implements IImageQualityDetailRepository {
       return const Left(AppFailure(detail: 'Erro ao receber informações'));
     }
   }
+
+  @override
+  Future<Either<Failure, List<String>>> getImageBtTruckDriverImage(
+      TruckDriverImageModel truckDriverImageModel) async {
+    try {
+      return Right(await iImageQualityDetailExternal
+          .getImageBtTruckDriverImage(truckDriverImageModel));
+    } on ApiException catch (e) {
+      Logger().w(e);
+      return Left(RequestFailure(detail: e.error));
+    } catch (e) {
+      Logger().w(e);
+      return const Left(AppFailure(detail: 'Erro ao receber informações'));
+    }
+  }
 }

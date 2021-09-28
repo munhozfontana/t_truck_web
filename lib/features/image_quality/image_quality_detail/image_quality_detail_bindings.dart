@@ -3,6 +3,7 @@ import 'package:t_truck_web/features/image_quality/image_quality_detail/data/ext
 import 'package:t_truck_web/features/image_quality/image_quality_detail/data/external/protocols/i_image_quality_detail_external.dart';
 import 'package:t_truck_web/features/image_quality/image_quality_detail/data/repositories_impl/image_quality_detail_repository.dart';
 import 'package:t_truck_web/features/image_quality/image_quality_detail/domain/repositories/i_image_quality_detail_repository.dart';
+import 'package:t_truck_web/features/image_quality/image_quality_detail/domain/usecases/image_quality_case.dart';
 import 'package:t_truck_web/features/image_quality/image_quality_detail/domain/usecases/image_quality_detail_case.dart';
 import 'package:t_truck_web/features/image_quality/image_quality_list/image_quality_list_bindings.dart';
 
@@ -31,10 +32,15 @@ class ImageQualityDetailBindings implements Bindings {
       ),
     );
 
+    Get.lazyPut(
+      () => ImageQualityCase(
+        iImageQualityDetailRepository: Get.find(),
+      ),
+    );
+
     Get.lazyPut<ImageQualityDetailController>(
       () => ImageQualityDetailController(
-        imageQualityDetailCase: Get.find(),
-      ),
+          imageQualityDetailCase: Get.find(), imageQualityCase: Get.find()),
     );
   }
 }

@@ -17,23 +17,36 @@ class ImageQualityDetailPage extends GetView<ImageQualityDetailController> {
   @override
   Widget build(BuildContext context) {
     return LayoutComponent(
-      child: Column(
+      child: Stack(
         children: [
-          Visibility(
-            visible: Responsive.isNotMobile(context),
-            child: const TitleComponent(
-              title: 'Qualidade de imagem',
-            ),
-          ),
-          BodyComponent(
-            child: Obx(
-              () => Responsive.when(
-                context,
-                mobile: tableCard(),
-                orOther: table(),
+          Column(
+            children: [
+              Visibility(
+                visible: Responsive.isNotMobile(context),
+                child: const TitleComponent(
+                  title: 'Qualidade de imagem',
+                ),
               ),
-            ),
-          )
+              BodyComponent(
+                child: Obx(
+                  () => Responsive.when(
+                    context,
+                    mobile: tableCard(),
+                    orOther: table(),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Obx(() => Visibility(
+              visible: controller.loadingImage.value,
+              child: const Align(
+                child: SizedBox(
+                  height: 70,
+                  width: 70,
+                  child: CircularProgressIndicator(),
+                ),
+              ))),
         ],
       ),
     );

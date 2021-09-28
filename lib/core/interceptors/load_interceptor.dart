@@ -15,7 +15,8 @@ class LoadInterceptor implements IProtocolInterceptor {
   @override
   InterceptorsWrapper call() {
     return InterceptorsWrapper(onRequest: (options, handler) {
-      if (!options.path.contains("api/location")) {
+      if (!options.path.contains("api/location") &&
+          !options.path.contains("api/imagemMotorista/imagem")) {
         storeController.onLoad();
       }
       return handler.next(options);

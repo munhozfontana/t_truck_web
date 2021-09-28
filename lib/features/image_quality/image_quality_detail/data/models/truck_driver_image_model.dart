@@ -6,12 +6,14 @@ class TruckDriverImageModel extends TruckDriverImageEntity {
   final int numCanhoto;
   final int codCLi;
   final String numTrasnvenda;
+  final int codMotorista;
 
   TruckDriverImageModel({
     required String percentage,
     required this.numCanhoto,
     required this.codCLi,
     required this.numTrasnvenda,
+    required this.codMotorista,
   }) : super(
           percentage: percentage,
         );
@@ -22,6 +24,7 @@ class TruckDriverImageModel extends TruckDriverImageEntity {
       numCanhoto: map['NUMCANHOTO'] as int,
       percentage: map['PERCENT_OCR'] as String,
       numTrasnvenda: map['NUMTRANSVENDA'] as String,
+      codMotorista: map['CODMOTORISTA'] as int,
     );
   }
 

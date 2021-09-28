@@ -4,4 +4,7 @@ import 'package:t_truck_web/features/image_quality/image_quality_detail/data/mod
 
 abstract class IImageQualityDetailRepository {
   Future<Either<Failure, List<TruckDriverImageModel>>> getById(int cod);
+  Future<Either<Failure, List<String>>> getImageBtTruckDriverImage(
+    TruckDriverImageModel truckDriverImageModel,
+  );
 }

@@ -25,4 +25,21 @@ class ImageQualityDetailExternal implements IImageQualityDetailExternal {
       throw ApiException(error: 'Serviço indiponível');
     }
   }
+
+  @override
+  Future<List<String>> getImageBtTruckDriverImage(
+      TruckDriverImageModel truckDriverImageModel) async {
+    try {
+      final res = await iHttp.postHttp(
+          'http://truck.stoatacadista.com.br:2302/api/imagemMotorista/imagem',
+          body: {
+            'codmot': truckDriverImageModel.codMotorista.toString(),
+            'numtransvenda': truckDriverImageModel.numTrasnvenda
+          });
+
+      return DioDriver.listExtract(res).cast<String>();
+    } catch (e) {
+      throw ApiException(error: 'Serviço indiponível');
+    }
+  }
 }
