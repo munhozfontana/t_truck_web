@@ -19,8 +19,8 @@ class ImageQualityModel extends ImageQualityEntity {
     return ImageQualityModel(
       cod: map['CODMOTORISTA'] as int,
       name: map['NOME'] as String,
-      percent: map['PERCENT_OCR'] as String,
-      badQuality: map['BAIXAQUALIDADE'] as int,
+      percent: (map['MEDIA'] as num).toStringAsFixed(2),
+      badQuality: map['QTDE'] as int,
     );
   }
 
