@@ -20,7 +20,6 @@ class HomePage extends GetWidget<HomeController> {
   @override
   Widget build(BuildContext context) {
     return LayoutComponent(
-      fullScreen: false,
       child: Column(
         children: [
           const TitleComponent(
@@ -84,7 +83,7 @@ class HomePage extends GetWidget<HomeController> {
                 ),
                 const Spacer(flex: 26),
                 Expanded(
-                  flex: Responsive.isMobile(context) ? 300 : 300,
+                  flex: Responsive.isMobile(context) ? 300 : 450,
                   child: Hero(
                     tag: 'mapa-tag',
                     child: MapPage(

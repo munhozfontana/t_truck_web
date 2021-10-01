@@ -14,7 +14,7 @@ class TitleComponent extends StatelessWidget {
     this.title = '',
     this.primary,
     this.secondary,
-    this.flex = 2,
+    this.flex = 1,
   }) : super(key: key);
 
   @override
