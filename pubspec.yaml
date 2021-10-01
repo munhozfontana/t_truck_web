@@ -24,7 +24,7 @@ dependencies:
   carousel_slider: ^4.0.0
   connectivity: ^3.0.6
   cupertino_icons: ^1.0.2
-  dartz: 0.10.0-nullsafety.2
+  dartz: ^0.10.0
   dio: ^4.0.0
   equatable: ^2.0.3
   faker: ^2.0.0
@@ -32,7 +32,7 @@ dependencies:
     sdk: flutter
   flutter_dotenv: ^5.0.2
   flutter_feather_icons: ^2.0.0+1
-  flutter_map: ^0.13.1
+  flutter_map: ^0.14.0
   flutter_svg: ^0.22.0
   font_awesome_flutter: ^9.1.0
   get: ^4.1.4
