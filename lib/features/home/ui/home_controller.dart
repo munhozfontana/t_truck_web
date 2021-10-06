@@ -10,6 +10,7 @@ import 'package:t_truck_web/features/home/domain/entities/location_entity.dart';
 import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_dashboard_case.dart';
 import 'package:t_truck_web/features/home/domain/use_cases/protocols/i_list_location_case.dart';
 import 'package:t_truck_web/features/home/ui/home_page.dart';
+import 'package:t_truck_web/features/map/entites/lenged_map.dart';
 import 'package:t_truck_web/features/map/entites/map_entites.dart';
 import 'package:t_truck_web/features/map/map_controller.dart';
 import 'package:t_truck_web/routes/app_routes_enum.dart';
@@ -79,10 +80,11 @@ class HomeController extends GetxController {
   void updadeListLocation(
     Either<Failure, List<LocationEntity>> updadeListLocation,
   ) {
+    final mapPageController = Get.find<MapPageController>();
     updadeListLocation.fold(
       (l) => null,
       (r) {
-        Get.find<MapPageController>().markers.value = r
+        mapPageController.markers.value = r
             .map(
               (element) => MarkerMapEntity(
                 child: PositionMap(
@@ -92,21 +94,42 @@ class HomeController extends GetxController {
                 ),
                 name: element.truck.cod.toString(),
                 locationMapEntity: LocationMapEntity(
-                    latitude: element.latitude.toDouble(),
-                    longitude: element.longitudade.toDouble()),
+                  latitude: element.latitude.toDouble(),
+                  longitude: element.longitudade.toDouble(),
+                ),
               ),
             )
             .toList();
 
-        Get.find<MapPageController>().markers.add(MarkerMapEntity(
-              child: const PositionMap(
-                message: "Sede STO",
-                path: "images/pin-gsa.svg",
-              ),
-              name: "STO",
-              locationMapEntity: LocationMapEntity(
-                  latitude: -15.788646369027393, longitude: -48.16089233510168),
-            ));
+        mapPageController.markers.add(
+          MarkerMapEntity(
+            child: const PositionMap(
+              message: "Sede STO",
+              path: "images/pin-gsa.svg",
+            ),
+            name: "STO",
+            locationMapEntity: LocationMapEntity(
+              latitude: -15.788646369027393,
+              longitude: -48.16089233510168,
+            ),
+          ),
+        );
+
+        mapPageController.lengedMap.value = [
+          LengedMap(
+            color: Colors.white,
+            description: 'Recentemente atualizado',
+          ),
+          LengedMap(
+            color: Colors.yellow,
+            description: '2 Horas inoperante',
+          ),
+          LengedMap(
+            color: Colors.red,
+            description: '3 horas ou mais inoperante',
+          ),
+        ];
+        mapPageController.refresh();
       },
     );
   }

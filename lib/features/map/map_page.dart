@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:t_truck_web/core/styles/styles_fonts.dart';
+import 'package:t_truck_web/features/map/components/legend_component.dart';
 
 import 'map_controller.dart';
 
@@ -33,13 +34,15 @@ class MapPage extends GetView<MapPageController> {
                     zoom: controller.lastZoom?.value,
                     onPositionChanged: controller.onPositionChanged,
                     markers: controller.markers
-                        .map((e) => Marker(
-                              point: LatLng(
-                                e.locationMapEntity.latitude,
-                                e.locationMapEntity.longitude,
-                              ),
-                              builder: (context) => e.child,
-                            ))
+                        .map(
+                          (e) => Marker(
+                            point: LatLng(
+                              e.locationMapEntity.latitude,
+                              e.locationMapEntity.longitude,
+                            ),
+                            builder: (context) => e.child,
+                          ),
+                        )
                         .toList(),
                     fluterMapAdapterController:
                         controller.controlChildMap.value,
@@ -85,6 +88,11 @@ class MapPage extends GetView<MapPageController> {
                   ),
                 ),
               ),
+              Obx(
+                () => LegendComponent(
+                  lengedMap: controller.lengedMap.value,
+                ),
+              )
             ],
           );
         },
@@ -123,7 +131,8 @@ class FluterMapAdapter extends StatefulWidget {
 
 class _FluterMapAdapterState extends State<FluterMapAdapter> {
   _FluterMapAdapterState(
-      FluterMapAdapterController fluterMapAdapterController) {
+    FluterMapAdapterController fluterMapAdapterController,
+  ) {
     fluterMapAdapterController.move = mapController.move;
     fluterMapAdapterController.rotate = mapController.rotate;
     fluterMapAdapterController.center = center;
@@ -148,9 +157,10 @@ class _FluterMapAdapterState extends State<FluterMapAdapter> {
   @override
   Widget build(BuildContext context) {
     final mapOptions = MapOptions(
-        onPositionChanged: widget.onPositionChanged,
-        center: widget.center,
-        zoom: widget.zoom ?? 13);
+      onPositionChanged: widget.onPositionChanged,
+      center: widget.center,
+      zoom: widget.zoom ?? 13,
+    );
     return FlutterMap(
       mapController: mapController,
       options: mapOptions,

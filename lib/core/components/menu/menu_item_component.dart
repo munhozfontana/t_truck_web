@@ -74,13 +74,17 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           stops: const [0.1, 1],
-                          colors: animationsUtils.animatedColorList(begin: [
-                            StylesColors.blue.withOpacity(.69),
-                            StylesColors.blue,
-                          ], end: [
-                            StylesColors.blue,
-                            StylesColors.blue.withOpacity(.69),
-                          ], parent: _hoverAnimCtl),
+                          colors: animationsUtils.animatedColorList(
+                            begin: [
+                              StylesColors.blue.withOpacity(.69),
+                              StylesColors.blue,
+                            ],
+                            end: [
+                              StylesColors.blue,
+                              StylesColors.blue.withOpacity(.69),
+                            ],
+                            parent: _hoverAnimCtl,
+                          ),
                         ),
                       ),
                       height: widget.height,
@@ -101,13 +105,16 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                               angle: widget.menuModel.menu.iconInverted!
                                   ? 180 * pi / 180
                                   : 0,
-                              child: Icon(widget.menuModel.menu.icon,
-                                  color: animationsUtils
-                                      .animateColor(
-                                          parent: _hoverAnimCtl,
-                                          begin: StylesColors.gray,
-                                          end: Colors.white)
-                                      .value),
+                              child: Icon(
+                                widget.menuModel.menu.icon,
+                                color: animationsUtils
+                                    .animateColor(
+                                      parent: _hoverAnimCtl,
+                                      begin: StylesColors.gray,
+                                      end: Colors.white,
+                                    )
+                                    .value,
+                              ),
                             ),
                           ),
                           Visibility(
@@ -134,12 +141,14 @@ class _MenuItemComponentState extends State<MenuItemComponent>
                                     child: Text(
                                       widget.menuModel.menu.text,
                                       style: StylesTypography.h16.copyWith(
-                                          color: animationsUtils
-                                              .animateColor(
-                                                  parent: _hoverAnimCtl,
-                                                  begin: StylesColors.gray,
-                                                  end: Colors.white)
-                                              .value),
+                                        color: animationsUtils
+                                            .animateColor(
+                                              parent: _hoverAnimCtl,
+                                              begin: StylesColors.gray,
+                                              end: Colors.white,
+                                            )
+                                            .value,
+                                      ),
                                     ),
                                   );
                                 },
