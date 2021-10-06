@@ -126,9 +126,10 @@ class LayoutComponent extends StatelessWidget {
                               visible:
                                   !Get.find<StoreController>().loading.value,
                               replacement: Shimmer.fromColors(
-                                  baseColor: Colors.grey[300]!,
-                                  highlightColor: Colors.grey[100]!,
-                                  child: child!),
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: child!,
+                              ),
                               child: child!,
                             );
                           }),

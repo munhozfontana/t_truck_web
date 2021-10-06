@@ -38,17 +38,21 @@ class HeaderComponentSliver extends StatelessWidget {
         ),
         Row(
           children: [
-            Obx(() => Icon(
-                  controllerMenu.menuModel.menu.icon,
-                  color: StylesColors.black,
-                )),
+            Obx(
+              () => Icon(
+                controllerMenu.menuModel.menu.icon,
+                color: StylesColors.black,
+              ),
+            ),
             const SizedBox(width: 15),
             Visibility(
               visible: Responsive.isNotMobile(context),
-              child: Obx(() => Text(
-                    controllerMenu.menuModel.menu.text,
-                    style: StylesTypography.h18.copyWith(color: Colors.black),
-                  )),
+              child: Obx(
+                () => Text(
+                  controllerMenu.menuModel.menu.text,
+                  style: StylesTypography.h18.copyWith(color: Colors.black),
+                ),
+              ),
             )
           ],
         ),

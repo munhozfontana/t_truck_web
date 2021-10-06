@@ -32,15 +32,19 @@ class HeaderComponent extends StatelessWidget {
         ),
         Row(
           children: [
-            Obx(() => Icon(
-                  controllerMenu.menuModel.menu.icon,
-                  color: StylesColors.black,
-                )),
+            Obx(
+              () => Icon(
+                controllerMenu.menuModel.menu.icon,
+                color: StylesColors.black,
+              ),
+            ),
             const SizedBox(width: 15),
-            Obx(() => Text(
-                  controllerMenu.menuModel.menu.text,
-                  style: StylesTypography.h18.copyWith(color: Colors.black),
-                ))
+            Obx(
+              () => Text(
+                controllerMenu.menuModel.menu.text,
+                style: StylesTypography.h18.copyWith(color: Colors.black),
+              ),
+            )
           ],
         ),
         const Spacer(

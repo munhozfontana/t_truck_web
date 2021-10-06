@@ -51,7 +51,7 @@ class TableCardComponent extends StatelessWidget {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
+              return const SizedBox(
                 height: 8,
               );
             },

@@ -23,11 +23,12 @@ class TableCellComponent extends StatelessWidget {
     final isOutLine = typeCellComponent == TypeCellComponent.outline;
 
     final boxDecoration = BoxDecoration(
-        color: isOutLine ? Colors.transparent : color,
-        borderRadius: BorderRadius.circular(20),
-        border: isOutLine
-            ? Border.all(color: color.withOpacity(.2), width: 2)
-            : Border.all(width: 0, color: Colors.transparent));
+      color: isOutLine ? Colors.transparent : color,
+      borderRadius: BorderRadius.circular(20),
+      border: isOutLine
+          ? Border.all(color: color.withOpacity(.2), width: 2)
+          : Border.all(width: 0, color: Colors.transparent),
+    );
 
     final text = Text(
       value,

@@ -41,17 +41,18 @@ class DioDriver implements IHttp {
   Future<HttpResponse> postHttp(
     String? url, {
     Map<String, String>? headers,
-    body,
+    dynamic body,
   }) async {
     return mackObj(
-        await dio.post(url!, data: body, options: Options(headers: headers)));
+      await dio.post(url!, data: body, options: Options(headers: headers)),
+    );
   }
 
   @override
   Future<HttpResponse> putHttp(
     String? url, {
     Map<String, String>? headers,
-    body,
+    dynamic body,
   }) async {
     return mackObj(await dio.put(url!, options: Options(headers: headers)));
   }

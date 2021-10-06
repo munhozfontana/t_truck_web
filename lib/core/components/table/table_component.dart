@@ -36,15 +36,17 @@ class TableComponent extends StatelessWidget {
         children: header
             .asMap()
             .entries
-            .map((e) => Expanded(
-                  flex: buildSpaceColumn(e),
-                  child: Text(
-                    e.value,
-                    style: StylesTypography.h16.copyWith(
-                      color: Colors.black.withOpacity(.5),
-                    ),
+            .map(
+              (e) => Expanded(
+                flex: buildSpaceColumn(e),
+                child: Text(
+                  e.value,
+                  style: StylesTypography.h16.copyWith(
+                    color: Colors.black.withOpacity(.5),
                   ),
-                ))
+                ),
+              ),
+            )
             .toList(),
       ),
     );
