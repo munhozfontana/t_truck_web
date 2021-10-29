@@ -1,37 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
-  _SliverAppBarDelegate({
-    required this.minHeight,
-    required this.maxHeight,
-    required this.child,
-  });
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  double get maxExtent => max(maxHeight, minHeight);
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.expand(child: child);
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
-  }
-}
+import 'package:t_truck_web/core/components/sliver_app_bar_delegate.dart';
 
 class CollapsingList extends StatelessWidget {
   final List<Widget> slivers;
@@ -41,10 +9,13 @@ class CollapsingList extends StatelessWidget {
     required this.slivers,
   }) : super(key: key);
 
-  static SliverPersistentHeader makeHeader(Widget child,
-      {double minHeight = 60.0, double maxHeight = 200.0}) {
+  static SliverPersistentHeader makeHeader(
+    Widget child, {
+    double minHeight = 60.0,
+    double maxHeight = 200.0,
+  }) {
     return SliverPersistentHeader(
-      delegate: _SliverAppBarDelegate(
+      delegate: SliverAppBarDelegate(
         minHeight: minHeight,
         maxHeight: maxHeight,
         child: child,
