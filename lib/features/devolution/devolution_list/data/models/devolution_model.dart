@@ -6,6 +6,7 @@ import 'package:t_truck_web/features/devolution/devolution_list/domain/entities/
 
 class DevolutionModel extends DevolutionEntity {
   final String codClie;
+  final int codMot;
 
   DevolutionModel({
     required int cod,
@@ -14,6 +15,7 @@ class DevolutionModel extends DevolutionEntity {
     required DateTime data,
     required DevolutionProgressStatus devolutionProgressStatus,
     required this.codClie,
+    required this.codMot,
   }) : super(
           cod: cod,
           client: client,
@@ -25,16 +27,18 @@ class DevolutionModel extends DevolutionEntity {
   factory DevolutionModel.fromMap(Map<String, dynamic> map) {
     final parse = DateTime.parse(map['DATA'] as String);
     return DevolutionModel(
-        cod: map['NUMTRANSVENDA'] as int,
-        client: map['CLIENTE'] as String,
-        codClie: (map['CODCLI'] as int).toString(),
-        status: devolutionDescByCod(
-          map['SITUACAO'] as String,
-        ),
-        devolutionProgressStatus: devolutionProgressDescByCod(
-          map['OCORRENCIA'] as String,
-        ),
-        data: parse);
+      cod: map['NUMTRANSVENDA'] as int,
+      client: map['CLIENTE'] as String,
+      codClie: (map['CODCLI'] as int).toString(),
+      status: devolutionDescByCod(
+        map['SITUACAO'] as String,
+      ),
+      devolutionProgressStatus: devolutionProgressDescByCod(
+        map['OCORRENCIA'] as String,
+      ),
+      data: parse,
+      codMot: map['CODMOT'] as int,
+    );
   }
 
   factory DevolutionModel.fromJson(String source) =>

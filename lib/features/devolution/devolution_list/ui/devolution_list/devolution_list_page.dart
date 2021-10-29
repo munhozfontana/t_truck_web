@@ -64,7 +64,8 @@ class DevolutionListPage extends GetView<DevolutionListController> {
   TableComponent table() {
     return TableComponent(
       header: const [
-        'Nº',
+        'Cod Motorista',
+        'Nº da Nota Fiscal',
         'Cod Cli',
         'Cliente',
         'Status',
@@ -73,12 +74,17 @@ class DevolutionListPage extends GetView<DevolutionListController> {
       space: const [
         1,
         1,
+        1,
         4,
         1,
         1,
       ],
       data: controller.list
           .map((e) => [
+                Text(
+                  e.codMot.toString(),
+                  style: StylesTypography.h16Bold,
+                ),
                 Text(
                   e.cod.toString(),
                   style: StylesTypography.h16Bold,
