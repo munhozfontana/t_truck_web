@@ -3,7 +3,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/components/body_component.dart';
-import '../../../../core/components/collapsing_list.dart' as collapsing;
+import '../../../../core/components/collap_list.dart';
 import '../../../../core/components/layout_component.dart';
 import '../../../../core/components/responsive.dart';
 import '../../../../core/components/table/table_card_component.dart';
@@ -30,13 +30,13 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
 
   Widget onScroll(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return collapsing.CollapsingList(
+    return CollapList(
       slivers: [
-        collapsing.CollapsingList.makeHeader(
+        CollapList.makeHeader(
           titleComponent(context),
           maxHeight: size.height * .15,
         ),
-        collapsing.CollapsingList.makeHeader(
+        CollapList.makeHeader(
           bodyComponent(context),
           maxHeight: size.height,
         ),

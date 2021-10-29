@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'sliver_app_bar_delegate.dart';
 
-class CollapsingList extends StatelessWidget {
+class CollapList extends StatelessWidget {
   final List<Widget> slivers;
 
-  const CollapsingList({
+  const CollapList({
     Key? key,
     required this.slivers,
   }) : super(key: key);
