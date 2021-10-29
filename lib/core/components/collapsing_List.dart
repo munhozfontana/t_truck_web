@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_truck_web/core/components/sliver_app_bar_delegate.dart';
+
+import 'sliver_app_bar_delegate.dart';
 
 class CollapsingList extends StatelessWidget {
   final List<Widget> slivers;

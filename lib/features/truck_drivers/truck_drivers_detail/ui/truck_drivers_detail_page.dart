@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
-import 'package:t_truck_web/core/components/body_component.dart';
-import 'package:t_truck_web/core/components/collapsing_list.dart';
-import 'package:t_truck_web/core/components/layout_component.dart';
-import 'package:t_truck_web/core/components/responsive.dart';
-import 'package:t_truck_web/core/components/table/table_card_component.dart';
-import 'package:t_truck_web/core/components/table/table_cell_component.dart';
-import 'package:t_truck_web/core/components/table/table_component.dart';
-import 'package:t_truck_web/core/components/title_component.dart';
-import 'package:t_truck_web/core/styles/style_colors.dart';
-import 'package:t_truck_web/core/styles/styles_fonts.dart';
-import 'package:t_truck_web/features/map/map_page.dart';
-import 'package:t_truck_web/features/truck_drivers/truck_drivers_list/domain/entities/delivery_status_enum.dart';
 
-import './truck_drivers_detail_controller.dart';
+import '../../../../core/components/body_component.dart';
+import '../../../../core/components/collapsing_list.dart' as collapsing;
+import '../../../../core/components/layout_component.dart';
+import '../../../../core/components/responsive.dart';
+import '../../../../core/components/table/table_card_component.dart';
+import '../../../../core/components/table/table_cell_component.dart';
+import '../../../../core/components/table/table_component.dart';
+import '../../../../core/components/title_component.dart';
+import '../../../../core/styles/style_colors.dart';
+import '../../../../core/styles/styles_fonts.dart';
+import '../../../map/map_page.dart';
+import '../../truck_drivers_list/domain/entities/delivery_status_enum.dart';
+import 'truck_drivers_detail_controller.dart';
 
 class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
   @override
@@ -30,13 +30,13 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
 
   Widget onScroll(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return CollapsingList(
+    return collapsing.CollapsingList(
       slivers: [
-        CollapsingList.makeHeader(
+        collapsing.CollapsingList.makeHeader(
           titleComponent(context),
           maxHeight: size.height * .15,
         ),
-        CollapsingList.makeHeader(
+        collapsing.CollapsingList.makeHeader(
           bodyComponent(context),
           maxHeight: size.height,
         ),
