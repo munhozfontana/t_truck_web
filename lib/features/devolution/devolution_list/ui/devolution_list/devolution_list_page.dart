@@ -86,7 +86,7 @@ class DevolutionListPage extends GetView<DevolutionListController> {
                   style: StylesTypography.h16Bold,
                 ),
                 Text(
-                  e.cod.toString(),
+                  e.numNota.toString(),
                   style: StylesTypography.h16Bold,
                 ),
                 Text(
