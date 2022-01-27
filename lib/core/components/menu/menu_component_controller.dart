@@ -45,7 +45,7 @@ class MenuComponentController extends GetxController {
     addQuickAcces(newMenuModel);
     if (!Get.currentRoute.contains(newMenuModel.path)) {
       Get.offAllNamed(newMenuModel.path);
-    } else if (Get.currentRoute.contains(RegExp(r'[0-9]'))) {
+    } else if (Get.currentRoute.contains(RegExp('[0-9]'))) {
       Get.back();
     }
   }

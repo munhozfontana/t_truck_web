@@ -17,8 +17,9 @@ class TruckDriversDetailsExternal implements ITruckDriversDetailsExternal {
   Future<List<OrderEntity>> getById(int codMot) async {
     try {
       final res = await iHttp.postHttp(
-          'http://truck.stoatacadista.com.br:2302/api/entregas/',
-          body: {'codmot': codMot});
+        'http://truck.stoatacadista.com.br:2302/api/entregas/',
+        body: {'codmot': codMot},
+      );
 
       return DioDriver.listExtract(res)
           .map((e) => OrderModel.fromMap(e as Map<String, dynamic>))

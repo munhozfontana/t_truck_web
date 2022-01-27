@@ -65,8 +65,9 @@ class TableComponent extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 height: 30 + (constrains.maxHeight * .03),
                 decoration: BoxDecoration(
-                    color: StylesColors.white,
-                    borderRadius: BorderRadius.circular(8)),
+                  color: StylesColors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: data[index]

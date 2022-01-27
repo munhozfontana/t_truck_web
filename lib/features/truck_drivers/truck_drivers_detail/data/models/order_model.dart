@@ -5,12 +5,12 @@ class OrderModel extends OrderEntity {
   OrderModel({
     required int numOrder,
     required String clientName,
-    required int nf,
+    required int quantity,
     required DeliveryStatus status,
   }) : super(
           numOrder: numOrder,
           clientName: clientName,
-          nf: nf,
+          quantity: quantity,
           status: status,
         );
 
@@ -18,7 +18,7 @@ class OrderModel extends OrderEntity {
     return OrderModel(
       numOrder: map['CODCLI'] as int,
       clientName: map['CLIENTE'] as String,
-      nf: map['QTDE'] as int,
+      quantity: map['QTDE'] as int,
       status: DeliveryStatus.none,
     );
   }

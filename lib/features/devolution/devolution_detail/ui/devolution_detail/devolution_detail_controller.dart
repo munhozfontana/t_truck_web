@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:t_truck_web/core/params/params.dart';
-import 'package:t_truck_web/features/devolution/devolution_detail/domain/entities/products_entity.dart';
+import 'package:t_truck_web/features/devolution/devolution_detail/data/models/products_model.dart';
 import 'package:t_truck_web/features/devolution/devolution_detail/domain/usecases/devolution_detail_case.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/data/models/devolution_model.dart';
 import 'package:t_truck_web/features/devolution/devolution_list/ui/devolution_list/devolution_list_controller.dart';
 
 class DevolutionDetailController extends GetxController {
-  RxList<ProductsEntity> list = <ProductsEntity>[].obs;
+  RxList<ProductsModel> list = <ProductsModel>[].obs;
   late Rx<DevolutionModel> devolution;
 
   DevolutionDetailCase devolutionDetailCase;

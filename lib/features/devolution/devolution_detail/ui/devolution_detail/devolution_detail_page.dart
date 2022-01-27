@@ -14,8 +14,7 @@ import './devolution_detail_controller.dart';
 class DevolutionDetailPage extends GetView<DevolutionDetailController> {
   @override
   Widget build(BuildContext context) {
-    final status =
-        (controller.devolution.value.status as DevolutionStatus).desc;
+    final status = (controller.devolution.value.status).desc;
     return LayoutComponent(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,32 +25,84 @@ class DevolutionDetailPage extends GetView<DevolutionDetailController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  'Cliente: ${controller.devolution.value.client}',
-                  textAlign: TextAlign.justify,
-                  style: Responsive.when(context,
-                      mobile: StylesTypography.h16,
-                      orOther: StylesTypography.h18),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        controller.devolution.value.cod.toString(),
+                        textAlign: TextAlign.justify,
+                        style: Responsive.when(
+                          context,
+                          mobile: StylesTypography.h16,
+                          orOther: StylesTypography.h18,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        controller.devolution.value.client,
+                        textAlign: TextAlign.justify,
+                        style: Responsive.when(
+                          context,
+                          mobile: StylesTypography.h16,
+                          orOther: StylesTypography.h18,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        "Nota Fiscal: ${controller.devolution.value.numNota}",
+                        textAlign: TextAlign.end,
+                        style: Responsive.when(
+                          context,
+                          mobile: StylesTypography.h16,
+                          orOther: StylesTypography.h18,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Text(
-                  'Motivo nº ${controller.devolution.value.cod}',
-                  style: Responsive.when(context,
-                      mobile: StylesTypography.h21,
-                      orOther: StylesTypography.h24),
+                  'Cod Cliente ${controller.devolution.value.codClie}',
+                  style: Responsive.when(
+                    context,
+                    mobile: StylesTypography.h21,
+                    orOther: StylesTypography.h24,
+                  ),
                 ),
                 Text(
                   status,
-                  style: Responsive.when(context,
-                      mobile: StylesTypography.h14w500,
-                      orOther: StylesTypography.h16W400),
+                  style: Responsive.when(
+                    context,
+                    mobile: StylesTypography.h14w500,
+                    orOther: StylesTypography.h16W400,
+                  ),
                 ),
-                Text(
-                  'Data da devolução: ${DateFormat('yyyy-MM-dd').format(controller.devolution.value.data)}',
-                  style: Responsive.when(context,
-                      mobile: StylesTypography.h14w500,
-                      orOther: StylesTypography.h16W400.copyWith(
-                        color: StylesColors.black.withOpacity(.5),
-                      )),
+                Row(
+                  children: [
+                    Text(
+                      'Data da devolução: ${DateFormat('yyyy-MM-dd').format(controller.devolution.value.data)}',
+                      style: Responsive.when(
+                        context,
+                        mobile: StylesTypography.h14w500,
+                        orOther: StylesTypography.h16W400.copyWith(
+                          color: StylesColors.black.withOpacity(.5),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      'Motivo devolução: ${DateFormat('yyyy-MM-dd').format(controller.devolution.value.data)}',
+                      style: Responsive.when(
+                        context,
+                        mobile: StylesTypography.h14w500,
+                        orOther: StylesTypography.h16W400.copyWith(
+                          color: StylesColors.black.withOpacity(.5),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -73,7 +124,16 @@ class DevolutionDetailPage extends GetView<DevolutionDetailController> {
 
   TableComponent table() {
     return TableComponent(
+      header: const [
+        "Nº Pedido",
+        "Cod Produto",
+        "Nome",
+        "Quantidade",
+        "Preço",
+        "Preço Total",
+      ],
       space: const [
+        1,
         1,
         4,
         1,
@@ -82,28 +142,34 @@ class DevolutionDetailPage extends GetView<DevolutionDetailController> {
       ],
       data: [
         ...controller.list
-            .map((item) => [
-                  Text(
-                    item.cod.toString(),
-                    style: StylesTypography.h16Bold,
-                  ),
-                  Text(
-                    item.name,
-                    style: StylesTypography.h16Bold,
-                  ),
-                  Text(
-                    item.quantity.toString(),
-                    style: StylesTypography.h16Bold,
-                  ),
-                  Text(
-                    'R\$ ${item.price.toStringAsFixed(2)}',
-                    style: StylesTypography.h16Bold,
-                  ),
-                  Text(
-                    'R\$ ${item.priceMount.toStringAsFixed(2)}',
-                    style: StylesTypography.h16Bold,
-                  ),
-                ])
+            .map(
+              (item) => [
+                Text(
+                  '${item.numPedido}',
+                  style: StylesTypography.h16Bold,
+                ),
+                Text(
+                  item.cod.toString(),
+                  style: StylesTypography.h16Bold,
+                ),
+                Text(
+                  item.name,
+                  style: StylesTypography.h16Bold,
+                ),
+                Text(
+                  item.quantity.toString(),
+                  style: StylesTypography.h16Bold,
+                ),
+                Text(
+                  'R\$ ${item.price.toStringAsFixed(2)}',
+                  style: StylesTypography.h16Bold,
+                ),
+                Text(
+                  'R\$ ${item.priceMount.toStringAsFixed(2)}',
+                  style: StylesTypography.h16Bold,
+                ),
+              ],
+            )
             .toList()
       ],
     );

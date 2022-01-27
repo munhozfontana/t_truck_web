@@ -38,7 +38,8 @@ class ImageQualityDetailPage extends GetView<ImageQualityDetailController> {
               ),
             ],
           ),
-          Obx(() => Visibility(
+          Obx(
+            () => Visibility(
               visible: controller.loadingImage.value,
               child: const Align(
                 child: SizedBox(
@@ -46,7 +47,9 @@ class ImageQualityDetailPage extends GetView<ImageQualityDetailController> {
                   width: 70,
                   child: CircularProgressIndicator(),
                 ),
-              ))),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -87,51 +90,53 @@ class ImageQualityDetailPage extends GetView<ImageQualityDetailController> {
         1,
       ],
       data: controller.list
-          .map((e) => [
-                Text(
-                  e.numTrasnvenda,
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.codCLi.toString(),
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.numCanhoto.toString(),
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.percentage.toString(),
-                  style: StylesTypography.h16Bold,
-                ),
-                SizedBox(
-                  height: 30,
-                  child: Material(
-                    color: Colors.white,
-                    child: InkWell(
-                      onTap: () => controller.toDetailPage(e),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Abrir imagem',
-                            style: StylesTypography.h14w500.copyWith(
-                              color: StylesColors.black.withOpacity(.4),
-                            ),
+          .map(
+            (e) => [
+              Text(
+                e.numTrasnvenda,
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.codCLi.toString(),
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.numCanhoto.toString(),
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.percentage.toString(),
+                style: StylesTypography.h16Bold,
+              ),
+              SizedBox(
+                height: 30,
+                child: Material(
+                  color: Colors.white,
+                  child: InkWell(
+                    onTap: () => controller.toDetailPage(e),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Abrir imagem',
+                          style: StylesTypography.h14w500.copyWith(
+                            color: StylesColors.black.withOpacity(.4),
                           ),
-                          Icon(
-                            Icons.arrow_right_alt_rounded,
-                            size: 20,
-                            color: StylesColors.black.withOpacity(
-                              .4,
-                            ),
-                          )
-                        ],
-                      ),
+                        ),
+                        Icon(
+                          Icons.arrow_right_alt_rounded,
+                          size: 20,
+                          color: StylesColors.black.withOpacity(
+                            .4,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-              ])
+              ),
+            ],
+          )
           .toList(),
     );
   }
