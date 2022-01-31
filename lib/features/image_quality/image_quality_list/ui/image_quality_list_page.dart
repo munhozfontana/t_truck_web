@@ -75,51 +75,53 @@ class ImageQualityListPage extends GetView<ImageQualityListController> {
         1,
       ],
       data: controller.list
-          .map((e) => [
-                Text(
-                  e.cod.toString(),
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.name,
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  '${e.overallPercentage}%',
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.badQuality.toString(),
-                  style: StylesTypography.h16Bold,
-                ),
-                SizedBox(
-                  height: 30,
-                  child: Material(
-                    color: Colors.white,
-                    child: InkWell(
-                      onTap: () => controller.toDetailPage(e),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Visualizar',
-                            style: StylesTypography.h14w500.copyWith(
-                              color: StylesColors.black.withOpacity(.4),
-                            ),
+          .map(
+            (e) => [
+              Text(
+                e.cod.toString(),
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.name,
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                '${e.overallPercentage}%',
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.badQuality.toString(),
+                style: StylesTypography.h16Bold,
+              ),
+              SizedBox(
+                height: 30,
+                child: Material(
+                  color: Colors.white,
+                  child: InkWell(
+                    onTap: () => controller.toDetailPage(e),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Visualizar',
+                          style: StylesTypography.h14w500.copyWith(
+                            color: StylesColors.black.withOpacity(.4),
                           ),
-                          Icon(
-                            Icons.arrow_right_alt_rounded,
-                            size: 20,
-                            color: StylesColors.black.withOpacity(
-                              .4,
-                            ),
-                          )
-                        ],
-                      ),
+                        ),
+                        Icon(
+                          Icons.arrow_right_alt_rounded,
+                          size: 20,
+                          color: StylesColors.black.withOpacity(
+                            .4,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-              ])
+              ),
+            ],
+          )
           .toList(),
     );
   }

@@ -49,12 +49,8 @@ class DevolutionListPage extends GetView<DevolutionListController> {
             (element) => TableCardItem(
               iconTrailing: const Icon(Icons.arrow_right),
               title: element.client,
-              leading:
-                  (element.devolutionProgressStatus as DevolutionProgressStatus)
-                      .icon,
-              tooltip:
-                  (element.devolutionProgressStatus as DevolutionProgressStatus)
-                      .desc,
+              leading: (element.devolutionProgressStatus).icon,
+              tooltip: (element.devolutionProgressStatus).desc,
             ),
           )
           .toList(),
@@ -80,61 +76,59 @@ class DevolutionListPage extends GetView<DevolutionListController> {
         1,
       ],
       data: controller.list
-          .map((e) => [
-                Text(
-                  e.codMot.toString(),
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.numNota.toString(),
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.codClie,
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.client,
-                  style: StylesTypography.h16Bold,
-                ),
-                TableCellComponent(
-                  value:
-                      (e.devolutionProgressStatus as DevolutionProgressStatus)
-                          .desc,
-                  color:
-                      (e.devolutionProgressStatus as DevolutionProgressStatus)
-                          .color,
-                  typeCellComponent: TypeCellComponent.outline,
-                  width: 180,
-                ),
-                SizedBox(
-                  height: 30,
-                  child: Material(
-                    color: Colors.white,
-                    child: InkWell(
-                      onTap: () => controller.toDetailPage(e),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Visualizar',
-                            style: StylesTypography.h14w500.copyWith(
-                              color: StylesColors.black.withOpacity(.4),
-                            ),
+          .map(
+            (e) => [
+              Text(
+                e.codMot.toString(),
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.numNota.toString(),
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.codClie,
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.client,
+                style: StylesTypography.h16Bold,
+              ),
+              TableCellComponent(
+                value: (e.devolutionProgressStatus).desc,
+                color: (e.devolutionProgressStatus).color,
+                typeCellComponent: TypeCellComponent.outline,
+                width: 180,
+              ),
+              SizedBox(
+                height: 30,
+                child: Material(
+                  color: Colors.white,
+                  child: InkWell(
+                    onTap: () => controller.toDetailPage(e),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Visualizar',
+                          style: StylesTypography.h14w500.copyWith(
+                            color: StylesColors.black.withOpacity(.4),
                           ),
-                          Icon(
-                            Icons.arrow_right_alt_rounded,
-                            size: 20,
-                            color: StylesColors.black.withOpacity(
-                              .4,
-                            ),
-                          )
-                        ],
-                      ),
+                        ),
+                        Icon(
+                          Icons.arrow_right_alt_rounded,
+                          size: 20,
+                          color: StylesColors.black.withOpacity(
+                            .4,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-              ])
+              ),
+            ],
+          )
           .toList(),
     );
   }

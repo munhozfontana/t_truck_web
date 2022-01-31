@@ -18,11 +18,13 @@ class TruckDriversDetailController extends GetxController {
   final IListLocationCase iListLocationCase;
 
   Rx<TruckDriversEntity> truckDriversEntity = TruckDriversEntity(
-          cod: '',
-          status: DeliveryStatus.done,
-          quantityDelivers: '',
-          truckDriver: '')
-      .obs;
+    cod: '',
+    status: DeliveryStatus.done,
+    quantityDelivers: '',
+    truckDriver: '',
+  ).obs;
+
+  RxInt quantity = 0.obs;
 
   RxList<OrderEntity> list = <OrderEntity>[].obs;
 
@@ -43,11 +45,15 @@ class TruckDriversDetailController extends GetxController {
 
   Future<void> getInitData() async {
     (await iListTruckDetailsOrdersCase(
-            Params(id: int.parse(truckDriversEntity.value.cod))))
+      Params(id: int.parse(truckDriversEntity.value.cod)),
+    ))
         .fold(
       (l) => null,
       (r) => {
         list.value = r,
+        quantity.value = list
+            .map((e) => e.quantity)
+            .reduce((value, element) => value + element),
       },
     );
   }
@@ -87,8 +93,9 @@ class TruckDriversDetailController extends GetxController {
       }
     } else {
       AppDialog().warning(
-          menssagem:
-              'O motorista do código ${truckDriversEntity.value.cod} não iniciou as entregas!');
+        menssagem:
+            'O motorista do código ${truckDriversEntity.value.cod} não iniciou as entregas!',
+      );
     }
   }
 
@@ -110,8 +117,9 @@ class TruckDriversDetailController extends GetxController {
                 ),
                 name: element.truck.cod.toString(),
                 locationMapEntity: LocationMapEntity(
-                    latitude: element.latitude.toDouble(),
-                    longitude: element.longitudade.toDouble()),
+                  latitude: element.latitude.toDouble(),
+                  longitude: element.longitudade.toDouble(),
+                ),
               ),
             )
             .toList(),

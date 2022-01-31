@@ -141,8 +141,11 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
           subTitle: 'Código: ${controller.truckDriversEntity.value.cod}',
         ),
         secondary: TitleRankComponent(
-          totalQuantityDelivery: Responsive.when(context,
-              mobile: 'Entregas: 123', orOther: 'Total de entregas: 123'),
+          totalQuantityDelivery: Responsive.when(
+            context,
+            mobile: 'Entregas:  ${controller.quantity}',
+            orOther: 'Total de entregas: ${controller.quantity}',
+          ),
           likes: 'Avaliações: 382',
           stars: 4,
         ),
@@ -167,51 +170,53 @@ class TruckDriversDetailPage extends GetView<TruckDriversDetailController> {
         1,
       ],
       data: controller.list
-          .map((e) => [
-                Text(
-                  e.numOrder.toString(),
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.clientName,
-                  style: StylesTypography.h16Bold,
-                ),
-                Text(
-                  e.nf.toString(),
-                  style: StylesTypography.h16Bold,
-                ),
-                TableCellComponent(
-                  value: (e.status as DeliveryStatus).desc,
-                  color: (e.status as DeliveryStatus).color,
-                  typeCellComponent: TypeCellComponent.outline,
-                  width: 180,
-                ),
-                SizedBox(
-                  height: 30,
-                  child: Material(
-                    color: Colors.white,
-                    child: InkWell(
-                      child: Row(
-                        children: [
-                          Text(
-                            'Visualizar',
-                            style: StylesTypography.h14w500.copyWith(
-                              color: StylesColors.black.withOpacity(.4),
-                            ),
+          .map(
+            (e) => [
+              Text(
+                e.numOrder.toString(),
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.clientName,
+                style: StylesTypography.h16Bold,
+              ),
+              Text(
+                e.quantity.toString(),
+                style: StylesTypography.h16Bold,
+              ),
+              TableCellComponent(
+                value: e.status.desc,
+                color: e.status.color,
+                typeCellComponent: TypeCellComponent.outline,
+                width: 180,
+              ),
+              SizedBox(
+                height: 30,
+                child: Material(
+                  color: Colors.white,
+                  child: InkWell(
+                    child: Row(
+                      children: [
+                        Text(
+                          'Visualizar',
+                          style: StylesTypography.h14w500.copyWith(
+                            color: StylesColors.black.withOpacity(.4),
                           ),
-                          Icon(
-                            Icons.arrow_right_alt_rounded,
-                            size: 20,
-                            color: StylesColors.black.withOpacity(
-                              .4,
-                            ),
-                          )
-                        ],
-                      ),
+                        ),
+                        Icon(
+                          Icons.arrow_right_alt_rounded,
+                          size: 20,
+                          color: StylesColors.black.withOpacity(
+                            .4,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
-              ])
+              ),
+            ],
+          )
           .toList(),
     );
   }
@@ -258,18 +263,22 @@ class TitleRankComponent extends StatelessWidget {
               Expanded(
                 child: Text(
                   totalQuantityDelivery,
-                  style: Responsive.when(context,
-                      mobile: StylesTypography.h14,
-                      orOther: StylesTypography.h16),
+                  style: Responsive.when(
+                    context,
+                    mobile: StylesTypography.h14,
+                    orOther: StylesTypography.h16,
+                  ),
                   textAlign: TextAlign.end,
                 ),
               ),
               Expanded(
                 child: Text(
                   likes,
-                  style: Responsive.when(context,
-                      mobile: StylesTypography.h14,
-                      orOther: StylesTypography.h16),
+                  style: Responsive.when(
+                    context,
+                    mobile: StylesTypography.h14,
+                    orOther: StylesTypography.h16,
+                  ),
                   textAlign: TextAlign.end,
                 ),
               )
