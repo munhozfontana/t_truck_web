@@ -14,30 +14,34 @@ class LoadInterceptor implements IProtocolInterceptor {
 
   @override
   InterceptorsWrapper call() {
-    return InterceptorsWrapper(onRequest: (options, handler) {
-      if (!options.path.contains("api/location") &&
-          !options.path.contains("api/imagemMotorista/imagem")) {
-        storeController.onLoad();
-      }
-      return handler.next(options);
-    }, onResponse: (response, handler) {
-      Timer(const Duration(milliseconds: 400), storeController.offLoad);
-      return handler.next(response); // continue
-    }, onError: (DioError e, handler) {
-      try {
-        if ((e.response?.data as Map)['error'] != null) {
-          AppDialog()
-              .error(menssagem: (e.response?.data as Map)['error'] as String);
-        } else {
+    return InterceptorsWrapper(
+      onRequest: (options, handler) {
+        if (!options.path.contains("api/location") &&
+            !options.path.contains("api/imagemMotorista/imagem")) {
+          storeController.onLoad();
+        }
+        return handler.next(options);
+      },
+      onResponse: (response, handler) {
+        Timer(const Duration(milliseconds: 400), storeController.offLoad);
+        return handler.next(response); // continue
+      },
+      onError: (DioError e, handler) {
+        try {
+          if ((e.response?.data as Map)['error'] != null) {
+            AppDialog()
+                .error(menssagem: (e.response?.data as Map)['error'] as String);
+          } else {
+            AppDialog().error(menssagem: "Erro ao acessar prosseguir");
+          }
+        } catch (e) {
           AppDialog().error(menssagem: "Erro ao acessar prosseguir");
         }
-      } catch (e) {
-        AppDialog().error(menssagem: "Erro ao acessar prosseguir");
-      }
 
-      storeController.offLoad();
-      Logger().e(e);
-      throw ApiException(error: e.message);
-    });
+        storeController.offLoad();
+        Logger().e(e);
+        throw ApiException(error: e.message);
+      },
+    );
   }
 }

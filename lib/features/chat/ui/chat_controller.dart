@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:t_truck_web/core/adapters/protocols/i_logged_user.dart';
 import 'package:t_truck_web/core/params/params.dart';
 import 'package:t_truck_web/features/chat/domain/entities/chat_message_entity.dart';
@@ -180,19 +178,20 @@ class ChatController extends GetxController {
 
   void rowDown() {
     Timer(
-        Duration(milliseconds: 200),
-        () => listViewConMessages.value.position.animateTo(
-              listViewConMessages.value.position.maxScrollExtent,
-              duration: const Duration(seconds: 1),
-              curve: Curves.easeOutSine,
-            ));
+      const Duration(milliseconds: 200),
+      () => listViewConMessages.value.position.animateTo(
+        listViewConMessages.value.position.maxScrollExtent,
+        duration: const Duration(seconds: 1),
+        curve: Curves.easeOutSine,
+      ),
+    );
   }
 
   void closeTab() {
     visibleChatTalkComponent.value = false;
     selectChat = ChatPerson(
       id: 0,
-      avatar: Text(""),
+      avatar: const Text(""),
       name: "",
       codPerson: "",
       messages: [],

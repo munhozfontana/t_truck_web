@@ -72,10 +72,11 @@ extension RoutesExt on Routes {
         );
       case Routes.devolutions:
         return MenuModel(
-            text: 'Devoluções',
-            path: Routes.devolutions.path,
-            icon: MenuIcons.subdirectory_arrow_right,
-            iconInverted: true);
+          text: 'Devoluções',
+          path: Routes.devolutions.path,
+          icon: MenuIcons.subdirectory_arrow_right,
+          iconInverted: true,
+        );
       case Routes.message:
         return MenuModel(
           text: 'Mensagens',
@@ -149,5 +150,6 @@ extension RoutesExt on Routes {
       case Routes.unknown:
         break;
     }
+    return null;
   }
 }

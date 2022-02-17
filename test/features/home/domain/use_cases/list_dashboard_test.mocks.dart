@@ -32,9 +32,11 @@ class MockIDasboadRepository extends _i1.Mock
 
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.DashBoardComposedEntity>> get() =>
-      (super.noSuchMethod(Invocation.method(#get, []),
-          returnValue: Future<
-                  _i2.Either<_i5.Failure, _i6.DashBoardComposedEntity>>.value(
-              _FakeEither<_i5.Failure, _i6.DashBoardComposedEntity>())) as _i4
-          .Future<_i2.Either<_i5.Failure, _i6.DashBoardComposedEntity>>);
+      (super.noSuchMethod(
+        Invocation.method(#get, []),
+        returnValue:
+            Future<_i2.Either<_i5.Failure, _i6.DashBoardComposedEntity>>.value(
+          _FakeEither<_i5.Failure, _i6.DashBoardComposedEntity>(),
+        ),
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.DashBoardComposedEntity>>);
 }

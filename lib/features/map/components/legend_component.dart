@@ -18,12 +18,14 @@ class _LegendComponentState extends State<LegendComponent>
   late AnimationsUtils animationsUtils;
   late AnimationController _openAnimCtl;
 
-  _LegendComponentState() {
+  @override
+  void initState() {
     animationsUtils = AnimationsUtils();
     _openAnimCtl = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
+    super.initState();
   }
 
   @override

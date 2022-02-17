@@ -18,10 +18,11 @@ void main() {
   setUp(() {
     iDasboadRepository = MockIDasboadRepository();
     tValue = DashBoardComposedEntity(
-        devolutions: DashBoardEntity(),
-        finished: DashBoardEntity(),
-        opened: DashBoardEntity(),
-        pending: DashBoardEntity());
+      devolutions: DashBoardEntity(),
+      finished: DashBoardEntity(),
+      opened: DashBoardEntity(),
+      pending: DashBoardEntity(),
+    );
     listDashboardCase = ListDashboardCase(
       iDasboadRepository: iDasboadRepository,
     );

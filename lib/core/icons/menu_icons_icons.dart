@@ -33,10 +33,8 @@ class MenuIcons {
   static const _kFontFam = 'MenuIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData truck =
-      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData truck = IconData(0xe800, fontFamily: _kFontFam);
   static const IconData subdirectory_arrow_right =
-      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cube =
-      IconData(0xf1b2, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+      IconData(0xe801, fontFamily: _kFontFam);
+  static const IconData cube = IconData(0xf1b2, fontFamily: _kFontFam);
 }

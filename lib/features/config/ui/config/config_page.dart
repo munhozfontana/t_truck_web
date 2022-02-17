@@ -97,12 +97,13 @@ class ConfigPage extends GetView<ConfigController> {
                           Row(
                             children: [
                               Expanded(
-                                  child: AppInput(
-                                label: 'Nome',
-                                textFormField: TextFormField(
-                                  controller: controller.nameField.value,
+                                child: AppInput(
+                                  label: 'Nome',
+                                  textFormField: TextFormField(
+                                    controller: controller.nameField.value,
+                                  ),
                                 ),
-                              )),
+                              ),
                               const SizedBox(
                                 width: 16,
                               ),
@@ -119,12 +120,13 @@ class ConfigPage extends GetView<ConfigController> {
                           Row(
                             children: [
                               Expanded(
-                                  child: AppInput(
-                                label: 'E-mail',
-                                textFormField: TextFormField(
-                                  controller: controller.emailField.value,
+                                child: AppInput(
+                                  label: 'E-mail',
+                                  textFormField: TextFormField(
+                                    controller: controller.emailField.value,
+                                  ),
                                 ),
-                              )),
+                              ),
                             ],
                           ),
                         ],
@@ -145,9 +147,11 @@ class ConfigPage extends GetView<ConfigController> {
                             child: Expanded(
                               child: Text(
                                 'Resetar senha',
-                                style: Responsive.when(context,
-                                    mobile: StylesTypography.h16Bold,
-                                    orOther: StylesTypography.h18wBold),
+                                style: Responsive.when(
+                                  context,
+                                  mobile: StylesTypography.h16Bold,
+                                  orOther: StylesTypography.h18wBold,
+                                ),
                               ),
                             ),
                           ),
@@ -159,9 +163,11 @@ class ConfigPage extends GetView<ConfigController> {
                             ),
                             child: Text(
                               'Você pode alterar a senha do usuário clicando abaixo',
-                              style: Responsive.when(context,
-                                  mobile: StylesTypography.h16,
-                                  orOther: StylesTypography.h18),
+                              style: Responsive.when(
+                                context,
+                                mobile: StylesTypography.h16,
+                                orOther: StylesTypography.h18,
+                              ),
                             ),
                           ),
                           Expanded(
@@ -210,16 +216,18 @@ class ConfigPage extends GetView<ConfigController> {
           Visibility(
             visible: Responsive.isNotMobile(context),
             child: Expanded(
-                child: Text(
-              'Informações',
-              style: StylesTypography.h18wBold,
-            )),
+              child: Text(
+                'Informações',
+                style: StylesTypography.h18wBold,
+              ),
+            ),
           ),
           Expanded(
-              child: Text(
-            'Insira as informações de cadastro do usuário.',
-            style: StylesTypography.h18,
-          )),
+            child: Text(
+              'Insira as informações de cadastro do usuário.',
+              style: StylesTypography.h18,
+            ),
+          ),
           Visibility(
             visible: Responsive.isNotMobile(context),
             child: const Spacer(

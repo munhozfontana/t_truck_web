@@ -15,20 +15,22 @@ class TokenInterceptor implements IProtocolInterceptor {
 
   @override
   InterceptorsWrapper call() {
-    return InterceptorsWrapper(onRequest: (options, handler) async {
-      if (Get.currentRoute != Routes.login.path) {
-        try {
-          final token = await iLoggedUserl.token;
-          if (token.isBlank ?? false || await iLoggedUserl.loginExpired()) {
-            Get.toNamed(Routes.login.path);
+    return InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        if (Get.currentRoute != Routes.login.path) {
+          try {
+            final token = await iLoggedUserl.token;
+            if (token.isBlank ?? false || await iLoggedUserl.loginExpired()) {
+              Get.toNamed(Routes.login.path);
+            }
+            options.headers.addAll({'x-access-token': token});
+          } catch (e) {
+            log('Sem token de acesso');
           }
-          options.headers.addAll({'x-access-token': token});
-        } catch (e) {
-          log('Sem token de acesso');
         }
-      }
 
-      return handler.next(options);
-    });
+        return handler.next(options);
+      },
+    );
   }
 }

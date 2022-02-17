@@ -33,11 +33,12 @@ const fast = Duration(milliseconds: 400);
 List<GetPage> pages() {
   final list = [
     GetPage(
-        name: Routes.login.path,
-        transitionDuration: fast,
-        curve: Curves.easeInOutCirc,
-        page: () => const LoginPage(),
-        binding: LoginBiding()),
+      name: Routes.login.path,
+      transitionDuration: fast,
+      curve: Curves.easeInOutCirc,
+      page: () => const LoginPage(),
+      binding: LoginBiding(),
+    ),
     GetPage(
       name: Routes.home.path,
       transitionDuration: fast,

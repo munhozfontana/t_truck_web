@@ -13,11 +13,13 @@ abstract class IAppDialog {
 class AppDialog implements IAppDialog {
   @override
   void show({String? menssagem}) {
-    Get.showSnackbar(GetBar(
-      message: menssagem,
-      duration: timeToDisabled,
-      backgroundColor: Get.theme.primaryColor,
-    ));
+    Get.showSnackbar(
+      GetBar(
+        message: menssagem,
+        duration: timeToDisabled,
+        backgroundColor: Get.theme.primaryColor,
+      ),
+    );
   }
 
   @override
@@ -33,10 +35,12 @@ class AppDialog implements IAppDialog {
 
   @override
   void warning({String? menssagem}) {
-    Get.showSnackbar(GetBar(
-      message: menssagem,
-      duration: timeToDisabled,
-      backgroundColor: StylesColors.wellow,
-    ));
+    Get.showSnackbar(
+      GetBar(
+        message: menssagem,
+        duration: timeToDisabled,
+        backgroundColor: StylesColors.wellow,
+      ),
+    );
   }
 }

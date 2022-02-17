@@ -23,12 +23,14 @@ class CoreBiding extends Bindings {
       () => DioDriver(
         interceptors:
             AppInterceptor(storeController: Get.find()).allInterceptor(),
-        dio: Dio(BaseOptions(
-          connectTimeout:
-              const Duration(seconds: 5).inMilliseconds, // 60 seconds
-          receiveTimeout:
-              const Duration(seconds: 5).inMilliseconds, // 60 seconds
-        )),
+        dio: Dio(
+          BaseOptions(
+            connectTimeout:
+                const Duration(seconds: 5).inMilliseconds, // 60 seconds
+            receiveTimeout:
+                const Duration(seconds: 5).inMilliseconds, // 60 seconds
+          ),
+        ),
       ),
     );
 
@@ -41,10 +43,11 @@ class CoreBiding extends Bindings {
     );
 
     Get.put<ILoggedUser>(
-        LoggedUser(
-          iJwt: Get.find(),
-          iLocalStoreExternal: Get.find(),
-        ),
-        permanent: true);
+      LoggedUser(
+        iJwt: Get.find(),
+        iLocalStoreExternal: Get.find(),
+      ),
+      permanent: true,
+    );
   }
 }
